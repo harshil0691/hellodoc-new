@@ -1,0 +1,338 @@
+﻿#login {
+    height: 100%;
+    width: 100%;
+    display: flex;
+}
+
+.main-lpage {
+    flex-direction: column;
+}
+
+footer {
+    background-color: black;
+    display: flex;
+    justify-content: end;
+}
+
+.back-btn {
+    border: 1px solid #0dcaf0;
+    border-radius: 5px;
+    width: 90px;
+}
+
+.logout-btn {
+    color: #0dcaf0;
+    font-size: larger;
+    text-decoration: none;
+    border: 1px solid #0dcaf0;
+    border-radius: 5px;
+    width: 90px;
+}
+
+.dark-btn {
+    color: #0dcaf0;
+    border: 1px solid #0dcaf0;
+    font-weight: 500;
+    position: absolute;
+    top: 10px;
+    right: 30px;
+    border-radius: 10px;
+    z-index: 2;
+}
+
+.dark-btn1 {
+    color: #0dcaf0;
+    border: 1px solid #0dcaf0;
+    font-weight: 500;
+    top: 10px;
+    right: 30px;
+    border-radius: 10px;
+    z-index: 2;
+}
+
+.req-logo {
+    height: 70px;
+    width: 150px;
+    top: 10px;
+    left: 20px;
+    bottom: 10px;
+}
+
+.sr-btn {
+    border: 2px solid #0dcaf0;
+}
+
+.sr-btn1 {
+    display: flex;
+    justify-content: center;
+    border: 1px solid rgb(119, 88, 255);
+    border-radius: 5px;
+    color: rgb(119, 88, 255);
+    background-color: rgb(232, 228, 253);
+    font-weight: 500;
+    font-size: larger;
+}
+
+.sr-btn2 {
+    display: flex;
+    justify-content: center;
+    border: 1px solid rgb(21, 207, 254);
+    border-radius: 5px;
+    color: rgb(26, 208, 253);
+    background-color: rgb(198, 241, 252);
+    font-weight: 500;
+    font-size: larger;
+}
+
+.sr-btn3 {
+    display: flex;
+    justify-content: center;
+    border: 1px solid rgb(1, 120, 1);
+    border-radius: 5px;
+    color: rgb(0, 124, 0);
+    background-color: rgb(170, 241, 170);
+    font-weight: 500;
+    font-size: larger;
+}
+
+.sr-btn4 {
+    display: flex;
+    justify-content: center;
+    border: 1px solid rgb(185, 37, 84);
+    border-radius: 5px;
+    color: rgb(185, 37, 84);
+    background-color: rgb(254, 222, 232);
+    font-weight: 500;
+    font-size: larger;
+}
+
+.content {
+    flex-direction: column;
+    background-color: white;
+    border-radius: 20px;
+    margin-bottom: 40px;
+    margin-top: 20px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.iti {
+    position: relative;
+    display : block;
+}
+
+@media screen and (max-width: 993px) {
+    .lb-img {
+        display: none;
+    }
+
+    .bimg {
+        background-image: url("/images/11116016_415.jpg");
+        background-size: cover;
+        background-position: center center;
+        background-color: rgba(255, 255, 255,0.900);
+        background-blend-mode: overlay;
+    }
+
+    footer {
+        background-color: black;
+        display: flex;
+        justify-content: center;
+    }
+
+    /*.back-btn {
+        border: 1px solid #0dcaf0;
+        border-radius: 5px;
+        width: 90px;
+        position: relative;
+    }*/ 
+
+    .content {
+        flex-direction: column;
+        background-color: white;
+        border-radius: 20px;
+        margin-bottom: 40px;
+        margin-top: 20px;
+        padding-right: 50px;
+        padding-left: 50px;
+    }
+}
+
+input,
+textarea {
+    &:focus
+
+{
+    box-shadow: none !important;
+    border-color: #0dcaf0 !important;
+    +label
+
+{
+    color: #0dcaf0 !important;
+    transition: ease 0.3s;
+}
+
+}
+}
+
+
+
+.nav-underline .nav-item .nav-link.active {
+    color: #0dcaf0;
+    font-size: large;
+}
+.nav-underline .nav-item .nav-link {
+    color: black;
+    font-weight:400;
+    font-size:large;
+}
+
+.custom-check :checked {
+    background-color: #0cdfa0;
+    transform: scale(1.5);
+}
+.custom-check {
+    transform: scale(1.5);
+}
+
+.colored-dot {
+    border-radius: 50%;
+    height: 15px;
+    width: 15px;
+    background-color: black;
+}
+
+.admin-btn{
+    width:14%;
+}
+@media screen and (max-width: 1146px) {
+    .admin-btn{
+        width:25%;
+    }
+}
+
+
+    .tab-pane .nav .ad-btn1 .nav-link.active {
+        color: white;
+        background-color: rgb(2, 0, 253);
+        border-radius: 5px;
+    }
+
+    .tab-pane .nav .ad-btn2 .nav-link.active {
+        color: white;
+        background-color: #0dcaf0;
+        border-radius: 5px;
+    }
+
+    .tab-pane .nav .ad-btn3 .nav-link.active {
+        color: white;
+        background-color: #1db742;
+        border-radius: 5px;
+    }
+
+    .tab-pane .nav .ad-btn4 .nav-link.active {
+        color: white;
+        background-color: #ff5b88;
+        border-radius: 5px;
+    }
+
+    .tab-pane .nav .ad-btn5 .nav-link.active {
+        color: white;
+        background-color: #9581ff;
+        border-radius: 5px;
+    }
+
+    .tab-pane .nav .ad-btn6 .nav-link.active {
+        color: white;
+        background-color: #845eff;
+        border-radius: 5px;
+    }
+
+
+    .ad-btn {
+        display: flex;
+        justify-content: center;
+        border-radius: 5px;
+        font-weight: 400;
+        font-size: medium;
+    }
+
+    .tab-pane .nav .ad-btn1 .nav-link {
+        border: 1px solid rgb(2, 0, 253);
+        color: rgb(2, 0, 253);
+        background-color: rgb(232, 228, 253);
+        border-radius: 5px;
+    }
+
+    .tab-pane .nav .ad-btn2 .nav-link {
+        border: 1px solid #0dcaf0;
+        color: #0dcaf0;
+        background-color: #c3f3ff;
+        border-radius: 5px;
+    }
+
+    .tab-pane .nav .ad-btn3 .nav-link {
+        border: 1px solid #1db742;
+        color: #1db742;
+        background-color: #e4fdeb;
+        border-radius: 5px;
+    }
+
+    .tab-pane .nav .ad-btn4 .nav-link {
+        border: 1px solid #ff5b88;
+        color: #ff5b88;
+        background-color: #ff7a9e66;
+        border-radius: 5px;
+    }
+
+    .tab-pane .nav .ad-btn5 .nav-link {
+        border: 1px solid #9581ff;
+        color: #9581ff;
+        background-color: #9581ff24;
+        border-radius: 5px;
+    }
+
+    .tab-pane .nav .ad-btn6 .nav-link {
+        border: 1px solid #845eff;
+        color: #845eff;
+        background-color: #845eff52;
+        border-radius: 5px;
+    }
+
+    .table tbody tr td {
+        color: white;
+        padding: 20px;
+    }
+
+.actions {
+    color:white;
+    border:1px solid white;
+    border-radius:5px;
+    font-size:medium;
+}
+
+#patientdash tbody tr td{
+    color:black;
+}
+
+.accordion-button.collapsed::after {
+    content: none; /* Hide the arrow when collapsed */
+}
+
+.accordion-item:not(.show) .accordion-header button {
+    background-color: #d7ffffde;
+}
+
+.accordion-button::after {
+    background-image: initial;
+    width: 0;
+}
+
+.accordion-button:not(.collapsed)::after {
+    background-image: initial;
+    width: 0;
+}
+
+/*.modal-backdrop.in {
+    opacity: 0.9 !important;
+}*/

@@ -1,0 +1,40 @@
+﻿@model hellodoc.DbEntity.ViewModels.CancelCaseModel
+
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="font-weight:600">
+            <form method="post" asp-action="assign_case" asp-route-requestid=@Model.Requestid>
+                <div class="modal-header bg-info text-white">
+                    <h5 class="modal-title" id="exampleModalLabel"> Assign Request</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <p class="mt-1 text-black-50 fs-6"> To assign this request , search and select other Physician.</p>
+
+                    <select class="form-select mt-3" aria-label="Default select example">
+                        <option selected>Maryland</option>
+                        <option value="1">ahemdabad</option>
+                        <option value="2">junagadh</option>
+
+                    </select>
+
+                    <select class="form-select mt-3" aria-label="Default select example">
+                        <option selected>Select Physician</option>
+                        <option value="1">Dr. Arora</option>
+                        <option value="2">Dr. Akash Sojitra</option>
+
+                    </select>
+
+                    <textarea asp-for="@Model.CancelNotes" rows="5" class="col-12 form-control mt-3" placeholder="Add Discription" style="font-size:medium" class="p-1"></textarea>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-info text-white">Continue</button>
+                    <button type="button" class="btn btn-outline-info" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

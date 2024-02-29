@@ -1,0 +1,208 @@
+﻿@model hellodoc.DbEntity.ViewModels.PatientReqModel
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+    <div class="login" id="main">
+        
+        <Partial name="_header" />
+
+        <div class="row" style="background-color:#e7e7e7">
+
+            <div class=" col-12 col-sm-12 col-md-10 col-lg-8 mx-auto d-flex justify-content-between mt-4 mb-2">
+                <h2>New Request</h2>
+                <a asp-action="admin_dash" class="d-flex back-btn  text-end"
+                   style="color: #0dcaf0; font-size: larger;text-decoration:none">
+                    <span class="material-icons pt-2">
+                        chevron_left
+                    </span>
+                    <span class="p-1">Back</span>
+                </a>
+
+            </div>
+            <div class="d-grid gap-2 col-12 col-sm-12 col-md-10 col-lg-8 mx-auto d-flex content px-4 pt-4">
+
+                <form method="post" asp-action="update_profile">
+                    <h3 id="t1" class="pt-2 pb-4">Patient Information</h3>
+
+                    <h5>Confirmation number</h5>
+                    <h3 class="text-info">@Model.Confirmationnumber</h3>
+
+                    <div class="form-floating mt-3">
+                        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" asp-for="@Model.Symptoms"
+                                  style="height: 100px" disabled></textarea>
+                        <label for="floatingTextarea2" class="mx-1">Symptoms</label>
+                        <span asp-validation-for="Symptoms" class="text-danger"></span>
+                    </div>
+
+                    <div class="row mt-5">
+                        <div class="form-floating mb-3  col-md-6 col-lg-6">
+                            <input type="text" class="form-control" id="floatingInput" asp-for="@Model.Firstname" placeholder="Firstname" disabled>
+                            <label for="floatingInput" class="mx-3">First Name</label>
+                            <span asp-validation-for="Firstname" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating mb-3 col-md-6 col-lg-6">
+                            <input type="text" class="form-control" id="floatingInput" asp-for="@Model.Lastname" placeholder="Lastname" disabled>
+                            <label for="floatingInput" class="mx-3">Last Name</label>
+                            <span asp-validation-for="Lastname" class="text-danger"> </span>
+                        </div>
+                        <div class="form-floating mb-3 col-md-6 col-lg-6">
+                            <input type="Date" class="form-control" id="floatingInput" asp-for="@Model.DateOfBirth" placeholder="DateOfBirth" disabled>
+                            <label for="floatingInput" class="mx-3">Date Of Birth</label>
+                            <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating col-md-6 col-lg-6">
+                            <input type="tel" class="form-control pt-3 pb-3" id="phone" asp-for="@Model.Phonenumber" placeholder="Phone number" disabled>
+                            <span asp-validation-for="Phonenumber" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating mb-3 col-md-6 col-lg-6">
+                            <input type="email" class="form-control" id="floatingInput" asp-for="@Model.Email" placeholder="Email" disabled>
+                            <label for="floatingInput" class="mx-3">Email address</label>
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                        
+                    </div>
+
+
+                    <h3 class="pt-2 pb-4" id="t1">
+                        Patient Location
+                    </h3>
+
+                    <div class="row">
+                        <div class="form-floating mb-3  col-md-6 col-lg-6">
+                            <input type="text" class="form-control" id="floatingInput" asp-for="@Model.Street" placeholder="Region" disabled>
+                            <label for="floatingInput" class="mx-3">Region</label>
+                            <span asp-validation-for="Street" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating mb-3  col-md-6 col-lg-6">
+                            <input type="text" class="form-control" id="floatingInput" asp-for="@Model.State" placeholder="State" disabled>
+                            <label for="floatingInput" class="mx-3">State</label>
+                            <span asp-validation-for="State" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating mb-3 col-md-6 col-lg-6">
+                            <input type="text" class="form-control" id="floatingInput" asp-for="@Model.Roomno" placeholder="RoomNo" disabled>
+                            <label for="floatingInput" class="mx-3">RoomNo</label>
+                            <span asp-validation-for="Roomno" class="text-danger"></span>
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="d-flex justify-content-end" id="edit1">
+                        <button type="button" class="btn btn-info text-white mx-3 p-2 px-3 mb-2" onclick="edit()" id="e1">Assign</button>
+                        <a asp-action="view_notes" asp-route-requestid=@Model.Requestid class="btn btn-info text-white mx-3 p-2 px-3 mb-2">View Notes</a>
+                    <div>
+                        
+                        <button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal">Cancel</button>
+                        
+                        
+                            @*<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modalshadow">
+                                    <div class="modal-content" style="font-weight:600">
+                                        <form method="post" asp-action="cancel_case" asp-route-requestid=@Model.Requestid>
+                                        <div class="modal-header bg-info text-white">
+                                            <h5 class="modal-title" id="exampleModalLabel"> Confirm Cancellation </h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+
+                                        <div class="modal-body">
+                                            <p class="mb-3 mt-3"> Patient Name : <span class="text-info"></span></p>
+
+                                            <div class="dropdown mb-4">
+                                                <button class="btn btn-outline-black dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="width:100%">
+                                                    Reason For Cancellation
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" href="#">Charges are more</a></li>
+                                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                                </ul>
+                                            </div>
+
+                                            <textarea rows="5" class="col-12 form-control" placeholder="please provide a brief explanation for your cancelation" style="font-size:medium" class="p-1"></textarea>
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-info text-white" onclick="myfunction()">Continue</button>
+                                            <button type="button" class="btn btn-outline-info" data-bs-dismiss="modal">Cancel</button>
+                                        </div>
+                                    </form>
+                                    </div>
+                                </div>
+                            </div>*@
+                        
+                    
+                    </div>
+                    </div>
+                    <div class="d-flex justify-content-end" id="edit2">
+                        <button type="submit" class="btn btn-info mx-3 p-2 px-3 mb-2" id="b1" style="display:none;">Save</button>
+                        <button type="button" class="btn btn-dark mx-3 p-2 px-3 mb-2" id="b2" style="display:none;">Cancel</button>
+                    </div>
+                </form>
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+    <footer style=" position:fixed;bottom:0; width:100%;">
+        <div style="padding-right: 40px;">
+            <a href="" style="color: white;">Terms Of Conditions</a> |
+            <a href="" style="color: white;">Privacy Policy</a>
+        </div>
+    </footer>
+
+<script>
+    var x = false;
+    function darkmode() {
+        if (x) {
+            document.getElementById("main").style.backgroundColor = "white";
+            document.getElementById("t1").style.color = "black";
+            x = false;
+        }
+        else {
+            document.getElementById("main").style.backgroundColor = "black";
+            document.getElementById("t1").style.color = "white";
+            x = true;
+        }
+
+    }
+
+    document.getElementById("check-header").addEventListener("click", function () {
+        var checkboxes = document.querySelectorAll(".custom-check");
+        checkboxes.forEach(function (checkbox) {
+            checkbox.checked = document.getElementById("check-header").checked;
+        });
+    });
+
+    async function download1() {
+        const response = await fetch('/Patient/patient_documents/download/');
+    }
+
+    const phoneInputField = document.querySelector("#phone");
+    const phoneInput = window.intlTelInput(phoneInputField, {
+        utilsScript:
+            "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+    });
+
+    Swal.fire({
+        title: "Information",
+        text: "When submitting a request you must provide the correct information for the patient or the responsibly party.Failure to provide correct e-mail and phone number will delay service or be declined ",
+        icon: "warning",
+        showCancelButton: false,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Ok"
+    })
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+@section Scripts{
+    @{
+        <Partial name="_ValidationScriptsPartial" />
+    }
+    }

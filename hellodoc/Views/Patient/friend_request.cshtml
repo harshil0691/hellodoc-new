@@ -1,0 +1,208 @@
+﻿@model hellodoc.DbEntity.ViewModels.FriendReqModel
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Submit Request Page</title>
+</head>
+
+<body >
+    <div class="login" id="main">
+        <nav class="navbar navbar-expand-lg navbar-light d-flex justify-content-between" style="background-color:white;">
+            <div class="container-fluid">
+                <a class="navbar-brand me-auto" href="#">
+                    <img src="/images/Fig56._Patient_site_1-removebg-preview.png" alt=""
+                         class="req-logo">
+                </a>
+
+
+                <div class="d-flex">
+
+
+                    <button class="m-2 bg-light" onclick="darkmode()"
+                            style=" color: #0dcaf0;border: 1px solid #0dcaf0;border-radius: 5px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28px" height="28px" fill="currentColor"
+                             class="bi bi-moon night-mode-icon mt-2 mb-2 mx-2" viewBox="0 0 16 16">
+                            <path d="M6 .278a.77.77 0 0 1 .08.858 7.2 7.2 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277q.792-.001 1.533-.16a.79.79 0 0 1 .81.316.73.73 0 0 1-.031.893A8.35 8.35 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.75.75 0 0 1 6 .278M4.858 1.311A7.27 7.27 0 0 0 1.025 7.71c0 4.02 3.279 7.276 7.319 7.276a7.32 7.32 0 0 0 5.205-2.162q-.506.063-1.029.063c-4.61 0-8.343-3.714-8.343-8.29 0-1.167.242-2.278.681-3.286" />
+                        </svg>
+                    </button>
+
+                </div>
+
+            </div>
+        </nav>
+        
+
+        <div class="row" style="background-color:#e7e7e7">
+            <div class="d-grid gap-2 col-12 col-sm-12 col-md-10 col-lg-8 mx-auto d-flex content">
+                <form method="post" asp-action="friend_request">
+                <a asp-action="request" class="d-flex back-btn mt-4"
+                   style="color: #0dcaf0; font-size: larger;text-decoration:none;">
+                    <span class="material-icons pt-2">
+                        chevron_left
+                    </span>
+                    <span class="p-1">Back</span>
+                </a>
+
+                <h3 id="t1" class="pt-2">Famlily / Friend Information</h3>
+
+                
+                <div class="row">
+                    <div class="form-floating mb-3  col-md-6 col-lg-6">
+                        <input type="text" class="form-control" id="floatingInput" asp-for="F_Firstname">
+                        <label for="floatingInput" class="mx-3">Your First Name</label>
+                    </div>
+                    <div class="form-floating mb-3 col-md-6 col-lg-6">
+                        <input type="text" class="form-control" id="floatingInput" asp-for="F_Lastname">
+                        <label for="floatingInput" class="mx-3">Your Last Name</label>
+                    </div>
+                    <div class="form-floating col-md-6 col-lg-6">
+                        <input type="tel" class="form-control pt-3 pb-3" id="phone" asp-for="F_Phonenumber">
+                    </div>
+                    <div class="form-floating mb-3 col-md-6 col-lg-6">
+                        <input type="email" class="form-control" id="floatingInput" asp-for="F_Email">
+                        <label for="floatingInput" class="mx-3">Your Email</label>
+                    </div>
+                    <div class="form-floating mb-3 col-md-6 col-lg-6">
+                        <input type="text" class="form-control" id="floatingInput"  asp-for="F_RelationType">
+                        <label for="floatingInput" class="mx-3">Relation With Patient</label>
+                    </div>
+                </div>
+
+                <h3 id="t1" class="pt-3">Patient Information</h3>
+                <div class="form-floating mb-3">
+                    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" asp-for="Symptoms"
+                              style="height: 100px"></textarea>
+                    <label for="floatingTextarea2" class="mx-1">Enter Brief Details Of Symptoms (Optional)</label>
+                </div>
+
+                <div class="row">
+                    <div class="form-floating mb-3  col-md-6 col-lg-6">
+                        <input type="text" class="form-control" id="floatingInput" asp-for="Firstname">
+                        <label for="floatingInput" class="mx-3">First Name</label>
+                    </div>
+                    <div class="form-floating mb-3 col-md-6 col-lg-6">
+                        <input type="text" class="form-control" id="floatingInput" asp-for="Lastname">
+                        <label for="floatingInput" class="mx-3">Last Name</label>
+                    </div>
+                    <div class="form-floating mb-3 col-md-6 col-lg-6">
+                        <input type="Date" class="form-control" id="floatingInput" asp-for="DateOfBirth">
+                        <label for="floatingInput" class="mx-3">Date Of Birth</label>
+                    </div>
+                </div>
+
+                <h3 class="pt-2" id="t1">
+                    Patient Contact Information
+                </h3>
+
+                <div class="row">
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" id="floatingInput" asp-for="Email">
+                        <label for="floatingInput" class="mx-3">Email address</label>
+                    </div>
+                    <div class="form-floating col-md-6 col-lg-6">
+                        <input type="tel" class="form-control pt-3 pb-3" id="phone" asp-for="Phonenumber">
+                    </div>
+                </div>
+
+
+                <h3 class="pt-2" id="t1">
+                    Patient Location
+                </h3>
+
+                <div class="row">
+                    <div class="form-floating mb-3  col-md-6 col-lg-6">
+                        <input type="text" class="form-control" id="floatingInput" asp-for="Street">
+                        <label for="floatingInput" class="mx-3">Street</label>
+                    </div>
+                    <div class="form-floating mb-3 col-md-6 col-lg-6">
+                        <input type="text" class="form-control" id="floatingInput" asp-for="City">
+                        <label for="floatingInput" class="mx-3">City</label>
+                    </div>
+                    <div class="form-floating mb-3  col-md-6 col-lg-6">
+                        <input type="text" class="form-control" id="floatingInput" asp-for="State">
+                        <label for="floatingInput" class="mx-3">State</label>
+                    </div>
+                    <div class="form-floating mb-3 col-md-6 col-lg-6">
+                        <input type="number" class="form-control" id="floatingInput" asp-for="Zipcode">
+                        <label for="floatingInput" class="mx-3">Zip Code</label>
+                    </div>
+                    <div class="form-floating mb-3  col-md-6 col-lg-6">
+                            <input type="text" class="form-control" id="floatingInput" asp-for="Roomno">
+                        <label for="floatingInput" class="mx-3"> Room No. (Optional) </label>
+                    </div>
+                </div>
+
+                <h3 class="pt-2" id="t1">
+                    (Optional) Upload Photo or Document
+                </h3>
+                <div class="mb-3 mt-2">
+                    <input class="form-control" type="file" id="formFileMultiple" multiple asp-for="Doc">
+                </div>
+
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="btn btn-info mx-3 p-2 px-3 mb-2">Submit</button>
+
+                        <button type="reset" class="btn btn-secondary mx-3 p-2 px-3 mb-2">Cancel</button>
+                    </div>
+
+                </form>
+
+            </div>
+            <footer>
+                <div style="padding-right: 40px;">
+                    <a href="" style="color: white;">Terms Of Conditions</a> |
+                    <a href="" style="color: white;">Privacy Policy</a>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+   
+
+</body>
+</html>
+<script>
+    var x = false;
+    function darkmode() {
+        if (x) {
+            document.getElementById("main").style.backgroundColor = "white";
+            document.getElementById("t1").style.color = "black";
+            x = false;
+        }
+        else {
+            document.getElementById("main").style.backgroundColor = "black";
+            document.getElementById("t1").style.color = "white";
+            x = true;
+        }
+
+    }
+
+    const phoneInputField = document.querySelector("#phone");
+    const phoneInput = window.intlTelInput(phoneInputField, {
+        utilsScript:
+            "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+    });
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+@section Scripts{
+    @{
+        <Partial name="_ValidationScriptsPartial" />
+    }
+    }

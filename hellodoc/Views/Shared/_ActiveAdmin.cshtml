@@ -1,0 +1,243 @@
+﻿@model hellodoc.DbEntity.ViewModels.AdminParent
+
+
+<div class="d-flex justify-content-between" id="bgcolor">
+    <h3>Patients(Active)</h3>
+    <div>
+        <button class="btn btn-info text-white"><i class="bi bi-send px-1"></i><span class="d-none d-sm-none d-md-inline d-lg-inline d-xl-inline">send link</span></button>
+        <button class="btn btn-info text-white"><i class="bi bi-pencil-square px-1 "></i><span class="d-none d-sm-none d-md-inline d-lg-inline d-xl-inline">create requests</span></button>
+        <button class="btn btn-info text-white"><i class="bi bi-share-fill px-1"></i><span class="d-none d-sm-none d-md-inline d-lg-inline d-xl-inline">export</span></button>
+        <button class="btn btn-info text-white"><i class="bi bi-share-fill px-1"></i><span class="d-none d-sm-none d-md-inline d-lg-inline d-xl-inline">export all</span></button>
+        <button class="btn btn-info text-white"><i class="bi bi-file-person px-1"></i><span class="d-none d-sm-none d-md-inline d-lg-inline d-xl-inline">Request DTY support</span></button>
+    </div>
+</div>
+
+<div class="d-flex justify-content-between p-3 mt-2 bg-light row">
+    <div class="d-flex  col-12 col-sm-12 col-md-4">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="customSearch">
+        <select class="form-select" aria-label="Default select example" onchange="fetchRegion()" id="region">
+            <option selected>All Region</option>
+            @{
+                foreach (var a in Model.regions)
+                {
+                    <option value="@a.Regionid">@a.Name</option>
+                }
+            }
+        </select>
+    </div>
+    <div class="d-flex justify-content-md-end col-12 col-sm-12 col-md-6 mt-3 justify-content-start ">
+        <button class="btn btn-outline-dark d-none d-sm-inline"> All</button>
+        <div class="m-2 d-grid d-sm-grid d-sm-flex"><div class="colored-dot bg-success m-1"></div><div>Patients</div></div>
+        <div class="m-2 d-grid d-sm-grid d-sm-flex"><div class="colored-dot bg-warning m-1"></div><div>Family_friend</div></div>
+        <div class="m-2 d-grid d-sm-grid d-sm-flex"><div class="colored-dot bg-danger m-1 "></div><div>Business</div></div>
+        <div class="m-2 d-grid d-sm-grid d-sm-flex"><div class="colored-dot bg-primary m-1"></div><div>Concierge</div></div>
+        <div class="m-2 d-grid d-sm-grid d-sm-flex"><div class="colored-dot bg-success m-1"></div><div>Vip</div></div>
+    </div>
+</div>
+
+<div style="margin-bottom:50px;" class="table-responsive d-none d-sm-none d-md-block d-lg-block d-xl-block">
+    <table id="example3" class="table" style="width:100%;z-index:5">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Date Of Birth</th>
+                <th>Requestor</th>
+                <th>Requestor Date</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>Notes</th>
+                <th>Chat With</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody style="font-size:larger;font-weight:400;color:white;" id="newtable">
+            @{
+                foreach (var a in Model.adminDashModels)
+                {
+                    var reqcolor = "";
+
+                    if (a.Requesttypeid == 1)
+                    {
+                        reqcolor = "#d23636";
+                    }
+                    else if (a.Requesttypeid == 2)
+                    {
+                        reqcolor = "#418441";
+                    }
+                    else if (a.Requesttypeid == 3)
+                    {
+                        reqcolor = "#ecb728";
+                    }
+                    else if (a.Requesttypeid == 4)
+                    {
+                        reqcolor = "#14428ffa";
+                    }
+
+                    <tr class=" m-2" style="background-color:@reqcolor">
+                        <td>@a.PatientName </td>
+                        <td>@a.Createddate</td>
+                        <td>@a.RequestorName</td>
+                        <td>@a.Createddate</td>
+                        <td>
+                            @{
+                                if (a.Phonenumber_P != null)
+                                {
+                                    <button class="btn btn-outline-light">@a.Phonenumber_P</button>
+                                }
+                                if (a.Phonenumber_R != null)
+                                {
+                                    <button class="btn btn-outline-light">@a.Phonenumber_R</button>
+                                }
+                            }
+                        </td>
+                        <td>@a.Address</td>
+                        <td>@a.Notes</td>
+                        <td><button class="btn btn-outline-light">Provider</button></td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn btn-outline-light" dropdown-toggle p-1" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Actions
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <button type="button" class="dropdown-item " onclick="ShowModal('@a.Requestid','@a.PatientName','AssignCase')">
+                                            <i class="bi bi-journal-plus me-2"></i>Assign case
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button type="button" class="dropdown-item " onclick="ShowModal('@a.Requestid','@a.PatientName','CancelCase')">
+                                            <i class="bi bi-x-circle me-2"></i>Cancel case
+                                        </button>
+
+                                    </li>
+                                    <li><a class="dropdown-item" asp-route-requestid=@a.Requestid asp-action="view_case"><i class="bi bi-journal-text me-2"></i>View Case</a></li>
+                                    <li><a class="dropdown-item" asp-action="view_notes" asp-route-requestid=@a.Requestid><i class="bi bi-journals me-2"></i>View Notes</a></li>
+                                    <li>
+                                        <button type="button" class="dropdown-item " onclick="ShowModal('@a.Requestid','@a.PatientName','BlockCase')">
+                                            <i class="bi bi-ban me-2"></i>Block Patient
+                                        </button>
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </td>
+
+                    </tr>
+                }
+            }
+
+        </tbody>
+    </table>
+
+</div>
+
+<div class="d-block d-sm-block d-md-none d-lg-none d-xl-none">
+    <div class="accordion" id="accordionExample">
+
+        @{
+            foreach (var a in Model.adminDashModels)
+            {
+                var reqcolor = "";
+                var text = "";
+
+                if (a.Requesttypeid == 1)
+                {
+                    reqcolor = "bg-danger";
+                    text = "Business";
+                }
+                else if (a.Requesttypeid == 2)
+                {
+                    reqcolor = "bg-success";
+                    text = "Patient";
+                }
+                else if (a.Requesttypeid == 3)
+                {
+                    reqcolor = "bg-warning";
+                    text = "Family/Friend";
+                }
+                else if (a.Requesttypeid == 4)
+                {
+                    reqcolor = "bg-primary";
+                    text = "Concierge";
+                }
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed  d-grid" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_@a.Requestid" aria-expanded="true" aria-controls="collapse_@a.Requestid">
+                            <div class="d-flex justify-content-between w-100 m-2">
+                                <div>@a.PatientName</div>
+                                <div class="d-flex">@text<div class="colored-dot @reqcolor m-1 mx-2"></div> </div>
+                            </div>
+                            <div class="d-flex justify-content-between w-100 m-2">
+                                <div>@a.Address</div>
+                                <a class="btn btn-outline-info rounded-5">Map Location</a>
+                            </div>
+                            <div><i class="bi bi-clock text-info px-2"></i> Wait time :<b> @a.Createddate </b></div>
+
+                        </button>
+
+                    </h2>
+
+                    <div id="collapse_@a.Requestid" class="accordion-collapse collapse" data-bs-parent="#accordionExample" style="background-color:#d7ffffde;">
+                        <div class="d-flex justify-content-end" style="top:0;"><button class="btn bg-light rounded-5 px-3" style="color:mediumpurple;border:2px solid mediumpurple;position:relative;top:-18px;z-index:10;">View Case</button></div>
+                        <div class="accordion-body">
+
+                            <div class="mb-2"><i class="bi rounded-pill btn btn-outline-info text-black-50 bi-calendar3  px-2"></i> Date Of Birth :<b> @a.Createddate </b></div>
+                            <div class="mb-2"><i class="bi bi-envelope-at rounded-pill btn btn-outline-info text-black-50 px-2"></i> Email :<b> @a.Email </b></div>
+                            <div class="mb-2"><i class="bi bi-telephone rounded-pill btn btn-outline-info text-black-50 px-2"></i> @text :<b> @a.Phonenumber_P </b></div>
+                            <div class="mb-2"><i class="bi bi-person-circle rounded-pill btn btn-outline-info text-black-50 px-2"></i> Requestor :<b> @a.RequestorName </b></div>
+                            <div class="row">
+                                <button class="btn text-white rounded-5 col-5 m-2 mx-3" style="background-color:mediumpurple;">Assign Case</button>
+                                <button type="button" class="btn btn-danger rounded-5 col-5 m-2 mx-3 " onclick="ShowModal('@a.Requestid','@a.PatientName','CancelCase')">
+                                    Cancel Case
+                                </button>
+                                <button class="btn btn-success rounded-5 col-5 m-2 mx-3">View Notes</button>
+                                <button class="btn btn-danger rounded-5 col-5 m-2 mx-3">Block Patient</button>
+                                <button class="btn btn-success rounded-5 col-5 m-2 mx-3">Email</button>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+            }
+        }
+    </div>
+
+
+
+</div>
+
+<script>
+    var table = new DataTable('#example3');
+
+    $(document).ready(function () {
+
+        $("#customSearch").on("keyup change", function () {
+            table.column(0).search(this.value).draw();
+        });
+
+
+    });
+
+    function ShowModal(Requestid, PatientName, Modalname) {
+        console.log(1);
+        $.ajax({
+            url: '/AdminDash/Openmodal',
+            type: 'Post',
+            data: { Requestid: Requestid, Patientname: PatientName, Modalname: Modalname },
+            success: function (data) {
+
+                $('#partialContainer').html(data);
+                $('#myModal').modal('show');
+
+            },
+            error: function (e) {
+                console.log(e);
+            }
+        });
+    }
+
+</script>
+

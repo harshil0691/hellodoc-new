@@ -1,0 +1,80 @@
+﻿@model hellodoc.DbEntity.ViewModels.PatientReqModel
+
+<form method="post" asp-action="update_profile">
+    <h3 id="t1" class="pt-2 pb-4">General Information</h3>
+
+
+
+    <div class="row">
+        <div class="form-floating mb-3  col-md-6 col-lg-6">
+            <input type="text" class="form-control" id="floatingInput" asp-for="Firstname" placeholder="Firstname" disabled>
+            <label for="floatingInput" class="mx-3">First Name</label>
+            <span asp-validation-for="Firstname" class="text-danger"></span>
+        </div>
+        <div class="form-floating mb-3 col-md-6 col-lg-6">
+            <input type="text" class="form-control" id="floatingInput" asp-for="Lastname" placeholder="Lastname" disabled>
+            <label for="floatingInput" class="mx-3">Last Name</label>
+            <span asp-validation-for="Lastname" class="text-danger"> </span>
+        </div>
+        <div class="form-floating mb-3 col-md-6 col-lg-6">
+            <input type="Date" class="form-control" id="floatingInput" asp-for="DateOfBirth" placeholder="DateOfBirth" disabled>
+            <label for="floatingInput" class="mx-3">Date Of Birth</label>
+            <span asp-validation-for="DateOfBirth " class="text-danger"></span>
+        </div>
+    </div>
+
+    <h3 class="pt-2 pb-4" id="t1">
+        Patient Contact Information
+    </h3>
+
+    <div class="row">
+        <div class="form-floating mb-3 col-md-6 col-lg-6">
+            <input type="email" class="form-control" id="floatingInput" asp-for="Email" placeholder="Email"  disabled>
+            <label for="floatingInput" class="mx-3">Email address</label>
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="form-floating col-md-6 col-lg-6">
+            <input type="tel" class="form-control pt-3 pb-3" id="phone" asp-for="Phonenumber" placeholder="Phone number"  disabled>
+            <span asp-validation-for="Phonenumber" class="text-danger"></span>
+        </div>
+    </div>
+
+
+    <h3 class="pt-2 pb-4" id="t1">
+        Patient Location
+    </h3>
+
+    <div class="row">
+        <div class="form-floating mb-3  col-md-6 col-lg-6">
+            <input type="text" class="form-control" id="floatingInput" asp-for="Street" placeholder="Street"  disabled>
+            <label for="floatingInput" class="mx-3">Street</label>
+            <span asp-validation-for="Street" class="text-danger"></span>
+        </div>
+        <div class="form-floating mb-3 col-md-6 col-lg-6">
+            <input type="text" class="form-control" id="floatingInput" asp-for="City" placeholder="City"  disabled>
+            <label for="floatingInput" class="mx-3">City</label>
+            <span asp-validation-for="City" class="text-danger"></span>
+        </div>
+        <div class="form-floating mb-3  col-md-6 col-lg-6">
+            <input type="text" class="form-control" id="floatingInput" asp-for="State" placeholder="State"  disabled>
+            <label for="floatingInput" class="mx-3">State</label>
+            <span asp-validation-for="State" class="text-danger"></span>
+        </div>
+        <div class="form-floating mb-3 col-md-6 col-lg-6">
+            <input type="number" class="form-control" id="floatingInput" asp-for="Zipcode" placeholder="ZipCode" disabled>
+            <label for="floatingInput" class="mx-3">Zip Code</label>
+            <span asp-validation-for="Zipcode" class="text-danger"></span>
+        </div>
+
+    </div>
+
+
+
+    <div class="d-flex justify-content-end" id="edit1">
+        <button type="button" class="btn btn-info mx-3 p-2 px-3 mb-2" onclick="edit()" id="e1">Edit</button>
+    </div>
+    <div class="d-flex justify-content-end" id="edit2">
+        <button type="submit" class="btn btn-info mx-3 p-2 px-3 mb-2" id="b1" style="display:none;">Save</button>
+        <button type="button" class="btn btn-dark mx-3 p-2 px-3 mb-2" id="b2" style="display:none;" onclick="cancel()">Cancel</button>
+    </div>
+</form>
