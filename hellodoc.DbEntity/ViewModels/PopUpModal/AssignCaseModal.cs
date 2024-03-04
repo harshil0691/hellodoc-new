@@ -14,7 +14,7 @@ namespace hellodoc.DbEntity.ViewModels.PopUpModal
         public int Physicianid { get; set; }
         public string PhysicianName { get; set; }
         public string Discription { get; set; }
-
+        public string Modaltype { get; set; }
         public List<Region> Regions { get; set; }
         public List<Physician> Physicians { get; set; }
     }

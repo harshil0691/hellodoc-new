@@ -16,5 +16,7 @@ namespace hellodoc.DbEntity.ViewModels
         public int CancelReasonValue { get; set; }
 
         public List<Region> regions { get; set; }
+
+        public int region12 { get; set; }
     }
 }

@@ -32,6 +32,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5EYXNoXHZpZXdfbm90ZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/AdminDash/view_uploads.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5EYXNoXHZpZXdfdXBsb2Fkcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/AdminDash/_AssignCase.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5EYXNoXF9Bc3NpZ25DYXNlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -42,6 +46,18 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/AdminDash/_CancelCase.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5EYXNoXF9DYW5jZWxDYXNlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/AdminDash/_dashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5EYXNoXF9kYXNoYm9hcmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/AdminDash/_SendAggrement.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5EYXNoXF9TZW5kQWdncmVtZW50LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/AdminDash/_ViewUploads.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5EYXNoXF9WaWV3VXBsb2Fkcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/Admin_agreement/agreement.cshtml]
@@ -106,6 +122,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/Shared/_ActiveAdmin.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9BY3RpdmVBZG1pbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/Shared/_AdminHeader.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9BZG1pbkhlYWRlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/Shared/_ConcludeAdmin.cshtml]

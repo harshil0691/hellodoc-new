@@ -317,7 +317,7 @@ public class RequestAll : IRequests
 
     public PatientReqModel GetDocuments(int rid,int uid)
     {
-        var doc = _context.PatientDocuments.Where(u => u.Userid == uid && u.Requestwisefileid != null && u.Requestid == rid).ToList();
+        var doc = _context.RequestWiseFiles.Where(u => u.Requestid == rid && u.Isdeleted != 1).ToList();
 
         PatientReqModel patient = new PatientReqModel { 
             patientDocuments = doc

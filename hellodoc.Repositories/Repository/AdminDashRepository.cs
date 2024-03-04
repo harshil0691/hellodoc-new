@@ -21,7 +21,8 @@ namespace hellodoc.Repositories.Repository
 
         public AdminParent GetRequests(List<int> status)
         { 
-            var request = _context.Requests.Where(r => status.Contains(r.Status)); 
+            var request = _context.Requests.Where(r => status.Contains(r.Status));
+
 
             var requestlist = request.Select(r => new AdminDashModel
             {
@@ -32,14 +33,15 @@ namespace hellodoc.Repositories.Repository
                 Phonenumber_R = r.Phonenumber,
                 Status = r.Status,
                 Createddate = r.Createddate,
-                Address = r.RequestClients.Select(rc => rc.City).FirstOrDefault(),
+                Address = r.RequestClients.Select(rc => rc.City + " " + rc.State + " " + rc.Zipcode ).FirstOrDefault(),
                 RequestorName = r.Firstname + " " + r.Lastname,
                 Requesttypeid = r.Requesttypeid,
                 Requestclientid = r.RequestClients.Select(rc => rc.Requestclientid).FirstOrDefault(),
                 Email = r.Email,
+               Physicianname = _context.Physicians.FirstOrDefault(p => p.Physicianid  == r.Physicianid).Firstname,
             }
 
-            ) ;
+            );
 
             var region = _context.Regions;
 
@@ -159,6 +161,26 @@ namespace hellodoc.Repositories.Repository
             }
         }
 
+        public async Task Clearcase(int? reqid, int? adminid)
+        {
+            Request request = _context.Requests.FirstOrDefaultAsync(u => u.Requestid == reqid).Result;
+
+            if (request != null)
+            {
+                RequestStatusLog requestStatusLog = new RequestStatusLog();
+                requestStatusLog.Status = 8;
+                requestStatusLog.Requestid = request.Requestid;
+                requestStatusLog.Adminid = adminid;
+                requestStatusLog.Createddate = DateTime.Now;
+
+                _context.RequestStatusLogs.Add(requestStatusLog);
+
+                request.Status = 8;
+
+                _context.SaveChanges();
+            }
+        }
+
         public async Task AssignCase(int? reqid, AssignCaseModal assignCase, int? adminid)
         {
             Request request = _context.Requests.FirstOrDefaultAsync(u => u.Requestid == reqid).Result;
@@ -182,6 +204,36 @@ namespace hellodoc.Repositories.Repository
             }
         }
 
+        public async Task BlockCase(int? reqid, BlockCaseModal blockCase, int? adminid)
+        {
+            Request request = _context.Requests.FirstOrDefaultAsync(u => u.Requestid == reqid).Result;
+            RequestClient requestClient = _context.RequestClients.FirstOrDefaultAsync(u => u.Requestid == reqid).Result;
+
+            if (request != null)
+            {
+                RequestStatusLog requestStatusLog = new RequestStatusLog();
+                requestStatusLog.Status = 3;
+                requestStatusLog.Notes = blockCase.Blocknotes;
+                requestStatusLog.Requestid = request.Requestid;
+                requestStatusLog.Adminid = adminid;
+                requestStatusLog.Createddate = DateTime.Now;
+
+                _context.RequestStatusLogs.Add(requestStatusLog);
+
+                BlockRequest blockRequest = new BlockRequest { 
+                    Requestid = request.Requestid,
+                    Phonenumber = requestClient.Phonenumber,
+                    Email = requestClient.Email,
+                    Createddate = DateTime.Now,
+                    Reason = blockCase.Blocknotes
+                };
+
+                request.Status = 3;
+
+                _context.SaveChanges();
+            }
+        }
+
         public  List<Region> GetRegions()
         {
             var regions = _context.Regions.ToList();
@@ -200,6 +252,14 @@ namespace hellodoc.Repositories.Repository
             var physician = _context.Physicians.Where(r => r.Regionid == select).ToList();
 
             return physician;
+        }
+
+        public async Task DeleteDocument(int docid)
+        {
+            RequestWiseFile requestWise =  _context.RequestWiseFiles.FirstOrDefault(u => u.Requestwisefileid == docid);
+            requestWise.Isdeleted = 1;
+
+            _context.SaveChanges();
         }
     }
 }

@@ -1,0 +1,157 @@
+﻿@model hellodoc.DbEntity.ViewModels.PatientReqModel
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+<div class="login" id="main">
+    
+    <div class="row" style="background-color:#e7e7e7">
+
+        <div class=" col-12 col-sm-12 col-md-10 col-lg-8 mx-auto d-flex justify-content-between mt-4 mb-2">
+            <h2> Documnets </h2>
+            <button onclick="Back()" class="d-flex back-btn  text-end text-info fs-5 text-decoration-none">
+                <span class="material-icons pt-2">
+                    chevron_left
+                </span>
+                <span class="p-1">Back</span>
+            </button>
+
+        </div>
+        <div class="d-grid gap-2 col-12 col-sm-12 col-md-10 col-lg-8 mx-auto d-flex content px-4 pt-4">
+
+            <p>@HttpContextAccessor.HttpContext.Session.GetString("username")</p>
+            <h3 class="text-info">@HttpContextAccessor.HttpContext.Session.GetString("username") &nbsp;<span class="text-black-50 fs-5">(MD05127897872)</span></h3>
+            <p>check here for any files that you or the doctors of your subsequents requestors have attached for you to review</p>
+
+            <form method="post" id="fileUpload" enctype="multipart/form-data">
+                <div class="input-group mb-3">
+                    <input type="file" class="form-control" id="file1" placeholder="Select File" asp-for="Doc">
+                    <button type="button" onclick="savedoc()" class="mx-2 btn btn-info text-white"><img src="/images/cloud-upload-icon.svg" class="p-1" alt="">Upload</button>
+                </div>
+            </form>
+
+
+            <h3> Documents </h3>
+            <div class="d-flex justify-content-end">
+                <a class="btn btn-outline-info mx-1 p-2 px-3" asp-action="downloadAll">Download All</a>
+                <button class="btn btn-outline-info mx-1 p-2 px-3">Delete All</button>
+                <button class="btn btn-outline-info mx-1 p-2 px-3">Send Email</button>
+            </div>
+            <table class="table mt-4" id="patientdash">
+                <thead>
+                    <tr>
+                        <th scope="col" style="background-color:#bdbdbd"><input type="checkbox" class="custom-check" id="check-header" /></th>
+                        <th scope="col" style="background-color:#bdbdbd"></th>
+                        <th scope="col" style="background-color:#bdbdbd">uploaded date</th>
+                        <th scope="col" style="background-color:#bdbdbd">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        foreach (var a in Model.patientDocuments)
+                        {
+                            <tr>
+                                <td> <input type="checkbox" class="custom-check" /> </td>
+                                <td>
+
+                                    @a.Filename
+                                </td>
+                                <td>@a.Createddate</td>
+                                <td>
+                                    <a asp-route-download=@a.Requestwisefileid asp-action="download" class="btn btn-outline-info"><i class="bi bi-cloud-download"></i></a>
+                                    <button onclick="Deletedoc('deleteDoc','@a.Requestwisefileid','@a.Requestid')" class="btn btn-outline-info"><i class="bi bi-trash3"></i></button>
+
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+
+        </div>
+
+
+    </div>
+
+</div>
+<footer style=" position:fixed;bottom:0; width:100%;">
+    <div style="padding-right: 40px;">
+        <a href="" style="color: white;">Terms Of Conditions</a> |
+        <a href="" style="color: white;">Privacy Policy</a>
+    </div>
+</footer>
+
+<script>
+
+    async function download1() {
+        const response = await fetch('/Patient/patient_documents/download/');
+    }
+
+    document.getElementById("check-header").addEventListener("click", function () {
+        var checkboxes = document.querySelectorAll(".custom-check");
+        checkboxes.forEach(function (checkbox) {
+            checkbox.checked = document.getElementById("check-header").checked;
+        });
+    });
+
+    function Back(requestid) {
+        
+        $.ajax({
+            url: '/AdminDash/LoadPartialView',
+            type: 'GET',
+            data: { tabId: "dashboard",activeid : 2 },
+            success: function (data) {
+
+                $('#dashboard').html(data);
+                loadPartialView("pending");
+
+            },
+            error: function () {
+                console.error('Error loading partial view.');
+            }
+        });
+
+    }
+
+    function Deletedoc(typeName,reqfileid,requestid){
+        console.log("delete");
+        $.ajax({
+            url: '/AdminDash/LoadPartialView',
+            type: 'GET',
+            data: { tabId: typeName, requestid: requestid, activeid: reqfileid },
+            success: function (data) {
+                $('#dashboard').html(data);
+            },
+            error: function () {
+                console.error('Error loading partial view.');
+            }
+        });
+    }
+
+    function savedoc(reqid) {
+
+        var formdata = new FormData();
+        var fileupload = document.getElementById('file1');
+        var f = fileupload.files[0];
+        formdata.append('file1',f);
+
+        $.ajax({
+            url: '/AdminDash/view_uploads',
+            type: 'POST',
+            data: formdata,
+            processData : false,
+            contentType: false,
+            success: function (data) {
+                $('#dashboard').html(data);
+            },
+            error: function () {
+                console.error('Error loading partial view.');
+            }
+        });
+    }
+
+</script>
+
+@section Scripts{
+    @{
+        <Partial name="_ValidationScriptsPartial" />
+    }
+    }

@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace hellodoc.DbEntity.ViewModels.PopUpModal
 {
-    internal class BlockCaseModal
+    public partial class BlockCaseModal
     {
+        public int Requestid { get; set; }
+        public string PatientName { get; set; }
+        public string Blocknotes { get; set; }
     }
 }

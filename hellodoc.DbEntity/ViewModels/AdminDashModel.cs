@@ -15,6 +15,7 @@ namespace hellodoc.DbEntity.ViewModels
     {
         
         public int Requestid { get; set; }
+        public int RequestClientId { get; set; }
 
         public short Requesttypeid { get; set; }
 
@@ -38,6 +39,7 @@ namespace hellodoc.DbEntity.ViewModels
         public short Status { get; set; }
 
         public int? Physicianid { get; set; }
+        public string Physicianname { get; set; }
 
         public string? Confirmationnumber { get; set; }
 
@@ -49,5 +51,6 @@ namespace hellodoc.DbEntity.ViewModels
 
         public int Requestclientid { get; set; }
 
+        
     }
 }

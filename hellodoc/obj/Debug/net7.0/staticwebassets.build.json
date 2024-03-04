@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "lMmWpIJClKuEPc6yYadP65KOrL9gOMBxGaodRR4U1tw=",
+  "Hash": "uGemvYPWFlpbcMWNwxOMd96BJzLg/cVY2qiBz+P06/0=",
   "Source": "hellodoc",
   "BasePath": "_content/hellodoc",
   "Mode": "Default",
@@ -2516,6 +2516,23 @@
       "OriginalItemSpec": "wwwroot\\uploads\\0cee2441-df6e-40b7-8a51-6c7a5d6b34df_7768657_3763028 - Copy.jpg"
     },
     {
+      "Identity": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\0e4f5360-efc9-4f14-a062-1beeb2223546_Fig2. Forgot Password.jpg",
+      "SourceId": "hellodoc",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\",
+      "BasePath": "_content/hellodoc",
+      "RelativePath": "uploads/0e4f5360-efc9-4f14-a062-1beeb2223546_Fig2. Forgot Password.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\0e4f5360-efc9-4f14-a062-1beeb2223546_Fig2. Forgot Password.jpg"
+    },
+    {
       "Identity": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\0eb54597-50bb-475c-933e-f42fd56e1ea0_SRS-23-24-Trainees_12Feb24.pdf",
       "SourceId": "hellodoc",
       "SourceType": "Discovered",
@@ -2584,6 +2601,23 @@
       "OriginalItemSpec": "wwwroot\\uploads\\248c2523-dfd8-464d-bbdf-15ea967414d1_7768657_3763028 - Copy.jpg"
     },
     {
+      "Identity": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\2afb1b50-d4b4-4023-a873-826585645ef3_Fig2. Forgot Password.jpg",
+      "SourceId": "hellodoc",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\",
+      "BasePath": "_content/hellodoc",
+      "RelativePath": "uploads/2afb1b50-d4b4-4023-a873-826585645ef3_Fig2. Forgot Password.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\2afb1b50-d4b4-4023-a873-826585645ef3_Fig2. Forgot Password.jpg"
+    },
+    {
       "Identity": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\2da8b00f-1c16-441b-9ddc-3cd92d6f622c_SRS-23-24-Trainees-14Feb24.pdf",
       "SourceId": "hellodoc",
       "SourceType": "Discovered",
@@ -2599,6 +2633,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\2da8b00f-1c16-441b-9ddc-3cd92d6f622c_SRS-23-24-Trainees-14Feb24.pdf"
+    },
+    {
+      "Identity": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\33f49ef2-5c03-4317-9eb0-bb55c0f30196_Fig1. Platform login page.jpg",
+      "SourceId": "hellodoc",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\",
+      "BasePath": "_content/hellodoc",
+      "RelativePath": "uploads/33f49ef2-5c03-4317-9eb0-bb55c0f30196_Fig1. Platform login page.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\33f49ef2-5c03-4317-9eb0-bb55c0f30196_Fig1. Platform login page.jpg"
     },
     {
       "Identity": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\3510f8e3-f418-4343-a029-532b6b76e00b_7768657_3763028 - Copy.jpg",
@@ -2633,6 +2684,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\41de8d61-d682-473f-a9aa-3e92513332fa_Fig3. Admin Dashboard.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\48d10ab6-3e80-4aa7-8d26-0704b0a3c154_Fig2. Forgot Password.jpg",
+      "SourceId": "hellodoc",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\",
+      "BasePath": "_content/hellodoc",
+      "RelativePath": "uploads/48d10ab6-3e80-4aa7-8d26-0704b0a3c154_Fig2. Forgot Password.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\48d10ab6-3e80-4aa7-8d26-0704b0a3c154_Fig2. Forgot Password.jpg"
     },
     {
       "Identity": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\49ba5532-b094-4e7a-a3fe-d49a078ed365_Fig6. Admin dashboard in Active state.jpg",
@@ -2686,6 +2754,23 @@
       "OriginalItemSpec": "wwwroot\\uploads\\4bc6da6e-119f-45e2-abbd-f76fdcf78073_1b9250ab-8810-4874-8908-14f1cb11ce93_7768657_3763028 - Copy.jpg"
     },
     {
+      "Identity": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\50d699b6-b13b-4952-9729-ec4aacaf68f8_Fig2. Forgot Password.jpg",
+      "SourceId": "hellodoc",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\",
+      "BasePath": "_content/hellodoc",
+      "RelativePath": "uploads/50d699b6-b13b-4952-9729-ec4aacaf68f8_Fig2. Forgot Password.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\50d699b6-b13b-4952-9729-ec4aacaf68f8_Fig2. Forgot Password.jpg"
+    },
+    {
       "Identity": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\699b42d0-8d02-4c7a-9b91-62f8623729dd_Fig7. Admin dashboard in Conclude state.jpg",
       "SourceId": "hellodoc",
       "SourceType": "Discovered",
@@ -2703,6 +2788,23 @@
       "OriginalItemSpec": "wwwroot\\uploads\\699b42d0-8d02-4c7a-9b91-62f8623729dd_Fig7. Admin dashboard in Conclude state.jpg"
     },
     {
+      "Identity": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\706206fb-7981-482a-9ec4-b50af76085e3_Fig3. Admin Dashboard.jpg",
+      "SourceId": "hellodoc",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\",
+      "BasePath": "_content/hellodoc",
+      "RelativePath": "uploads/706206fb-7981-482a-9ec4-b50af76085e3_Fig3. Admin Dashboard.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\706206fb-7981-482a-9ec4-b50af76085e3_Fig3. Admin Dashboard.jpg"
+    },
+    {
       "Identity": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\71b26792-b681-47e0-b534-db00d1fa2b74_Fig2. Forgot Password.jpg",
       "SourceId": "hellodoc",
       "SourceType": "Discovered",
@@ -2718,6 +2820,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\71b26792-b681-47e0-b534-db00d1fa2b74_Fig2. Forgot Password.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\7755ef80-dd90-4043-9766-37ec4ff83a27_7768657_3763028 - Copy.jpg",
+      "SourceId": "hellodoc",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\",
+      "BasePath": "_content/hellodoc",
+      "RelativePath": "uploads/7755ef80-dd90-4043-9766-37ec4ff83a27_7768657_3763028 - Copy.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\7755ef80-dd90-4043-9766-37ec4ff83a27_7768657_3763028 - Copy.jpg"
     },
     {
       "Identity": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\843d6b14-1290-4897-948f-772ec0e64a3e_7768657_3763028 - Copy.jpg",
@@ -2822,6 +2941,23 @@
       "OriginalItemSpec": "wwwroot\\uploads\\92b11aa5-0184-4e50-91ed-d9efbe5f3fa6_c40db08a-80f8-4de9-96b8-b821d1182258_7774236_3736765.jpg"
     },
     {
+      "Identity": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\97d16b99-66b5-4eed-93fa-1c1890ee84c2_7768657_3763028 - Copy.jpg",
+      "SourceId": "hellodoc",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\",
+      "BasePath": "_content/hellodoc",
+      "RelativePath": "uploads/97d16b99-66b5-4eed-93fa-1c1890ee84c2_7768657_3763028 - Copy.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\97d16b99-66b5-4eed-93fa-1c1890ee84c2_7768657_3763028 - Copy.jpg"
+    },
+    {
       "Identity": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\a9d171b6-db25-4584-bf6d-93be846af567_SRS-23-24-Trainees-2Feb24.pdf",
       "SourceId": "hellodoc",
       "SourceType": "Discovered",
@@ -2837,6 +2973,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\a9d171b6-db25-4584-bf6d-93be846af567_SRS-23-24-Trainees-2Feb24.pdf"
+    },
+    {
+      "Identity": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\ad24f51a-11f5-4e6b-8337-ebbacddb027f_Fig2. Forgot Password.jpg",
+      "SourceId": "hellodoc",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\",
+      "BasePath": "_content/hellodoc",
+      "RelativePath": "uploads/ad24f51a-11f5-4e6b-8337-ebbacddb027f_Fig2. Forgot Password.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\ad24f51a-11f5-4e6b-8337-ebbacddb027f_Fig2. Forgot Password.jpg"
     },
     {
       "Identity": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\b3354527-e50f-436d-b93f-61e2c76318bf_7768657_3763028 - Copy.jpg",
@@ -2888,6 +3041,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\bca20f04-6d04-4bbb-a697-a6840eea62d7_Fig9. Admin dashboard in Unpaid state.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\c0a6ce59-d9e4-4a46-b70b-50df71045030_Fig2. Forgot Password.jpg",
+      "SourceId": "hellodoc",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\",
+      "BasePath": "_content/hellodoc",
+      "RelativePath": "uploads/c0a6ce59-d9e4-4a46-b70b-50df71045030_Fig2. Forgot Password.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\c0a6ce59-d9e4-4a46-b70b-50df71045030_Fig2. Forgot Password.jpg"
     },
     {
       "Identity": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\c1167a6b-20df-40df-aeec-bdc0e2bda49e_7768657_3763028 - Copy.jpg",
@@ -2975,6 +3145,23 @@
       "OriginalItemSpec": "wwwroot\\uploads\\c7ad445f-3f9c-472a-bed4-e78ff5dfb107_Fig3. Admin Dashboard.jpg"
     },
     {
+      "Identity": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\cca432e5-d9e4-4a7b-b1dc-6627b488c04e_7768657_3763028 - Copy.jpg",
+      "SourceId": "hellodoc",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\",
+      "BasePath": "_content/hellodoc",
+      "RelativePath": "uploads/cca432e5-d9e4-4a7b-b1dc-6627b488c04e_7768657_3763028 - Copy.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\cca432e5-d9e4-4a7b-b1dc-6627b488c04e_7768657_3763028 - Copy.jpg"
+    },
+    {
       "Identity": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\d21293a8-a1af-4f4a-966f-e5c6ac01608b_Fig3. Admin Dashboard.jpg",
       "SourceId": "hellodoc",
       "SourceType": "Discovered",
@@ -3024,6 +3211,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\d4360eaa-d5e8-4e10-95c6-84339258611f_11116016_415.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\d7f3bba0-65e3-4ba6-8ff5-8eb7c3c63720_Fig2. Forgot Password.jpg",
+      "SourceId": "hellodoc",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\",
+      "BasePath": "_content/hellodoc",
+      "RelativePath": "uploads/d7f3bba0-65e3-4ba6-8ff5-8eb7c3c63720_Fig2. Forgot Password.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\d7f3bba0-65e3-4ba6-8ff5-8eb7c3c63720_Fig2. Forgot Password.jpg"
     },
     {
       "Identity": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\d8069435-230a-480a-bbf1-93fdf99fda4f_7768657_3763028 - Copy.jpg",
@@ -3109,6 +3313,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\e55bfcad-7f67-41e1-9f00-a67e9e7875a0_Fig3. Admin Dashboard.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\ecd6a099-8d8a-4615-ba50-3e4741e7e51f_Fig4. Admin dashboard in New state.jpg",
+      "SourceId": "hellodoc",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\",
+      "BasePath": "_content/hellodoc",
+      "RelativePath": "uploads/ecd6a099-8d8a-4615-ba50-3e4741e7e51f_Fig4. Admin dashboard in New state.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\ecd6a099-8d8a-4615-ba50-3e4741e7e51f_Fig4. Admin dashboard in New state.jpg"
     },
     {
       "Identity": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\f0ab92bd-42f0-454b-bdff-a9e53b3fc106_Fig11. View Notes.jpg",

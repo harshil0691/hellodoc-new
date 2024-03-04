@@ -28,5 +28,9 @@ namespace hellodoc.Repositories.Repository.Interface
         List<Physician> GetPhysicianList2(int select);
 
         Task AssignCase(int? reqid, AssignCaseModal assignCase, int? adminid);
+        Task BlockCase(int? reqid, BlockCaseModal blockCase, int? adminid);
+        Task Clearcase(int? reqid, int? adminid);
+
+        Task DeleteDocument(int docid);
     }
 }

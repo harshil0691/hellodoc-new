@@ -7,6 +7,9 @@ using hellodoc.DbEntity.ViewModels;
 using hellodoc.Repositories.Repository;
 using Org.BouncyCastle.Asn1.Ocsp;
 using hellodoc.DbEntity.ViewModels.PopUpModal;
+using Microsoft.AspNetCore.Identity;
+using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
+
 
 namespace hellodoc.Controllers
 {
@@ -16,14 +19,15 @@ namespace hellodoc.Controllers
         private readonly IAdminDashRepository _adminDashRepository;
         private readonly IPatientLogin _patientLogin;
         private readonly IRequests _requests;
+        private readonly IHostingEnvironment HostingEnviroment;
 
-
-        public AdminDashController(ILogger<AdminDashController> logger,IAdminDashRepository adminDashRepository, IPatientLogin patientLogin, IRequests requests)
+        public AdminDashController(ILogger<AdminDashController> logger,IAdminDashRepository adminDashRepository, IPatientLogin patientLogin, IRequests requests,IHostingEnvironment hostingEnvironment)
         {
             _logger = logger;
             _adminDashRepository = adminDashRepository;
             _patientLogin = patientLogin;
             _requests = requests;
+            HostingEnviroment = hostingEnvironment;
         }
 
         public IActionResult admin_dash()
@@ -101,6 +105,75 @@ namespace hellodoc.Controllers
             return View(patientReq);
         }
 
+        public IActionResult view_uploads(int requestid)
+        {
+            var doc1 = HttpContext.Session.GetInt32("userid");
+            HttpContext.Session.SetInt32("requestid", requestid);
+
+            var document = _requests.GetDocuments(requestid, doc1 ?? 1);
+
+            return View(document);
+        }
+
+        [HttpPost]
+        public IActionResult view_uploads(IFormFile file1)
+        {
+            var doc1 = HttpContext.Session.GetInt32("userid");
+            var req1 = HttpContext.Session.GetInt32("requestid");
+
+            //var file = Request.Files["file1"];
+
+            SaveFile(file1, req1 ?? 1);
+
+            var document = _requests.GetDocuments(req1 ?? 1, doc1 ?? 1);
+            return PartialView("_ViewUploads",document);
+        }
+
+        public IActionResult download(int download)
+        {
+            var fname1 = _requests.GetFilename(download).Result;
+
+            var filepath = Path.Combine(HostingEnviroment.WebRootPath, "uploads", fname1);
+            return File(System.IO.File.ReadAllBytes(filepath), "multipart/form-data", System.IO.Path.GetFileName(filepath));
+
+        }
+
+        public void downloadAll()
+        {
+            var req1 = HttpContext.Session.GetInt32("requestid");
+
+            var filelist = _requests.GetDocuments(req1 ?? 0,1);
+
+            foreach ( var file in filelist.patientDocuments )
+            {
+                download(file.Requestwisefileid);
+            }
+        }
+
+        public void  deleteDoc(int download)
+        {
+            _adminDashRepository.DeleteDocument(download);
+
+        }
+
+
+        public void SaveFile(IFormFile uploadfile, int rid)
+        {
+            string uniqueFilename = null;
+
+            if (uploadfile != null)
+            {
+                string uploadfolder = Path.Combine(HostingEnviroment.WebRootPath, "uploads");
+                uniqueFilename = Guid.NewGuid().ToString() + "_" + uploadfile.FileName;
+                string filename = Path.Combine(uploadfolder, uniqueFilename);
+                uploadfile.CopyTo(new FileStream(filename, FileMode.Create));
+
+                _requests.SetRequestWiseFile(uniqueFilename, rid);
+            }
+
+        }
+
+
         [HttpPost]
         public IActionResult cancel_case(int requestid,CancelCaseModel cancelCase)
         {
@@ -118,6 +191,29 @@ namespace hellodoc.Controllers
             _adminDashRepository.AssignCase(requestid,assignCase, user);
 
             return RedirectToAction("admin_dash", "AdminDash");
+        }
+
+        public IActionResult block_case(int requestid, BlockCaseModal blockCase)
+        {
+            var user = 1;
+
+            _adminDashRepository.BlockCase(requestid,blockCase, user);
+
+            return RedirectToAction("admin_dash", "AdminDash");
+        }
+
+        public async Task ClearCase(int requestid)
+        {
+            var user = 1;
+
+            _adminDashRepository.Clearcase(requestid, user);
+        }
+
+        public async Task send_aggrement(int requestid)
+        {
+            var user = 1;
+
+            _adminDashRepository.Clearcase(requestid, user);
         }
 
         [HttpPost]
@@ -140,18 +236,22 @@ namespace hellodoc.Controllers
                         Regions = _adminDashRepository.GetRegions(),
                         Physicians = _adminDashRepository.GetPhysicianList(),
                         Requestid = requestid,
+                        Modaltype = patientname,
                     };
 
                     return PartialView("_AssignCase", assignCase);
 
                 case "BlockCase":
-                    CancelCaseModel cancelCase2 = new CancelCaseModel
+                    BlockCaseModal blockCase = new BlockCaseModal
                     {
                         Requestid = requestid,
                         PatientName = patientname,
                     };
 
-                    return PartialView("_AssignCase", cancelCase2);
+                    return PartialView("_BlockCase", blockCase);
+
+                case "SendAggrement":
+
 
 
                 default:
@@ -160,6 +260,8 @@ namespace hellodoc.Controllers
                     
         }
 
+
+
         public List<Physician> GetPhysicians(int select)
         {
             var phy = _adminDashRepository.GetPhysicianList2(select);
@@ -167,7 +269,7 @@ namespace hellodoc.Controllers
             return phy;
         }
 
-        public IActionResult LoadPartialView(string tabId)
+        public IActionResult LoadPartialView(string tabId, int requestid, int activeid)
         {
             
             switch (tabId)
@@ -185,6 +287,7 @@ namespace hellodoc.Controllers
                     var dashModel2 = _adminDashRepository.GetRequests(status2);
 
                     return PartialView("_PendingAdmin",dashModel2);
+
 
                 case "active":
                     var status3 = new List<int> { 4, 5 };
@@ -213,6 +316,32 @@ namespace hellodoc.Controllers
                     var dashModel6 = _adminDashRepository.GetRequests(status6);
 
                     return PartialView("_UnpaidAdmin", dashModel6);
+
+                case "dashboard":
+
+                    RequestCountByStatus request = _adminDashRepository.GetCount().Result;
+                    request.activeid = activeid;
+
+                    return PartialView("_dashboard", request);
+
+                case "ViewUploads":
+                    var doc1 = HttpContext.Session.GetInt32("userid");
+                    HttpContext.Session.SetInt32("requestid", requestid);
+
+                    var document = _requests.GetDocuments(requestid, doc1 ?? 1);
+
+                    return PartialView("_ViewUploads",document);
+
+                case "deleteDoc":
+
+                    _adminDashRepository.DeleteDocument(activeid);
+
+                    var doc2 = HttpContext.Session.GetInt32("userid");
+                    HttpContext.Session.SetInt32("requestid", requestid);
+
+                    var document1 = _requests.GetDocuments(requestid, doc2 ?? 1);
+
+                    return PartialView("_ViewUploads", document1);
 
                 default:
                     return PartialView("_DefaultTab");

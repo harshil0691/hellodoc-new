@@ -46,8 +46,8 @@ public partial class RequestWiseFile
     [Column("isfinalize", TypeName = "bit(1)")]
     public BitArray? Isfinalize { get; set; }
 
-    [Column("isdeleted", TypeName = "bit(1)")]
-    public BitArray? Isdeleted { get; set; }
+    [Column("isdeleted")]
+    public short? Isdeleted { get; set; }
 
     [Column("ispatientrecords", TypeName = "bit(1)")]
     public BitArray? Ispatientrecords { get; set; }

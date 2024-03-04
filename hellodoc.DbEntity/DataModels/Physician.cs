@@ -152,6 +152,9 @@ public partial class Physician
     [InverseProperty("Physician")]
     public virtual ICollection<RequestStatusLog> RequestStatusLogs { get; } = new List<RequestStatusLog>();
 
+    [InverseProperty("Physician")]
+    public virtual ICollection<Request> Requests { get; } = new List<Request>();
+
     [ForeignKey("Roleid")]
     [InverseProperty("Physicians")]
     public virtual Role? Role { get; set; }

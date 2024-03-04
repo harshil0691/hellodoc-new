@@ -20,5 +20,7 @@ namespace hellodoc.DbEntity.ViewModels
 
         public int UnpaidCount { get; set; }
 
+        public int activeid { get; set; }
+
     }
 }

@@ -1,0 +1,45 @@
+﻿@model hellodoc.DbEntity.ViewModels.PopUpModal.AssignCaseModal
+
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="font-weight:600">
+            <form id="form1" method="post" asp-action="send_aggrement" asp-route-requestid=@Model.Requestid>
+                <div class="modal-header bg-info text-white">
+                    <h5 class="modal-title" id="exampleModalLabel"> @Model.Modaltype Request</h5>
+                    <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <p class="mt-1 text-black-50 fs-6"> To assign this request , search and select other Physician.</p>
+
+
+                    <select class="form-select mt-3" aria-label="Default select example" id="regionselect" asp-for="@Model.Regionid">
+                        <option selected>Select Region</option>
+                        @{
+                            foreach (var a in Model.Regions)
+                            {
+                                <option value="@a.Regionid">@a.Name</option>
+                            }
+                        }
+
+                    </select>
+
+
+                    <select class="form-select mt-3" aria-label="Default select example" asp-for="@Model.Physicianid" id="Physicianselect">
+                        <option selected>Select Physician</option>
+
+
+                    </select>
+
+                    <textarea asp-for="@Model.Discription" rows="5" class="col-12 form-control mt-3" placeholder="Add Discription" style="font-size:medium" class="p-1"></textarea>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-info text-white">Continue</button>
+                    <button type="button" class="btn btn-outline-info" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

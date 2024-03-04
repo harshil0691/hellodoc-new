@@ -16,4 +16,7 @@ public partial class CaseTag
     [Column("name")]
     [StringLength(50)]
     public string Name { get; set; } = null!;
+
+    [InverseProperty("CasetagNavigation")]
+    public virtual ICollection<Request> Requests { get; } = new List<Request>();
 }

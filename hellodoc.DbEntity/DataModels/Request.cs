@@ -92,7 +92,6 @@ public partial class Request
     public string? Ip { get; set; }
 
     [Column("casetag")]
-    [StringLength(50)]
     public int? Casetag { get; set; }
 
     [Column("casetagphysician")]
@@ -112,6 +111,17 @@ public partial class Request
 
     [Column("date_of_birth")]
     public DateOnly? DateOfBirth { get; set; }
+
+    [InverseProperty("Request")]
+    public virtual ICollection<BlockRequest> BlockRequests { get; } = new List<BlockRequest>();
+
+    [ForeignKey("Casetag")]
+    [InverseProperty("Requests")]
+    public virtual CaseTag? CasetagNavigation { get; set; }
+
+    [ForeignKey("Physicianid")]
+    [InverseProperty("Requests")]
+    public virtual Physician? Physician { get; set; }
 
     [InverseProperty("Request")]
     public virtual ICollection<RequestBusiness> RequestBusinesses { get; } = new List<RequestBusiness>();

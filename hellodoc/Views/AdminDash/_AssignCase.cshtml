@@ -5,8 +5,8 @@
         <div class="modal-content" style="font-weight:600">
             <form id="form1" method="post" asp-action="assign_case" asp-route-requestid=@Model.Requestid>
                 <div class="modal-header bg-info text-white">
-                    <h5 class="modal-title" id="exampleModalLabel"> Assign Request</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title" id="exampleModalLabel"> @Model.Modaltype Request</h5>
+                    <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
                 <div class="modal-body">

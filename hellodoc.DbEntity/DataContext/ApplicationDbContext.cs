@@ -128,7 +128,11 @@ public partial class ApplicationDbContext : DbContext
         {
             entity.HasKey(e => e.Blockrequestid).HasName("BlockRequests_pkey");
 
-            entity.Property(e => e.Blockrequestid).ValueGeneratedNever();
+            entity.Property(e => e.Blockrequestid).UseIdentityAlwaysColumn();
+
+            entity.HasOne(d => d.Request).WithMany(p => p.BlockRequests)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("fk_blockrequest_request");
         });
 
         modelBuilder.Entity<Business>(entity =>
@@ -257,6 +261,10 @@ public partial class ApplicationDbContext : DbContext
             entity.HasKey(e => e.Requestid).HasName("Request_pkey");
 
             entity.Property(e => e.Requestid).UseIdentityAlwaysColumn();
+
+            entity.HasOne(d => d.CasetagNavigation).WithMany(p => p.Requests).HasConstraintName("fk_request_casetag");
+
+            entity.HasOne(d => d.Physician).WithMany(p => p.Requests).HasConstraintName("fk_request_physician");
 
             entity.HasOne(d => d.User).WithMany(p => p.Requests).HasConstraintName("fk_request_user");
         });

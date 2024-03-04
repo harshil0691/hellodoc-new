@@ -27,11 +27,11 @@
     </div>
     <div class="d-flex justify-content-md-end col-12 col-sm-12 col-md-6 mt-3 justify-content-start ">
         <button class="btn btn-outline-dark d-none d-sm-inline"> All</button>
-        <div class="m-2 d-grid d-sm-grid d-sm-flex"><div class="colored-dot bg-success m-1"></div><div>Patients</div></div>
-        <div class="m-2 d-grid d-sm-grid d-sm-flex"><div class="colored-dot bg-warning m-1"></div><div>Family_friend</div></div>
-        <div class="m-2 d-grid d-sm-grid d-sm-flex"><div class="colored-dot bg-danger m-1 "></div><div>Business</div></div>
-        <div class="m-2 d-grid d-sm-grid d-sm-flex"><div class="colored-dot bg-primary m-1"></div><div>Concierge</div></div>
-        <div class="m-2 d-grid d-sm-grid d-sm-flex"><div class="colored-dot bg-success m-1"></div><div>Vip</div></div>
+        <div onclick="reqtype(1)" class="m-2 d-grid d-sm-grid d-sm-flex"><div class="colored-dot bg-success m-1"></div><div>Patients</div></div>
+        <div onclick="reqtype(2)" class="m-2 d-grid d-sm-grid d-sm-flex"><div class="colored-dot bg-warning m-1"></div><div>Family_friend</div></div>
+        <div onclick="reqtype(3)" class="m-2 d-grid d-sm-grid d-sm-flex"><div class="colored-dot bg-danger m-1 "></div><div>Business</div></div>
+        <div onclick="reqtype(4)" class="m-2 d-grid d-sm-grid d-sm-flex"><div class="colored-dot bg-primary m-1"></div><div>Concierge</div></div>
+        <div onclick="reqtype(5)" class="m-2 d-grid d-sm-grid d-sm-flex"><div class="colored-dot bg-success m-1"></div><div>Vip</div></div>
     </div>
 </div>
 
@@ -221,6 +221,11 @@
 
         
     });
+
+    function reqtype(request) {
+        console.log(1);
+    }
+
 
     function ShowModal(Requestid, PatientName, Modalname) {
         console.log(1);

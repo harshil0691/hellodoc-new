@@ -63,7 +63,7 @@ public partial class PatientReqModel
 
     public List<RequestTableModel> requestTable { get; set; }
 
-    public List<PatientDocument> patientDocuments { get; set; } 
+    public List<RequestWiseFile> patientDocuments { get; set; } 
 
     public List<RequestWiseFile> RequestWiseFiles { get; set; }
 

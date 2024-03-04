@@ -2,7 +2,7 @@
 
 
 <div class="d-flex justify-content-between" id="bgcolor">
-    <h3>Patients(Unpaid)</h3>
+    <h3>Patients(Pending)</h3>
     <div>
         <button class="btn btn-info text-white"><i class="bi bi-send px-1"></i><span class="d-none d-sm-none d-md-inline d-lg-inline d-xl-inline">send link</span></button>
         <button class="btn btn-info text-white"><i class="bi bi-pencil-square px-1 "></i><span class="d-none d-sm-none d-md-inline d-lg-inline d-xl-inline">create requests</span></button>
@@ -40,12 +40,10 @@
         <thead>
             <tr>
                 <th>Name</th>
-                <th>Date Of Birth</th>
-                <th>Requestor</th>
-                <th>Requestor Date</th>
+                <th>Physician Name</th>
+                <th>Date Of Service</th>
                 <th>Phone</th>
                 <th>Address</th>
-                <th>Notes</th>
                 <th>Chat With</th>
                 <th>Actions</th>
             </tr>
@@ -55,68 +53,61 @@
                 foreach (var a in Model.adminDashModels)
                 {
                     var reqcolor = "";
+                    var text = "";
 
                     if (a.Requesttypeid == 1)
                     {
                         reqcolor = "#d23636";
+                        text = "Business";
                     }
                     else if (a.Requesttypeid == 2)
                     {
                         reqcolor = "#418441";
+                        text = "Patient";
                     }
                     else if (a.Requesttypeid == 3)
                     {
                         reqcolor = "#ecb728";
+                        text = "Family/Friend";
                     }
                     else if (a.Requesttypeid == 4)
                     {
                         reqcolor = "#14428ffa";
+                        text = "Concierge";
                     }
 
                     <tr class=" m-2" style="background-color:@reqcolor">
                         <td>@a.PatientName </td>
-                        <td>@a.Createddate</td>
-                        <td>@a.RequestorName</td>
+                        <td>@a.Physicianname</td>
                         <td>@a.Createddate</td>
                         <td>
                             @{
                                 if (a.Phonenumber_P != null)
                                 {
                                     <button class="btn btn-outline-light">@a.Phonenumber_P</button>
+
+                                    <br />
+                                    <p>(Patients)</p>
                                 }
                                 if (a.Phonenumber_R != null)
                                 {
                                     <button class="btn btn-outline-light">@a.Phonenumber_R</button>
+                                    <br />
+                                    <p>(@text)</p>
                                 }
                             }
                         </td>
                         <td>@a.Address</td>
-                        <td>@a.Notes</td>
                         <td><button class="btn btn-outline-light">Provider</button></td>
                         <td>
                             <div class="dropdown">
-                                <button class="btn btn-outline-light" dropdown-toggle p-1" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <button class="btn btn-outline-light" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Actions
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li>
-                                        <button type="button" class="dropdown-item " onclick="ShowModal('@a.Requestid','@a.PatientName','AssignCase')">
-                                            <i class="bi bi-journal-plus me-2"></i>Assign case
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button type="button" class="dropdown-item " onclick="ShowModal('@a.Requestid','@a.PatientName','CancelCase')">
-                                            <i class="bi bi-x-circle me-2"></i>Cancel case
-                                        </button>
-
-                                    </li>
                                     <li><a class="dropdown-item" asp-route-requestid=@a.Requestid asp-action="view_case"><i class="bi bi-journal-text me-2"></i>View Case</a></li>
+                                    <li><a class="dropdown-item" asp-route-requestid=@a.Requestid asp-action="view_uploads"><i class="bi bi-file-earmark-arrow-up me-2"></i>View Uploads</a></li>
                                     <li><a class="dropdown-item" asp-action="view_notes" asp-route-requestid=@a.Requestid><i class="bi bi-journals me-2"></i>View Notes</a></li>
-                                    <li>
-                                        <button type="button" class="dropdown-item " onclick="ShowModal('@a.Requestid','@a.PatientName','BlockCase')">
-                                            <i class="bi bi-ban me-2"></i>Block Patient
-                                        </button>
-                                    </li>
                                 </ul>
 
                             </div>
@@ -130,7 +121,6 @@
     </table>
 
 </div>
-
 
 <div class="d-block d-sm-block d-md-none d-lg-none d-xl-none">
     <div class="accordion" id="accordionExample">
@@ -170,7 +160,7 @@
                             </div>
                             <div class="d-flex justify-content-between w-100 m-2">
                                 <div>@a.Address</div>
-                                <a class="btn btn-outline-info rounded-5">Map Location</a>
+                                <a href="#" class="btn btn-outline-info rounded-5">Map Location</a>
                             </div>
                             <div><i class="bi bi-clock text-info px-2"></i> Wait time :<b> @a.Createddate </b></div>
 
@@ -182,19 +172,16 @@
                         <div class="d-flex justify-content-end" style="top:0;"><button class="btn bg-light rounded-5 px-3" style="color:mediumpurple;border:2px solid mediumpurple;position:relative;top:-18px;z-index:10;">View Case</button></div>
                         <div class="accordion-body">
 
-                            <div class="mb-2"><i class="bi rounded-pill btn btn-outline-info text-black-50 bi-calendar3  px-2"></i> Date Of Birth :<b> @a.Createddate </b></div>
                             <div class="mb-2"><i class="bi bi-envelope-at rounded-pill btn btn-outline-info text-black-50 px-2"></i> Email :<b> @a.Email </b></div>
                             <div class="mb-2"><i class="bi bi-telephone rounded-pill btn btn-outline-info text-black-50 px-2"></i> @text :<b> @a.Phonenumber_P </b></div>
-                            <div class="mb-2"><i class="bi bi-person-circle rounded-pill btn btn-outline-info text-black-50 px-2"></i> Requestor :<b> @a.RequestorName </b></div>
+                            <div class="mb-2"><i class="bi bi-calendar-event rounded-pill btn btn-outline-info text-black-50 px-2"></i> Date Of Service : - </div>
+                            <div class="mb-2"><i class="bi bi-person-add rounded-pill btn btn-outline-info text-black-50 px-2"></i> Physician : </div>
                             <div class="row">
-                                <button class="btn text-white rounded-5 col-5 m-2 mx-3" style="background-color:mediumpurple;">Assign Case</button>
-                                <button type="button" class="btn btn-danger rounded-5 col-5 m-2 mx-3 " onclick="ShowModal('@a.Requestid','@a.PatientName','CancelCase')">
-                                    Cancel Case
-                                </button>
-                                <button class="btn btn-success rounded-5 col-5 m-2 mx-3">View Notes</button>
-                                <button class="btn btn-danger rounded-5 col-5 m-2 mx-3">Block Patient</button>
-                                <button class="btn btn-success rounded-5 col-5 m-2 mx-3">Email</button>
 
+                                <a class="btn btn-success rounded-5 col-5 m-2 mx-3" asp-action="view_notes" asp-route-requestid=@a.Requestid>View Notes</a>
+                                <a class="btn btn-success rounded-5 col-5 m-2 mx-3" asp-action="view_notes" asp-route-requestid=@a.Requestid>Doctor Notes</a>
+                                <a class="btn btn-success rounded-5 col-5 m-2 mx-3" asp-route-requestid=@a.Requestid asp-action="view_uploads">View Uploads</a>
+                                
                             </div>
 
                         </div>
@@ -240,5 +227,41 @@
         });
     }
 
-</script>
+    function OpenSwal(Requestid) {
 
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: "btn btn-info m-2",
+                cancelButton: "btn btn-outline-info m-2"
+            },
+            buttonsStyling: false
+        });
+
+        swalWithBootstrapButtons.fire({
+            title: "Confirmation For Clear Case",
+            text: "Are sure you want to clear this request? Once clear this request then you not able to see this request.",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Clear",
+            cancelButtonText: "Cancel",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: '/AdminDash/ClearCase',
+                    type: 'Post',
+                    data: { Requestid: Requestid },
+                    success: function (data) {
+
+                    },
+                    error: function (e) {
+                        console.log(e);
+                    }
+                });
+            }
+        });
+    }
+
+
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
