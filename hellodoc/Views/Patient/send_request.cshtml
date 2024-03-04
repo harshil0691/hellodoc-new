@@ -3,9 +3,8 @@
 }
 
     <div class="login" >
-    <button class="m-2 bg-light dark-btn" onclick="darkmode()" 
-                style=" color: #0dcaf0;border: 1px solid #0dcaf0;border-radius: 5px;">
-            <svg xmlns="http://www.w3.org/2000/svg" width="28px" height="28px" fill="currentColor"
+    <button class=" bg-light dark-btn text-info btn btn-outline-info rounden-3" onclick="darkmode()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor"
                  class="bi bi-moon night-mode-icon mt-2 mb-2 mx-2" viewBox="0 0 16 16">
                 <path d="M6 .278a.77.77 0 0 1 .08.858 7.2 7.2 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277q.792-.001 1.533-.16a.79.79 0 0 1 .81.316.73.73 0 0 1-.031.893A8.35 8.35 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.75.75 0 0 1 6 .278M4.858 1.311A7.27 7.27 0 0 0 1.025 7.71c0 4.02 3.279 7.276 7.319 7.276a7.32 7.32 0 0 0 5.205-2.162q-.506.063-1.029.063c-4.61 0-8.343-3.714-8.343-8.29 0-1.167.242-2.278.681-3.286" />
             </svg>
@@ -13,18 +12,16 @@
 
         <div  class="row" >
             <div class="d-grid gap-2 col-md-0 col-lg-6 col-12 col-sm-12 lb-img">
-            <img src="/images/11116016_415-removebg-preview.png" alt="" style="height:100vh; width: 100%;background-color:#b3ecfffc;border:2px solid white;" class="lb-img">
+            <img src="/images/11116016_415-removebg-preview.png" alt="" style="height:100vh;background-color:#b3ecfffc;" id="limg" class="lb-img w-100">
             </div>
-            <div class="d-grid gap-2 col-12 col-sm-12 col-md-12 col-lg-6 mx-auto bimg d-flex justify-content-center align-items-center"
-                 style="height: 100vh; flex-direction: column;">
-
-
+            <div class="d-grid gap-2 col-12 col-sm-12 col-md-12 col-lg-6 mx-auto bimg d-flex justify-content-center align-items-center flex-column"
+                 style="height: 100vh;">
               
                 <img src="/images/Fig56._Patient_site_1-removebg-preview.png" alt="" class="mx-auto mb-2">
 
                 <div class=" d-grid gap-2 col-12  mx-auto pt-5">
-                    <a asp-action="request" class="sr-btn1 col-8 p-3 mt-4 mx-5 mx-auto  link link-underline-opacity-0 " style="color: white; background-color: #31d2f2; border: none;text-decoration:none;">Submit A Request</a>
-                    <a asp-controller="Home" asp-action="index" class="sr-btn1 col-8 mx-auto p-3 mt-4 mx-5" style="color: white; background-color: rgb(38, 38, 96); border: none; text-decoration:none;">Registered Patients</a>
+                    <a asp-action="request" class="sr-btn1 col-8 p-3 mt-4 mx-5 mx-auto  link link-underline-opacity-0 text-white" style="background-color: #31d2f2; border: none;text-decoration:none;">Submit A Request</a>
+                    <a asp-controller="Home" asp-action="index" class="sr-btn1 col-8 mx-auto p-3 mt-4 mx-5 text-white" style="background-color: rgb(38, 38, 96); border: none; text-decoration:none;">Registered Patients</a>
 
                    
                 </div>

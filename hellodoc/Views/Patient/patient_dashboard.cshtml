@@ -9,21 +9,21 @@
 
         <partial name="_header" />
 
-        <ul class="nav nav-underline" style="margin-left:40px; margin-top:5px">
+        <ul class="nav nav-underline mx-3 mt-2">
             <li class="nav-item">
                 <a class="nav-link active" data-bs-toggle="pill" href="#dashboard">Dashboard</a>
             </li>
-            <li class="nav-item" style="margin-left:40px">
+            <li class="nav-item mx-3">
                 <a class="nav-link " data-bs-toggle="pill" href="#profile">Profile</a>
             </li>
         </ul>
 
         <!-- Tab panes -->
-        <div class="tab-content" style="background-color:#efefef;height:130vh">
+        <div class="tab-content bgcolor1">
             <div class="tab-pane container active mt-3" id="dashboard">
                 <h2 class="pt-5 mb-3">Medical history</h2>
 
-                <div class="d-grid container bg-light mt-5" style="border-radius:10px">
+                <div class="d-grid container bgcolor mt-5 rounded-3">
 
                     <!-- Button trigger modal -->
                     <button type="button" class=" btn btn-outline-info mx-2 mt-3 " data-bs-toggle="modal" data-bs-target="#exampleModal" style="justify-self:flex-end;">
@@ -34,7 +34,7 @@
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content" style="font-weight:600">
-                                <div class="modal-header" style="background-color:#0dcaf0; color:white">
+                                <div class="modal-header bg-info text-white">
                                     <h5 class="modal-title" id="exampleModalLabel"> Create New Request </h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
@@ -94,16 +94,15 @@
 
                 <div class=" col-12 col-sm-12 col-md-12 col-lg-12 mx-auto d-flex justify-content-between pt-5 ">
                     <h2>User Profile</h2>
-                    <a asp-action="patient_dashboard" class="d-flex back-btn  text-end p-1"
-                       style="color: #0dcaf0; font-size: larger;text-decoration:none">
+                    <a asp-action="patient_dashboard" class="d-flex btn btn-outline-info bg-transparent text-decoration-none fs-5 text-info text-end p-1">
                         <span class="material-icons pt-2">
                             chevron_left
                         </span>
-                        <span class="p-1">Back</span>
+                        <span class="pe-2">Back</span>
                     </a>
 
                 </div>
-                <div class="d-grid gap-2 col-12 col-sm-12 col-md-12 col-lg-12 mx-auto d-flex content px-4 pt-4">
+                <div class="d-grid gap-2 col-12 col-sm-12 col-md-12 col-lg-12 mx-auto d-flex content px-4 mt-4">
 
                     
                     <form method="post" asp-action="update_profile">

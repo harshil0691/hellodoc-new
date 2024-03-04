@@ -70,3 +70,16 @@ C:\Users\Asus\Downloads\h28\hellodoc\hellodoc.DbEntity\obj\Debug\net7.0\hellodoc
 C:\Users\Asus\Downloads\h28\hellodoc\hellodoc.DbEntity\obj\Debug\net7.0\refint\hellodoc.DbEntity.dll
 C:\Users\Asus\Downloads\h28\hellodoc\hellodoc.DbEntity\obj\Debug\net7.0\hellodoc.DbEntity.pdb
 C:\Users\Asus\Downloads\h28\hellodoc\hellodoc.DbEntity\obj\Debug\net7.0\ref\hellodoc.DbEntity.dll
+C:\Users\Asus\Desktop\hellodoc\hellodoc.DbEntity\bin\Debug\net7.0\hellodoc.DbEntity.deps.json
+C:\Users\Asus\Desktop\hellodoc\hellodoc.DbEntity\bin\Debug\net7.0\hellodoc.DbEntity.dll
+C:\Users\Asus\Desktop\hellodoc\hellodoc.DbEntity\bin\Debug\net7.0\hellodoc.DbEntity.pdb
+C:\Users\Asus\Desktop\hellodoc\hellodoc.DbEntity\obj\Debug\net7.0\hellodoc.DbEntity.csproj.AssemblyReference.cache
+C:\Users\Asus\Desktop\hellodoc\hellodoc.DbEntity\obj\Debug\net7.0\hellodoc.DbEntity.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Asus\Desktop\hellodoc\hellodoc.DbEntity\obj\Debug\net7.0\hellodoc.DbEntity.AssemblyInfoInputs.cache
+C:\Users\Asus\Desktop\hellodoc\hellodoc.DbEntity\obj\Debug\net7.0\hellodoc.DbEntity.AssemblyInfo.cs
+C:\Users\Asus\Desktop\hellodoc\hellodoc.DbEntity\obj\Debug\net7.0\hellodoc.DbEntity.csproj.CoreCompileInputs.cache
+C:\Users\Asus\Desktop\hellodoc\hellodoc.DbEntity\obj\Debug\net7.0\hellodoc.DbEntity.sourcelink.json
+C:\Users\Asus\Desktop\hellodoc\hellodoc.DbEntity\obj\Debug\net7.0\hellodoc.DbEntity.dll
+C:\Users\Asus\Desktop\hellodoc\hellodoc.DbEntity\obj\Debug\net7.0\refint\hellodoc.DbEntity.dll
+C:\Users\Asus\Desktop\hellodoc\hellodoc.DbEntity\obj\Debug\net7.0\hellodoc.DbEntity.pdb
+C:\Users\Asus\Desktop\hellodoc\hellodoc.DbEntity\obj\Debug\net7.0\ref\hellodoc.DbEntity.dll
