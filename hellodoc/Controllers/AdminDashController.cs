@@ -347,5 +347,43 @@ namespace hellodoc.Controllers
                     return PartialView("_DefaultTab");
             }
         }
+
+        public IActionResult LoadActionViews(string actionType, int requestid, int activeid)
+        {
+
+            switch (actionType)
+            {
+                
+                case "dashboard":
+
+                    RequestCountByStatus request = _adminDashRepository.GetCount().Result;
+                    request.activeid = activeid;
+
+                    return PartialView("_dashboard", request);
+
+                case "ViewUploads":
+                    var doc1 = HttpContext.Session.GetInt32("userid");
+                    HttpContext.Session.SetInt32("requestid", requestid);
+
+                    var document = _requests.GetDocuments(requestid, doc1 ?? 1);
+
+                    return PartialView("_ViewUploads", document);
+
+                case "deleteDoc":
+
+                    _adminDashRepository.DeleteDocument(activeid);
+
+                    var doc2 = HttpContext.Session.GetInt32("userid");
+                    HttpContext.Session.SetInt32("requestid", requestid);
+
+                    var document1 = _requests.GetDocuments(requestid, doc2 ?? 1);
+
+                    return PartialView("_ViewUploads", document1);
+
+                default:
+                    return PartialView("_DefaultTab");
+            }
+        }
     }
 }
+

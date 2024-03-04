@@ -7,7 +7,7 @@
 
         <div class=" col-12 col-sm-12 col-md-10 col-lg-8 mx-auto d-flex justify-content-between mt-4 mb-2">
             <h2> Documnets </h2>
-            <button onclick="Back()" class="d-flex back-btn  text-end text-info fs-5 text-decoration-none">
+            <button onclick="loadActionView('dashboard')" class="d-flex back-btn  text-end text-info fs-5 text-decoration-none">
                 <span class="material-icons pt-2">
                     chevron_left
                 </span>
@@ -57,7 +57,7 @@
                                 <td>@a.Createddate</td>
                                 <td>
                                     <a asp-route-download=@a.Requestwisefileid asp-action="download" class="btn btn-outline-info"><i class="bi bi-cloud-download"></i></a>
-                                    <button onclick="Deletedoc('deleteDoc','@a.Requestwisefileid','@a.Requestid')" class="btn btn-outline-info"><i class="bi bi-trash3"></i></button>
+                                    <button onclick="loadActionView('deleteDoc','@a.Requestid','@a.Requestwisefileid')" class="btn btn-outline-info"><i class="bi bi-trash3"></i></button>
 
                                 </td>
                             </tr>
@@ -92,39 +92,36 @@
         });
     });
 
-    function Back(requestid) {
-        
+    function loadActionView(actionType, requestid,reqfileid) {
+
+        var activeid;
+
+        if (actionType == "deleteDoc"){
+            activeid = reqfileid;
+        }
+        else{
+            activeid =2;
+        }
+
+        console.log(1);
         $.ajax({
-            url: '/AdminDash/LoadPartialView',
+            url: '/AdminDash/LoadActionViews',
             type: 'GET',
-            data: { tabId: "dashboard",activeid : 2 },
-            success: function (data) {
-
-                $('#dashboard').html(data);
-                loadPartialView("pending");
-
-            },
-            error: function () {
-                console.error('Error loading partial view.');
-            }
-        });
-
-    }
-
-    function Deletedoc(typeName,reqfileid,requestid){
-        console.log("delete");
-        $.ajax({
-            url: '/AdminDash/LoadPartialView',
-            type: 'GET',
-            data: { tabId: typeName, requestid: requestid, activeid: reqfileid },
+            data: { actionType: actionType, requestid: requestid, activeid: activeid },
             success: function (data) {
                 $('#dashboard').html(data);
+
+                if(actionType == "dashboard"){
+                    loadPartialView("pending");
+                }
             },
             error: function () {
                 console.error('Error loading partial view.');
             }
         });
     }
+
+
 
     function savedoc(reqid) {
 

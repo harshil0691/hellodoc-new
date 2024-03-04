@@ -110,7 +110,7 @@
                                 </button>
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" asp-route-requestid=@a.Requestid asp-action="view_case"><i class="bi bi-journal-text me-2"></i>View Case</a></li>
-                                    <li><button class="dropdown-item" onclick="loadPartialView1(@a.Requestid)"><i class="bi bi-file-earmark-arrow-up me-2"></i>View Uploads</button></li>
+                                    <li><button class="dropdown-item" onclick="loadActionView('ViewUploads','@a.Requestid')"><i class="bi bi-file-earmark-arrow-up me-2"></i>View Uploads</button></li>
                                     <li><a class="dropdown-item" asp-action="view_notes" asp-route-requestid=@a.Requestid><i class="bi bi-journals me-2"></i>View Notes</a></li>
                                     <li><button type="button" class="dropdown-item " onclick="ShowModal('@a.Requestid','Transfer','AssignCase')"><i class="bi bi-card-text me-2"></i>Transfer</button></li>
                                     <li><button type="button" class="dropdown-item " onclick="OpenSwal()"><i class="bi bi-x-circle me-2"></i>Clear Case</button></li>
@@ -277,13 +277,13 @@
         });
     }
 
-    function loadPartialView1(requestid) {
+    function loadActionView(actionType,requestid) {
 
         console.log(1);
         $.ajax({
-            url: '/AdminDash/LoadPartialView',
+            url: '/AdminDash/LoadActionViews',
             type: 'GET',
-            data: { tabId: "ViewUploads", requestid: requestid },
+            data: { actionType: actionType, requestid: requestid },
             success: function (data) {
                 $('#dashboard').html(data);
             },
