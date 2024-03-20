@@ -1,0 +1,163 @@
+﻿@model hellodoc.DbEntity.ViewModels.PopUpModal.OrdersModal
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+<div class="login" id="main" style="margin-bottom:100px">
+
+    <div class="row bgcolor1">
+
+        <div class=" col-12 col-sm-12 col-md-10 col-lg-8 mx-auto d-flex justify-content-between mt-4 mb-2">
+            <h2> Send Orders </h2>
+            <button onclick="loadActionView({ActionType: 'dashboard',activeid: @HttpContextAccessor.HttpContext.Session.GetInt32("activeid")})" class="d-flex btn btn-outline-info bg-transparent  text-end text-info fs-5 text-decoration-none">
+                <span class="material-icons pt-2">
+                    chevron_left
+                </span>
+                <span class="p-1">Back</span>
+            </button>
+
+        </div>
+        <div class="d-grid gap-2 col-12 col-sm-12 col-md-10 col-lg-8 mx-auto d-flex flex-column rounded-3 bgcolor px-4 mt-4">
+
+            <form asp-action="send_order" asp-route-requestid="@Model.requestid">
+            <div class="row">
+                <div class="form-floating mb-3  col-md-6 col-lg-6">
+                    <select class="form-select mt-3" aria-label="Default select example" id="professionTypeSelect" asp-for="SelectProfession">
+                        <option selected>Select Profession</option>
+                        @{
+                            foreach (var a in Model.professionName)
+                            {
+                                <option value="@a.Healthprofessionalid">@a.Professionname</option>
+                            }
+                        }
+
+                    </select>
+                </div>
+                <div class="form-floating mb-3 col-md-6 col-lg-6">
+                    <select class="form-select mt-3" aria-label="Default select example" id="professionSelect" asp-for="Business">
+                        <option selected>Business</option>
+                        
+                    </select>
+                </div>
+                <div class="form-floating mb-3 col-md-6 col-lg-6">
+                    <input type="text" class="form-control" id="businessContact12" asp-for="BusinessContact" placeholder="Business Contact">
+                    <label class="mx-3">Business Contact</label>
+                    <span asp-validation-for="BusinessContact" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-3 col-md-6 col-lg-6">
+                    <input type="email" class="form-control" id="Vemail" asp-for="Email" placeholder="Email">
+                    <label class="mx-3">Email</label>
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-3 col-md-6 col-lg-6">
+                    <input type="text" class="form-control" id="Vfaxnumber"  asp-for="Faxnumber" placeholder="Fax Number">
+                    <label class="mx-3">Fax Number</label>
+                    <span asp-validation-for="Faxnumber" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-floating mb-3">
+                <textarea class="form-control" placeholder="Prescription or Order details" style="height:100px" asp-for="Prescription"></textarea>
+                <label class="mx-1">Prescription or Order details</label>
+                <span asp-validation-for="Prescription" class="text-danger"></span>
+            </div>
+
+            <div class="row">
+                <div class="form-floating mb-3  col-md-6 col-lg-6">
+                    <select class="form-select mt-3" aria-label="Default select example" asp-for="NumberOfRefills">
+                        <option selected>Not Required</option>
+                        <option>5</option>
+                        <option>10</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-end mt-5 mb-2">
+                <button type="submit" class="btn btn-info text-white m-2">Submit</button>
+                    <button type="button" onclick="loadActionView('dashboard')"  class="btn btn-outline-info m-2">Cancel</button>
+            </div>
+            </form>
+        </div>
+        
+
+    </div>
+
+</div>
+<footer style=" position:fixed;bottom:0; width:100%;">
+    <div style="padding-right: 40px;">
+        <a href="" style="color: white;">Terms Of Conditions</a> |
+        <a href="" style="color: white;">Privacy Policy</a>
+    </div>
+</footer>
+
+<script>
+
+    $(document).ready(function () {
+
+        $("#professionTypeSelect").change(function () {
+            var select = $(this).val();
+            console.log(select);
+
+            getvendor(select);
+        })
+
+        $("#professionSelect").change(function () {
+            var select = $(this).val();
+            console.log(select);
+
+            getvendordata(select);
+        })
+    
+    
+    function getvendor(select) {
+
+        var vendor = $("#professionSelect");
+
+        $.ajax({
+            url: '/DashActinView/GetVendors',
+            type: 'POST',
+            data: { select: select },
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+                vendor.empty();
+                vendor.append('<option selected>Select Business</option>');
+
+                for (var i = 0; i < data.length; i++) {
+                    vendor.append('<option value = ' + data[i].vendorid + '>' + data[i].vendorname + '</option>');
+                }
+
+            },
+            error: function (e) {
+                console.log(e);
+            }
+        })
+    }
+
+    function getvendordata(select) {
+
+        $.ajax({
+            url: '/DashActionView/GetVendorData',
+            type: 'POST',
+            data: { select: select },
+            dataType: 'json',
+            success: function (data) {
+
+                    $("#businessContact12").val(data.phonenumber);
+                    $("#Vemail").val(data.email);
+                    $("#Vfaxnumber").val(data.faxnumber);
+                
+            },
+            error: function (e) {
+                console.log(e);
+            }
+        })
+    }
+
+    })
+
+</script>
+
+@section Scripts{
+    @{
+        <Partial name="_ValidationScriptsPartial" />
+    }
+    }

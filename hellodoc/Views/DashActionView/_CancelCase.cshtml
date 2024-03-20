@@ -1,0 +1,36 @@
+﻿@model hellodoc.DbEntity.ViewModels.CancelCaseModel
+
+<div class="modal fade show" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="font-weight:600">
+            <form method="post" asp-action="cancel_case" asp-route-requestid=@Model.Requestid>
+                <div class="modal-header bg-info text-white">
+                    <h5 class="modal-title" id="exampleModalLabel"> Confirm Cancellation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <p class="mb-2 mt-3 text-black"> Patient Name : <span class="text-info">@Model.PatientName</span></p>
+
+                    <select class="form-select mb-2" aria-label="Default select example" asp-for="@Model.CancelReasonValue">
+                        <option selected>Reason For Cancellation</option>
+                        <option value="1">No Respone to call or text, left message</option>
+                        <option value="2">Cost Issue</option>
+                        <option value="3">Insurance Issue</option>
+                        <option value="4">Out of Service Area</option>
+                        <option value="5">Not appropriate for service</option>
+                        <option value="6">Referral to Clinic or Hospital</option>
+                    </select>
+
+                    <textarea asp-for="@Model.CancelNotes" rows="5" class="col-12 form-control" placeholder="please provide a brief explanation for your cancelation" style="font-size:medium" class="p-1"></textarea>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-info text-white">Continue</button>
+                    <button type="button" class="btn btn-outline-info" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

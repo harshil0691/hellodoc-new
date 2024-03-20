@@ -1,0 +1,133 @@
+﻿@model hellodoc.DbEntity.ViewModels.BusinessReqModel
+
+    <div class="login" id="main">
+    <Partial name="_RHeader" />
+
+
+    <div class="row bgcolor1">
+        <div class="d-grid gap-2 col-12 col-sm-12 col-md-10 col-lg-8 mx-auto d-flex flex-column rounded-4 px-4 mt-5 bgcolor mb-5">
+
+            <a asp-action="request" class="d-flex align-self-end btn btn-outline-info mt-4 bg-body text-info fs-5 text-decoration-none">
+                <span class="material-icons pt-2">
+                    chevron_left
+                </span>
+                <span class="p-1">Back</span>
+            </a>
+
+                <h3 id="t1" class="pt-2">Business Information</h3>
+
+                <form asp-action="business_request" method="post">
+                <div class="row">
+                    <div class="form-floating mb-3  col-md-6 col-lg-6">
+                        <input type="text" class="form-control" id="floatingInput" asp-for="B_Firstname">
+                        <label for="floatingInput" class="mx-3">Your First Name</label>
+                    </div>
+                    <div class="form-floating mb-3 col-md-6 col-lg-6">
+                        <input type="text" class="form-control" id="floatingInput" asp-for="B_Lastname">
+                        <label for="floatingInput" class="mx-3">Your Last Name</label>
+                    </div>
+                    <div class="form-floating col-md-6 col-lg-6">
+                        <input type="tel" class="form-control pt-3 pb-3" id="phone" asp-for="B_Phonenumber">
+                    </div>
+                    <div class="form-floating mb-3 col-md-6 col-lg-6">
+                        <input type="email" class="form-control" id="floatingInput" asp-for="B_Email">
+                        <label for="floatingInput" class="mx-3">Your Email</label>
+                    </div>
+                    <div class="form-floating mb-3 col-md-6 col-lg-6">
+                        <input type="text" class="form-control" id="floatingInput" asp-for="B_BusinessName">
+                        <label for="floatingInput" class="mx-3">Business / Property Name</label>
+                    </div>
+                    <div class="form-floating mb-3 col-md-6 col-lg-6">
+                        <input type="text" class="form-control" id="floatingInput" asp-for="B_CaseNo">
+                        <label for="floatingInput" class="mx-3">Case Number (Optional)</label>
+                    </div>
+                </div>
+
+                <h3 id="t1" class="pt-2">Patient Information</h3>
+                <div class="form-floating mb-3">
+                    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" asp-for="Symptoms"
+                              style="height: 100px"></textarea>
+                    <label for="floatingTextarea2" class="mx-1">Enter Brief Details Of Symptoms (Optional)</label>
+                </div>
+
+                <div class="row">
+                    <div class="form-floating mb-3  col-md-6 col-lg-6">
+                        <input type="text" class="form-control" id="floatingInput" asp-for="Firstname">
+                        <label for="floatingInput" class="mx-3">First Name</label>
+                    </div>
+                    <div class="form-floating mb-3 col-md-6 col-lg-6">
+                        <input type="text" class="form-control" id="floatingInput" asp-for="Lastname">
+                        <label for="floatingInput" class="mx-3">Last Name</label>
+                    </div>
+                    <div class="form-floating mb-3 col-md-6 col-lg-6">
+                        <input type="Date" class="form-control" id="floatingInput" asp-for="DateOfBirth">
+                        <label for="floatingInput" class="mx-3">Date Of Birth</label>
+                    </div>
+                </div>
+
+                <h3 class="pt-2" id="t1">
+                    Patient Contact Information
+                </h3>
+
+                <div class="row">
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" id="floatingInput" asp-for="Email">
+                        <label for="floatingInput" class="mx-3">Email address</label>
+                    </div>
+                    <div class="form-floating col-md-6 col-lg-6">
+                        <input type="tel" class="form-control pt-3 pb-3" id="phone" asp-for="Phonenumber">
+                    </div>
+                </div>
+
+
+                <h3 class="pt-2" id="t1">
+                    Patient Location
+                </h3>
+
+                <div class="row">
+                    <div class="form-floating mb-3  col-md-6 col-lg-6">
+                        <input type="text" class="form-control" id="floatingInput" asp-for="Street">
+                        <label for="floatingInput" class="mx-3">Street</label>
+                    </div>
+                    <div class="form-floating mb-3 col-md-6 col-lg-6">
+                        <input type="text" class="form-control" id="floatingInput" asp-for="City">
+                        <label for="floatingInput" class="mx-3">City</label>
+                    </div>
+                    <div class="form-floating mb-3  col-md-6 col-lg-6">
+                        <input type="text" class="form-control" id="floatingInput" asp-for="State">
+                        <label for="floatingInput" class="mx-3">State</label>
+                    </div>
+                    <div class="form-floating mb-3 col-md-6 col-lg-6">
+                        <input type="number" class="form-control" id="floatingInput" asp-for="Zipcode">
+                        <label for="floatingInput" class="mx-3">Zip Code</label>
+                    </div>
+                    <div class="form-floating mb-3  col-md-6 col-lg-6">
+                        <input type="text" class="form-control" id="floatingInput" asp-for="Roomno">
+                        <label for="floatingInput" class="mx-3"> class="mx-3"Room No. (Optional) </label>
+                    </div>
+                </div>
+
+
+                <div class="d-flex justify-content-end">
+                    <button type="submit" class="btn btn-info mx-3 p-2 px-3">Submit</button>
+                    <button type="reset" class="btn btn-secondary mx-2 p-2 px-3">Cancel</button>
+                </div>
+                </form>
+
+
+            </div>
+            <footer>
+                <div style="padding-right: 40px;">
+                    <a href="" style="color: white;">Terms Of Conditions</a> |
+                    <a href="" style="color: white;">Privacy Policy</a>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+
+@section Scripts{
+    @{
+        <Partial name="_ValidationScriptsPartial" />
+    }
+    }

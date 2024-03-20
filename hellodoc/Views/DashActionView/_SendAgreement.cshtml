@@ -1,0 +1,38 @@
+﻿@model hellodoc.DbEntity.ViewModels.PopUpModal.SendAgreementModal
+
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="font-weight:600">
+            <form id="form1" method="post" asp-action="send_agreement" asp-route-requestid=@Model.reqid asp-route-patientName=@Model.patientName>
+                <div class="modal-header bg-info text-white">
+                    <h5 class="modal-title" id="exampleModalLabel"> Send Agreement </h5>
+                    <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="m-2 d-grid d-sm-grid d-sm-flex"><div class="colored-dot m-1" style="background-color:@Model.bcolor"></div><div>@Model.reqtype</div></div>
+
+                    <p class="mt-1 text-black-50 fs-6"> To Send Agreement please make sure you are updating the correct contact information below for the respactive party.</p>
+
+                
+                    <div class="form-floating mt-3">
+                        <input type="number" class="form-control" asp-for="phonenumber" placeholder="Phobenumber">
+                        <label>Patient Number</label>
+                        <span asp-validation-for="phonenumber" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-floating mt-3">
+                        <input type="email" class="form-control" asp-for="email" placeholder="Email">
+                        <label>Email</label>
+                        <span asp-validation-for="email" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-info text-white">Continue</button>
+                    <button type="button" class="btn btn-outline-info" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

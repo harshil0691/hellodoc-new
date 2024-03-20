@@ -1,0 +1,176 @@
+﻿@model hellodoc.DbEntity.ViewModels.AdminProfileModal
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+<div class="login" id="main" style="margin-bottom:100px">
+
+    <div class="row bgcolor1">
+
+        <div class=" col-12 col-sm-12 col-md-10 col-lg-8 mx-auto d-flex justify-content-between mt-4 mb-2">
+            <h2> My Profile</h2>
+            <button onclick="loadPartialDashView('dashboard')" class="d-flex btn btn-outline-info bg-transparent  text-end text-info fs-5 text-decoration-none">
+                <span class="material-icons pt-2">
+                    chevron_left
+                </span>
+                <span class="p-1">Back</span>
+            </button>
+
+        </div>
+        <div class="d-grid gap-2 col-12 col-sm-12 col-md-10 col-lg-8 mx-auto d-flex flex-column rounded-3 bgcolor px-4 mt-4 shadow">
+            
+
+            <h4 class="mt-3">Account Information</h4>
+            <form id="updatePass" method="post">
+            <div class="row mt-3">
+                
+                <div class="form-floating mb-3  col-md-6 col-lg-6">
+                    <input type="text" class="form-control" id="floatingInput" asp-for="username" placeholder="Username" disabled>
+                    <label for="floatingInput" class="mx-3">Username</label>
+                </div>
+                <div class="form-floating mb-3  col-md-6 col-lg-6">
+                    <input type="text" class="form-control" id="floatingInput" asp-for="password" placeholder="Password">
+                    <label for="floatingInput" class="mx-3">Password</label>
+                    <span asp-validation-for="password" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-3  col-md-6 col-lg-6">
+                    <select class="form-select" aria-label="Default select example" disabled>
+                        <option selected>@Model.status</option>
+                    </select>
+                </div>
+                <div class="form-floating mb-3  col-md-6 col-lg-6">
+                    <select class="form-select" aria-label="Default select example" disabled>
+                        <option selected>@Model.role</option>
+                    </select>
+                </div>
+                
+            </div>
+
+            <div class="d-flex justify-content-end" id="edit1">
+                    <button type="button" class="btn btn-outline-info px-2" onclick="FormSubmitAction1('update_password','#updatePass','#myprofile')">Reset Password</button>
+            </div>
+            </form>
+
+           
+            <h4 class="mt-3">Administrator  Information</h4>
+            <form method="post" id="updateAdmin">
+            <div class="row mt-3">
+                <div class="form-floating mb-3  col-md-6 col-lg-6">
+                        <input type="text" class="form-control AdminProfile1" id="floatingInput" asp-for="Firstname" placeholder="Firstname" disabled>
+                    <label for="floatingInput" class="mx-3">First Name</label>
+                    <span asp-validation-for="Firstname" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-3 col-md-6 col-lg-6">
+                        <input type="text" class="form-control AdminProfile1" id="floatingInput" asp-for="Lastname" placeholder="Lastname" disabled>
+                    <label for="floatingInput" class="mx-3">Last Name</label>
+                    <span asp-validation-for="Lastname" class="text-danger"> </span>
+                </div>
+                <div class="form-floating mb-3 col-md-6 col-lg-6">
+                        <input type="email" class="form-control AdminProfile1" id="email123" asp-for="Email" placeholder="Email" disabled>
+                    <label for="email123" class="mx-3">Email</label>
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-3 col-md-6 col-lg-6">
+                        <input type="email" class="form-control AdminProfile1" id="floatingInput" asp-for="ConfirmEmail" placeholder="ConfirmEmail" disabled>
+                    <label for="floatingInput" class="mx-3">ConfirmEmail</label>
+                    <span asp-validation-for="ConfirmEmail" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-3 col-md-6 col-lg-6">
+                        <input type="text" class="form-control AdminProfile1" id="floatingInput" asp-for="Phone" placeholder="Phone Number" disabled>
+                    <label for="floatingInput" class="mx-3">Phone Number</label>
+                    <span asp-validation-for="Phone" class="text-danger"> </span>
+                </div>
+                <div class="mb-3 col-md-6 col-lg-6">
+                    <div class="d-sm-flex">
+                        <div class="form-check m-2">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label for="exampleCheck1">District Of Colambia</label>
+                        </div>
+                        <div class="form-check m-2">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck2">
+                            <label for="exampleCheck2">New York</label>
+                        </div>
+                    </div>
+                    <div class="d-sm-flex">
+                        <div class="form-check m-2">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck3">
+                            <label for="exampleCheck13">Virginia</label>
+                        </div>
+                        <div class="form-check m-2">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck4">
+                            <label for="exampleCheck4">Maryland</label>
+                        </div>
+
+                    </div>
+                    
+                </div>
+                
+            </div>
+            
+
+            <div class="d-flex justify-content-end" id="edit1">
+                <button type="button" class="btn btn-info text-white px-2" onclick="edit1()" id="e1">Edit</button>
+            </div>
+            <div class="d-flex justify-content-end" id="edit2">
+                    <button type="button" class="btn btn-info mx-3 p-2 px-3 mb-2" id="b1" onclick="FormSubmitAction1('update_admin','#updateAdmin','#myprofile')" style="display:none;">Save</button>
+                <button type="reset" class="btn btn-dark mx-3 p-2 px-3 mb-2" id="b2" style="display:none;" onclick="cancel1()">Cancel</button>
+            </div>
+            </form>
+
+            
+            <h4 class="mt-3">Mailing & Billing Information</h4>
+            <form method="post" id="updateAdminAddress">
+            <div class="row mt-3">
+                <div class="form-floating mb-3  col-md-6 col-lg-6">
+                        <input type="text" class="form-control AdminProfile2" id="floatingInput" asp-for="Address1" placeholder="Address1" disabled>
+                    <label for="floatingInput" class="mx-3">Address1</label>
+                    <span asp-validation-for="Address1" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-3 col-md-6 col-lg-6">
+                        <input type="text" class="form-control AdminProfile2" id="floatingInput" asp-for="Address2" placeholder="Address2" disabled>
+                    <label for="floatingInput" class="mx-3">Address2</label>
+                    <span asp-validation-for="Address2" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-3 col-md-6 col-lg-6">
+                        <input type="text" class="form-control AdminProfile2" id="floatingInput" asp-for="City" placeholder="City" disabled>
+                    <label for="floatingInput" class="mx-3">City</label>
+                    <span asp-validation-for="City" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-3  col-md-6 col-lg-6">
+                        <input type="text" class="form-control AdminProfile2" id="floatingInput" asp-for="State" placeholder="State" disabled>
+                    <label for="floatingInput" class="mx-3">State</label>
+                    <span asp-validation-for="State" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-3 col-md-6 col-lg-6">
+                        <input type="number" class="form-control AdminProfile2" id="floatingInput" asp-for="Zipcode" placeholder="ZipCode" disabled>
+                    <label for="floatingInput" class="mx-3">Zip Code</label>
+                    <span asp-validation-for="Zipcode" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-3 col-md-6 col-lg-6">
+                        <input type="text" class="form-control AdminProfile2" id="floatingInput" asp-for="MailingNumber" placeholder="Phone Number" disabled>
+                    <label for="floatingInput" class="mx-3">Phone Number</label>
+                    <span asp-validation-for="MailingNumber" class="text-danger"> </span>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-end" id="edit1">
+                <button type="button" class="btn btn-info text-white px-2" onclick="edit2()" id="e2">Edit</button>
+            </div>
+            <div class="d-flex justify-content-end" id="edit2">
+                    <button type="button" class="btn btn-info mx-3 p-2 px-3 mb-2" id="ab1" onclick="FormSubmitAction1('update_admin_address','#updateAdminAddress','#myprofile')" style="display:none;">Save</button>
+                <button type="reset" class="btn btn-dark mx-3 p-2 px-3 mb-2" id="ab2" style="display:none;" onclick="cancel2()">Cancel</button>
+            </div>
+            </form>
+        </div>
+
+
+    </div>
+
+</div>
+<footer style=" position:fixed;bottom:0; width:100%;">
+    <div style="padding-right: 40px;">
+        <a href="" style="color: white;">Terms Of Conditions</a> |
+        <a href="" style="color: white;">Privacy Policy</a>
+    </div>
+</footer>
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+

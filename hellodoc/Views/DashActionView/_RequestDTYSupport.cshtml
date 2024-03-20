@@ -1,0 +1,24 @@
+﻿@model hellodoc.DbEntity.ViewModels.PopUpModal.RequestSupportModal
+
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="font-weight:600">
+            <form method="post" asp-action="request_support">
+                <div class="modal-header bg-info text-white">
+                    <h5 class="modal-title" id="exampleModalLabel"> Request DTY support</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+
+                    <textarea asp-for="@Model.Message" rows="5" class="col-12 form-control" placeholder="Enter message for physician" style="font-size:medium" class="p-1"></textarea>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-info text-white">Continue</button>
+                    <button type="button" class="btn btn-outline-info" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

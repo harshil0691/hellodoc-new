@@ -1,0 +1,57 @@
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+
+    <div class="row w-100 bgcolor1">
+
+        <div class=" col-12 col-sm-12 col-md-10 col-lg-8 mx-auto d-flex justify-content-between mt-4 mb-2">
+            <h2> Provider Location </h2>
+            <button onclick="loadActionView({ActionType: 'dashboard',activeid: @HttpContextAccessor.HttpContext.Session.GetInt32("activeid")})" class="d-flex btn btn-outline-info bg-transparent  text-end text-info fs-5 text-decoration-none">
+                <span class="material-icons pt-2">
+                    chevron_left
+                </span>
+                <span class="p-1">Back</span>
+            </button>
+            
+        </div>
+
+        <div class="d-grid gap-2 col-12 col-sm-12 col-md-10 col-lg-8 mx-auto d-flex flex-column rounded-3 bgcolor mt-4">
+
+        @*<div id="map_canvas" style="height:500px" class="rounded-3 m-3"></div>*@
+
+        
+        </div>
+           
+            
+
+    </div>
+
+<footer style=" position:fixed;bottom:0; width:100%;">
+    <div style="padding-right: 40px;">
+        <a href="" style="color: white;">Terms Of Conditions</a> |
+        <a href="" style="color: white;">Privacy Policy</a>
+    </div>
+</footer>
+
+@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&callback=initialize"></script>
+<script>
+    var directionsDisplay,
+        directionsService,
+        map;
+
+    function initialize() {
+        var directionsService = new google.maps.DirectionsService();
+        directionsDisplay = new google.maps.DirectionsRenderer();
+        var chicago = new google.maps.LatLng(23.0225, 72.5714);
+        var mapOptions = { zoom: 12, mapTypeId: google.maps.MapTypeId.ROADMAP, center: chicago }
+        map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+        directionsDisplay.setMap(map);
+    }
+
+</script>*@
+
+@section Scripts{
+    @{
+        <Partial name="_ValidationScriptsPartial" />
+    }
+    }

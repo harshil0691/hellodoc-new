@@ -1,0 +1,90 @@
+﻿@{
+    ViewData["Title"] = "Patient dashboard";
+}
+@model hellodoc.DbEntity.ViewModels.RequestCountByStatus
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+
+    <div class="login bgcolor " id="main">
+        
+
+        <Partial name="_header">
+        <Partial name="_Notification" />
+
+       @* <div class="collapse navbar-collapse" id="navbarSupportedContent">*@
+        <ul class="nav nav-underline mt-2 mx-2 shadow-sm" id="mydashboard">
+                <li class="nav-item mx-2">
+                    <a class="nav-link active" data-bs-toggle="pill" href="#dashboard">Dashboard</a>
+                </li>
+                <li class="nav-item mx-2">
+                    <a class="nav-link " data-bs-toggle="pill" href="#providerlocation">Provider Location</a>
+                </li>
+                <li class="nav-item mx-2">
+                    <a class="nav-link " data-bs-toggle="pill" href="#myprofile">My Profile</a>
+                </li>
+                <li class="nav-item mx-2 dropdown1">
+                <a class="nav-link" data-bs-toggle="pill" href="#provider" id="provideractive">Providers</a>
+                <div class="dropdown-content1">
+                    <a  onclick="adminDashload({actionType : 'providers',tab: '#provider'})">Provider</a>
+                    <a  onclick="adminDashload({actionType : 'scheduling',tab: '#provider'})">Scheduling</a>
+                    <a  onclick="adminDashload({actionType : 'invoicing', tab: '#provider'})">Invoicing</a>
+                </div>
+                </li>
+                <li class="nav-item mx-2">
+                    <a class="nav-link " data-bs-toggle="pill" href="#partner">Partners</a>
+                </li>
+                <li class="nav-item mx-2">
+                    <a class="nav-link " data-bs-toggle="pill" href="#access">Access</a>
+                </li>
+                <li class="nav-item mx-2">
+                    <a class="nav-link " data-bs-toggle="pill" href="#records">Records</a>
+                </li>
+            </ul>
+
+
+       @* </div>*@
+
+        <!-- Tab panes -->
+        <div class="tab-content" style="margin-top: -15px;">
+            <div class="tab-pane mt-3 active position-absolute w-100 bgcolor1" id="dashboard">
+            </div>
+
+            <div class="tab-pane mt-3 w-100 bgcolor1" id="provider_location">
+            </div>
+
+            <div class="tab-pane mt-3 w-100 bgcolor1" id="myprofile">
+            </div>
+
+            <div class="tab-pane mt-3 w-100 bgcolor1" id="provider">
+            </div>
+
+            <div class="tab-pane mt-3 w-100 bgcolor1" id="partner">
+            </div>
+
+            <div class="tab-pane mt-3 w-100 bgcolor1" id="access">
+            </div>
+
+            <div class="tab-pane mt-3 w-100 bgcolor1" id="records">
+            </div>
+
+        </div>
+
+    </div>
+    <div id="partialContainer"></div>
+    <footer style="position:fixed;bottom:0; width:100%;">
+        <div style="padding-right: 40px;">
+            <a href="" style="color: white;">Terms Of Conditions</a> |
+            <a href="" style="color: white;">Privacy Policy</a>
+        </div>
+    </footer>
+
+
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+
+<script src="/js/AdminDashboard.js" asp-append-version="true"></script>
+
+@section Scripts{
+    @{
+        <Partial name="_ValidationScriptsPartial" />
+    }
+}

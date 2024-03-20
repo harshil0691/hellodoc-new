@@ -1,0 +1,40 @@
+﻿@model hellodoc.DbEntity.ViewModels.PopUpModal.SendAgreementModal
+ 
+<div class="d-flex justify-content-center align-items-center" style="height:100vh; font-size:larger;background-color: #e7e7e7">
+    <div class="col-8">
+        To provide best medical service, we cannot determine the cost right away. If you agree to our 
+        service , so we will provide care and follow-up untill all care is completed. So with this points . If you 
+        like us to provide care to you click on "Agree" and we we'll get started immediately, if you do not agree simply click "Cancel"
+
+        <div class="mt-5 d-flex justify-content-center">
+            <a class="btn btn-success m-3 p-3 fs-5" asp-action="agree_agreement" asp-route-reqid="@ViewBag.requestid">Agree</a>
+            <form method="post" asp-action="cancel_agreement" asp-route-reqid="@ViewBag.requestid">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-danger m-3 p-3" data-bs-toggle="modal" data-bs-target="#exampleModal" style="font-size:large">
+                Cancel
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header bg-info">
+                            <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">Cancel Confirmation</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <h4>@ViewBag.patientName,</h4>
+                            <textarea asp-for="CancelNotes" class="form-control fs-6 p-1" rows="5" cols="60" placeholder="please provide a brief explanation for your cancelation"></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-info text-white" >Continue</button>
+                            <button type="button" class="btn btn-outline-info" data-bs-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </form>
+        </div>
+
+    </div>
+</div>
