@@ -1,51 +1,14 @@
 ﻿@model hellodoc.DbEntity.ViewModels.AdminParent
-
-
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 @{
     var datalist = Newtonsoft.Json.JsonConvert.SerializeObject(Model.adminDashModels);
 }
 
-
-
-<div class="d-flex justify-content-between" id="bgcolor">
-    <h3>Patients(Close)</h3>
-    <div>
-        <button class="btn btn-info text-white" onclick="ShowModal({ActionType:'SendLink'})"><i class="bi bi-send px-1"></i><span class="d-none d-sm-none d-md-inline d-lg-inline d-xl-inline">send link</span></button>
-        <button class="btn btn-info text-white" onclick="loadActionView({ActionType:'CreateRequest'})"><i class="bi bi-pencil-square px-1 "></i><span class="d-none d-sm-none d-md-inline d-lg-inline d-xl-inline">create requests</span></button>
-        <button class="btn btn-info text-white" onclick="exportToExcel()"><i class="bi bi-share-fill px-1"></i><span class="d-none d-sm-none d-md-inline d-lg-inline d-xl-inline">export</span></button>
-        <a class="btn btn-info text-white" asp-action="exportAll"><i class="bi bi-share-fill px-1"></i><span class="d-none d-sm-none d-md-inline d-lg-inline d-xl-inline">export all</span></a>
-        <button class="btn btn-info text-white"><i class="bi bi-file-person px-1"></i><span class="d-none d-sm-none d-md-inline d-lg-inline d-xl-inline">Request DTY support</span></button>
-    </div>
-</div>
-
-<div class="d-flex justify-content-between p-3 mt-2 bg-light row">
-    <div class="d-flex  col-12 col-sm-12 col-md-4">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="customSearch">
-        <select class="form-select" aria-label="Default select example" onchange="fetchRegion()" id="region">
-            <option selected>All Region</option>
-            @{
-                foreach (var a in Model.regions)
-                {
-                    <option value="@a.Regionid">@a.Name</option>
-                }
-            }
-        </select>
-    </div>
-    <div class="d-flex justify-content-md-end col-12 col-sm-12 col-md-6 mt-3 justify-content-start ">
-        <button class="btn btn-outline-dark d-none d-sm-inline"> All</button>
-        <div class="m-2 d-grid d-sm-grid d-sm-flex"><div class="colored-dot bg-success m-1"></div><div>Patients</div></div>
-        <div class="m-2 d-grid d-sm-grid d-sm-flex"><div class="colored-dot bg-warning m-1"></div><div>Family_friend</div></div>
-        <div class="m-2 d-grid d-sm-grid d-sm-flex"><div class="colored-dot bg-danger m-1 "></div><div>Business</div></div>
-        <div class="m-2 d-grid d-sm-grid d-sm-flex"><div class="colored-dot bg-primary m-1"></div><div>Concierge</div></div>
-        <div class="m-2 d-grid d-sm-grid d-sm-flex"><div class="colored-dot bg-success m-1"></div><div>Vip</div></div>
-    </div>
-</div>
-
-<div style="margin-bottom:50px;" class="table-responsive d-none d-sm-none d-md-block d-lg-block d-xl-block">
-    <table id="example5" class="table" style="width:100%;z-index:5">
+<div class="table-responsive d-none d-sm-none d-md-block d-lg-block d-xl-block">
+    <table class="w-100">
         <thead>
             <tr>
-                <th>Name</th>
+                <th class="p-3">Name</th>
                 <th>Date Of Birth</th>
                 <th>Region</th>
                 <th>Physician Name</th>
@@ -85,15 +48,15 @@
                     }
 
                     <tr class=" m-2" style="background-color:@reqcolor">
-                        <td>@a.PatientName </td>
-                        <td>@a.Createddate</td>
-                        <td></td>
-                        <td>@a.Physicianname</td>
-                        <td>@a.Createddate</td>
-                        <td>@a.Address</td>
-                        <td>@a.Notes</td>
-                        <td><button class="btn btn-outline-light">Provider</button></td>
-                        <td>
+                        <td class="p-3">@a.PatientName </td>
+                        <td class="p-3">@a.Createddate</td>
+                        <td class="p-3"></td>
+                        <td class="p-3">@a.Physicianname</td>
+                        <td class="p-3">@a.Createddate</td>
+                        <td class="p-3">@a.Address</td>
+                        <td class="p-3">@a.Notes</td>
+                        <td class="p-3"><button class="btn btn-outline-light">Provider</button></td>
+                        <td class="p-3">
                             <div class="dropdown">
                                 <button class="btn btn-outline-light" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Actions
@@ -202,16 +165,7 @@
 </div>
 
 <script>
-    var table = new DataTable('#example5');
-
-    $(document).ready(function () {
-        $("#customSearch").on("keyup change", function () {
-            table.column(0).search(this.value).draw();
-        });
-
-        $("#region123").change(function () {
-            table.column(5).search(this.value).draw();
-        })
-    });
+    var tt = '@HttpContextAccessor.HttpContext.Session.GetInt32("totalrequest")'
+    $('#TotalPage').text(tt);
 
 </script>

@@ -30,8 +30,7 @@ public partial class Physician
     public string Email { get; set; } = null!;
 
     [Column("mobile")]
-    [StringLength(20)]
-    public string? Mobile { get; set; }
+    public long? Mobile { get; set; }
 
     [Column("medicallicense")]
     [StringLength(500)]

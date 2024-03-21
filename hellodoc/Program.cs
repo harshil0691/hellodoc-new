@@ -37,6 +37,7 @@ builder.Services.AddScoped<IAdminDashRepository, AdminDashRepository>();
 builder.Services.AddScoped<IAuthManager , AuthManager>();
 builder.Services.AddScoped<IJwtServices, JwtServices>();
 builder.Services.AddScoped<IUserServices, UserServices>();
+builder.Services.AddScoped<IAdminProviders, AdminProvides>();
 var app = builder.Build();
 
 

@@ -12,5 +12,6 @@ namespace hellodoc.DbEntity.ViewModels.DashboardLists
         public List<Physician> physicians ;
         public List<Smslog> smslog ;
         public List<EmailLog> emailLogs ;
+        public List<ProvidersTableModal> providersTableModal ;
     }
 }

@@ -1,4 +1,5 @@
 ﻿@model hellodoc.DbEntity.ViewModels.AdminParent
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 
 @{
     var datalist = Newtonsoft.Json.JsonConvert.SerializeObject(Model.adminDashModels);
@@ -170,7 +171,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
 
 <script>
-    
+    var tt = '@HttpContextAccessor.HttpContext.Session.GetInt32("totalrequest")'
+    $('#TotalPage').text(tt);
 
     //var table = new DataTable('#example1');
 

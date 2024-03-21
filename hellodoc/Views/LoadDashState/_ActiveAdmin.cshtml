@@ -1,14 +1,16 @@
 ﻿@model hellodoc.DbEntity.ViewModels.AdminParent
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 
 
 @{
     var datalist = Newtonsoft.Json.JsonConvert.SerializeObject(Model.adminDashModels);
 }
-<div style="margin-bottom:50px;" class="table-responsive d-none d-sm-none d-md-block d-lg-block d-xl-block">
-    <table id="example3" class="table" style="width:100%;z-index:5">
+
+<div class="table-responsive d-none d-sm-none d-md-block d-lg-block d-xl-block">
+    <table style="width:100%;z-index:5">
         <thead>
             <tr>
-                <th>Name</th>
+                <th class="p-3">Name</th>
                 <th>Date Of Birth</th>
                 <th>Requestor</th>
                 <th>Physician Name</th>
@@ -49,12 +51,12 @@
                     }
 
                     <tr class=" m-2" style="background-color:@reqcolor">
-                        <td>@a.PatientName </td>
-                        <td>@a.Createddate</td>
-                        <td>@a.RequestorName</td>
-                        <td>@a.Physicianname</td>
-                        <td>@a.Createddate</td>
-                        <td>
+                        <td class="p-3">@a.PatientName </td>
+                        <td class="p-3">@a.Createddate</td>
+                        <td class="p-3">@a.RequestorName</td>
+                        <td class="p-3">@a.Physicianname</td>
+                        <td class="p-3">@a.Createddate</td>
+                        <td class="p-3">
                             @{
                                 if (a.Phonenumber_P != null)
                                 {
@@ -71,10 +73,10 @@
                                 }
                             }
                         </td>
-                        <td>@a.Address</td>
-                        <td>@a.Notes</td>
-                        <td><button class="btn btn-outline-light">Provider</button></td>
-                        <td>
+                        <td class="p-3">@a.Address</td>
+                        <td class="p-3">@a.Notes</td>
+                        <td class="p-3"><button class="btn btn-outline-light">Provider</button></td>
+                        <td class="p-3">
                             <div class="dropdown">
                                 <button class="btn btn-outline-light" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Actions
@@ -181,17 +183,8 @@
 </div>
 
 <script>
-    var table = new DataTable('#example3');
-
-    $(document).ready(function () {
-        $("#customSearch").on("keyup change", function () {
-            table.column(0).search(this.value).draw();
-        });
-
-        $("#region123").change(function () {
-            table.column(5).search(this.value).draw();
-        })
-    });
+    var tt = '@HttpContextAccessor.HttpContext.Session.GetInt32("totalrequest")'
+    $('#TotalPage').text(tt);
 
     var data = @Html.Raw(datalist);
    

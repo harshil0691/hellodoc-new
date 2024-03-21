@@ -33,8 +33,9 @@ namespace hellodoc.Controllers
         private readonly IRequests _requests;
         private readonly IHostingEnvironment HostingEnviroment;
         private readonly IAuthManager _authManger;
+        private readonly IAdminProviders _adminProviders;
 
-        public AdminDashController(ILogger<AdminDashController> logger,IAdminDashRepository adminDashRepository, IPatientLogin patientLogin, IRequests requests,IHostingEnvironment hostingEnvironment,IAuthManager authManager)
+        public AdminDashController(ILogger<AdminDashController> logger,IAdminDashRepository adminDashRepository, IPatientLogin patientLogin, IRequests requests,IHostingEnvironment hostingEnvironment,IAuthManager authManager,IAdminProviders adminProviders)
         {
             _logger = logger;
             _adminDashRepository = adminDashRepository;
@@ -42,6 +43,7 @@ namespace hellodoc.Controllers
             _requests = requests;
             HostingEnviroment = hostingEnvironment;
             _authManger = authManager;
+            _adminProviders = adminProviders;
         }
 
         public IActionResult admin_dash()
@@ -103,9 +105,9 @@ namespace hellodoc.Controllers
                     return PartialView("_MyProfile",profileModal);
 
                 case "provider":
-                    var phy = _adminDashRepository.GetPhysicianList();
+                    var phy = _adminProviders.ProvidersTable();
                     DashboardListsModal dashboardLists = new DashboardListsModal();
-                    dashboardLists.physicians = phy;
+                    dashboardLists.providersTableModal = phy;
                     return PartialView("_Providers",dashboardLists);
 
                 case "partner":

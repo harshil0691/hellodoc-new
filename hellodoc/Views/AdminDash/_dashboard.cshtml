@@ -151,11 +151,11 @@
         <div id="tabledata"></div>
 
         <div class="w-100 d-flex justify-content-center">
-            <button id="prevButton" class="btn btn-info text-white m-2"><i class="bi bi-chevron-double-left"></i></button>
-            <span id="pageInfo" class="btn btn-outline-info m-2">Page 1</span>
-            <button id="nextButton" class="btn btn-info text-white m-2"><i class="bi bi-chevron-double-right"></i></button>
+            <button class="btn btn-info text-white m-2" onclick="previousTableData()"><i class="bi bi-chevron-double-left"></i></button>
+            <span id="pageInfo" class="btn btn-outline-info m-2">1</span>
+            <button class="btn btn-info text-white m-2" onclick="nextTableData(@HttpContextAccessor.HttpContext.Session.GetInt32("totalrequest"))"><i class="bi bi-chevron-double-right"></i></button>
         </div>
-        <div id="TotalPage" class="d-flex justify-content-center w-100"> total @HttpContextAccessor.HttpContext.Session.GetInt32("totalrequest") requests  </div>
+        <div class="d-flex justify-content-center w-100"> total requests are : <span id="TotalPage"></span></div>
         
 </div>
 
@@ -165,12 +165,18 @@
     var pageNumber = 1;
     var search = "";
     var regionid = 0;
+    var tab = "new";
 
     $(document).ready(function () {
 
         $('#myTabs a').on('shown.bs.tab', function (e) {
             var targetTab = $(e.target).attr('href').substring(1);
+            tab = targetTab;
             loadPartialView(targetTab,1);
+            pageNumber =1;
+            $("#customSearch").val("");
+            $("#region123").val("0");
+            $('#pageInfo').text(pageNumber);
         });
         loadPartialView("new",1);
 
@@ -188,25 +194,26 @@
 
     function filtertable(){
         pageNumber = 1;
-        $('#pageInfo').text('Page ' + pageNumber);
-        loadPartialView("new",pageNumber,search,regionid);
+        $('#pageInfo').text(pageNumber);
+        loadPartialView(tab,pageNumber,search,regionid);
     }
 
-    $('#prevButton').click(function () {
+    function previousTableData(totalrequest) {
         if (pageNumber > 1) {
             pageNumber--;
-            loadPartialView("new", pageNumber);
-            $('#pageInfo').text('Page ' + pageNumber);
+            loadPartialView(tab, pageNumber, search, regionid);
+            $('#pageInfo').text(pageNumber);
         }
-    });
+    }
 
-    $('#nextButton').click(function () {
-        //var totalrequest = @HttpContextAccessor.HttpContext.Session.GetInt32("totalrequest")/5;
-        if(pageNumber <= totalrequest){
+    function nextTableData(totalrequest) {
+        var totalreq = document.getElementById('TotalPage').textContent;
+        var totalpage = totalreq/5;
+        if(pageNumber < totalpage){
             pageNumber++;
-            loadPartialView("new", pageNumber);
-            $('#pageInfo').text('Page ' + pageNumber);
+            loadPartialView(tab, pageNumber, search, regionid);
+            $('#pageInfo').text(pageNumber);
         }
-    });
+    }
 
 </script>

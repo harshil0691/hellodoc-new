@@ -22,7 +22,10 @@
                     }*@
                 </select>
             </div>
+            <div class="d-flex">
+                    <button class="btn btn-info text-white mx-2" style="display:none" id="ProvidersSave" onclick="saveStopNotification()">Save</button>
                 <button class="btn btn-info text-white">Create Provider Account</button>
+            </div>
         </div>
 
             <div style="margin-bottom:50px;" class="table-responsive d-none d-sm-none d-md-block d-lg-block d-xl-block">
@@ -39,17 +42,17 @@
                     </thead>
                     <tbody style="font-size:larger;font-weight:400;" id="newtable">
                         @{
-                            foreach (var a in Model.physicians)
+                            foreach (var a in Model.providersTableModal)
                             {
                                 
                                 <tr class=" m-2">
-                                    <td class="text-black"><input type="checkbox" class="custom-check" value="@a.Physicianid" /> </td>
-                                    <td class="text-black">@a.Firstname &nbsp; @a.Lastname</td>
-                                    <td class="text-black">@a.Roleid</td>
-                                    <td class="text-black">@a.Status</td>
-                                    <td class="text-black">@a.Status</td>
+                                    <td class="text-black"><input type="checkbox" class="custom-check providerscheck bg-info" value="@a.physicianid" checked="@a.stopnotification" /> </td>
+                                    <td class="text-black">@a.name</td>
+                                    <td class="text-black">@a.role</td>
+                                    <td class="text-black">@a.status</td>
+                                    <td class="text-black">@a.status</td>
                                     <td>
-                                        <button class="btn btn-outline-info" onclick="ShowModal({ActionType:'ContactProvider',physicianid:@a.Physicianid})">Contact</button>
+                                        <button class="btn btn-outline-info" onclick="ShowModal({ActionType:'ContactProvider',physicianid:@a.physicianid})">Contact</button>
                                     <button class="btn btn-outline-info">Edit</button>
                                     </td>
                                 </tr>
@@ -153,6 +156,70 @@
 
 <script>
     var table = new DataTable('#providerss', { searching: false, paging: false });
+
+    //$("#region123").change(function () {
+    //    regionid = this.value;
+    //    search = "";
+    //    filtertable();
+    //});
+
+    var selectedCheck = [];
+    var checkboxes1 = document.querySelectorAll(".providerscheck");
+
+    checkboxes1.forEach(function (checkbox) {
+        if (checkbox.checked) {
+            selectedCheck.push(checkbox.value);
+        }
+    });
+
+    $(".providerscheck").change(function () {
+        var selectedCheck1 = [];
+        var checkboxes11 = document.querySelectorAll(".providerscheck");
+
+        checkboxes11.forEach(function (checkbox) {
+            if (checkbox.checked) {
+                selectedCheck1.push(checkbox.value);
+            }
+        });
+
+        if(selectedCheck1.toString() != selectedCheck.toString()){
+            document.getElementById("ProvidersSave").style.display = "block";
+        }else{
+            document.getElementById("ProvidersSave").style.display = "none";
+        }
+    });
+
+    function saveStopNotification() {
+
+        var idlist = [];
+        var checkboxes11 = document.querySelectorAll(".providerscheck");
+
+        checkboxes11.forEach(function (checkbox) {
+            if (checkbox.checked) {
+                idlist.push(checkbox.value);
+            }
+        });
+
+        var totallist = [];
+        var checkboxes11 = document.querySelectorAll(".providerscheck");
+
+        checkboxes11.forEach(function (checkbox) {
+            totallist.push(checkbox.value);
+        });
+
+        $.ajax({
+            url: '/AdminProviders/stopnotification',
+            type: 'POST',
+            data: { idlist: idlist, totallist: totallist },
+            success: function (data) {
+                console.log("stop");
+            },
+            error: function () {
+                console.error('Error loading partial view.');
+            }
+        });
+    }
+
 </script>
 
 @section Scripts{

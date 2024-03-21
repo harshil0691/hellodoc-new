@@ -11,8 +11,5 @@ namespace hellodoc.DbEntity.ViewModels.PopUpModal
         public string Message { get; set; }
         public string MessagwType { get; set; }
         public int physicianid { get; set; }
-        public int sms { get; set; }
-        public int email { get; set; }
-        public int both { get; set; }
     }
 }

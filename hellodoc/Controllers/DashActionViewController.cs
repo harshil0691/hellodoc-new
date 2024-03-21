@@ -31,13 +31,15 @@ namespace hellodoc.Controllers
         private readonly IRequests _requests;
         private readonly IWebHostEnvironment HostingEnviroment;
         private readonly IAuthManager _authManger;
+        private readonly IAdminProviders _adminProviders;
 
-        public DashActionViewController(ILogger<AdminDashController> logger, IAdminDashRepository adminDashRepository,IRequests requests,IWebHostEnvironment hostingEnvironment)
+        public DashActionViewController(ILogger<AdminDashController> logger, IAdminDashRepository adminDashRepository,IRequests requests,IWebHostEnvironment hostingEnvironment,IAdminProviders adminProviders)
         {
             _logger = logger;
             _adminDashRepository = adminDashRepository;
             _requests = requests;
             HostingEnviroment = hostingEnvironment;
+            _adminProviders = adminProviders;
         }
 
         [HttpPost]
@@ -95,7 +97,11 @@ namespace hellodoc.Controllers
                 case "finalizedencounter":
                     return PartialView("_FinalizedEncounter");
                 case "ContactProvider":
-                    return PartialView("_ContactProvider");
+                    ContactProviderModal contactProvider = new ContactProviderModal
+                    {
+                        physicianid = partialView.physicianid,
+                    };
+                    return PartialView("_ContactProvider",contactProvider);
 
                 default:
                     return PartialView("_default");
@@ -195,8 +201,25 @@ namespace hellodoc.Controllers
             }
         }
 
-        public IActionResult contact_provider(ContactProviderModal contactProvider)
+        public IActionResult contact_provider(ContactProviderModal contactProvider,int physicianid)
         {
+            var physician = _adminProviders.GetPhysicianAsync(physicianid);
+
+            switch (contactProvider.MessagwType)
+            {
+                case "1":
+                    SendSMS(contactProvider.Message,physician.Mobile);
+                    break;
+                
+                case "2":
+                    SendMail("Message From admin", contactProvider.Message, physician.Email);
+                    break;
+
+                case "3":
+                    SendSMS(contactProvider.Message, physician.Mobile);
+                    SendMail("Message From admin", contactProvider.Message, physician.Email);
+                    break;
+            }
 
             return RedirectToAction("admin_dash", "AdminDash");
         }
@@ -546,7 +569,7 @@ namespace hellodoc.Controllers
         public void SendSMS(string message,long? phone)
         {
             const string accountSid = "ACbab82685c56693b60c76b5f7e372f1fc";
-            const string authToken = "fb06b1eb62936b5a12ed756a3f849169";
+            const string authToken = "192147860503a6d615f8e333a5fbc049";
             const string twilioPhoneNumber = "+15162999172";
 
             TwilioClient.Init(accountSid, authToken);

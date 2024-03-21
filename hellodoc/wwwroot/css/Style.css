@@ -204,12 +204,14 @@ textarea {
 }
 
 .custom-check :checked {
-    background-color: #0cdfa0;
     transform: scale(1.5);
 }
 
 .custom-check {
     transform: scale(1.5);
+}
+input[type="checkbox"]:checked {
+    accent-color: #0dcaf0;
 }
 
 .colored-dot {

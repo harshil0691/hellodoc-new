@@ -345,6 +345,10 @@
       "PackagePath": "staticwebassets\\js\\AdminDashboard.js"
     },
     {
+      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\js\\AdminProviders.js",
+      "PackagePath": "staticwebassets\\js\\AdminProviders.js"
+    },
+    {
       "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\js\\adminDashActions.js",
       "PackagePath": "staticwebassets\\js\\adminDashActions.js"
     },

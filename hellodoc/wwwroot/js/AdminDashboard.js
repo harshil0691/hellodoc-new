@@ -4,9 +4,7 @@ $(document).ready(function () {
         var targetTab = $(e.target).attr('href').substring(1);
         loadPartialDashView(targetTab);
     });
-
     loadPartialDashView("dashboard");
-
 });
 
 
