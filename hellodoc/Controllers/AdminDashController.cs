@@ -119,6 +119,7 @@ namespace hellodoc.Controllers
                 case "access":
                     
                     var list = _adminDashRepository.accessTables();
+
                     return PartialView("_Access",list);
 
                 case "records":
@@ -179,6 +180,12 @@ namespace hellodoc.Controllers
             DashboardListsModal dashboardLists = new DashboardListsModal();
             dashboardLists.providersTableModal = phy;
             return PartialView("_Providers", dashboardLists);
+        }
+
+        public IActionResult create_role(int accounttype)
+        {
+            var role = _adminDashRepository.CreateRole(accounttype);
+            return PartialView("_CreateRole",role);
         }
 
     }

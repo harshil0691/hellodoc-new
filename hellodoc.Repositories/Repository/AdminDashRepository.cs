@@ -528,5 +528,23 @@ namespace hellodoc.Repositories.Repository
 
             return list.ToList();
         }
+
+        public CreateRoleModal CreateRole(int accounttype)
+        {
+            CreateRoleModal createRoleModal = new CreateRoleModal();
+            if (accounttype != 0 || accounttype != null)
+            {
+                var menu = _context.Menus.Where(u=>u.Accounttype == accounttype);
+                createRoleModal.menus = menu.ToList();
+            }
+            else
+            {
+                var menu = _context.Menus;
+                createRoleModal.menus = menu.ToList();
+            }
+           
+
+            return createRoleModal;
+        }
     }
 }

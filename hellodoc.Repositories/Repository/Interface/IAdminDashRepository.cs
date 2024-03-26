@@ -56,5 +56,6 @@ namespace hellodoc.Repositories.Repository.Interface
         Task FinalizeEncounter(int requestid, Encounter encounter1);
 
         List<AccessTableModal> accessTables();
+        CreateRoleModal CreateRole(int accounttype);
     }
 }
