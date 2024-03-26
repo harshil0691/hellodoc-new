@@ -46,8 +46,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\hellodoc.DbEntity\hellodoc.DbEntity.csproj" />
-    <ProjectReference Include="..\hellodoc.Repositories\hellodoc.Repositories.csproj" />
+    <ProjectReference Include="..\hellodoc.DbEntity\hellodoc.DbEntity.csproj">
+      <Private></Private>
+    </ProjectReference>
+    <ProjectReference Include="..\hellodoc.Repositories\hellodoc.Repositories.csproj">
+      <Private></Private>
+    </ProjectReference>
   </ItemGroup>
 
 </Project>

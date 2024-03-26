@@ -234,10 +234,6 @@ C:\Users\pci235\source\repos\hellodoc\hellodoc\bin\Debug\net7.0\MimeKit.dll
 C:\Users\pci235\source\repos\hellodoc\hellodoc\bin\Debug\net7.0\BouncyCastle.Cryptography.dll
 C:\Users\pci235\source\repos\hellodoc\hellodoc\bin\Debug\net7.0\System.Security.Cryptography.Pkcs.dll
 C:\Users\pci235\source\repos\hellodoc\hellodoc\bin\Debug\net7.0\runtimes\win\lib\net7.0\System.Security.Cryptography.Pkcs.dll
-C:\Users\pci235\source\repos\hellodoc\hellodoc\bin\Debug\net7.0\hellodoc.DbEntity.dll
-C:\Users\pci235\source\repos\hellodoc\hellodoc\bin\Debug\net7.0\hellodoc.Repositories.dll
-C:\Users\pci235\source\repos\hellodoc\hellodoc\bin\Debug\net7.0\hellodoc.Repositories.pdb
-C:\Users\pci235\source\repos\hellodoc\hellodoc\bin\Debug\net7.0\hellodoc.DbEntity.pdb
 C:\Users\Asus\Downloads\h2\hellodoc\hellodoc\bin\Debug\net7.0\appsettings.Development.json
 C:\Users\Asus\Downloads\h2\hellodoc\hellodoc\bin\Debug\net7.0\appsettings.json
 C:\Users\Asus\Downloads\h2\hellodoc\hellodoc\bin\Debug\net7.0\hellodoc.staticwebassets.runtime.json
@@ -1905,3 +1901,7 @@ C:\Users\pci235\source\repos\hellodoc\hellodoc\bin\Debug\net7.0\runtimes\win-x86
 C:\Users\pci235\source\repos\hellodoc\hellodoc\bin\Debug\net7.0\runtimes\win-x86\native\Pdfium.Native.deployment.json
 C:\Users\pci235\source\repos\hellodoc\hellodoc\bin\Debug\net7.0\BouncyCastle.Crypto.dll
 C:\Users\pci235\source\repos\hellodoc\hellodoc\bin\Debug\net7.0\itextsharp.dll
+C:\Users\pci235\source\repos\hellodoc\hellodoc\bin\Debug\net7.0\hellodoc.DbEntity.dll
+C:\Users\pci235\source\repos\hellodoc\hellodoc\bin\Debug\net7.0\hellodoc.Repositories.dll
+C:\Users\pci235\source\repos\hellodoc\hellodoc\bin\Debug\net7.0\hellodoc.DbEntity.pdb
+C:\Users\pci235\source\repos\hellodoc\hellodoc\bin\Debug\net7.0\hellodoc.Repositories.pdb

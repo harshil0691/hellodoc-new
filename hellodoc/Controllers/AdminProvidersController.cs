@@ -1,4 +1,5 @@
-﻿using hellodoc.Repositories.Repository.Interface;
+﻿using hellodoc.DbEntity.ViewModels;
+using hellodoc.Repositories.Repository.Interface;
 using Microsoft.AspNetCore.Mvc;
 using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
@@ -29,6 +30,16 @@ namespace hellodoc.Controllers
         public void stopnotification(List<int> idlist,List<int> totallist)
         {
             _adminProviders.StopNotification(idlist, totallist);
+        }
+
+        [HttpPost]
+        public IActionResult edit_physician(int physicianid)
+        {
+            var userid1 = HttpContext.Session.GetInt32("Aspid");
+
+            ProviderProfileModal providerProfile = _adminProviders.ProviderProfileData(physicianid).Result;
+
+            return PartialView("_ProviderProfile", providerProfile);
         }
     }
 }

@@ -110,13 +110,16 @@ namespace hellodoc.Controllers
                     dashboardLists.providersTableModal = phy;
                     return PartialView("_Providers",dashboardLists);
 
+                
+
                 case "partner":
                     
                     return PartialView("_Partners");
 
                 case "access":
                     
-                    return PartialView("_Access");
+                    var list = _adminDashRepository.accessTables();
+                    return PartialView("_Access",list);
 
                 case "records":
 
@@ -172,10 +175,10 @@ namespace hellodoc.Controllers
         }
         public IActionResult providers()
         {
-            var phy = _adminDashRepository.GetPhysicianList();
+            var phy = _adminProviders.ProvidersTable();
             DashboardListsModal dashboardLists = new DashboardListsModal();
-            dashboardLists.physicians = phy;
-            return PartialView("_Providers" , dashboardLists);
+            dashboardLists.providersTableModal = phy;
+            return PartialView("_Providers", dashboardLists);
         }
 
     }

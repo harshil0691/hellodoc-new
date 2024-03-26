@@ -1,6 +1,7 @@
 ﻿using hellodoc.DbEntity.DataContext;
 using hellodoc.DbEntity.DataModels;
 using hellodoc.DbEntity.ViewModels;
+using hellodoc.DbEntity.ViewModels.AdminAccess;
 using hellodoc.DbEntity.ViewModels.PopUpModal;
 using hellodoc.Repositories.Repository.Interface;
 using Microsoft.AspNetCore.Http;
@@ -513,6 +514,19 @@ namespace hellodoc.Repositories.Repository
                 _context.Encounters.Update(encounter3);
                 _context.SaveChanges();
             }
+        }
+
+        public List<AccessTableModal> accessTables()
+        {
+            var role = _context.Roles;
+            var list = role.Select(a => new AccessTableModal
+            {
+                accessName = a.Name,
+                accountType = a.Accounttype,
+                roleid = a.Roleid,
+            });
+
+            return list.ToList();
         }
     }
 }

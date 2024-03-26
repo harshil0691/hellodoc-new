@@ -1,0 +1,329 @@
+﻿@model hellodoc.DbEntity.ViewModels.ProviderProfileModal
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+<div class="login" id="main" style="margin-bottom:100px">
+
+    <div class="row bgcolor1">
+
+        <div class=" col-12 col-sm-12 col-md-10 col-lg-8 mx-auto d-flex justify-content-between mt-4 mb-2">
+            <h2> Edit Physician Account</h2>
+            <button onclick="loadPartialDashView('dashboard')" class="d-flex btn btn-outline-info bg-transparent  text-end text-info fs-5 text-decoration-none">
+                <span class="material-icons pt-2">
+                    chevron_left
+                </span>
+                <span class="p-1">Back</span>
+            </button>
+
+        </div>
+        <div class="d-grid gap-2 col-12 col-sm-12 col-md-10 col-lg-8 mx-auto d-flex flex-column rounded-3 bgcolor px-4 mt-4 shadow">
+
+
+            <h4 class="mt-3">Account Information</h4>
+            <form id="updatePass" method="post">
+                <div class="row mt-3">
+
+                    <div class="form-floating mb-3  col-md-6 col-lg-6">
+                        <input type="text" class="form-control pedit1" id="floatingInput" asp-for="username" placeholder="Username" disabled>
+                        <label for="floatingInput" class="mx-3">Username</label>
+                    </div>
+                    <div class="form-floating mb-3  col-md-6 col-lg-6">
+                        <input type="text" class="form-control" id="floatingInput" asp-for="password" placeholder="Password">
+                        <label for="floatingInput" class="mx-3">Password</label>
+                        <span asp-validation-for="password" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3  col-md-6 col-lg-6">
+                        <select class="form-select pedit-1" aria-label="Default select example" disabled>
+                            <option selected>@Model.status</option>
+                        </select>
+                    </div>
+                    <div class="form-floating mb-3  col-md-6 col-lg-6">
+                        <select class="form-select pedit1" aria-label="Default select example" disabled>
+                            <option selected>@Model.role</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="d-flex justify-content-end">
+                    <button class="btn btn-info text-white mx-2 px-2" id="pee1" onclick="pedit('pedit1','pe1','pe2','pee1')">Edit</button>
+                    <button type="button" class="btn btn-info mx-3 p-2 px-3 mb-2" id="pe1" onclick="FormSubmitAction1('update_admin','#updateAdmin','#myprofile')" style="display:none;">Save</button>
+                    <button type="reset" class="btn btn-dark mx-3 p-2 px-3 mb-2" id="pe2" style="display:none;" onclick="pcancel('pedit1','pe1','pe2','pee1')">Cancel</button>
+                    <button type="button" class="btn btn-outline-info px-2" onclick="FormSubmitAction1('update_password','#updatePass','#myprofile')">Reset Password</button>
+                </div>
+            </form>
+
+
+            <h4 class="mt-3">Physician  Information</h4>
+            <form method="post" id="updateAdmin">
+                <div class="row mt-3">
+                    <div class="form-floating mb-3  col-md-6 col-lg-6">
+                        <input type="text" class="form-control pedit2" id="floatingInput" asp-for="Firstname" placeholder="Firstname" disabled>
+                        <label for="floatingInput" class="mx-3">First Name</label>
+                        <span asp-validation-for="Firstname" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3 col-md-6 col-lg-6">
+                        <input type="text" class="form-control pedit2" id="floatingInput" asp-for="Lastname" placeholder="Lastname" disabled>
+                        <label for="floatingInput" class="mx-3">Last Name</label>
+                        <span asp-validation-for="Lastname" class="text-danger"> </span>
+                    </div>
+                    <div class="form-floating mb-3 col-md-6 col-lg-6">
+                        <input type="email" class="form-control pedit2" id="email123" asp-for="Email" placeholder="Email" disabled>
+                        <label for="email123" class="mx-3">Email</label>
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3 col-md-6 col-lg-6">
+                        <input type="text" class="form-control pedit2" id="floatingInput" asp-for="Phone" placeholder="Phone Number" disabled>
+                        <label for="floatingInput" class="mx-3">Phone Number</label>
+                        <span asp-validation-for="Phone" class="text-danger"> </span>
+                    </div>
+                    <div class="form-floating mb-3 col-md-6 col-lg-6">
+                        <input type="text" class="form-control pedit2" id="floatingInput" asp-for="MediacalLicense" placeholder="Mediacal License" disabled>
+                        <label for="floatingInput" class="mx-3">MediacalLicense</label>
+                        <span asp-validation-for="MediacalLicense" class="text-danger"> </span>
+                    </div>
+                    <div class="form-floating mb-3 col-md-6 col-lg-6">
+                        <input type="text" class="form-control pedit2" id="floatingInput" asp-for="NPI" placeholder="NPI" disabled>
+                        <label for="floatingInput" class="mx-3">NPI</label>
+                        <span asp-validation-for="NPI" class="text-danger"> </span>
+                    </div>
+                    <div class="form-floating mb-3 col-md-6 col-lg-6">
+                        <input type="email" class="form-control pedit2" id="floatingInput" asp-for="SynEmail" placeholder="ConfirmEmail" disabled>
+                        <label for="floatingInput" class="mx-3">ConfirmEmail</label>
+                        <span asp-validation-for="SynEmail" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3 col-md-6 col-lg-6">
+                        <div class="d-sm-flex">
+                            <div class="form-check m-2">
+                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                <label for="exampleCheck1">District Of Colambia</label>
+                            </div>
+                            <div class="form-check m-2">
+                                <input type="checkbox" class="form-check-input" id="exampleCheck2">
+                                <label for="exampleCheck2">New York</label>
+                            </div>
+                        </div>
+                        <div class="d-sm-flex">
+                            <div class="form-check m-2">
+                                <input type="checkbox" class="form-check-input" id="exampleCheck3">
+                                <label for="exampleCheck13">Virginia</label>
+                            </div>
+                            <div class="form-check m-2">
+                                <input type="checkbox" class="form-check-input" id="exampleCheck4">
+                                <label for="exampleCheck4">Maryland</label>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="d-flex justify-content-end">
+                    <button type="button" class="btn btn-info text-white px-2" onclick="pedit('pedit2','pb1','pb2','pee2')" id="pee2">Edit</button>
+                    <button type="button" class="btn btn-info mx-3 p-2 px-3 mb-2" id="pb1" onclick="FormSubmitAction1('update_admin','#updateAdmin','#myprofile')" style="display:none;">Save</button>
+                    <button type="reset" class="btn btn-dark mx-3 p-2 px-3 mb-2" id="pb2" style="display:none;" onclick="pcancel('pedit2','pb1','pb2','pee2')">Cancel</button>
+                </div>
+            </form>
+
+
+            <h4 class="mt-3">Mailing & Billing Information</h4>
+            <form method="post" id="updateAdminAddress">
+                <div class="row mt-3">
+                    <div class="form-floating mb-3  col-md-6 col-lg-6">
+                        <input type="text" class="form-control pedit3" id="floatingInput" asp-for="Address1" placeholder="Address1" disabled>
+                        <label for="floatingInput" class="mx-3">Address1</label>
+                        <span asp-validation-for="Address1" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3 col-md-6 col-lg-6">
+                        <input type="text" class="form-control pedit3" id="floatingInput" asp-for="Address2" placeholder="Address2" disabled>
+                        <label for="floatingInput" class="mx-3">Address2</label>
+                        <span asp-validation-for="Address2" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3 col-md-6 col-lg-6">
+                        <input type="text" class="form-control pedit3" id="floatingInput" asp-for="City" placeholder="City" disabled>
+                        <label for="floatingInput" class="mx-3">City</label>
+                        <span asp-validation-for="City" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3  col-md-6 col-lg-6">
+                        <input type="text" class="form-control pedit3" id="floatingInput" asp-for="State" placeholder="State" disabled>
+                        <label for="floatingInput" class="mx-3">State</label>
+                        <span asp-validation-for="State" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3 col-md-6 col-lg-6">
+                        <input type="number" class="form-control pedit3" id="floatingInput" asp-for="Zipcode" placeholder="ZipCode" disabled>
+                        <label for="floatingInput" class="mx-3">Zip Code</label>
+                        <span asp-validation-for="Zipcode" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3 col-md-6 col-lg-6">
+                        <input type="text" class="form-control pedit3" id="floatingInput" asp-for="MailingNumber" placeholder="Phone Number" disabled>
+                        <label for="floatingInput" class="mx-3">Phone Number</label>
+                        <span asp-validation-for="MailingNumber" class="text-danger"> </span>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-end">
+                    <button type="button" class="btn btn-info text-white px-2" onclick="pedit('pedit3','pc1','pc2','pee3')" id="pee3">Edit</button>
+                    <button type="button" class="btn btn-info mx-3 p-2 px-3 mb-2" id="pc1" onclick="FormSubmitAction1('update_admin','#updateAdmin','#myprofile')" style="display:none;">Save</button>
+                    <button type="reset" class="btn btn-dark mx-3 p-2 px-3 mb-2" id="pc2" style="display:none;" onclick="pcancel('pedit3','pc1','pc2','pee3')">Cancel</button>
+                </div>
+            </form>
+
+            <h4 class="mt-3">Provider Profile</h4>
+            <form method="post" id="updateAdminAddress">
+                <div class="row mt-3">
+                    <div class="form-floating mb-3  col-md-6 col-lg-6">
+                        <input type="text" class="form-control pedit4" id="floatingInput" asp-for="BusinessName" placeholder="Business Name" disabled>
+                        <label for="floatingInput" class="mx-3">Business Name</label>
+                        <span asp-validation-for="BusinessName" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3 col-md-6 col-lg-6">
+                        <input type="email" class="form-control pedit4" id="floatingInput" asp-for="BusinessEmail" placeholder="Business Email" disabled>
+                        <label for="floatingInput" class="mx-3">Business Email</label>
+                        <span asp-validation-for="BusinessEmail" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3 col-md-6 col-lg-6">
+                        <div class="d-flex upload-btn-wrapper">
+                            <button class="rounded-0 btn btn-outline-secondary  pedit4 col-9" id="inputGroupFileAddon04" >Select Photo</button>
+                            <input type="file" id="inputGroupFile04" onchange="updateFileName(this)" class="pedit4" disabled />
+                            <button type="button" onclick="savedoc()" class="btn btn-info text-white pedit4" ><i class="bi bi-cloud-arrow-up p-1"></i>Upload</button>
+                        </div>
+                       
+                    </div>
+                    <div class="d-flex mb-3 col-md-6 col-lg-6">
+                        <div class="d-flex upload-btn-wrapper col-8">
+                            <button class="rounded-0 btn btn-outline-secondary pedit4 col-7" id="inputGroupFileAddon03" >Select Signature</button>
+                            <input type="file" id="inputGroupFile03" onchange="updateFileName1(this)" class="pedit4" disabled />
+                            <button type="button" onclick="savedoc()" class="btn btn-info text-white pedit4"><i class="bi bi-cloud-arrow-up p-1"></i>Upload</button>
+                        </div>
+                        <button type="button" onclick="savedoc()" class="mx-2 btn btn-info text-white"><i class="bi bi-pencil p-1"></i>Create</button>
+                    </div>
+                    <textarea class="form-control pedit4" placeholder="admin notes" id="floatingTextarea2" rows="5" asp-for="AdminNotes" disabled></textarea>
+                </div>
+
+                <div class="d-flex justify-content-end">
+                    <button type="button" class="btn btn-info text-white px-2" onclick="pedit('pedit4','pd1','pd2','pee4')" id="pee4">Edit</button>
+                    <button type="button" class="btn btn-info mx-3 p-2 px-3 mb-2" id="pd1" onclick="FormSubmitAction1('update_admin','#updateAdmin','#myprofile')" style="display:none;">Save</button>
+                    <button type="reset" class="btn btn-dark mx-3 p-2 px-3 mb-2" id="pd2" style="display:none;" onclick="pcancel('pedit4','pd1','pd2','pee4')">Cancel</button>
+                </div>
+            </form>
+
+            <hr />
+
+            <h4 class="mt-3">Onboarding</h4>
+            <form method="post" id="updateAdminAddress">
+                <div class="m-2 d-flex">
+                    <input type="checkbox" class="custom-check providerscheck bg-info me-3" checked />
+                    <h6 class="m-2 col-4">Independent Contractor Agreement</h6>
+                    <div class="upload-btn-wrapper">
+                        <button class="btn btn-info text-white mx-1">Upload</button>
+                        <input type="file"/>
+                    </div>
+                    <button class="btn btn-info text-white mx-1">View</button>
+                </div>
+                <div class="d-flex m-2">
+                    <input type="checkbox" class="custom-check providerscheck bg-info me-3" checked />
+                    <h6 class="m-2 col-4">Background Check</h6>
+                    <div class="upload-btn-wrapper">
+                        <button class="btn btn-info text-white mx-1">Upload</button>
+                        <input type="file" />
+                    </div>
+                    <button class="btn btn-info text-white mx-1">View</button>
+                </div>
+                <div class="d-flex m-2">
+                    <input type="checkbox" class="custom-check providerscheck bg-info me-3" checked />
+                    <h6 class="m-2 col-4">HIPAA Compliance</h6>
+                    <div class="upload-btn-wrapper">
+                        <button class="btn btn-info text-white mx-1">Upload</button>
+                        <input type="file" />
+                    </div>
+                    <button class="btn btn-info text-white mx-1">View</button>
+                </div>
+                <div class="d-flex m-2">
+                    <input type="checkbox" class="custom-check providerscheck bg-info me-3" checked />
+                    <h6 class="m-2 col-4">Non-disclosure Agreement</h6>
+                    <div class="upload-btn-wrapper">
+                        <button class="btn btn-info text-white mx-1">Upload</button>
+                        <input type="file" />
+                    </div>
+                    <button class="btn btn-info text-white mx-1">View</button>
+                </div>
+                <div class="d-flex m-2">
+                    <input type="checkbox" class="custom-check providerscheck bg-info me-3" checked />
+                    <h6 class="m-2 col-4">License Document</h6>
+                    <div class="upload-btn-wrapper">
+                        <button class="btn btn-info text-white mx-1">Upload</button>
+                        <input type="file" />
+                    </div>
+                    <button class="btn btn-info text-white mx-1">View</button>
+                </div>
+            </form>
+
+            <hr />
+            <div class="d-flex justify-content-end m-1">
+                <button type="button" class="btn btn-info text-white mx-2">Save</button>
+                <button type="button" class="btn btn-danger text-white mx-2">Delete Account</button>
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+<footer style=" position:fixed;bottom:0; width:100%;">
+    <div style="padding-right: 40px;">
+        <a href="" style="color: white;">Terms Of Conditions</a> |
+        <a href="" style="color: white;">Privacy Policy</a>
+    </div>
+</footer>
+
+<script>
+  function updateFileName(input) {
+    var label = document.getElementById('inputGroupFileAddon04');
+    if (input.files.length > 0) {
+      label.textContent = input.files[0].name;
+    } else {
+      label.textContent = 'No file chosen';
+    }
+  }
+    function updateFileName1(input) {
+        var label = document.getElementById('inputGroupFileAddon03');
+        if (input.files.length > 0) {
+            label.textContent = input.files[0].name;
+        } else {
+            label.textContent = 'No file chosen';
+        }
+    }
+
+    function pedit(classname,save,cancel,edit) {
+
+        document.getElementById(save).style.display = 'block';
+        document.getElementById(cancel).style.display = 'block';
+        document.getElementById(edit).style.display = 'none';
+        var inputs = document.getElementsByClassName(classname);
+
+        for (var i = 0; i < inputs.length; i++) {
+            inputs[i].disabled = false;
+        }
+
+    }
+
+    function pcancel(classname, save, cancel, edit) {
+        document.getElementById(save).style.display = 'none';
+        document.getElementById(cancel).style.display = 'none';
+        document.getElementById(edit).style.display = 'block';
+
+        var inputs = document.getElementsByClassName(classname);
+
+        for (var i = 0; i < inputs.length; i++) {
+            inputs[i].disabled = true;
+        }
+    }
+
+
+</script>
+
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+

@@ -72,8 +72,7 @@ public partial class Physician
     public int? Regionid { get; set; }
 
     [Column("zip")]
-    [StringLength(10)]
-    public string? Zip { get; set; }
+    public long? Zip { get; set; }
 
     [Column("altphone")]
     [StringLength(20)]

@@ -13,5 +13,6 @@ namespace hellodoc.Repositories.Repository.Interface
         Physician GetPhysicianAsync(int physicianid);
         List<ProvidersTableModal> ProvidersTable();
         Task StopNotification(List<int> idlist,List<int> totallist);
+        Task<ProviderProfileModal> ProviderProfileData(int physicianid);
     }
 }

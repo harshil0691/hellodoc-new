@@ -1,6 +1,7 @@
 ﻿using hellodoc.DbEntity.DataModels;
 using hellodoc.DbEntity.ViewModels;
 using hellodoc.DbEntity.ViewModels.PopUpModal;
+using hellodoc.DbEntity.ViewModels.AdminAccess;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,5 +54,7 @@ namespace hellodoc.Repositories.Repository.Interface
         Encounter GetEncounter(int requestid);
         Encounter SetEncounter(int requestid, Encounter encounter);
         Task FinalizeEncounter(int requestid, Encounter encounter1);
+
+        List<AccessTableModal> accessTables();
     }
 }

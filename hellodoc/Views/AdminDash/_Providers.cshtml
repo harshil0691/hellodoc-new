@@ -53,7 +53,7 @@
                                     <td class="text-black">@a.status</td>
                                     <td>
                                         <button class="btn btn-outline-info" onclick="ShowModal({ActionType:'ContactProvider',physicianid:@a.physicianid})">Contact</button>
-                                    <button class="btn btn-outline-info">Edit</button>
+                                        <button class="btn btn-outline-info" onclick="loadProviderView('edit_physician','@a.physicianid')">Edit</button>
                                     </td>
                                 </tr>
                             }
@@ -212,7 +212,22 @@
             type: 'POST',
             data: { idlist: idlist, totallist: totallist },
             success: function (data) {
-                console.log("stop");
+                document.getElementById("ProvidersSave").style.display = "none";
+                selectedCheck = idlist;
+            },
+            error: function () {
+                console.error('Error loading partial view.');
+            }
+        });
+    }
+
+    function loadProviderView(method,physicianid) {
+        $.ajax({
+            url: '/AdminProviders/'+method,
+            type: 'POST',
+            data: { physicianid: physicianid },
+            success: function (data) {
+                $('#provider').html(data);
             },
             error: function () {
                 console.error('Error loading partial view.');

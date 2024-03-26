@@ -1,14 +1,11 @@
 C:\Users\pci235\source\repos\hellodoc\hellodoc.Repositories\bin\Debug\net7.0\hellodoc.Repositories.deps.json
 C:\Users\pci235\source\repos\hellodoc\hellodoc.Repositories\bin\Debug\net7.0\hellodoc.Repositories.dll
 C:\Users\pci235\source\repos\hellodoc\hellodoc.Repositories\bin\Debug\net7.0\hellodoc.Repositories.pdb
-C:\Users\pci235\source\repos\hellodoc\hellodoc.Repositories\bin\Debug\net7.0\hellodoc.DbEntity.dll
-C:\Users\pci235\source\repos\hellodoc\hellodoc.Repositories\bin\Debug\net7.0\hellodoc.DbEntity.pdb
 C:\Users\pci235\source\repos\hellodoc\hellodoc.Repositories\obj\Debug\net7.0\hellodoc.Repositories.csproj.AssemblyReference.cache
 C:\Users\pci235\source\repos\hellodoc\hellodoc.Repositories\obj\Debug\net7.0\hellodoc.Repositories.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\pci235\source\repos\hellodoc\hellodoc.Repositories\obj\Debug\net7.0\hellodoc.Repositories.AssemblyInfoInputs.cache
 C:\Users\pci235\source\repos\hellodoc\hellodoc.Repositories\obj\Debug\net7.0\hellodoc.Repositories.AssemblyInfo.cs
 C:\Users\pci235\source\repos\hellodoc\hellodoc.Repositories\obj\Debug\net7.0\hellodoc.Repositories.csproj.CoreCompileInputs.cache
-C:\Users\pci235\source\repos\hellodoc\hellodoc.Repositories\obj\Debug\net7.0\hellodoc.Repositories.csproj.CopyComplete
 C:\Users\pci235\source\repos\hellodoc\hellodoc.Repositories\obj\Debug\net7.0\hellodoc.Repositories.dll
 C:\Users\pci235\source\repos\hellodoc\hellodoc.Repositories\obj\Debug\net7.0\refint\hellodoc.Repositories.dll
 C:\Users\pci235\source\repos\hellodoc\hellodoc.Repositories\obj\Debug\net7.0\hellodoc.Repositories.pdb
@@ -104,3 +101,6 @@ C:\Users\Asus\Desktop\hellodoc\hellodoc.Repositories\obj\Debug\net7.0\hellodoc.R
 C:\Users\Asus\Desktop\hellodoc\hellodoc.Repositories\obj\Debug\net7.0\refint\hellodoc.Repositories.dll
 C:\Users\Asus\Desktop\hellodoc\hellodoc.Repositories\obj\Debug\net7.0\hellodoc.Repositories.pdb
 C:\Users\Asus\Desktop\hellodoc\hellodoc.Repositories\obj\Debug\net7.0\ref\hellodoc.Repositories.dll
+C:\Users\pci235\source\repos\hellodoc\hellodoc.Repositories\bin\Debug\net7.0\hellodoc.DbEntity.dll
+C:\Users\pci235\source\repos\hellodoc\hellodoc.Repositories\bin\Debug\net7.0\hellodoc.DbEntity.pdb
+C:\Users\pci235\source\repos\hellodoc\hellodoc.Repositories\obj\Debug\net7.0\hellodoc.Repositories.csproj.CopyComplete
