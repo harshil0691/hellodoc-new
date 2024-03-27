@@ -1,0 +1,53 @@
+﻿
+
+<div class="table-responsive d-none d-sm-none d-md-block d-lg-block d-xl-block">
+    <table style="width:100%;z-index:5">
+        <thead>
+            <tr style="background-color: lightgray;">
+                <th class="p-3">SUN</th>
+                <th>MON</th>
+                <th>TUE</th>
+                <th>WED</th>
+                <th>THU</th>
+                <th>FRI</th>
+                <th>SAT</th>
+            </tr>
+        </thead>
+        <tbody style="font-size:larger;font-weight:400;" id="shifttable">
+            @{
+                var count = 1;
+                for(var a=0;a<36;a++)
+                {
+                    if(a%6 == 0)
+                    {
+                        <tr style="background-color:lightpink">
+                            @{
+                                for(var b = 0; b < 7; b++)
+                                {
+                                    <td class="mx-auto">@count</td>
+                                    {
+                                        count = count + 1;
+                                    }
+                                    
+                                }
+                            }   
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr>
+                            @{
+                                for (var b = 0; b < 7; b++)
+                                {
+                                    <td></td>
+                                }
+                            }
+                        </tr>
+                    }
+            }
+            }
+
+        </tbody>
+    </table>
+
+</div>

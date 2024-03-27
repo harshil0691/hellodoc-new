@@ -532,14 +532,14 @@ namespace hellodoc.Repositories.Repository
         public CreateRoleModal CreateRole(int accounttype)
         {
             CreateRoleModal createRoleModal = new CreateRoleModal();
-            if (accounttype != 0 || accounttype != null)
+            if (accounttype == 0 || accounttype == null)
             {
-                var menu = _context.Menus.Where(u=>u.Accounttype == accounttype);
+                var menu = _context.Menus;
                 createRoleModal.menus = menu.ToList();
             }
             else
             {
-                var menu = _context.Menus;
+                var menu = _context.Menus.Where(u => u.Accounttype == accounttype);
                 createRoleModal.menus = menu.ToList();
             }
            

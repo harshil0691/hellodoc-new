@@ -38,6 +38,7 @@ builder.Services.AddScoped<IAuthManager , AuthManager>();
 builder.Services.AddScoped<IJwtServices, JwtServices>();
 builder.Services.AddScoped<IUserServices, UserServices>();
 builder.Services.AddScoped<IAdminProviders, AdminProvides>();
+builder.Services.AddScoped<IAdminAccess, AdminAccess>();
 var app = builder.Build();
 
 

@@ -32,6 +32,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5EYXNoXF9kYXNoYm9hcmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/AdminDash/_EditRole.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5EYXNoXF9FZGl0Um9sZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/AdminDash/_Invoicing.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5EYXNoXF9JbnZvaWNpbmcuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -64,8 +68,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5EYXNoXF9TY2hlZHVsaW5nLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/AdminProviders/_DayWiseShift.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Qcm92aWRlcnNcX0RheVdpc2VTaGlmdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/AdminProviders/_MonthWiseShift.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Qcm92aWRlcnNcX01vbnRoV2lzZVNoaWZ0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/AdminProviders/_ProviderProfile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Qcm92aWRlcnNcX1Byb3ZpZGVyUHJvZmlsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/AdminProviders/_WeekWiseShift.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Qcm92aWRlcnNcX1dlZWtXaXNlU2hpZnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/Admin_agreement/agreement.cshtml]

@@ -7,21 +7,21 @@
 
         <div class=" col-12 col-sm-12 col-md-10 col-lg-8 mx-auto d-flex justify-content-between mt-4 mb-2">
             <h2>Create Role</h2>
-            <button class="btn btn-outline-info">Back</button>
+            <button class="btn btn-outline-info fs-6" onclick="loadPartialDashView('access')"><i class="bi bi-chevron-left"></i>Back</button>
         </div>
         <div class="d-grid gap-2 col-12 col-sm-12 col-md-10 col-lg-8 mx-auto d-flex flex-column rounded-3 bgcolor px-4 mt-3 shadow-lg">
 
             
             <h4 class="mt-3">Details</h4>
-
+            <form>
             <div class="row mt-3">
                 <div class="form-floating mb-3  col-md-6 col-lg-6">
-                    <input type="text" class="form-control pedit3" id="floatingInput" asp-for="RoleName" placeholder="Role Name">
-                    <label for="floatingInput" class="mx-3">Role Name</label>
+                    <input type="text" class="form-control pedit3" id="rolename" asp-for="RoleName" placeholder="Role Name">
+                    <label for="rolename" class="mx-3">Role Name</label>
                     <span asp-validation-for="RoleName" class="text-danger"></span>
                 </div>
                 <div class="form-floating mb-3 col-md-6 col-lg-6">
-                    <select class="form-select" aria-label="Default select example" asp-for="accountType" id="accounttype" onchange="loadAccessView()">
+                    <select class="form-select" aria-label="Default select example" asp-for="accountType" id="accounttype" onchange="selectAccountType()">
                         <option value="0" selected>All</option>
                         <option value="1">Admin</option>
                         <option value="2">Physician</option>
@@ -35,7 +35,7 @@
                     foreach(var item in Model.menus)
                     {
                         <div class="form-check col mx-3">
-                            <input class="form-check-input" type="checkbox" value="@item.Menuid" id="@item.Menuid">
+                            <input class="form-check-input roleCheck" type="checkbox" value="@item.Menuid" id="@item.Menuid">
                             <label class="form-check-label" for="@item.Menuid">
                                 @item.Name
                             </label>
@@ -45,88 +45,10 @@
             </div>
 
             <div class="d-flex justify-content-end mt-3 mb-3">
-                <button class="btn btn-info mx-2">Save</button>
-                <button class="btn btn-outline-info mx-2">Cancel</button>
+                <button class="btn btn-info mx-2" onclick="createrole()">Save</button>
+                <button class="btn btn-outline-info mx-2" type="reset">Cancel</button>
             </div>
-
-            @*
-            <div class="d-block d-sm-block d-md-none d-lg-none d-xl-none">
-            <div class="accordion" id="accordionExample">
-
-            @{
-            foreach (var a in Model.adminDashModels)
-            {
-            var reqcolor = "";
-            var text = "";
-
-            if (a.Requesttypeid == 1)
-            {
-            reqcolor = "bg-danger";
-            text = "Business";
-            }
-            else if (a.Requesttypeid == 2)
-            {
-            reqcolor = "bg-success";
-            text = "Patient";
-            }
-            else if (a.Requesttypeid == 3)
-            {
-            reqcolor = "bg-warning";
-            text = "Family/Friend";
-            }
-            else if (a.Requesttypeid == 4)
-            {
-            reqcolor = "bg-primary";
-            text = "Concierge";
-            }
-            <div class="accordion-item">
-            <h2 class="accordion-header">
-            <button class="accordion-button collapsed  d-grid" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_@a.Requestid" aria-expanded="true" aria-controls="collapse_@a.Requestid">
-            <div class="d-flex justify-content-between w-100 m-2">
-            <div>@a.PatientName</div>
-            <div class="d-flex">@text<div class="colored-dot @reqcolor m-1 mx-2"></div> </div>
-            </div>
-            <div class="d-flex justify-content-between w-100 m-2">
-            <div>@a.Address</div>
-            <a class="btn btn-outline-info rounded-5">Map Location</a>
-            </div>
-            <div><i class="bi bi-clock text-info px-2"></i> Wait time :<b> @a.Createddate </b></div>
-
-            </button>
-
-            </h2>
-
-            <div id="collapse_@a.Requestid" class="accordion-collapse collapse" data-bs-parent="#accordionExample" style="background-color:#d7ffffde;">
-            <div class="d-flex justify-content-end" style="top:0;"><button class="btn bg-light rounded-5 px-3" style="color:mediumpurple;border:2px solid mediumpurple;position:relative;top:-18px;z-index:10;">View Case</button></div>
-            <div class="accordion-body">
-
-            <div class="mb-2"><i class="bi rounded-pill btn btn-outline-info text-black-50 bi-calendar3  px-2"></i> Date Of Birth :<b> @a.Createddate </b></div>
-            <div class="mb-2"><i class="bi bi-envelope-at rounded-pill btn btn-outline-info text-black-50 px-2"></i> Email :<b> @a.Email </b></div>
-            <div class="mb-2"><i class="bi bi-telephone rounded-pill btn btn-outline-info text-black-50 px-2"></i> @text :<b> @a.Phonenumber_P </b></div>
-            <div class="mb-2"><i class="bi bi-person-circle rounded-pill btn btn-outline-info text-black-50 px-2"></i> Requestor :<b> @a.RequestorName </b></div>
-            <div class="row">
-            <button class="btn text-white rounded-5 col-5 m-2 mx-3" style="background-color:mediumpurple;">Assign Case</button>
-            <button type="button" class="btn btn-danger rounded-5 col-5 m-2 mx-3 " onclick="ShowModal('@a.Requestid','@a.PatientName','CancelCase')">
-            Cancel Case
-            </button>
-            <button class="btn btn-success rounded-5 col-5 m-2 mx-3">View Notes</button>
-            <button class="btn btn-danger rounded-5 col-5 m-2 mx-3">Block Patient</button>
-            <button class="btn btn-success rounded-5 col-5 m-2 mx-3">Email</button>
-
-            </div>
-
-            </div>
-            </div>
-            </div>
-
-
-            }
-            }
-            </div>
-
-            </div>*@
-
-
+            </form>
         </div>
 
 
@@ -140,65 +62,26 @@
 </footer>
 
 <script>
-    var table = new DataTable('#providerss', { searching: false, paging: false });
 
-    //$("#region123").change(function () {
-    //    regionid = this.value;
-    //    search = "";
-    //    filtertable();
-    //});
+    function createrole() {
 
-    var selectedCheck = [];
-    var checkboxes1 = document.querySelectorAll(".providerscheck");
-
-    checkboxes1.forEach(function (checkbox) {
-        if (checkbox.checked) {
-            selectedCheck.push(checkbox.value);
-        }
-    });
-
-    $(".providerscheck").change(function () {
-        var selectedCheck1 = [];
-        var checkboxes11 = document.querySelectorAll(".providerscheck");
+        var menulist = [];
+        var accounttype = document.getElementById("accounttype").value;
+        var name = document.getElementById("rolename").value;
+        var checkboxes11 = document.querySelectorAll(".roleCheck");
 
         checkboxes11.forEach(function (checkbox) {
             if (checkbox.checked) {
-                selectedCheck1.push(checkbox.value);
+                menulist.push(checkbox.value);
             }
-        });
-
-        if (selectedCheck1.toString() != selectedCheck.toString()) {
-            document.getElementById("ProvidersSave").style.display = "block";
-        } else {
-            document.getElementById("ProvidersSave").style.display = "none";
-        }
-    });
-
-    function saveStopNotification() {
-
-        var idlist = [];
-        var checkboxes11 = document.querySelectorAll(".providerscheck");
-
-        checkboxes11.forEach(function (checkbox) {
-            if (checkbox.checked) {
-                idlist.push(checkbox.value);
-            }
-        });
-
-        var totallist = [];
-        var checkboxes11 = document.querySelectorAll(".providerscheck");
-
-        checkboxes11.forEach(function (checkbox) {
-            totallist.push(checkbox.value);
         });
 
         $.ajax({
-            url: '/AdminProviders/stopnotification',
+            url: '/AdminDash/newrole',
             type: 'POST',
-            data: { idlist: idlist, totallist: totallist },
+            data: { menulist: menulist,name : name, accounttype: accounttype },
             success: function (data) {
-                document.getElementById("ProvidersSave").style.display = "none";
-                selectedCheck = idlist;
+                loadPartialDashView("access");
             },
             error: function () {
                 console.error('Error loading partial view.');
@@ -206,13 +89,17 @@
         });
     }
 
-    function loadProviderView(method, physicianid) {
+    function selectAccountType() {
+        var accounttype = 0;
+        if (document.getElementById("accounttype").value) {
+            accounttype = document.getElementById("accounttype").value;
+        }
         $.ajax({
-            url: '/AdminProviders/' + method,
+            url: '/AdminDash/createrole',
             type: 'POST',
-            data: { physicianid: physicianid },
+            data: { accounttype: accounttype },
             success: function (data) {
-                $('#provider').html(data);
+                $('#access').html(data);
             },
             error: function () {
                 console.error('Error loading partial view.');

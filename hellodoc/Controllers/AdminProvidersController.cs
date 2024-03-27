@@ -41,5 +41,11 @@ namespace hellodoc.Controllers
 
             return PartialView("_ProviderProfile", providerProfile);
         }
+
+        [HttpPost]
+        public IActionResult loadshift()
+        {
+            return PartialView("_MonthWiseShift");
+        }
     }
 }

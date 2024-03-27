@@ -22,4 +22,7 @@ public partial class Menu
 
     [Column("sortorder")]
     public int? Sortorder { get; set; }
+
+    [InverseProperty("Menu")]
+    public virtual ICollection<RoleMenu> RoleMenus { get; } = new List<RoleMenu>();
 }

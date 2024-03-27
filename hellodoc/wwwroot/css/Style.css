@@ -322,6 +322,12 @@ input[type="checkbox"]:checked {
 .table tbody tr td {
     color: white;
     padding: 20px;
+
+}
+
+#shifttable tr td {
+    border: 1px solid gray;
+    height:50px;
 }
 
 .actions {

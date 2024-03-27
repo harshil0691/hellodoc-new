@@ -34,8 +34,9 @@ namespace hellodoc.Controllers
         private readonly IHostingEnvironment HostingEnviroment;
         private readonly IAuthManager _authManger;
         private readonly IAdminProviders _adminProviders;
+        private readonly IAdminAccess _adminAccess;
 
-        public AdminDashController(ILogger<AdminDashController> logger,IAdminDashRepository adminDashRepository, IPatientLogin patientLogin, IRequests requests,IHostingEnvironment hostingEnvironment,IAuthManager authManager,IAdminProviders adminProviders)
+        public AdminDashController(ILogger<AdminDashController> logger,IAdminDashRepository adminDashRepository, IPatientLogin patientLogin, IRequests requests,IHostingEnvironment hostingEnvironment,IAuthManager authManager,IAdminProviders adminProviders,IAdminAccess adminAccess)
         {
             _logger = logger;
             _adminDashRepository = adminDashRepository;
@@ -44,6 +45,7 @@ namespace hellodoc.Controllers
             HostingEnviroment = hostingEnvironment;
             _authManger = authManager;
             _adminProviders = adminProviders;
+            _adminAccess = adminAccess;
         }
 
         public IActionResult admin_dash()
@@ -182,10 +184,35 @@ namespace hellodoc.Controllers
             return PartialView("_Providers", dashboardLists);
         }
 
-        public IActionResult create_role(int accounttype)
+        public IActionResult createrole(int accounttype)
         {
             var role = _adminDashRepository.CreateRole(accounttype);
             return PartialView("_CreateRole",role);
+        }
+
+        [HttpPost]
+        public void newrole(List<int> menulist,string name,short accounttype)
+        {
+            var aspid = HttpContext.Session.GetInt32("userId");
+            _adminAccess.NewRole(menulist,aspid??1,name,accounttype);
+        }
+        [HttpPost]
+        public IActionResult editroleview(int roleid)
+        {
+            var role = _adminAccess.CreateRole(0,roleid);
+            return PartialView("_EditRole", role);
+        }
+        public void editrole(List<int> menulist, string name, short accounttype,int roleid)
+        {
+            var aspid = HttpContext.Session.GetInt32("userId");
+            var role = _adminAccess.EditRole(menulist,accounttype,roleid,aspid??1,name);
+        }
+
+        [HttpPost]
+        public void deleterole(int roleid)
+        {
+            var aspid = HttpContext.Session.GetInt32("userId");
+            _adminAccess.DeleteRole(roleid,aspid??1);
         }
 
     }

@@ -408,7 +408,15 @@ public partial class ApplicationDbContext : DbContext
         {
             entity.HasKey(e => e.Rolemenuid).HasName("RoleMenu_pkey");
 
-            entity.Property(e => e.Rolemenuid).ValueGeneratedNever();
+            entity.Property(e => e.Rolemenuid).UseIdentityAlwaysColumn();
+
+            entity.HasOne(d => d.Menu).WithMany(p => p.RoleMenus)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("fk_rolemenu_menu");
+
+            entity.HasOne(d => d.Role).WithMany(p => p.RoleMenus)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("fk_rolemenu_role");
         });
 
         modelBuilder.Entity<Shift>(entity =>
