@@ -17,5 +17,6 @@ namespace hellodoc.DbEntity.ViewModels
         public string email { get; set;}
         public long? phonenumber { get; set; }
         public int physicianid { get; set; }
+        public int shiftdetailsid { get; set; }
     }
 }

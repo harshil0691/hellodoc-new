@@ -30,7 +30,7 @@
                 </div>
             </div>
 
-            <div class="m-2">
+            <div class="m-2 fs-5 fw-bold" id="datediv">
                 date here
             </div>
 
@@ -45,14 +45,17 @@
 
             <div class="m-2 d-flex justify-content-between">
                 <div class="d-flex">
-                    <div class="mx-2 bg-info rounded-5 d-flex justify-content-center" style="height:25px;width:25px;"><i class="bi bi-chevron-left"></i></div>
-                    <div class="mx-2"><i class="bi bi-calendar-week"></i></div>
-                    <div class="mx-2 bg-info rounded-5 d-flex justify-content-center" style="height:25px;width:25px;"><i class="bi bi-chevron-right"></i></div>
+                    <button class="mx-2 bg-info rounded-5 d-flex justify-content-center align-items-center" style="height:30px;width:30px;border:none;" onclick="previousCalendar()"><i class="bi bi-chevron-left"></i></button>
+                    <button class="upload-btn-wrapper bg-transparent fs-5 border-0" onclick="showcalender()">
+                        <i class="bi bi-calendar-week"></i>
+                        <input type="month" id="month-input" onchange="monthchange()"/>
+                    </button>
+                    <button class="mx-2 bg-info rounded-5 d-flex justify-content-center align-items-center" style="height:30px;width:30px;border:none;" onclick="nextCalendar()"><i class="bi bi-chevron-right"></i></button>
                 </div>
                 <div class="d-flex">
-                    <button class="btn btn-outline-info mx-1">Day</button>
-                    <button class="btn btn-outline-info mx-1">Week</button>
-                    <button class="btn btn-outline-info mx-1">Month</button>
+                    <button class="btn btn-outline-info mx-1" onclick="ShiftCalender('2024','3','day');">Day</button>
+                    <button class="btn btn-outline-info mx-1" onclick="ShiftCalender('2024','3','week');">Week</button>
+                    <button class="btn btn-outline-info mx-1" onclick="ShiftCalender('2024','3','month');">Month</button>
                 </div>
             </div>
 
@@ -71,20 +74,63 @@
     </footer>
 
 <script>
+    function showcalender(){
+        document.getElementById("month-input").showPicker();
+    }
+    
+    
 
-    ShiftCalender();
+    var year = 2024;
+    var month = 3;
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ];
+  
+    ShiftCalender(year,month,'day');
+    
 
-    function ShiftCalender(){
+    function ShiftCalender(year,month,shifttype){
+         
+
         $.ajax({
             url: '/AdminProviders/loadshift',
             type: 'POST',
+            data: { year1: year, month1: month, shifttype: shifttype },
             success: function (data) {
                 $('#shiftTable').html(data);
+                $('#datediv').text(monthNames[month - 1] + ',' + year);
             },
             error: function () {
                 console.error('Error loading partial view.');
             }
         });
+    }
+
+    function monthchange() {
+        var selectmonth = document.getElementById("month-input").value;
+        year = parseInt(selectmonth.split("-")[0]);
+        month = parseInt(selectmonth.split("-")[1]);
+        ShiftCalender(year,month,'month');
+    }
+
+    function nextCalendar(){
+        if(month<12){
+            month=month+1;
+        }else{
+            month = 1;
+            year=year+1;
+        }
+        ShiftCalender(year,month,'month');
+    }
+
+    function previousCalendar(){
+        if(month>1){
+            month = month-1;
+        }else{
+            month = 12;
+            year = year-1;
+        }
+        ShiftCalender(year,month,'month');
     }
     
 </script>

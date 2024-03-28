@@ -327,7 +327,31 @@ input[type="checkbox"]:checked {
 
 #shifttable tr td {
     border: 1px solid gray;
-    height:50px;
+    height:60px;
+    width:10%;
+}
+#shifttable tr td div{
+    border-bottom: 1px solid gray;
+    height:60px;
+}
+
+    #shifttable tr td div button{
+        background-color:lightgreen;
+        border:none;
+        font-size:13px;
+        font-weight:400;
+        height:100%;
+    }
+
+#dayshiftheader tr th {
+    border: 1px solid white;
+    height: 30px;
+    width: 1%;
+}
+#dayshiftbody tr td {
+    border: 1px solid gray;
+    height: 30px;
+    width: 1%;
 }
 
 .actions {
@@ -401,3 +425,8 @@ input[type="checkbox"]:checked {
     top: 0;
     opacity: 0;
 }
+
+    .upload-btn-wrapper input[type=month] {
+        position: absolute;
+        opacity: 0;
+    }

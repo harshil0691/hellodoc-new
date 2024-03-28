@@ -32,8 +32,8 @@ public partial class ShiftDetail
     [Column("status")]
     public short Status { get; set; }
 
-    [Column("isdeleted", TypeName = "bit(1)")]
-    public BitArray Isdeleted { get; set; } = null!;
+    [Column("isdeleted")]
+    public short Isdeleted { get; set; }
 
     [Column("modifiedby")]
     [StringLength(128)]
@@ -51,4 +51,12 @@ public partial class ShiftDetail
 
     [Column("issync", TypeName = "bit(1)")]
     public BitArray? Issync { get; set; }
+
+    [ForeignKey("Regionid")]
+    [InverseProperty("ShiftDetails")]
+    public virtual Region? Region { get; set; }
+
+    [ForeignKey("Shiftid")]
+    [InverseProperty("ShiftDetails")]
+    public virtual Shift Shift { get; set; } = null!;
 }

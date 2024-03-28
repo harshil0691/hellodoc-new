@@ -1,6 +1,7 @@
 ﻿using hellodoc.DbEntity.DataContext;
 using hellodoc.DbEntity.DataModels;
 using hellodoc.DbEntity.ViewModels;
+using hellodoc.DbEntity.ViewModels.Shifts;
 using hellodoc.Repositories.Repository.Interface;
 using System;
 using System.Collections.Generic;
@@ -98,6 +99,73 @@ namespace hellodoc.Repositories.Repository
             _context.SaveChanges();
         }
 
+        public List<ShiftDetailsmodal> ShiftDetailsmodal(int year, int month)
+        {
+            var shift = _context.Shifts;
+            var shiftdetails = _context.ShiftDetails.Where(u => u.Shiftdate.Month == month && u.Shiftdate.Year == year);
+
+            var list = shiftdetails.Select(s => new ShiftDetailsmodal
+            {
+                Shiftid = s.Shiftid,
+                Shiftdetailid = s.Shiftdetailid,
+                Shiftdate = s.Shiftdate,
+                Startdate = s.Shift.Startdate,
+                Starttime = s.Starttime,
+                Endtime = s.Endtime,
+                Physicianid = s.Shift.Physicianid,
+                PhysicianName = s.Shift.Physician.Firstname,
+
+            });
+
+            return list.ToList();
+        }
+
+        public ShiftDetailsmodal GetShift(int shiftdetailsid)
+        {
+            var shiftdetails = _context.ShiftDetails.FirstOrDefault(s => s.Shiftdetailid == shiftdetailsid);
+            var physicianlist = _context.PhysicianRegions.Where(p => p.Regionid == shiftdetails.Regionid).Select(s=>s.Physicianid).ToList();
+
+            ShiftDetailsmodal shift = new ShiftDetailsmodal
+            {
+                Shiftdetailid = shiftdetailsid,
+                Shiftdate = shiftdetails.Shiftdate,
+                Shiftid = shiftdetails.Shiftid,
+                Starttime = shiftdetails.Starttime,
+                Endtime = shiftdetails.Endtime,
+                Regionid = shiftdetails.Regionid,
+                regions = _context.Regions.ToList(),
+                physics = _context.Physicians.Where(p => physicianlist.Contains(p.Physicianid)).ToList(),
+            };
+
+            return shift;
+        }
+
+        public DayShiftModal DayShift(int year, int month, int date)
+        {
+            var shift = _context.Shifts;
+            var shiftdetails = _context.ShiftDetails.Where(u => u.Shiftdate.Month == month && u.Shiftdate.Year == year && u.Shiftdate.Day == date);
+
+            
+            var list = shiftdetails.Select(s => new ShiftDetailsmodal
+            {
+                Shiftid = s.Shiftid,
+                Shiftdetailid = s.Shiftdetailid,
+                Shiftdate = s.Shiftdate,
+                Startdate = s.Shift.Startdate,
+                Starttime = s.Starttime,
+                Endtime = s.Endtime,
+                Physicianid = s.Shift.Physicianid,
+                PhysicianName = s.Shift.Physician.Firstname,
+
+            });
+
+            DayShiftModal dayShift = new DayShiftModal();
+            dayShift.Physicians = _context.Physicians.ToList();
+            dayShift.shiftDetailsmodals = list.ToList();
+            dayShift.shiftphysician = list.Select(u=>u.Physicianid).ToList();
+
+            return dayShift;
+        }
 
 
     }

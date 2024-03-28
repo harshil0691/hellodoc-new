@@ -278,7 +278,7 @@ public partial class ApplicationDbContext : DbContext
         {
             entity.HasKey(e => e.Physicianregionid).HasName("PhysicianRegion_pkey");
 
-            entity.Property(e => e.Physicianregionid).ValueGeneratedNever();
+            entity.Property(e => e.Physicianregionid).UseIdentityAlwaysColumn();
 
             entity.HasOne(d => d.Physician).WithMany(p => p.PhysicianRegions)
                 .OnDelete(DeleteBehavior.ClientSetNull)
@@ -423,15 +423,25 @@ public partial class ApplicationDbContext : DbContext
         {
             entity.HasKey(e => e.Shiftid).HasName("Shift_pkey");
 
-            entity.Property(e => e.Shiftid).ValueGeneratedNever();
+            entity.Property(e => e.Shiftid).UseIdentityAlwaysColumn();
             entity.Property(e => e.Weekdays).IsFixedLength();
+
+            entity.HasOne(d => d.Physician).WithMany(p => p.Shifts)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("fk_shift_physician");
         });
 
         modelBuilder.Entity<ShiftDetail>(entity =>
         {
             entity.HasKey(e => e.Shiftdetailid).HasName("ShiftDetail_pkey");
 
-            entity.Property(e => e.Shiftdetailid).ValueGeneratedNever();
+            entity.Property(e => e.Shiftdetailid).UseIdentityAlwaysColumn();
+
+            entity.HasOne(d => d.Region).WithMany(p => p.ShiftDetails).HasConstraintName("fk_shiftdetail_region");
+
+            entity.HasOne(d => d.Shift).WithMany(p => p.ShiftDetails)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("fk_shiftdetail_shift");
         });
 
         modelBuilder.Entity<ShiftDetailRegion>(entity =>

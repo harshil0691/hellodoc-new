@@ -1,6 +1,84 @@
-﻿namespace hellodoc.Views.AdminProviders
-{
-    public class _WeekWiseShift
-    {
+﻿@model hellodoc.DbEntity.ViewModels.Shifts.MonthShiftModal
+
+<div class="table-responsive d-none d-sm-none d-md-block d-lg-block d-xl-block">
+    <table style="width:100%;z-index:5">
+        <thead>
+            <tr style="background-color: lightgray;">
+                <th class="p-3">SUN</th>
+                <th>MON</th>
+                <th>TUE</th>
+                <th>WED</th>
+                <th>THU</th>
+                <th>FRI</th>
+                <th>SAT</th>
+            </tr>
+        </thead>
+        <tbody style="font-size:larger;font-weight:400;" id="shifttable">
+            @for (int i = 0; i < Model.daysInMonth; i += 7)
+            {
+                <tr>
+                    @for (int j = 0; j < 7; j++)
+                    {
+                        var dayNumber = i + j + 1 - Model.startDayIndex;
+
+                        <td>
+                            @if (dayNumber > 0 && dayNumber <= Model.daysInMonth)
+                            {
+                                <div class="d-flex justify-content-center" style="background-color:lightpink;">@dayNumber</div>
+                                {
+                                    var count = 0;
+                                    foreach (var item in Model.shiftDetailsmodals)
+                                    {
+                                        if (item.Shiftdate.Day == dayNumber && count < 5)
+                                        {
+                                            <div style="overflow-y:auto;">
+                                                <button onclick="providersModal({actionType:'shiftdetails',shiftdetailsid : '@item.Shiftdetailid'})">
+                                                    @item.Starttime - @item.Endtime physician : @item.PhysicianName
+                                                </button>
+                                            </div>
+                                            count = count + 1;
+                                        }
+                                    }
+                                    for (var k = count; k < 5; k++)
+                                    {
+                                        <div></div>
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            }
+                        </td>
+                    }
+                </tr>
+            }
+
+
+
+        </tbody>
+    </table>
+
+</div>
+<script>
+    function providersModal(DataObject) {
+
+        $.ajax({
+            url: '/AdminProviders/Openmodal',
+            type: 'Post',
+            data: DataObject,
+            success: function (data) {
+                $('#partialContainer').html(data);
+                $('#myModal').modal('show');
+            },
+            error: function (e) {
+                console.log(e);
+            }
+        });
     }
-}
+</script>
