@@ -96,15 +96,14 @@ namespace hellodoc.Repositories.Repository
             return adminRecords;
         }
 
-        public AdminRecordsListModal PatientRecords(int userid)
+        public AdminRecordsListModal PatientRecords(AdminRecordsListModal adminRecords)
         {
-            var request = _context.RequestClients.Where(r => r.Request.Userid == userid);
-            AdminRecordsListModal adminRecords = new AdminRecordsListModal();
-            var pageSize = 10;
-            var pageNumber = 1;
-            if (adminRecords.pageNumber > 0)
+            var request = _context.RequestClients.Where(r => r.Request.Userid == adminRecords.UserId);
+            var pageSize = 2;
+            var pageNumber = adminRecords.pageNumber;
+            if (pageNumber <= 0)
             {
-                pageNumber = adminRecords.pageNumber;
+                pageNumber = 1;
             }
            
             var list = request.Select(r => new PatientRecords

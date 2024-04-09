@@ -26,7 +26,7 @@ namespace hellodoc.DbEntity.ViewModels
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime BlokedDate { get; set; }
-
+        public bool back { get; set; }
 
         public List<SearchRecords> searchRecords;
         public List<EmailLogs> emailLogs;

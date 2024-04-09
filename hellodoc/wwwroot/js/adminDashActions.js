@@ -5,7 +5,7 @@ function adminDashload(dataObject) {
     $.ajax({
         url: '/' + dataObject.controller + '/' + dataObject.actionType,
         type: 'POST',
-        data: { actionType: dataObject.action, userid: dataObject.UserId },
+        data: { actionType: dataObject.action,userid: dataObject.UserId },
         success: function (data) {
             $('#mainDashContent').html(data);
 
@@ -22,7 +22,7 @@ function adminDashload(dataObject) {
             });
 
             if (dataObject.actionType == 'GetView') {
-                searchrecords(dataObject.action,'1');
+                searchrecords(dataObject.action, '1', dataObject.Back);
             }
 
         },

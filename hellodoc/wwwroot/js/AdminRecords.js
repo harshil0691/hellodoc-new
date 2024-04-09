@@ -1,13 +1,13 @@
 ﻿
-function searchrecords(actionType, pageNumber) {
+function searchrecords(actionType, pageNumber,back) {
 
-    var formdata;
+    var formdata = [];
     if (actionType != "PatientRecords") {
         formdata = $('#recordsForm').serializeArray();
     }
-
     formdata.push({ name: "pageNumber", value: pageNumber });
     formdata.push({ name: "actionType", value: actionType });
+    formdata.push({ name: "back", value: back });
     var form = $.param(formdata);
 
     $.ajax({

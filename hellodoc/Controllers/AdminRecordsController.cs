@@ -41,7 +41,7 @@ namespace hellodoc.Controllers
             }
         }
 
-        public IActionResult GetTable(AdminRecordsListModal recordsListModal,int userid)
+        public IActionResult GetTable(AdminRecordsListModal recordsListModal)
         {
             switch (recordsListModal.actionType)
             {
@@ -52,9 +52,18 @@ namespace hellodoc.Controllers
                 case "SMSLogs":
                     return PartialView("_SMSLogsTable", _adminRecords.SMSLogs(recordsListModal));
                 case "PatientHistory":
+                    if(recordsListModal.back == true)
+                    {
+                        recordsListModal.pageNumber = HttpContext.Session.GetInt32("page") ?? 1;
+                    }
+                    else
+                    {
+                        HttpContext.Session.SetInt32("page", recordsListModal.pageNumber);
+                    }
                     return PartialView("_PatientHistoryTable", _adminRecords.PatientHistory(recordsListModal));
                 case "PatientRecords":
-                    return PartialView("_PatientRecords", _adminRecords.PatientRecords(userid));
+                    
+                    return PartialView("_PatientRecords", _adminRecords.PatientRecords(recordsListModal));
                 case "BlockedHistory":
                     return PartialView("_BlockedHistoryTable", _adminRecords.BlokedHistory(recordsListModal));
                 default:

@@ -14,7 +14,7 @@ namespace hellodoc.Repositories.Repository.Interface
 
         AdminRecordsListModal EmailLogs(AdminRecordsListModal adminRecords);
         AdminRecordsListModal SMSLogs(AdminRecordsListModal adminRecords);
-        AdminRecordsListModal PatientRecords(int userid);
+        AdminRecordsListModal PatientRecords(AdminRecordsListModal adminRecords);
         AdminRecordsListModal BlokedHistory(AdminRecordsListModal adminRecords);
         AdminRecordsListModal PatientHistory(AdminRecordsListModal adminRecords);
         void DeletePermenantly(int requstid);
