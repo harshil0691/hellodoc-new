@@ -1,0 +1,38 @@
+﻿@model List<hellodoc.DbEntity.ViewModels.Shifts.ShiftDetailsmodal>
+
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="font-weight:600">
+
+                <div class="modal-header bg-info text-white">
+                <h5 class="modal-title" id="exampleModalLabel"> All Shifts (@ViewBag.TotalShift) </h5>
+                    <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+
+                @{
+                    foreach(var shift in Model)
+                    {
+                        var bgcolor = "";
+                        if(shift.Status == 1)
+                        {
+                            bgcolor = "lightpink";
+                        }
+                        else if (shift.Status == 2)
+                        {
+                            bgcolor = "lightgreen";
+                        }
+
+                        <div class="mt-3" >
+                            <button class="w-100 h-100 border-0" style="background-color:@bgcolor;" onclick="providersModal({actionType:'shiftdetails',shiftdetailsid : '@shift.Shiftdetailid',from:'more'})"> @shift.Starttime - @shift.Endtime <br> Physician : @shift.PhysicianName <br> Region : @shift.regionname  </button>
+                        </div>
+                    }
+                }
+
+                </div>
+
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,81 @@
+﻿@model hellodoc.DbEntity.ViewModels.DashboardLists.DashboardListsModal
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+
+    <div style="margin-bottom:50px;" class="table-responsive d-none d-sm-none d-md-block mt-3" id="searchrecordstable">
+        <table style="width:100%;z-index:5">
+            <thead>
+                <tr>
+                    <th>Profession</th>
+                    <th>Business Name</th>
+                    <th>Email</th>
+                    <th>Fax Number</th>
+                    <th>Phone Number</th>
+                    <th>Business Contact</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody style="font-size:larger;font-weight:400;">
+                @{
+                    foreach (var a in Model.healthProfessionals)
+                    {
+
+                        <tr class="m-2">
+                            <td>@a.ProfessionName</td>
+                            <td>@a.Vendorname</td>
+                            <td>@a.Email</td>
+                            <td>@a.Faxnumber</td>
+                            <td>@a.Phonenumber</td>
+                            <td>@a.Businesscontact</td>
+                            <td class="d-flex">
+                            <button class="btn btn-outline-info mx-1" onclick="partners({ actionType: 'edit_business', venorid: '@a.Vendorid'})">Edit</button>
+                            <button class="btn btn-outline-info mx-1" onclick="bussinessActions('delete_business','@a.Vendorid')">Delete</button>
+                            </td>
+                        </tr>
+                    }
+                }
+
+            </tbody>
+        </table>
+
+    </div>
+
+    <div class="d-flex justify-content-between m-2">
+        <div>
+            @Model.entries
+        </div>
+        <div>
+            @{
+                if (Model.pageNumber > 1)
+                {
+                    var previousPage = Model.pageNumber - 1;
+                <button class="btn btn-outline-secondary" onclick="partners({ actionType: 'partnerstable', pageNumber: '@previousPage'});"><i class="bi bi-chevron-left"></i></button>
+                }
+                else
+                {
+                    <button class="btn btn-outline-secondary"><i class="bi bi-chevron-left"></i></button>
+                }
+            }
+
+            <button class="btn btn-outline-info">@Model.pageNumber</button>
+            @{
+                if (Model.morePages == true)
+                {
+                    var nextpage = Model.pageNumber + 1;
+                <button class="btn btn-outline-secondary" onclick="partners({ actionType: 'partnerstable', pageNumber: '@nextpage'});"><i class="bi bi-chevron-right"></i></button>
+                }
+                else
+                {
+                    <button class="btn btn-outline-secondary"><i class="bi bi-chevron-right"></i></button>
+                }
+            }
+        </div>
+    </div>
+
+
+
+@section Scripts{
+    @{
+        <Partial name="_ValidationScriptsPartial" />
+    }
+ }

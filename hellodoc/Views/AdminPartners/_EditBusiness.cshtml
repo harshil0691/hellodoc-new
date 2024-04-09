@@ -1,0 +1,100 @@
+﻿@model hellodoc.DbEntity.ViewModels.AdminPartnersModal
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+<div class="login" id="main" style="margin-bottom:100px">
+
+    <div class="row bgcolor1">
+
+        <div class=" col-12 col-sm-12 col-md-10 col-lg-8 mx-auto d-flex justify-content-between mt-4 mb-2">
+            <h4> Update Business </h4>
+            <button class="btn btn-outline-info" onclick="partners({ actionType: 'partnerstable',back : true})">
+                <i class="bi bi-chevron-left"></i>Back
+            </button>
+        </div>
+
+        <div class="d-grid gap-2 col-12 col-sm-12 col-md-10 col-lg-8 mx-auto d-flex content px-4 pt-4">
+
+            <form method="post" id="business">
+                <h4 id="t1" class="pt-2 pb-4">Submit Information</h4>
+
+                <div class="row mt-1">
+
+                    <div class="form-floating mt-2 col-12 col-md-6">
+                        <input type="text" class="form-control" asp-for="Vendorname" placeholder="Vendor Name" disabled>
+                        <label class="mx-3">Vendor Name</label>
+                    </div>
+
+                    <div class="form-floating mt-2 col-12 col-md-6">
+                        <select class="form-select form-control h-100" aria-label="Proffesion" asp-for="Profession" disabled>
+                            <option selected value="0">Professions</option>
+                            @{
+                                foreach (var profession in Model.healthProfessionalTypes)
+                                {
+                                    <option value="@profession.Healthprofessionalid">@profession.Professionname</option>
+                                }
+                            }
+                        </select>
+                    </div>
+
+
+                    <div class="form-floating mt-2 col-md-6 col-lg-6">
+                        <input type="number" class="form-control pt-3 pb-3" asp-for="Faxnumber" placeholder="fax number" disabled>
+                        <label class="mx-3">fax number</label>
+                        <span asp-validation-for="Faxnumber" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-floating mt-2 col-md-6 col-lg-6">
+                        <input type="tel" class="form-control pt-3 pb-3" id="phone" asp-for="Phonenumber" placeholder="Phone Number" disabled>
+                        <label class="mx-3">Phone number</label>
+                        <span asp-validation-for="Phonenumber" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-floating  mt-2 col-12 col-md-6">
+                        <input type="text" class="form-control" asp-for="Email" placeholder="Email" disabled>
+                        <label class="mx-3">Email</label>
+                    </div>
+
+                    <div class="form-floating mt-2 col-12 col-md-6">
+                        <input type="text" class="form-control" asp-for="Businesscontact" placeholder="Business contact" disabled>
+                        <label class="mx-3">Business contact</label>
+                    </div>
+
+                    <div class="form-floating mt-2 col-12 col-md-6">
+                        <input type="text" class="form-control" asp-for="Street" placeholder="Street" disabled>
+                        <label class="mx-3">Street</label>
+                    </div>
+                    <div class="form-floating mt-2 col-12 col-md-6">
+                        <input type="text" class="form-control" asp-for="State" placeholder="State" disabled>
+                        <label class="mx-3">State</label>
+                    </div>
+                    <div class="form-floating mt-2 col-12 col-md-6">
+                        <input type="text" class="form-control" asp-for="City" placeholder="City" disabled>
+                        <label class="mx-3">City</label>
+                    </div>
+                    <div class="form-floating mt-2 col-12 col-md-6">
+                        <input type="number" class="form-control" asp-for="Zip" placeholder="Zip" disabled>
+                        <label class="mx-3">Zip</label>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-end mt-3" >
+                    <button type="button" class="btn btn-info text-white mx-3 p-2 px-3 mb-2" style="display:none" id="businesssave" onclick="businessEdit('update_business','@Model.Vendorid')">Save</button>
+                    <button type="button" class="btn btn-info text-white mx-3 p-2 px-3 mb-2" id="businessedit" onclick="businessEdit('edit','@Model.Vendorid')">Edit</button>
+                    <button type="reset" class="btn btn-outline-info mx-3 p-2 px-3 mb-2">Cancel</button>
+                </div>       
+            </form>
+
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+@section Scripts {
+    @{
+        <Partial name="_ValidationScriptsPartial" />
+    }
+}

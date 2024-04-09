@@ -1,0 +1,86 @@
+﻿@model hellodoc.DbEntity.ViewModels.Shifts.WeekShiftModal
+
+<div class="table-responsive d-none d-sm-none d-md-block d-lg-block d-xl-block">
+    <table style="width:100%;z-index:5" id="weekheader">
+        <thead>
+            <tr style="background-color: lightgray;">
+                <th class="text-center">STAFF</th>
+                @{
+                    var i = 0;
+
+                    foreach (var date in Model.datelist)
+                    {
+                        <th class="p-3 fs-5">@Model.dayNames[i] @date</th>
+                        i = i + 1;
+                    }
+                }
+            </tr>
+        </thead>
+        <tbody style="font-size:larger;font-weight:400;" id="shifttable">
+            <tr>
+                <td class="text-center">Coverege</td>
+                <td class="p-3"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            @{
+                foreach (var phy in Model.Physicians)
+                {
+                    <tr class="text-center">
+                        <td class="p-2">@phy.Firstname @phy.Lastname</td>
+
+                        @{
+                            var list = Model.shiftDetailsmodals.Where(u => u.Physicianid == phy.Physicianid).ToList();
+
+                            foreach (var date in Model.datelist)
+                            {
+
+                                var shift = list.FirstOrDefault(u => u.Shiftdate.Day == date);
+
+                                if (shift != null)
+                                {
+                                    var bgcolor = "";
+
+                                    if (shift.Status == 1)
+                                    {
+                                        bgcolor = "lightpink";
+                                    }
+                                    else if (shift.Status == 2)
+                                    {
+                                        bgcolor = "lightgreen";
+                                    }
+                                    <td>
+                                        <div style="overflow-y:auto;">
+                                            <button class="w-100 h-100 border-0"  onclick="providersModal({actionType:'shiftdetails',shiftdetailsid : '@shift.Shiftdetailid'})">
+                                                <p style="background-color:@bgcolor;" class="w-100"> @shift.Starttime - @shift.Endtime Region : @shift.regionname </p>
+                                            </button>
+                                        </div>
+                                    </td>
+
+                                }
+                                else
+                                {
+                                    <td></td>
+                                }
+
+                            }
+                        }
+
+                    </tr>
+                }
+
+            }
+
+            
+
+        </tbody>
+    </table>
+
+</div>
+<script>
+
+</script>

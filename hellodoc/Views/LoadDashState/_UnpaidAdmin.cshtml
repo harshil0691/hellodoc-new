@@ -1,0 +1,174 @@
+﻿@model hellodoc.DbEntity.ViewModels.AdminParent
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@{
+    var datalist = Newtonsoft.Json.JsonConvert.SerializeObject(Model.adminDashModels);
+}
+
+<div class="table-responsive d-none d-sm-none d-md-block d-lg-block d-xl-block">
+    <table style="width:100%;z-index:5">
+        <thead>
+            <tr>
+                <th class="p-3">Name</th>
+                <th>Physician Name</th>
+                <th>Date Of Service</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>Chat With</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody style="font-size:larger;font-weight:400;color:white;" id="newtable">
+            @{
+                foreach (var a in Model.adminDashModels)
+                {
+                    var reqcolor = "";
+                    var text = "";
+
+                    if (a.Requesttypeid == 1)
+                    {
+                        reqcolor = "#d23636";
+                        text = "Business";
+                    }
+                    else if (a.Requesttypeid == 2)
+                    {
+                        reqcolor = "#418441";
+                        text = "Patient";
+                    }
+                    else if (a.Requesttypeid == 3)
+                    {
+                        reqcolor = "#ecb728";
+                        text = "Family/Friend";
+                    }
+                    else if (a.Requesttypeid == 4)
+                    {
+                        reqcolor = "#14428ffa";
+                        text = "Concierge";
+                    }
+
+                    <tr class=" m-2" style="background-color:@reqcolor">
+                        <td class="p-3">@a.PatientName </td>
+                        <td class="p-3">@a.Physicianname</td>
+                        <td class="p-3">@a.Createddate</td>
+                        <td class="p-3">
+                            @{
+                                if (a.Phonenumber_P != null)
+                                {
+                                    <button class="btn btn-outline-light">@a.Phonenumber_P</button>
+
+                                    <br />
+                                    <p>(Patients)</p>
+                                }
+                                if (a.Phonenumber_R != null)
+                                {
+                                    <button class="btn btn-outline-light">@a.Phonenumber_R</button>
+                                    <br />
+                                    <p>(@text)</p>
+                                }
+                            }
+                        </td>
+                        <td class="p-3">@a.Address</td>
+                        <td class="p-3"><button class="btn btn-outline-light">Provider</button></td>
+                        <td class="p-3">
+                            <div class="dropdown">
+                                <button class="btn btn-outline-light" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Actions
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><button class="dropdown-item" onclick="loadActionView({ActionType:'ViewCase',requestid :@a.Requestid,bcolor:'@reqcolor',btext:'@text'})"><i class="bi bi-journal-text me-2"></i>View Case</button></li>
+                                    <li><button class="dropdown-item" onclick="loadActionView({ActionType:'ViewUploads',requestid :'@a.Requestid'})"><i class="bi bi-file-earmark-arrow-up me-2"></i>View Uploads</button></li>
+                                    <li><button class="dropdown-item" onclick="loadActionView({ActionType:'ViewNotes',requestid :@a.Requestid})"><i class="bi bi-journals me-2"></i>View Notes</button></li>
+                                </ul>
+
+                            </div>
+                        </td>
+
+                    </tr>
+                }
+            }
+
+        </tbody>
+    </table>
+
+</div>
+
+<div class="d-block d-sm-block d-md-none d-lg-none d-xl-none">
+    <div class="accordion" id="accordionExample">
+
+        @{
+            foreach (var a in Model.adminDashModels)
+            {
+                var reqcolor = "";
+                var text = "";
+
+                if (a.Requesttypeid == 1)
+                {
+                    reqcolor = "bg-danger";
+                    text = "Business";
+                }
+                else if (a.Requesttypeid == 2)
+                {
+                    reqcolor = "bg-success";
+                    text = "Patient";
+                }
+                else if (a.Requesttypeid == 3)
+                {
+                    reqcolor = "bg-warning";
+                    text = "Family/Friend";
+                }
+                else if (a.Requesttypeid == 4)
+                {
+                    reqcolor = "bg-primary";
+                    text = "Concierge";
+                }
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed  d-grid" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_@a.Requestid" aria-expanded="true" aria-controls="collapse_@a.Requestid">
+                            <div class="d-flex justify-content-between w-100 m-2">
+                                <div>@a.PatientName</div>
+                                <div class="d-flex">@text<div class="colored-dot @reqcolor m-1 mx-2"></div> </div>
+                            </div>
+                            <div class="d-flex justify-content-between w-100 m-2">
+                                <div>@a.Address</div>
+                                <a href="#" class="btn btn-outline-info rounded-5">Map Location</a>
+                            </div>
+                            <div><i class="bi bi-clock text-info px-2"></i> Wait time :<b> @a.Createddate </b></div>
+
+                        </button>
+
+                    </h2>
+
+                    <div id="collapse_@a.Requestid" class="accordion-collapse collapse" data-bs-parent="#accordionExample" style="background-color:#d7ffffde;">
+                        <div class="d-flex justify-content-end" style="top:0;"><button class="btn bg-light rounded-5 px-3" style="color:mediumpurple;border:2px solid mediumpurple;position:relative;top:-18px;z-index:10;">View Case</button></div>
+                        <div class="accordion-body">
+
+                            <div class="mb-2"><i class="bi bi-envelope-at rounded-pill btn btn-outline-info text-black-50 px-2"></i> Email :<b> @a.Email </b></div>
+                            <div class="mb-2"><i class="bi bi-telephone rounded-pill btn btn-outline-info text-black-50 px-2"></i> @text :<b> @a.Phonenumber_P </b></div>
+                            <div class="mb-2"><i class="bi bi-calendar-event rounded-pill btn btn-outline-info text-black-50 px-2"></i> Date Of Service : - </div>
+                            <div class="mb-2"><i class="bi bi-person-add rounded-pill btn btn-outline-info text-black-50 px-2"></i> Physician : </div>
+                            <div class="row">
+
+                                <a class="btn btn-success rounded-5 col-5 m-2 mx-3" asp-action="view_notes" asp-route-requestid=@a.Requestid>View Notes</a>
+                                <a class="btn btn-success rounded-5 col-5 m-2 mx-3" asp-action="view_notes" asp-route-requestid=@a.Requestid>Doctor Notes</a>
+                                <a class="btn btn-success rounded-5 col-5 m-2 mx-3" asp-route-requestid=@a.Requestid asp-action="view_uploads">View Uploads</a>
+                                
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+            }
+        }
+    </div>
+
+
+
+</div>
+
+<script>
+    var tt = '@HttpContextAccessor.HttpContext.Session.GetInt32("totalrequest")'
+    $('#TotalPage').text(tt);
+
+</script>

@@ -1,0 +1,38 @@
+﻿@model hellodoc.DbEntity.ViewModels.PopUpModal.ContactProviderModal
+
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="font-weight:600">
+            <form method="post" asp-action="contact_provider" asp-route-physicianid="@Model.physicianid">
+                <div class="modal-header bg-info text-white">
+                    <h5 class="modal-title" id="exampleModalLabel">Contact Your Provider</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <p class="mb-2 mt-1 text-black-80">Choose communication to send message</p>
+
+                    <div class="form-check m-2">
+                        <input class="form-check-input" type="radio" value="1" asp-for="MessagwType">
+                        Sms
+                    </div>
+                    <div class="form-check m-2">
+                        <input class="form-check-input" type="radio" value="2" asp-for="MessagwType" checked>
+                        Email
+                    </div>
+                    <div class="form-check m-2">
+                        <input class="form-check-input" type="radio" value="3" asp-for="MessagwType">
+                        Both
+                    </div>
+
+                    <textarea asp-for="@Model.Message" rows="5" class="col-12 form-control fs-6"  placeholder="Message" class="p-2"></textarea>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-info text-white p-2">Send</button>
+                    <button type="button" class="btn btn-outline-info p-2" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

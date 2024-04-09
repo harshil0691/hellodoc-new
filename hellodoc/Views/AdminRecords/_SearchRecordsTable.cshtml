@@ -1,0 +1,92 @@
+﻿@model hellodoc.DbEntity.ViewModels.AdminRecordsListModal
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+<div style="margin-bottom:50px;" class="table-responsive d-none d-sm-none d-md-block d-lg-block d-xl-block mt-3" id="searchrecordstable">
+    <table style="width:100%;z-index:5">
+        <thead>
+            <tr>
+                <th>Patient Name</th>
+                <th>Requestor</th>
+                <th>Date Of Service</th>
+                <th>Closed Case Date</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Address</th>
+                <th>Zip</th>
+                <th>Request Status</th>
+                <th>Physician</th>
+                <th>Physician Note</th>
+                <th>Cancelled By Provider Note</th>
+                <th>Admin Note</th>
+                <th>Patient Note</th>
+                <th>Delete Permenantly</th>
+            </tr>
+        </thead>
+        <tbody style="font-size:larger;font-weight:400;">
+            @{
+                foreach (var a in Model.searchRecords)
+                {
+
+                    <tr class="m-2">
+                        <td>@a.Patientname</td>
+                        <td>@a.Requestor</td>
+                        <td>@a.DateOfService</td>
+                        <td>@a.ClosedCaseDate</td>
+                        <td>@a.Email</td>
+                        <td>@a.PhoneNumber</td>
+                        <td>@a.Address</td>
+                        <td>@a.Zip</td>
+                        <td>@a.RequestStatus</td>
+                        <td>@a.Physician</td>
+                        <td>@a.PatientNote</td>
+                        <td>@a.CancelledByProviderNote</td>
+                        <td>@a.AdminNote</td>
+                        <td>@a.PhysicianNote</td>
+                        <td><button class="btn btn-outline-info" onclick="recordsoperation({actionType:'DeletePermanantly',requestid : '@a.RequestId'})">Delete</button></td>
+                    </tr>
+                }
+            }
+
+        </tbody>
+    </table>
+
+</div>
+
+<div class="d-flex justify-content-between m-2">
+    <div>
+        @Model.entries
+    </div>
+    <div>
+        @{
+            if (Model.pageNumber > 1)
+            {
+                var previousPage = Model.pageNumber - 1;
+                <button class="btn btn-outline-secondary" onclick="searchrecords('SearchRecords','@previousPage')"><i class="bi bi-chevron-left"></i></button>
+            }
+            else
+            {
+                <button class="btn btn-outline-secondary"><i class="bi bi-chevron-left"></i></button>
+            }
+        }
+
+        <button class="btn btn-outline-info">@Model.pageNumber</button>
+        @{
+            if (Model.morePages == true)
+            {
+                var nextpage = Model.pageNumber + 1;
+                <button class="btn btn-outline-secondary" onclick="searchrecords('SearchRecords','@nextpage')"><i class="bi bi-chevron-right"></i></button>
+            }
+            else
+            {
+                <button class="btn btn-outline-secondary"><i class="bi bi-chevron-right"></i></button>
+            }
+        }
+    </div>
+</div>
+
+
+@section Scripts{
+    @{
+        <Partial name="_ValidationScriptsPartial" />
+    }
+ }

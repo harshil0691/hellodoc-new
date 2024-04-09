@@ -1,0 +1,218 @@
+﻿@model hellodoc.DbEntity.DataModels.Encounter
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+<div class="login" id="main" style="margin-bottom:100px">
+
+    <div class="row bgcolor1">
+
+        <div class=" col-12 col-sm-12 col-md-10 col-lg-8 mx-auto d-flex justify-content-between mt-4 mb-2">
+            <h2> Encounter Form </h2>
+            <button onclick="loadActionView({ActionType: 'dashboard',activeid: @HttpContextAccessor.HttpContext.Session.GetInt32("activeid")})" class="d-flex btn btn-outline-info bg-transparent  text-end text-info fs-5 text-decoration-none">
+                <span class="material-icons pt-2">
+                    chevron_left
+                </span>
+                <span class="p-1">Back</span>
+            </button>
+
+        </div>
+        <div class="d-grid gap-2 col-12 col-sm-12 col-md-10 col-lg-8 mx-auto d-flex flex-column rounded-3 bgcolor px-4 mt-4">
+
+            <div class="d-flex justify-content-center mt-3">
+                <h3 class="text-info">Medical Report - Confidential</h3>
+            </div>
+
+            <form method="post" id="encounterform" asp-action="finalize_encounter">
+                <div class="row mt-3">
+                    <div class="form-floating mb-3  col-md-6 col-lg-6">
+                        <input type="text" class="form-control" id="floatingInput" asp-for="Firstname" placeholder="Firstname">
+                        <label for="floatingInput" class="mx-3">First Name</label>
+                        <span asp-validation-for="Firstname" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3 col-md-6 col-lg-6">
+                        <input type="text" class="form-control" id="floatingInput" asp-for="Lastname" placeholder="Lastname">
+                        <label for="floatingInput" class="mx-3">Last Name</label>
+                        <span asp-validation-for="Lastname" class="text-danger"> </span>
+                    </div>
+                    <div class="form-floating mb-3 col-12">
+                        <input type="text" class="form-control" id="floatingInput" asp-for="Location" placeholder="Location">
+                        <label for="floatingInput" class="mx-3">Locatin</label>
+                        <span asp-validation-for="Location" class="text-danger"> </span>
+                    </div>
+                    <div class="form-floating mb-3 col-md-6 col-lg-6">
+                        <input type="Date" class="form-control" id="floatingInput" asp-for="DateOfBirth"  placeholder="DateOfBirth">
+                        <label for="floatingInput" class="mx-3">Date Of Birth</label>
+                        <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3 col-md-6 col-lg-6">
+                        <input type="Date" class="form-control" id="floatingInput" asp-for="DateOfService" placeholder="Date Of Service">
+                        <label for="floatingInput" class="mx-3">Date Of Service</label>
+                        <span asp-validation-for="DateOfService" class="text-danger"></span>
+                    </div>
+                    
+                    <div class="form-floating d-flex col-md-6 col-lg-6">
+                        <input type="text" class="form-control" id="floatingInput" asp-for="Phone" placeholder="Phone Number">
+                        <label for="floatingInput" class="mx-3">Phone Number</label>
+                        <span asp-validation-for="Phone" class="text-danger"> </span>
+                        <button class="btn btn-outline-info mb-3 mx-2 px-3"><i class="bi bi-telephone"></i></button>
+                    </div>
+                    <div class="form-floating mb-3 col-md-6 col-lg-6">
+                        <input type="email" class="form-control" id="floatingInput" asp-for="Email" placeholder="Email">
+                        <label for="floatingInput" class="mx-3">Email address</label>
+                    </div>
+                    <div class="form-floating mb-3 col-md-6 col-lg-6">
+                        <input type="text" class="form-control" id="floatingInput" asp-for="HistoryOfInjury" placeholder="History of Present Illness or Injury">
+                        <label for="floatingInput" class="mx-3">History of Present Illness or Injury </label>
+                        <span asp-validation-for="HistoryOfInjury" class="text-danger"> </span>
+                    </div>
+                    <div class="form-floating mb-3 col-md-6 col-lg-6">
+                        <input type="text" class="form-control" id="floatingInput" asp-for="MedicalHistory" placeholder="Medical History">
+                        <label for="floatingInput" class="mx-3">Medical History </label>
+                        <span asp-validation-for="MedicalHistory" class="text-danger"> </span>
+                    </div>
+                    <div class="form-floating mb-3 col-md-6 col-lg-6">
+                        <input type="text" class="form-control" id="floatingInput" asp-for="Medications" placeholder="Medications">
+                        <label for="floatingInput" class="mx-3">Medications</label>
+                        <span asp-validation-for="Medications" class="text-danger"> </span>
+                    </div>
+                    <div class="form-floating mb-3 col-md-6 col-lg-6">
+                        <input type="text" class="form-control" id="floatingInput" asp-for="Allergies" placeholder="Allergies">
+                        <label for="floatingInput" class="mx-3">Allergies</label>
+                        <span asp-validation-for="Allergies" class="text-danger"> </span>
+                    </div>
+
+                    <div class="form-floating mb-3 col-md-4">
+                        <input type="text" class="form-control" id="floatingInput" asp-for="Temperature" placeholder="Temp">
+                        <label for="floatingInput" class="mx-3">Temp</label>
+                        <span asp-validation-for="Temperature" class="text-danger"> </span>
+                    </div>
+                    <div class="form-floating mb-3 col-md-4">
+                        <input type="text" class="form-control" id="floatingInput" asp-for="Hr" placeholder="HR">
+                        <label for="floatingInput" class="mx-3">HR</label>
+                        <span asp-validation-for="Hr" class="text-danger"> </span>
+                    </div>
+                    <div class="form-floating mb-3 col-md-4">
+                        <input type="text" class="form-control" id="floatingInput" asp-for="Rr" placeholder="RR">
+                        <label for="floatingInput" class="mx-3">RR</label>
+                        <span asp-validation-for="Rr" class="text-danger"> </span>
+                    </div>
+
+                    <div class="form-floating mb-3 col-md-2">
+                        <input type="text" class="form-control" id="floatingInput" asp-for="Bloodpressure1" placeholder="Blood Pressure">
+                        <label for="floatingInput" class="mx-3">Blood Pressure</label>
+                        <span asp-validation-for="Bloodpressure1" class="text-danger"> </span>
+                    </div>
+                    <div class="form-floating mb-3 col-md-2">
+                        <input type="text" class="form-control" id="floatingInput" asp-for="Bloodpressure2" placeholder="Blood Pressure">
+                        <label for="floatingInput" class="mx-3">Blood Pressure</label>
+                        <span asp-validation-for="Bloodpressure2" class="text-danger"> </span>
+                    </div>
+
+                    <div class="form-floating mb-3 col-md-4">
+                        <input type="text" class="form-control" id="floatingInput" asp-for="O2" placeholder="O2">
+                        <label for="floatingInput" class="mx-3">O2</label>
+                        <span asp-validation-for="O2" class="text-danger"> </span>
+                    </div>
+                    <div class="form-floating mb-3 col-md-4">
+                        <input type="text" class="form-control" id="floatingInput" asp-for="Pain" placeholder="Pain">
+                        <label for="floatingInput" class="mx-3">Pain</label>
+                        <span asp-validation-for="Pain" class="text-danger"> </span>
+                    </div>
+
+                    <div class="form-floating mb-3 col-md-6 col-lg-6">
+                        <input type="text" class="form-control" id="floatingInput" asp-for="Heent" placeholder="HEENT">
+                        <label for="floatingInput" class="mx-3">HEENT</label>
+                        <span asp-validation-for="Heent" class="text-danger"> </span>
+                    </div>
+                    <div class="form-floating mb-3 col-md-6 col-lg-6">
+                        <input type="text" class="form-control" id="floatingInput" asp-for="Cv" placeholder="CV">
+                        <label for="floatingInput" class="mx-3">CV</label>
+                        <span asp-validation-for="Cv" class="text-danger"> </span>
+                    </div>
+                    <div class="form-floating mb-3 col-md-6 col-lg-6">
+                        <input type="text" class="form-control" id="floatingInput" asp-for="Chest" placeholder="Chest">
+                        <label for="floatingInput" class="mx-3">Chest</label>
+                        <span asp-validation-for="Chest" class="text-danger"> </span>
+                    </div>
+                    <div class="form-floating mb-3 col-md-6 col-lg-6">
+                        <input type="text" class="form-control" id="floatingInput" asp-for="Abd" placeholder="ABD">
+                        <label for="floatingInput" class="mx-3">ABD</label>
+                        <span asp-validation-for="Abd" class="text-danger"> </span>
+                    </div>
+                    <div class="form-floating mb-3 col-md-6 col-lg-6">
+                        <input type="text" class="form-control" id="floatingInput" asp-for="Extr" placeholder="Extr">
+                        <label for="floatingInput" class="mx-3">Extr</label>
+                        <span asp-validation-for="Extr" class="text-danger"> </span>
+                    </div>
+                    <div class="form-floating mb-3 col-md-6 col-lg-6">
+                        <input type="text" class="form-control" id="floatingInput" asp-for="Skin" placeholder="Skin">
+                        <label for="floatingInput" class="mx-3">Skin</label>
+                        <span asp-validation-for="Skin" class="text-danger"> </span>
+                    </div>
+                    <div class="form-floating mb-3 col-md-6 col-lg-6">
+                        <input type="text" class="form-control" id="floatingInput" asp-for="Neuro" placeholder="Neuro">
+                        <label for="floatingInput" class="mx-3">Neuro</label>
+                        <span asp-validation-for="Neuro" class="text-danger"> </span>
+                    </div>
+                    <div class="form-floating mb-3 col-md-6 col-lg-6">
+                        <input type="text" class="form-control" id="floatingInput" asp-for="Other" placeholder="Other">
+                        <label for="floatingInput" class="mx-3">Other</label>
+                        <span asp-validation-for="Other" class="text-danger"> </span>
+                    </div>
+                    <div class="form-floating mb-3 col-md-6 col-lg-6">
+                        <input type="text" class="form-control" id="floatingInput" asp-for="Dignosis" placeholder="Diagnosis">
+                        <label for="floatingInput" class="mx-3">Diagnosis</label>
+                        <span asp-validation-for="Dignosis" class="text-danger"> </span>
+                    </div>
+                    <div class="form-floating mb-3 col-md-6 col-lg-6">
+                        <input type="text" class="form-control" id="floatingInput" asp-for="Treatmentplan" placeholder="TreatmentPlan">
+                        <label for="floatingInput" class="mx-3">TreatmentPlan</label>
+                        <span asp-validation-for="Treatmentplan" class="text-danger"> </span>
+                    </div>
+                    <div class="form-floating mb-3 col-md-6 col-lg-6">
+                        <input type="text" class="form-control" id="floatingInput" asp-for="MedicationsDispensed" placeholder="Medication dispensed">
+                        <label for="floatingInput" class="mx-3">Medication dispensed</label>
+                        <span asp-validation-for="MedicationsDispensed" class="text-danger"> </span>
+                    </div>
+                    <div class="form-floating mb-3 col-md-6 col-lg-6">
+                        <input type="text" class="form-control" id="floatingInput" asp-for="Procedures" placeholder="Procedures">
+                        <label for="floatingInput" class="mx-3">Procedures</label>
+                        <span asp-validation-for="Procedures" class="text-danger"> </span>
+                    </div>
+
+                    <div class="form-floating mb-3 col-12">
+                        <input type="text" class="form-control" id="floatingInput" asp-for="Folloup" placeholder="FollowUp">
+                        <label for="floatingInput" class="mx-3">FollowUp</label>
+                        <span asp-validation-for="Folloup" class="text-danger"> </span>
+                    </div>
+
+                </div>
+
+                <div class="d-flex justify-content-end mt-5 mb-2">
+                    <button type="button" class="btn btn-info text-white m-2" onclick="FormSubmitAction('encounter_form','#encounterform')">Save Changes</button>
+                    <button type="submit" class="btn text-white m-2" style="background-color:mediumpurple">Finalize </button>
+                    <button type="button" class="btn btn-outline-info m-2" onclick="loadActionView({ActionType: 'dashboard',activeid: @HttpContextAccessor.HttpContext.Session.GetInt32("activeid")})">Cancel</button>
+                   
+                </div>
+            </form>
+        </div>
+
+
+    </div>
+
+</div>
+<footer style=" position:fixed;bottom:0; width:100%;">
+    <div style="padding-right: 40px;">
+        <a href="" style="color: white;">Terms Of Conditions</a> |
+        <a href="" style="color: white;">Privacy Policy</a>
+    </div>
+</footer>
+
+<script>
+
+</script>
+
+@section Scripts{
+    @{
+        <Partial name="_ValidationScriptsPartial" />
+    }
+    }

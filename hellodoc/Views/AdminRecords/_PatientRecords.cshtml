@@ -1,0 +1,107 @@
+﻿@model hellodoc.DbEntity.ViewModels.AdminRecordsListModal
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+<div class="login" id="main" style="margin-bottom:100px">
+
+    <div class="row bgcolor1">
+
+        <div class=" col-11 mx-auto mt-4 mb-2">
+
+            <div class="d-flex justify-content-between">
+                <h4> Patient Records </h4>
+                <div><button class="btn btn-outline-info " onclick="adminDashload({action : 'PatientHistory',actionType : 'GetView', id :'recordsactive',controller : 'AdminRecords'})"><i class="bi bi-chevron-left"></i>Back</button></div>
+            </div>
+
+        </div>
+        <div class="d-grid gap-2 col-11 mx-auto d-flex flex-column rounded-3 bgcolor px-4 mt-4" id="searchrecords">
+           
+            <div style="margin-bottom:50px;" class="table-responsive d-none d-sm-none d-md-block d-lg-block d-xl-block mt-3" id="searchrecordstable">
+                <table style="width:100%;z-index:5">
+                    <thead>
+                        <tr>
+                            <th>Client/Member</th>
+                            <th>Created Date</th>
+                            <th>Confirmation</th>
+                            <th>Provider Name</th>
+                            <th>Concluded Date</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody style="font-size:larger;font-weight:400;">
+                        @{
+                            foreach (var a in Model.patientRecords)
+                            {
+
+                                <tr class="m-2">
+                                    <td>@a.PatientName</td>
+                                    <td>@a.CreatedDate</td>
+                                    <td>@a.ConfirmationNumber</td>
+                                    <td>@a.ProviderName</td>
+                                    <td>@a.Concludeddate</td>
+                                    <td>@a.FinalReport</td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <button class="btn btn-outline-info" dropdown-toggle p-1" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                Actions
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><button class="dropdown-item" >View Case</button></li>
+                                                <li><button class="dropdown-item">Chat</button></li>
+                                                <li><button type="button" class="dropdown-item " >Documents</button></li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        }
+
+                    </tbody>
+                </table>
+
+            </div>
+
+            <div class="d-flex justify-content-between m-2">
+                <div>
+                    @Model.entries
+                </div>
+                <div>
+                    @{
+                        if (Model.pageNumber > 1)
+                        {
+                            var previousPage = Model.pageNumber - 1;
+                            <button class="btn btn-outline-secondary" onclick="searchrecords('PatientRecords','@previousPage')"><i class="bi bi-chevron-left"></i></button>
+                        }
+                        else
+                        {
+                            <button class="btn btn-outline-secondary"><i class="bi bi-chevron-left"></i></button>
+                        }
+                    }
+
+                    <button class="btn btn-outline-info">@Model.pageNumber</button>
+                    @{
+                        if (Model.morePages == true)
+                        {
+                            var nextpage = Model.pageNumber + 1;
+                            <button class="btn btn-outline-secondary" onclick="searchrecords('PatientRecords','@nextpage')"><i class="bi bi-chevron-right"></i></button>
+                        }
+                        else
+                        {
+                            <button class="btn btn-outline-secondary"><i class="bi bi-chevron-right"></i></button>
+                        }
+                    }
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </div>
+</div>
+   
+@section Scripts{
+    @{
+        <Partial name="_ValidationScriptsPartial" />
+    }
+ }

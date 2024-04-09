@@ -1,0 +1,84 @@
+﻿@model hellodoc.DbEntity.ViewModels.Shifts.ShiftDetailsmodal
+
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="font-weight:600">
+            <form id="editshiftform" method="post">
+                <div class="modal-header bg-info text-white">
+                    <h5 class="modal-title" id="exampleModalLabel"> View Shift</h5>
+                    <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    
+                    <select class="form-select mt-3" aria-label="Default select example" asp-for="@Model.Regionid" disabled>
+                        <option value="@Model.Regionid">@Model.regionname</option>
+                    </select>
+
+                    <select class="form-select mt-3" aria-label="Default select example" asp-for="@Model.Physicianid" disabled>
+                        <option value="@Model.Physicianid">Dr. @Model.PhysicianName</option>
+                    </select>
+
+                    <div class="form-floating mt-3 vs">
+                        <input type="Date" class="form-control vs" asp-for="Shiftdate" placeholder="Shiftdate" disabled>
+                        <label >Shiftdate</label>
+                        <span asp-validation-for="Shiftdate " class="text-danger"></span>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="form-floating mt-3 col-sm-6">
+                            <input type="time" class="form-control vs" asp-for="Starttime" placeholder="Starttime" disabled>
+                            <label class="mx-2">Starttime</label>
+                            <span asp-validation-for="Starttime " class="text-danger"></span>
+                        </div>
+                        <div class="form-floating mt-3 col-sm-6">
+                            <input type="time" class="form-control vs" asp-for="Endtime" placeholder="Endtime" disabled>
+                            <label class="mx-2">Endtime</label>
+                            <span asp-validation-for="Endtime " class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 mb-4 d-flex justify-content-end">
+                        <button type="button" class="mx-1 btn btn-info text-white" onclick="shiftactions('return_shift')"> Return</button>
+                        <button type="button" class="btn btn-info text-white mx-1" onclick="pedit('vs','save','cancel','edit')" id="edit">Edit</button>
+                        <button type="button" class="btn btn-info text-white mx-1" id="save" style="display:none;" onclick="shiftactions('edit_shift','#editshiftform')">Save</button>
+                        <button type="reset" class="btn btn-info text-white mx-1" id="cancel" style="display:none;" onclick="pcancel('vs','save','cancel','edit')">Cancel</button>
+                        <button type="button" class="mx-1 btn btn-danger text-white" onclick="shiftactions('delete_shift')">Delete</button>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    
+    function pedit(classname, save, cancel, edit) {
+
+        document.getElementById(save).style.display = 'block';
+        document.getElementById(cancel).style.display = 'block';
+        document.getElementById(edit).style.display = 'none';
+        var inputs = document.getElementsByClassName(classname);
+
+        for (var i = 0; i < inputs.length; i++) {
+            inputs[i].disabled = false;
+        }
+
+    }
+
+    function pcancel(classname, save, cancel, edit) {
+        document.getElementById(save).style.display = 'none';
+        document.getElementById(cancel).style.display = 'none';
+        document.getElementById(edit).style.display = 'block';
+
+        var inputs = document.getElementsByClassName(classname);
+
+        for (var i = 0; i < inputs.length; i++) {
+            inputs[i].disabled = true;
+        }
+    }
+
+
+</script>

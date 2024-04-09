@@ -1,0 +1,147 @@
+﻿@model hellodoc.DbEntity.ViewModels.DashboardLists.DashboardListsModal
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+<div class="login" id="main" style="margin-bottom:100px">
+
+    <div class="row bgcolor1">
+
+        <div class=" col-12 col-sm-12 col-md-10 col-lg-8 mx-auto d-flex justify-content-between mt-4 mb-2">
+            <h4> Requested Shifts </h4>
+            <button class="btn btn-outline-info" onclick="adminDashload({actionType : 'scheduling',tab: '#provider',id : 'provideractive',controller : 'AdminDash'})"><i class="bi bi-chevron-left"></i>Back</button>
+        </div>
+        <div class="d-grid gap-2 col-12 col-sm-12 col-md-10 col-lg-8 mx-auto d-flex flex-column rounded-3 bgcolor px-4 mt-3 shadow-lg">
+
+            <div class="d-flex justify-content-between mt-4">
+                <div class="col-3">
+                    <select class="form-select" aria-label="Default select example" asp-for="regionselect" onchange="MDsXShiftReview('shiftreview','1')" id="region">
+                        <option selected value="0">All Region</option>
+                        @{
+                        foreach (var a in Model.regions)
+                        {
+                        <option value="@a.Regionid">@a.Name</option>
+                        }
+                        }
+                    </select>
+                </div>
+                <div class="d-flex">
+                    <button class="btn btn-success text-white mx-1" onclick="adminDashload({actionType : 'scheduling',tab: '#provider',id : 'provideractive',controller : 'AdminDash'})">View Current Month Shift</button>
+                    <button class="btn btn-success text-white mx-1" onclick="SelectedShiftOperation('approved','@Model.pageNumber')">Approved Selected</button>
+                    <button class="btn btn-danger text-white mx-1" onclick="SelectedShiftOperation('delete','@Model.pageNumber')"> Delete Selected</button>
+                </div>
+            </div>
+
+            <div style="margin-bottom:50px;" class="table-responsive d-none d-sm-none d-md-block d-lg-block d-xl-block mt-3">
+                <table style="width:100%;z-index:5" id="shiftforreviewHeader">
+                    <thead>
+                        <tr>
+                            <th><input type="checkbox" class="custom-check providerscheck bg-info" id="check-header" /></th>
+                            <th>Staff</th>
+                            <th>Day</th>
+                            <th>Time</th>
+                            <th>Region</th>
+                        </tr>
+                    </thead>
+                    <tbody style="font-size:larger;font-weight:400;">
+                        @{
+                            foreach (var a in Model.shiftDetailslist)
+                            {
+
+                                <tr class=" m-2">
+                                    <td class="text-black"><input type="checkbox" class="custom-check shiftcheck bg-info" value="@a.Shiftdetailid" /> </td>
+                                    <td >@a.PhysicianName</td>
+                                    <td >@a.datename</td>
+                                    <td >@a.Starttime - @a.Endtime</td>
+                                    <td >@a.region</td>
+                                </tr>
+                            }
+                        }
+
+                    </tbody>
+                </table>
+
+            </div>
+
+            <div class="d-flex justify-content-between m-2">
+                <div>
+                    @Model.entries
+                </div>
+                <div>
+                    @{
+                        if (Model.pageNumber > 1)
+                        {
+                            var previousPage = Model.pageNumber - 1;
+                            <button class="btn btn-outline-secondary" onclick="MDsXShiftReview('shiftreview','@previousPage')"><i class="bi bi-chevron-left"></i></button>
+                        }
+                        else
+                        {
+                            <button class="btn btn-outline-secondary"><i class="bi bi-chevron-left"></i></button>
+                        }
+                    }
+                    
+                    <button class="btn btn-outline-info">@Model.pageNumber</button>
+                    @{
+                        if(Model.morePages == true)
+                        {
+                            var nextpage = Model.pageNumber + 1;
+                            <button class="btn btn-outline-secondary" onclick="MDsXShiftReview('shiftreview','@nextpage')"><i class="bi bi-chevron-right"></i></button>
+                        }
+                        else
+                        {
+                            <button class="btn btn-outline-secondary"><i class="bi bi-chevron-right"></i></button>
+                        }
+                    }
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+<footer style=" position:fixed;bottom:0; width:100%;">
+    <div style="padding-right: 40px;">
+        <a href="" style="color: white;">Terms Of Conditions</a> |
+        <a href="" style="color: white;">Privacy Policy</a>
+    </div>
+</footer>
+
+<script>
+    
+    document.getElementById("check-header").addEventListener("click", function () {
+        var checkboxes = document.querySelectorAll(".custom-check");
+        checkboxes.forEach(function (checkbox) {
+            checkbox.checked = document.getElementById("check-header").checked;
+        });
+    });
+
+    function SelectedShiftOperation(actionType,pageNumber) {
+
+        var shiftdetailsid = [];
+        var checkboxes = document.querySelectorAll(".shiftcheck");
+
+        checkboxes.forEach(function (checkbox) {
+            if(checkbox.checked== true){
+                shiftdetailsid.push(checkbox.value);
+            }
+        });
+
+        $.ajax({
+            url: '/AdminProviders/SelectedShiftOperation',
+            type: 'POST',
+            data: { shiftdetailsid: shiftdetailsid, actionType: actionType },
+            success: function (data) {
+                MDsXShiftReview('shiftreview', pageNumber);
+            },
+            error: function () {
+                console.error('Error loading partial view.');
+            }
+        });
+    }
+
+</script>
+
+@section Scripts{
+    @{
+        <Partial name="_ValidationScriptsPartial" />
+    }
+    }

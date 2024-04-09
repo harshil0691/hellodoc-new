@@ -1,0 +1,74 @@
+﻿@model hellodoc.DbEntity.ViewModels.AdminRecordsListModal
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+<div style="margin-bottom:50px;" class="table-responsive d-none d-sm-none d-md-block d-lg-block d-xl-block mt-3" id="searchrecordstable">
+    <table style="width:100%;z-index:5">
+        <thead>
+            <tr>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody style="font-size:larger;font-weight:400;">
+            @{
+                foreach (var a in Model.patientHistories)
+                {
+
+                    <tr class="m-2">
+                        <td>@a.Firstname</td>
+                        <td>@a.Lastname</td>
+                        <td>@a.Email</td>
+                        <td>@a.PhoneNumber</td>
+                        <td>@a.Address</td>
+                        <td><button class="btn btn btn-outline-info" onclick="adminDashload({action : 'PatientRecords',UserId : '@a.UserId',actionType : 'GetTable', id :'recordsactive',controller : 'AdminRecords'})">Explore</button></td>
+                    </tr>
+                }
+            }
+
+        </tbody>
+    </table>
+
+</div>
+
+<div class="d-flex justify-content-between m-2">
+    <div>
+        @Model.entries
+    </div>
+    <div>
+        @{
+            if (Model.pageNumber > 1)
+            {
+                var previousPage = Model.pageNumber - 1;
+                <button class="btn btn-outline-secondary" onclick="searchrecords('PatientHistory','@previousPage')"><i class="bi bi-chevron-left"></i></button>
+            }
+            else
+            {
+                <button class="btn btn-outline-secondary"><i class="bi bi-chevron-left"></i></button>
+            }
+        }
+
+        <button class="btn btn-outline-info">@Model.pageNumber</button>
+        @{
+            if (Model.morePages == true)
+            {
+                var nextpage = Model.pageNumber + 1;
+                <button class="btn btn-outline-secondary" onclick="searchrecords('PatientHistory','@nextpage')"><i class="bi bi-chevron-right"></i></button>
+            }
+            else
+            {
+                <button class="btn btn-outline-secondary"><i class="bi bi-chevron-right"></i></button>
+            }
+        }
+    </div>
+</div>
+
+
+@section Scripts{
+    @{
+        <Partial name="_ValidationScriptsPartial" />
+    }
+ }

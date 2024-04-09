@@ -1,0 +1,233 @@
+﻿@model hellodoc.DbEntity.ViewModels.AdminParent
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+
+@{
+    var datalist = Newtonsoft.Json.JsonConvert.SerializeObject(Model.adminDashModels);
+}
+
+<div class="table-responsive d-none d-sm-none d-md-block d-lg-block d-xl-block">
+    <table class="w-100">
+        <thead>
+            <tr>
+                <th class="p-3">Name</th>
+                <th>Date Of Birth</th>
+                <th>Requestor</th>
+                <th>Physician Name</th>
+                <th>Date Of Service</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>Notes</th>
+                <th>Chat With</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody style="font-size:larger;font-weight:400;color:white;" id="newtable">
+            @{
+                foreach (var a in Model.adminDashModels)
+                {
+                    var reqcolor = "";
+                    var text = "";
+
+                    if (a.Requesttypeid == 1)
+                    {
+                        reqcolor = "#d23636";
+                        text = "Business";
+                    }
+                    else if (a.Requesttypeid == 2)
+                    {
+                        reqcolor = "#418441";
+                        text = "Patient";
+                    }
+                    else if (a.Requesttypeid == 3)
+                    {
+                        reqcolor = "#ecb728";
+                        text = "Family/Friend";
+                    }
+                    else if (a.Requesttypeid == 4)
+                    {
+                        reqcolor = "#14428ffa";
+                        text = "Concierge";
+                    }
+
+                    <tr class=" m-2" style="background-color:@reqcolor">
+                        <td class="p-3">@a.PatientName </td>
+                        <td class="p-3">@a.Createddate</td>
+                        <td class="p-3">@a.RequestorName</td>
+                        <td class="p-3">@a.Physicianname</td>
+                        <td class="p-3">@a.Createddate</td>
+                        <td class="p-3">
+                            @{
+                                if (a.Phonenumber_P != null)
+                                {
+                                    <button class="btn btn-outline-light">@a.Phonenumber_P</button><br />
+                                    <p>(Patients)</p>
+                                }
+                                if (a.Phonenumber_R != null && a.Requesttypeid != 2)
+                                {
+                                    <button class="btn btn-outline-light">@a.Phonenumber_R</button>
+                                    <br />
+                                    <p>(@text)</p>
+                                }
+                            }
+                        </td>
+                        <td class="p-3">@a.Address</td>
+                        <td class="p-3">@a.Notes</td>
+                        <td class="p-3"><button class="btn btn-outline-light">Provider</button></td>
+                        <td class="p-3">
+                            <div class="dropdown">
+                                <button class="btn btn-outline-light"  type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Actions
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" onclick="loadActionView({ActionType:'ViewCase',requestid :@a.Requestid,bcolor:'@reqcolor',btext:'@text'})"><i class="bi bi-journal-text me-2"></i>View Case</a></li>
+                                    <li><button class="dropdown-item" onclick="loadActionView({ActionType:'ViewUploads',requestid :'@a.Requestid'})"><i class="bi bi-file-earmark-arrow-up me-2"></i>View Uploads</button></li>
+                                    <li><button class="dropdown-item" onclick="loadActionView({ActionType:'ViewNotes',requestid :@a.Requestid})"><i class="bi bi-journals me-2"></i>View Notes</button></li>
+                                    <li><button type="button" class="dropdown-item " onclick="ShowModal({ActionType:'AssignCase',requestid :@a.Requestid,patientName :'Transfer'})"><i class="bi bi-card-text me-2"></i>Transfer</button></li>
+                                    <li><button type="button" class="dropdown-item " onclick="OpenSwal(@a.Requestid)"><i class="bi bi-x-circle me-2"></i>Clear Case</button></li>
+                                    <li><button type="button" class="dropdown-item " onclick="ShowModal({ActionType:'SendAgreement',patientName :'@a.PatientName',requestid :@a.Requestid, email : '@a.Email',phonenumber : '@a.Phonenumber_P',bcolor : '@reqcolor',btext:'@text'})"><i class="bi bi-card-heading me-2"></i>Send Aggrement</button></li>
+                                </ul>
+
+                            </div>
+                        </td>
+
+                    </tr>
+                }
+            }
+
+        </tbody>
+    </table>
+    
+</div>
+
+<div class="d-block d-sm-block d-md-none d-lg-none d-xl-none">
+    <div class="accordion" id="accordionExample">
+
+        @{
+            foreach (var a in Model.adminDashModels)
+            {
+                var reqcolor = "";
+                var text = "";
+
+                if (a.Requesttypeid == 1)
+                {
+                    reqcolor = "bg-danger";
+                    text = "Business";
+                }
+                else if (a.Requesttypeid == 2)
+                {
+                    reqcolor = "bg-success";
+                    text = "Patient";
+                }
+                else if (a.Requesttypeid == 3)
+                {
+                    reqcolor = "bg-warning";
+                    text = "Family/Friend";
+                }
+                else if (a.Requesttypeid == 4)
+                {
+                    reqcolor = "bg-primary";
+                    text = "Concierge";
+                }
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed  d-grid" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_@a.Requestid" aria-expanded="true" aria-controls="collapse_@a.Requestid">
+                            <div class="d-flex justify-content-between w-100 m-2">
+                                <div>@a.PatientName</div>
+                                <div class="d-flex">@text<div class="colored-dot @reqcolor m-1 mx-2"></div> </div>
+                            </div>
+                            <div class="d-flex justify-content-between w-100 m-2">
+                                <div>@a.Address</div>
+                                <a href="#" class="btn btn-outline-info rounded-5">Map Location</a>
+                            </div>
+                            <div><i class="bi bi-clock text-info px-2"></i> Wait time :<b> @a.Createddate </b></div>
+
+                        </button>
+
+                    </h2>
+
+                    <div id="collapse_@a.Requestid" class="accordion-collapse collapse" data-bs-parent="#accordionExample" style="background-color:#d7ffffde;">
+                        <div class="d-flex justify-content-end" style="top:0;"><button class="btn bg-light rounded-5 px-3" style="color:mediumpurple;border:2px solid mediumpurple;position:relative;top:-18px;z-index:10;">View Case</button></div>
+                        <div class="accordion-body">
+
+                            <div class="mb-2"><i class="bi rounded-pill btn btn-outline-info text-black-50 bi-calendar3  px-2"></i> Date Of Birth :<b> @a.Createddate </b></div>
+                            <div class="mb-2"><i class="bi bi-envelope-at rounded-pill btn btn-outline-info text-black-50 px-2"></i> Email :<b> @a.Email </b></div>
+                            <div class="mb-2"><i class="bi bi-telephone rounded-pill btn btn-outline-info text-black-50 px-2"></i> @text :<b> @a.Phonenumber_P </b></div>
+                            <div class="mb-2"><i class="bi bi-card-text rounded-pill btn btn-outline-info text-black-50 px-2"></i> Transfer Notes : @a.Notes</div>
+                            <div class="mb-2"><i class="bi bi-calendar-event rounded-pill btn btn-outline-info text-black-50 px-2"></i> Date Of Service : - </div>
+                            <div class="mb-2"><i class="bi bi-person-add rounded-pill btn btn-outline-info text-black-50 px-2"></i> Physician : </div>
+                            <div class="mb-2"><i class="bi bi-person-circle rounded-pill btn btn-outline-info text-black-50 px-2"></i> Requestor :<b> @a.RequestorName </b></div>
+     
+                            <div class="row">
+
+                                <button class="btn btn-warning rounded-5 col-5 m-2 mx-3 " onclick="ShowModal({ActionType:'SendAgreement',patientName :'@a.PatientName',requestid :@a.Requestid, email : '@a.Email',phonenumber : '@a.Phonenumber_P',bcolor : '@reqcolor',btext:'@text'})"><i class="bi bi-card-heading me-2">Send Aggrement</button>
+                                <a class="btn btn-success rounded-5 col-5 m-2 mx-3" onclick="loadActionView({ActionType:'ViewNotes',requestid :@a.Requestid})"> View Notes</a>
+                                <button class="btn btn-info text-white rounded-5 col-5 m-2 mx-3" onclick="ShowModal({ActionType:'AssignCase',requestid :@a.Requestid,patientName :'Transfer'})">Transfer</button>
+                                <button class="btn btn-success rounded-5 col-5 m-2 mx-3" onclick="loadActionView({ActionType:'ViewUploads',requestid :'@a.Requestid'})">View Uploads</button>
+                                <button class="btn btn-warning rounded-5 col-5 m-2 mx-3" onclick="OpenSwal(@a.Requestid)">Clear case</button>
+                                <button class="btn btn-success rounded-5 col-5 m-2 mx-3">Email</button>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+            }
+        }
+    </div>
+
+
+
+</div>
+
+<script>
+    var tt = '@HttpContextAccessor.HttpContext.Session.GetInt32("totalrequest")'
+    $('#TotalPage').text(tt);
+
+    var data = @Html.Raw(datalist);
+
+    function exportToExcel() {
+        // Convert dictionary array to array of arrays
+        var dataArray = [];
+        var headers = Object.keys(data[0]);
+        dataArray.push(headers);
+
+        var search = document.getElementById("customSearch").value;
+        console.log(search);
+        var region = document.getElementById("region").value;
+        console.log(region);
+
+        var data1 = [];
+
+        for (var item of data) {
+            if (item.regionid == region) {
+                data1.push(item);
+            }
+        }
+
+
+        data1.forEach(function (dictionary) {
+            var row = [];
+
+            Object.keys(dictionary).forEach(function (key) {
+                row.push([dictionary[key]]);
+            });
+            dataArray.push(row);
+        });
+
+        console.log(dataArray);
+
+        // Prepare Excel data
+        var ws = XLSX.utils.aoa_to_sheet(dataArray);
+        var wb = XLSX.utils.book_new();
+
+        XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
+        var wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
+
+        // Save Excel file
+        saveAs(new Blob([wbout], { type: 'application/octet-stream' }), 'datalist.xlsx');
+    }
+
+</script>

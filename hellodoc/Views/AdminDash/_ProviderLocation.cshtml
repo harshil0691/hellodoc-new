@@ -1,0 +1,70 @@
+﻿@model hellodoc.DbEntity.ViewModels.DashboardLists.DashboardListsModal
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+    <div class="row w-100 bgcolor1">
+
+        <div class=" col-12 col-sm-12 col-md-10 col-lg-8 mx-auto d-flex justify-content-between mt-4 mb-2">
+            <h2> Provider Location </h2>
+            <button onclick="loadActionView({ActionType: 'dashboard',activeid: @HttpContextAccessor.HttpContext.Session.GetInt32("activeid")})" class="d-flex btn btn-outline-info bg-transparent  text-end text-info fs-5 text-decoration-none">
+                <span class="material-icons pt-2">
+                    chevron_left
+                </span>
+                <span class="p-1">Back</span>
+            </button>
+            
+        </div>
+
+        <div class="d-grid gap-2 col-12 col-sm-12 col-md-10 col-lg-8 mx-auto d-flex flex-column rounded-3 bgcolor mt-4">
+
+        <div id="map" class="w-100 m-2" style="height: 500px;"></div>
+        
+        </div>
+           
+
+    </div>
+
+<footer style=" position:fixed;bottom:0; width:100%;">
+    <div style="padding-right: 40px;">
+        <a href="" style="color: white;">Terms Of Conditions</a> |
+        <a href="" style="color: white;">Privacy Policy</a>
+    </div>
+</footer>
+
+
+<script>
+
+    $(document).ready(function (){
+
+        var map = L.map('map').setView([23.046099, 72.536492], 13);
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        $.ajax({
+            url: '/AdminDash/providerLocations',
+            type: 'GET',
+            success: function (data) {
+                console.log(data);
+                for(var i = 0;i<data.length;i++){
+                    L.marker([data[i].latitude, data[i].longitude]).addTo(map)
+                        .bindPopup(data[i].providerName)
+                        .openPopup();
+                }
+                
+            },
+            error: function () {
+                console.error('Error loading partial view.');
+            }
+        });
+
+    });
+
+</script>
+
+
+
+@section Scripts{
+    @{
+        <Partial name="_ValidationScriptsPartial" />
+    }
+    }

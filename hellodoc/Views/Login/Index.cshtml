@@ -1,0 +1,66 @@
+﻿ @model hellodoc.DbEntity.DataModels.AspNetUser
+
+    <Partial name="_Notification" />
+    <div class="login">
+    <button class="m-2 bg-light dark-btn" onclick="darkmode()" id="toggleColorButton"
+            style=" color: #0dcaf0;border: 1px solid #0dcaf0;border-radius: 5px;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28px" height="28px" fill="currentColor"
+             class="bi bi-moon night-mode-icon mt-2 mb-2 mx-2" viewBox="0 0 16 16">
+            <path d="M6 .278a.77.77 0 0 1 .08.858 7.2 7.2 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277q.792-.001 1.533-.16a.79.79 0 0 1 .81.316.73.73 0 0 1-.031.893A8.35 8.35 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.75.75 0 0 1 6 .278M4.858 1.311A7.27 7.27 0 0 0 1.025 7.71c0 4.02 3.279 7.276 7.319 7.276a7.32 7.32 0 0 0 5.205-2.162q-.506.063-1.029.063c-4.61 0-8.343-3.714-8.343-8.29 0-1.167.242-2.278.681-3.286" />
+        </svg>
+    </button>
+
+        <div class="row">
+            <div class="d-grid gap-2 col-md-0 col-lg-7 col-12 col-sm-12 lb-img">
+                <img src="/images/11116016_415.jpg" alt="" style="height:100vh; width: 100%;" class="lb-img">
+            </div>
+            <div class="d-grid gap-2 col-12 col-sm-12 col-md-12 col-lg-5 mx-auto p-4 bimg d-flex justify-content-center align-items-center"
+                 style="height: 100vh; flex-direction: column;">
+
+
+                <img src="/images/Fig56._Patient_site_1-removebg-preview.png" alt="" class="mx-auto mb-2">
+
+
+                <div class=" d-grid gap-2 col-12  mx-auto pt-5">
+                    <a asp-action="send_request" asp-controller="Patient" class="d-flex back-btn text-info p-1"
+                       style=" font-size: larger;text-decoration:none;"><span class="material-icons pt-1 pe-2">chevron_left</span>Back
+                    </a>
+
+                    <h3 class="mx-auto pt-2">Login to your account</h3>
+                    <form method="post">
+                    <div class="form-floating mt-2">
+                        <input asp-for="Email" class="form-control" id="floatingInput" placeholder="Username">
+                        <label >Username</label>
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                        
+                    </div>
+                    <div class="form-floating mt-3">
+                        <input asp-for="Passwordhash" type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                        <label >Password</label>
+                        <span asp-validation-for="Passwordhash" class="text-danger"></span>
+                        
+                    </div>
+                        <div class=" d-grid gap-2">
+                    <button class="btn btn-info mt-3 pb-2 pt-2" style="color: white;" type="submit"><span style="font-size:larger"> Login</span></button>
+                    
+                    <a asp-action="forgot_password" style="color: #0dcaf0;" class="mx-auto mt-3"> <span style="font-size:larger"> Forgot Password</span></a></div>
+
+                    </form>
+                </div>
+
+                <div class="d-flex col-12 p-5 justify-content-center " style="position:fixed;bottom:0">
+                    <a href="" style="color: rgb(108, 106, 101);">Terms Of Conditions</a> |
+                    <a href="" style="color: rgb(108, 106, 101);">Privacy Policy</a>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+@section Scripts{
+    @{
+        <Partial name="_ValidationScriptsPartial" />
+    }
+}

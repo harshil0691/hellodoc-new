@@ -1,0 +1,56 @@
+﻿@model hellodoc.DbEntity.ViewModels.DashboardLists.DashboardListsModal
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+<div class="login" id="main" style="margin-bottom:100px">
+
+    <div class="row bgcolor1">
+
+        <div class=" col-11 mx-auto mt-4 mb-2">
+
+            <div class="d-flex justify-content-between">
+                <h3> Vendors </h3>
+            </div>
+
+        </div>
+        <div class="d-grid gap-2 col-11 mx-auto d-flex flex-column rounded-3 bgcolor px-4 mt-4" id="searchrecords">
+
+            <div class="d-flex justify-content-between mt-4">
+                <div class="d-flex">
+                    <div class="form-floating m-1">
+                        <input type="text" class="form-control" placeholder="Search Vendors" id="vendorsearch">
+                        <label class="mx-2">Search Vendors</label>
+                    </div>
+
+                    <div class="m-1">
+                        <select class="form-select h-100" aria-label="Search By Role" id="proffesiontype">
+                            <option selected value="0">All Professions</option>
+                            @{
+                                foreach(var profession in Model.healthProfessionalTypes)
+                                {
+                                    <option value="@profession.Healthprofessionalid">@profession.Professionname</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <button class="btn btn-outline-info mx-1" onclick="partners({ actionType: 'create_business'})"> <i class="bi bi-plus"></i> Add Business</button>
+                </div>
+            </div>
+
+            <div id="partnerTable"></div>
+
+        </div>
+
+
+    </div>
+</div>
+
+
+<script src="/js/AdminPartners.js" asp-append-version="true"></script>
+
+@section Scripts{
+    @{
+        <Partial name="_ValidationScriptsPartial" />
+    }
+ }

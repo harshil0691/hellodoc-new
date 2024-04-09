@@ -1,0 +1,327 @@
+﻿@model hellodoc.DbEntity.ViewModels.DashboardLists.DashboardListsModal
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+<div class="login" id="main" style="margin-bottom:100px">
+
+    <div class="row bgcolor1">
+
+        <div class=" col-12 col-sm-12 col-md-10 col-lg-8 mx-auto d-flex justify-content-between mt-4 mb-2">
+            <h2> Scheduling  </h2>
+            <button class="btn btn-outline-info"><i class="bi bi-chevron-left"></i>Back</button>
+        </div>
+        <div class="d-grid gap-2 col-12 col-sm-12 col-md-10 col-lg-8 mx-auto d-flex flex-column rounded-3 bgcolor px-4 mt-4">
+
+            <div class="d-flex justify-content-between mt-3">
+                <div class="col-3">
+                    <select class="form-select h-100" aria-label="Default select example"  id="region">
+                        <option selected>All Region</option>
+                        @*@{
+                        foreach (var a in Model.regions)
+                        {
+                        <option value="@a.Regionid">@a.Name</option>
+                        }
+                        }*@
+                    </select>
+                </div>
+                <div>
+                    <button class="btn btn-info text-white mx-1" onclick="MDsXShiftReview('provideroncall','1')">Providers On Call</button>
+                    <button class="btn btn-info text-white mx-1" onclick="MDsXShiftReview('shiftreview','1')">Shifts For Review</button>
+                    <button class="btn btn-info text-white mx-1" onclick="providersModal({actionType:'createshift'})">Add new Shift</button>
+                </div>
+            </div>
+
+            <div class="m-2 fs-5 fw-bold" id="datediv">
+                date here
+            </div>
+
+            <div class="m-2 d-flex justify-content-end">
+                <div class="d-flex">
+                    <div class="rounded-3 mx-1" style="height:25px;width:50px;background-color:pink"></div> 
+                    <div class="mx-1">Pendig Shifts</div>
+                    <div class="rounded-3 mx-1" style="height:25px;width:50px;background-color:lightgreen"></div>
+                    <div class="mx-1">Approved Shifts</div>
+                </div>
+            </div>
+
+            <div class="m-2 d-flex justify-content-between">
+                <div class="d-flex">
+                    <button class="mx-2 bg-info rounded-5 d-flex justify-content-center align-items-center" style="height:30px;width:30px;border:none;" onclick="previousCalendar()"><i class="bi bi-chevron-left"></i></button>
+                    <button class="upload-btn-wrapper bg-transparent fs-5 border-0" onclick="showcalender()">
+                        <i class="bi bi-calendar-week"></i>
+                        <div id="cal"><input type="month" id="month-input" onchange="monthchange()" /></div>
+                    </button>
+                    <button class="mx-2 bg-info rounded-5 d-flex justify-content-center align-items-center" style="height:30px;width:30px;border:none;" onclick="nextCalendar()"><i class="bi bi-chevron-right"></i></button>
+                </div>
+                <div class="d-flex">
+                    <button class="btn btn-outline-info mx-1" onclick="ShiftCalender('day');">Day</button>
+                    <button class="btn btn-outline-info mx-1" onclick="ShiftCalender('week');">Week</button>
+                    <button class="btn btn-outline-info mx-1" onclick="ShiftCalender('month');">Month</button>
+                </div>
+            </div>
+
+            <div id="shiftTable"></div>
+
+        </div>
+
+
+    </div>
+</div>
+    <footer style=" position:fixed;bottom:0; width:100%;">
+        <div style="padding-right: 40px;">
+            <a href="" style="color: white;">Terms Of Conditions</a> |
+            <a href="" style="color: white;">Privacy Policy</a>
+        </div>
+    </footer>
+
+<script>
+    var date = new Date();
+    var diff = 7 - date.getDay();
+    if(diff === 0){
+        diff = 7;
+    }
+    var sunday = new Date(date.getTime() + (diff*24*60*60*1000));
+    var saturday = new Date();
+    saturday.setDate(sunday.getDate() + 6);
+
+    var schedulingtype;
+    
+    function showcalender(){
+        document.getElementById("month-input").showPicker();
+    }
+
+    ShiftCalender('month');
+
+
+    function ShiftCalender(shifttype){
+         schedulingtype = shifttype;
+         var datehere ;
+        var calendar = document.getElementById("cal");
+        calendar.innerHTML = '';
+
+        switch (schedulingtype) {
+            case 'month':
+                datehere = date.toLocaleDateString('en-US', { month: 'long' }) + ',' + date.getFullYear();
+                calendar.innerHTML = '<input type="month" id="month-input" onchange="monthchange()"/>';
+                break;
+            case 'day':
+                datehere = date.toLocaleDateString('en-US', { weekday: 'long' }) + ', ' + (date.toLocaleDateString('en-US', { month: 'long' })).substring(0, 3) + ' ' + date.getDate() + ', ' + date.getFullYear();
+                calendar.innerHTML = '<input type="date" id="month-input" onchange="monthchange()"/>';
+                break;
+            case 'week':
+                datehere = (sunday.toLocaleDateString('en-US', { month: 'long' })).substring(0, 3) + ' ' + sunday.getDate() + ' - ' + (saturday.toLocaleDateString('en-US', { month: 'long' })).substring(0, 3) + ' ' + saturday.getDate() + ' ' + saturday.getFullYear();
+                calendar.innerHTML = '<input type="week" id="month-input" onchange="monthchange()"/>';
+                
+        }
+
+        $.ajax({
+            url: '/AdminProviders/loadshift',
+            type: 'POST',
+            data: { datestring : date.toISOString() ,sundaystring : sunday.toISOString() ,saturdaystring: saturday.toISOString(), shifttype: shifttype },
+            success: function (data) {
+                $('#shiftTable').html(data);
+                $('#datediv').text(datehere);
+            },
+            error: function () {
+                console.error('Error loading partial view.');
+            }
+        });
+    }
+
+    function monthchange() {
+
+        switch (schedulingtype) {
+            case 'month':
+                var selectmonth = document.getElementById("month-input").value;
+                var year = parseInt(selectmonth.split("-")[0]);
+                var month = parseInt(selectmonth.split("-")[1]);
+                date.setMonth(month - 1);
+                date.setFullYear(year);
+
+                ShiftCalender('month');
+                break;
+
+            case 'day':
+                var selectday = document.getElementById("month-input").value;
+                var year = parseInt(selectday.split("-")[0]);
+                var month = parseInt(selectday.split("-")[1]);
+                var day = parseInt(selectday.split("-")[2]);
+                date.setMonth(month - 1);
+                date.setFullYear(year);
+                date.setDate(day);
+
+                ShiftCalender('day');
+                break;
+
+            case 'week':
+                var selectweek = document.getElementById("month-input").value;
+               // var year12 = parseInt(selectmonth.split("-")[0]);
+                  console.log(selectweek);
+               // console.log(year12);
+                //sunday.setDate(sunday.getDate() + 7);
+                //saturday.setDate(saturday.getDate() + 7);
+                //ShiftCalender('week');
+                break;
+        }
+
+    }
+
+    function nextCalendar(){
+        switch(schedulingtype){
+            case 'month':
+                date.setMonth(date.getMonth() + 1);
+                ShiftCalender('month');
+                break;
+
+            case 'day':
+                date.setDate(date.getDate() + 1);
+                ShiftCalender('day');
+                break;
+
+            case 'week':
+                sunday.setDate(sunday.getDate()+7);
+                saturday.setDate(saturday.getDate()+7);
+                ShiftCalender('week');
+                break;
+        }
+    }
+
+    function previousCalendar(){
+
+        switch (schedulingtype) {
+            case 'month':
+                date.setMonth(date.getMonth() - 1);
+                ShiftCalender('month');
+                break;
+
+            case 'day':
+                date.setDate(date.getDate() - 1);
+                ShiftCalender('day');
+                break;
+            case 'week':
+                sunday.setDate(sunday.getDate() - 7);
+                saturday.setDate(saturday.getDate() - 7);
+                ShiftCalender('week');
+                break;
+        }
+
+    }
+
+    function providersModal(DataObject) {
+
+        $.ajax({
+            url: '/AdminProviders/Openmodal',
+            type: 'POST',
+            data: DataObject,
+            success: function (data) {
+                $('#myModal').modal('hide');
+                $('#partialContainer').html(data);
+                $('#myModal').modal('show');
+            },
+            error: function (e) {
+                console.log(e);
+            }
+        });
+    }
+
+    function shiftactions(actionType, formid) {
+
+        if (actionType == 'create_shift') {
+            var shiftavailable = checkShiftAvailability1();
+            console.log(shiftavailable);
+        }
+
+        $('#myModal').modal('hide');
+
+        var daylist = [];
+        var inputs = document.getElementsByClassName('daycheck');
+        for (var i = 0; i < inputs.length; i++) {
+            if(inputs[i].checked == true){
+                daylist.push(parseInt(inputs[i].value));
+            }
+        }
+        var formdata = $(formid).serializeArray();
+        formdata.push({ name: "Weekdays", value: JSON.stringify(daylist) });
+        var form = $.param(formdata);
+
+        $.ajax({
+            url: '/AdminProviders/' + actionType,
+            type: 'POST',
+            data: form,
+            success: function (data) {
+                ShiftCalender(schedulingtype);
+            },
+            error: function () {
+                console.error('Error loading partial view.');
+            }
+        });
+
+    }
+
+    function checkShiftAvailability1() {
+
+        var physician = $('#Physicianselect').val();
+        var starttime = $('#stime').val();
+        var endtime = $('#etime').val();
+        var shiftdate = $('#dateInput').val();
+        var submit = document.getElementById('shiftsave');
+
+        $.ajax({
+            url: '/AdminProviders/checkShiftAvailability',
+            type: 'POST',
+            data: { physicianid: physician, starttime: starttime, endtime: endtime, shiftdate: shiftdate },
+            success: function (data) {
+                return data;
+                //if (data == true) {
+                //    submit.disabled = true;
+                //    $('#shiftresult').text('you already have a shift in this interval');
+                //} else {
+                //    submit.disabled = false;
+                //    $('#shiftresult').text('');
+                //}
+            },
+            error: function (e) {
+                console.log(e);
+            }
+        })
+
+    }
+
+    function reminder(){
+        $.ajax({
+            url: '/AdminProviders/setreminder',
+            type: 'GET',
+            success: function (data) {
+                console.log(1);
+            },
+            error: function () {
+                console.error('Error loading partial view.');
+            }
+        });
+    }
+
+    function MDsXShiftReview(actionType, pageNumber) {
+
+        var regionid = $('#region').val();
+
+        $.ajax({
+            url: '/AdminProviders/MDsXShiftReview',
+            type: 'GET',
+            data: { actionType: actionType, regionid: regionid, pageNumber: pageNumber, datestring: date.toISOString() },
+            success: function (data) {
+                console.log(1);
+                $('#mainDashContent').html(data);
+            },
+            error: function () {
+                console.error('Error loading partial view.');
+            }
+        });
+    }
+
+
+    
+</script>
+ @section Scripts{
+    @{
+        <Partial name="_ValidationScriptsPartial" />
+     }
+ }
