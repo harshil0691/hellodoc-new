@@ -5,57 +5,58 @@
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 
 
-        <Partial name="_header">
-        <Partial name="_Notification" />
 
-       @* <div class="collapse navbar-collapse" id="navbarSupportedContent">*@
-        <ul class="nav nav-underline mt-2 mx-2 shadow-sm" id="mydashboard">
-                <li class="nav-item mx-2">
-                    <a class="nav-link active" data-bs-toggle="pill" href="#dashboard">Dashboard</a>
-                </li>
-                <li class="nav-item mx-2">
-                    <a class="nav-link " data-bs-toggle="pill" href="#providerlocation">Provider Location</a>
-                </li>
-                <li class="nav-item mx-2">
-                    <a class="nav-link " data-bs-toggle="pill" href="#myprofile">My Profile</a>
-                </li>
-                <li class="nav-item mx-2 dropdown1">
-                <a class="nav-link" data-bs-toggle="pill" href="#provider" id="provideractive">Providers</a>
-                <div class="dropdown-content1">
-                    <a onclick="adminDashload({actionType : 'providers',tab: '#provider',id : 'provideractive',controller : 'AdminDash'})">Provider</a>
-                    <a onclick="adminDashload({actionType : 'scheduling',tab: '#provider',id : 'provideractive',controller : 'AdminDash'})">Scheduling</a>
-                    <a onclick="adminDashload({actionType : 'invoicing', tab: '#provider',id : 'provideractive',controller : 'AdminDash'})">Invoicing</a>
-                </div>
-                </li>
-                <li class="nav-item mx-2">
-                    <a class="nav-link " data-bs-toggle="pill" href="#partner">Partners</a>
-                </li>
-                <li class="nav-item mx-2">
-                    <a class="nav-link " data-bs-toggle="pill" href="#access">Access</a>
-                </li>
-            <li class="nav-item mx-2 dropdown1">
-                <a class="nav-link " data-bs-toggle="pill" id="recordsactive" href="#records">Records</a>
-                <div class="dropdown-content1">
+<Partial name="_header">
+<Partial name="_Notification" />
+
+    @* <div class="collapse navbar-collapse" id="navbarSupportedContent">*@
+    <ul class="nav nav-underline mt-2 mx-2 shadow-sm" id="mydashboard">
+        <li class="nav-item mx-2">
+            <a class="nav-link" data-bs-toggle="pill" href="#dashboard">Dashboard</a>
+        </li>
+        <li class="nav-item mx-2">
+            <a class="nav-link " data-bs-toggle="pill" href="#providerlocation">Provider Location</a>
+        </li>
+        <li class="nav-item mx-2">
+            <a class="nav-link " data-bs-toggle="pill" href="#myprofile">My Profile</a>
+        </li>
+        <li class="nav-item mx-2 dropdown1">
+            <a class="nav-link" data-bs-toggle="pill" href="#provider" id="provideractive">Providers</a>
+            <div class="dropdown-content1">
+                <a onclick="GetProvidersView({actionType : 'provider'})">Provider</a>
+                <a onclick="GetProvidersView({actionType : 'scheduling'})">Scheduling</a>
+                <a onclick="GetProvidersView({actionType : 'invoicing'})">Invoicing</a>
+            </div>
+        </li>
+        <li class="nav-item mx-2">
+            <a class="nav-link " data-bs-toggle="pill" href="#partner">Partners</a>
+        </li>
+        <li class="nav-item mx-2">
+            <a class="nav-link " data-bs-toggle="pill" href="#access">Access</a>
+        </li>
+        <li class="nav-item mx-2 dropdown1">
+            <a class="nav-link " data-bs-toggle="pill" id="recordsactive" href="#records">Records</a>
+            <div class="dropdown-content1">
                 <a onclick="adminDashload({action : 'SearchRecords',actionType : 'GetView',id : 'recordsactive',controller : 'AdminRecords'})">Search Records</a>
                 <a onclick="adminDashload({action : 'EmailLogs',actionType : 'GetView', id :  'recordsactive',controller : 'AdminRecords'})">Email Logs</a>
                 <a onclick="adminDashload({action: 'SMSLogs',actionType : 'GetView', id :'recordsactive',controller : 'AdminRecords'})">SMS Logs</a>
                 <a onclick="adminDashload({action : 'PatientHistory',actionType : 'GetView', id :'recordsactive',controller : 'AdminRecords'})">Patient Records</a>
                 <a onclick="adminDashload({action : 'BlockedHistory',actionType : 'GetView', id :'recordsactive',controller : 'AdminRecords'})">Blocked History</a>
-                </div>
-            </li>
-        </ul>
+            </div>
+        </li>
+    </ul>
 
 
     <div id="mainDashContent" class="bgcolor1"></div>
 
     <div id="partialContainer"></div>
+        
     
-
-
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 
 <script src="/js/AdminDashboard.js" asp-append-version="true"></script>
 <script src="/js/AdminRecords.js" asp-append-version="true"></script>
+<script src="/js/AdminProviders.js" asp-append-version="true"></script>
 
 
 @section Scripts{

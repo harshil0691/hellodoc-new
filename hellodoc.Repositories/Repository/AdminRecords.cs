@@ -166,7 +166,7 @@ namespace hellodoc.Repositories.Repository
             return adminRecords;
         }
 
-        public AdminRecordsListModal SearchRecords(AdminRecordsListModal adminRecords)
+        public AdminRecordsListModal SearchRecords(AdminRecordsListModal adminRecords, bool export)
         {
             DateTime date = DateTime.Parse("0001-01-01");
             var request = _context.RequestClients.Where(
@@ -206,10 +206,11 @@ namespace hellodoc.Repositories.Repository
                 DateOfService = r.Request.Createddate.ToString()
             }) ;
 
-            //if(adminRecords.FromDateOfService > date)
-            //{
-            //    adminRecords.FromDateOfService = DateTime.Now;
-            //}
+            if (export == true)
+            {
+                adminRecords.searchRecords = list.ToList();
+                return adminRecords ;
+            }
 
             adminRecords.searchRecords = list.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
             adminRecords.pageNumber = pageNumber;

@@ -1,0 +1,89 @@
+﻿@model hellodoc.DbEntity.ViewModels.DashboardLists.DashboardListsModal
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+<div class="login" id="main" style="margin-bottom:100px">
+
+    <div class="row bgcolor1">
+
+        <div class=" col-12 col-sm-12 col-md-10 col-lg-8 mx-auto d-flex justify-content-between mt-4 mb-2">
+            <h2> Providers Information </h2>
+        </div>
+        <div class="d-grid gap-2 col-12 col-sm-12 col-md-10 col-lg-8 mx-auto d-flex flex-column rounded-3 bgcolor px-4 mt-3 shadow-lg">
+
+        <div class="d-flex justify-content-between mt-3">
+            <div class="col-3">
+                <select class="form-select" aria-label="Default select example" onchange="fetchRegion()" id="region">
+                    <option selected>All Region</option>
+                    @*@{
+                        foreach (var a in Model.regions)
+                        {
+                            <option value="@a.Regionid">@a.Name</option>
+                        }
+                    }*@
+                </select>
+            </div>
+            <div class="d-flex">
+                    <button class="btn btn-info text-white mx-2" style="display:none" id="ProvidersSave" onclick="saveStopNotification()">Save</button>
+                    <button class="btn btn-info text-white">Create Provider Account</button>
+            </div>
+        </div>
+
+            <div style="margin-bottom:50px;" class="table-responsive d-none d-sm-none d-md-block d-lg-block d-xl-block">
+                <table id="providerss" class="table" style="width:100%;z-index:5">
+                    <thead>
+                        <tr>
+                            <th>Stop Notification</th>
+                            <th>Provider Name</th>
+                            <th>Role</th>
+                            <th>On Call Status</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody style="font-size:larger;font-weight:400;" id="newtable">
+                        @{
+                            foreach (var a in Model.providersTableModal)
+                            {
+                                
+                                <tr class=" m-2">
+                                    <td class="text-black"><input type="checkbox" class="custom-check providerscheck bg-info" value="@a.physicianid" checked="@a.stopnotification" /> </td>
+                                    <td class="text-black">@a.name</td>
+                                    <td class="text-black">@a.role</td>
+                                    <td class="text-black">@a.status</td>
+                                    <td class="text-black">@a.status</td>
+                                    <td>
+                                        <button class="btn btn-outline-info" onclick="ShowModal({ActionType:'ContactProvider',physicianid:@a.physicianid})">Contact</button>
+                                        <button class="btn btn-outline-info" onclick="loadProviderView('edit_physician','@a.physicianid')">Edit</button>
+                                    </td>
+                                </tr>
+                            }
+                        }
+
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+
+<script>
+    var table = new DataTable('#providerss', { searching: false, paging: false });
+
+    //$("#region123").change(function () {
+    //    regionid = this.value;
+    //    search = "";
+    //    filtertable();
+    //});
+
+    
+</script>
+
+@section Scripts{
+    @{
+        <Partial name="_ValidationScriptsPartial" />
+    }
+    }

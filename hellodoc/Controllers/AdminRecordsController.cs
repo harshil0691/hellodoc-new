@@ -46,7 +46,7 @@ namespace hellodoc.Controllers
             switch (recordsListModal.actionType)
             {
                 case "SearchRecords":
-                    return PartialView("_SearchRecordsTable", _adminRecords.SearchRecords(recordsListModal));
+                    return PartialView("_SearchRecordsTable", _adminRecords.SearchRecords(recordsListModal,false));
                 case "EmailLogs":
                     return PartialView("_EmailLogsTable", _adminRecords.EmailLogs(recordsListModal));
                 case "SMSLogs":

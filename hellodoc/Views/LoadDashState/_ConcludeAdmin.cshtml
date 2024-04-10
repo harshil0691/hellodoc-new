@@ -178,8 +178,34 @@
 
 </div>
 
-<script>
-    var tt = '@HttpContextAccessor.HttpContext.Session.GetInt32("totalrequest")'
-    $('#TotalPage').text(tt);
+<div class="d-flex justify-content-between m-2">
+    <div>
+        @Model.entries
+    </div>
+    <div>
+        @{
+            if (Model.pageNumber > 1)
+            {
+                var previousPage = Model.pageNumber - 1;
+                <button class="btn btn-outline-secondary" onclick="loadPartialView('conclude', '@previousPage' ,'@Model.search' , '@Model.regionid')"><i class="bi bi-chevron-left"></i></button>
+            }
+            else
+            {
+                <button class="btn btn-outline-secondary"><i class="bi bi-chevron-left"></i></button>
+            }
+        }
 
-</script>
+        <button class="btn btn-outline-info">@Model.pageNumber</button>
+        @{
+            if (Model.morePages == true)
+            {
+                var nextpage = Model.pageNumber + 1;
+                <button class="btn btn-outline-secondary" onclick="loadPartialView('conclude', '@nextpage' ,'@Model.search' , '@Model.regionid')"><i class="bi bi-chevron-right"></i></button>
+            }
+            else
+            {
+                <button class="btn btn-outline-secondary"><i class="bi bi-chevron-right"></i></button>
+            }
+        }
+    </div>
+</div>

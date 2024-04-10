@@ -10,6 +10,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query.Internal;
 using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 using NUnit.Framework.Internal.Execution;
+using hellodoc.DbEntity.ViewModels.DashboardLists;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using Microsoft.AspNetCore.Http;
 
 namespace hellodoc.Controllers
 {
@@ -32,6 +35,39 @@ namespace hellodoc.Controllers
             HostingEnviroment = hostingEnvironment;
             _authManger = authManager;
             _adminProviders = adminProviders;
+        }
+
+        public IActionResult GetProvidersView(PartialViewModal partialView)
+        {
+            var date = DateTime.Now;
+            if(partialView.datestring != null)
+            {
+                date = DateTime.Parse(partialView.datestring);
+            }
+
+            switch (partialView.actionType)
+            {
+                case "provider":
+                    var phy = _adminProviders.ProvidersTable();
+                    DashboardListsModal dashboardLists = new DashboardListsModal();
+                    dashboardLists.providersTableModal = phy;
+                    return PartialView("_Providers",dashboardLists);
+                case "scheduling":
+                    DashboardListsModal listsModal = new DashboardListsModal();
+                    listsModal.regions = _adminDashRepository.GetRegions();
+                    return PartialView("_Scheduling",listsModal);
+                case "invoicing":
+                    return PartialView("_Invoicing");
+                case "provideroncall":
+                    var modal = _adminProviders.ProvidersOnCallList(partialView.regionid, date);
+                    return PartialView("_ProvidersOnCall", modal);
+
+                case "shiftreview":
+                    var list = _adminProviders.ShiftsDetailsList(partialView.regionid, partialView.pageNumber);
+                    return PartialView("_ShiftsForReview", list);
+                default:
+                    return PartialView("_default");
+            }
         }
 
         [HttpPost]

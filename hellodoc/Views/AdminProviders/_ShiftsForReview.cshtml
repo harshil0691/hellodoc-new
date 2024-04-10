@@ -7,13 +7,13 @@
 
         <div class=" col-12 col-sm-12 col-md-10 col-lg-8 mx-auto d-flex justify-content-between mt-4 mb-2">
             <h4> Requested Shifts </h4>
-            <button class="btn btn-outline-info" onclick="adminDashload({actionType : 'scheduling',tab: '#provider',id : 'provideractive',controller : 'AdminDash'})"><i class="bi bi-chevron-left"></i>Back</button>
+            <button class="btn btn-outline-info" onclick="GetProvidersView({actionType : 'scheduling'})"><i class="bi bi-chevron-left"></i>Back</button>
         </div>
         <div class="d-grid gap-2 col-12 col-sm-12 col-md-10 col-lg-8 mx-auto d-flex flex-column rounded-3 bgcolor px-4 mt-3 shadow-lg">
 
             <div class="d-flex justify-content-between mt-4">
                 <div class="col-3">
-                    <select class="form-select" aria-label="Default select example" asp-for="regionselect" onchange="MDsXShiftReview('shiftreview','1')" id="region">
+                    <select class="form-select" aria-label="Default select example" asp-for="regionselect" onchange="GetProvidersView({actionType : 'shiftreview',pageNumber : '1',regionid : $('#region').val()})" id="region">
                         <option selected value="0">All Region</option>
                         @{
                         foreach (var a in Model.regions)

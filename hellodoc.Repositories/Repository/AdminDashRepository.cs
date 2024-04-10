@@ -22,7 +22,7 @@ namespace hellodoc.Repositories.Repository
         }
 
 
-        public AdminParent GetRequests(List<int> status, int page, string search, int regionid)
+        public AdminParent GetRequests(List<int> status, int page, string search, int regionid,bool export)
         {
             if (page <= 0)
             {
@@ -56,10 +56,17 @@ namespace hellodoc.Repositories.Repository
             }
 
             );
+
             AdminParent admin = new AdminParent();
             admin.requestcount = requestlist.Count();
             admin.search = search;
             admin.regionid = regionid;
+
+            if(export == true)
+            {
+                admin.adminDashModels = requestlist.ToList();
+                return admin;
+            }
 
             admin.adminDashModels = requestlist.Skip((page - 1) * pagesize).Take(pagesize).ToList();
             admin.pageNumber = page;

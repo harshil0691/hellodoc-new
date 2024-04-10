@@ -1,9 +1,6 @@
 ﻿@model hellodoc.DbEntity.ViewModels.AdminParent
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 
-@{
-    var datalist = Newtonsoft.Json.JsonConvert.SerializeObject(Model.adminDashModels);
-}
 
 <div class="table-responsive d-none d-sm-none d-md-block d-lg-block d-xl-block">
     <table style="width:100%;z-index:5">
@@ -196,59 +193,4 @@
         }
     </div>
 </div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
-
-<script>
-    var tt = '@HttpContextAccessor.HttpContext.Session.GetInt32("totalrequest")'
-    $('#TotalPage').text(tt);
-
-    //var table = new DataTable('#example1');
-
-
-    var data = @Html.Raw(datalist);
-   
-    function exportToExcel() {
-        // Convert dictionary array to array of arrays
-        var dataArray = [];
-        var headers = Object.keys(data[0]);
-        dataArray.push(headers);
-
-        var search = document.getElementById("customSearch").value;
-        console.log(search);
-        var region = document.getElementById("region").value;
-        console.log(region);
-
-        var data1 = [];
-
-        for (var item of data) {
-            if (item.regionid==region){
-                data1.push(item);
-            }
-        }
-
-
-        data1.forEach(function (dictionary) {
-            var row = [];
-
-            Object.keys(dictionary).forEach(function (key) {  
-                row.push([dictionary[key]]);
-            });
-            dataArray.push(row);
-        });
-
-        console.log(dataArray);
-
-        // Prepare Excel data
-        var ws = XLSX.utils.aoa_to_sheet(dataArray);
-        var wb = XLSX.utils.book_new();
-
-        XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
-        var wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
-
-        // Save Excel file
-        saveAs(new Blob([wbout], { type: 'application/octet-stream' }), 'datalist.xlsx');
-    }
-
-</script>
 

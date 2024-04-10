@@ -34,6 +34,44 @@ namespace hellodoc.Controllers
             _patientDashboard = patientDashboard;
         }
 
+        public IActionResult GetPatientView(PartialViewModal partialView)
+        {
+            switch (partialView.actionType)
+            {
+                case "patient_request":
+                    return PartialView("_PatientRequest");
+                case "friend_request":
+                    return PartialView("_FriendRequest");
+                case "concierge_request":
+                    return PartialView("_ConciergeRequest");
+                case "business_request":
+                    return PartialView("_BusinessRequest");
+                default:
+                    return PartialView("_Default");
+            }
+        }
+
+        public string CreateRequest(RequestFormModal requestForm)
+        {
+            switch (requestForm.RequestType)
+            {
+                case "patient_request":
+                    _requests.PatientRequest(requestForm);
+                    break;
+                case "friend_request":
+                    _requests.FriendRequest(requestForm);
+                    break;
+                case "concierge_request":
+                    _requests.ConciergeRequest(requestForm);
+                    break;
+                case "business_request":
+                    _requests.BusinessRequest(requestForm);
+                    break;
+            }
+
+            return "ok";
+        }
+
         public IActionResult send_request()
         {
             return View();

@@ -12,7 +12,7 @@ namespace hellodoc.Repositories.Repository.Interface
 {
     public interface IAdminDashRepository
     {
-        AdminParent GetRequests(List<int> status,int page,string search , int regionid);
+        AdminParent GetRequests(List<int> status,int page,string search , int regionid,bool export);
 
         Task<PatientReqModel> Getpatientdata(int rid);
         Task<RequestCountByStatus> GetCount();

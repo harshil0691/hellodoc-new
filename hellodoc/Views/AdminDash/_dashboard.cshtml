@@ -1,66 +1,23 @@
 ﻿@model hellodoc.DbEntity.ViewModels.RequestCountByStatus
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 
-@{
-    var f = 0;
-    var tab1 = "";
-    var tab2 = "";
-    var tab3 = "";
-    var tab4 = "";
-    var tab5 = "";
-    var tab6 = "";
-
-    switch (Model.activeid)
-    {
-        case 1:
-            tab1 = "active";
-            f = 1;
-            break;
-        case 2:
-            tab2 = "active";
-            f = 1;
-            break;
-        case 3:
-            tab3 = "active";
-            f = 1;
-            break;
-        case 4:
-            tab4 = "active";
-            f = 1;
-            break;
-        case 5:
-            tab5 = "active";
-            f = 1;
-            break;
-        case 6:
-            tab6 = "active";
-            f = 1;
-            break;
-    }
-    if (f == 0)
-    {
-        tab1 = "active"; 
-    }
-
-
-
 <ul class="nav  mx-5" id="myTabs">
     <li class="nav-item col-4 col-sm-4 col-md-2  admin-btn ad-btn ad-btn1 ">
-        <a class="nav-link @tab1 p-2 m-2 " data-bs-toggle="pill" href="#new" style="width:100%">
-                <div class="d-flex"><i class="bi bi-person-plus pe-2 mt-1 d-none d-sm-block"></i><h5>NEW</h5></div>
-                <h3 style="font-weight:700">@Model.NewCount</h3>
+        <a class="nav-link p-2 m-2 " data-bs-toggle="pill" href="#new" style="width:100%">
+            <div class="d-flex"><i class="bi bi-person-plus pe-2 mt-1 d-none d-sm-block"></i><h5>NEW</h5></div>
+            <h3 style="font-weight:700">@Model.NewCount</h3>
         </a>
     </li>
     <li class="nav-item col-4 col-sm-4 col-md-2 admin-btn ad-btn ad-btn2">
-            <a class="nav-link @tab2 p-2 m-2" data-bs-toggle="pill" href="#pending" style="width:100%">
+        <a class="nav-link p-2 m-2" data-bs-toggle="pill" href="#pending" style="width:100%">
             <div>
                 <div class="d-flex"><i class="bi bi-person-workspace pe-2 mt-1 d-none d-sm-block"></i><h5>PENDING</h5></div>
-                    <h3 style="font-weight:700">@Model.PendingCount</h3>
+                <h3 style="font-weight:700">@Model.PendingCount</h3>
             </div>
         </a>
     </li>
     <li class="nav-item col-4 col-sm-4 col-md-2 admin-btn ad-btn ad-btn3">
-        <a class="nav-link @tab3 p-2 m-2" data-bs-toggle="pill" href="#active" style="width:100%">
+        <a class="nav-link p-2 m-2" data-bs-toggle="pill" href="#active" style="width:100%">
             <div>
                 <div class="d-flex"><i class="bi bi-check2-circle pe-2 mt-1 d-none d-sm-block"></i><h5>ACTIVE</h5></div>
                 <h3 style="font-weight:700">@Model.ActiveCount</h3>
@@ -68,92 +25,68 @@
         </a>
     </li>
     <li class="nav-item col-4 col-sm-4 col-md-2 admin-btn ad-btn ad-btn4">
-        <a class="nav-link @tab4 p-2 m-2" data-bs-toggle="pill" href="#conclude" style="width:100%">
+        <a class="nav-link p-2 m-2" data-bs-toggle="pill" href="#conclude" style="width:100%">
             <div>
                 <div class="d-flex"><i class="bi bi-clock pe-2 mt-1 d-none d-sm-block"></i><h5>CONCLUDE</h5></div>
-                    <h3 style="font-weight:700">@Model.ConcludeCount</h3>
+                <h3 style="font-weight:700">@Model.ConcludeCount</h3>
             </div>
         </a>
     </li>
     <li class="nav-item col-4 col-sm-4 col-md-2 admin-btn ad-btn ad-btn5">
-            <a class="nav-link @tab5 p-2 m-2" data-bs-toggle="pill" href="#toclose" style="width:100%">
+        <a class="nav-link p-2 m-2" data-bs-toggle="pill" href="#toclose" style="width:100%">
             <div>
                 <div class="d-flex"><i class="bi bi-person-x pe-2 mt-1 d-none d-sm-block"></i><h5>TO CLOSE</h5></div>
-                    <h3 style="font-weight:700">@Model.TocloseCount</h3>
+                <h3 style="font-weight:700">@Model.TocloseCount</h3>
             </div>
         </a>
     </li>
     <li class="nav-item col-4 col-sm-4 col-md-2 admin-btn ad-btn  ad-btn6">
-            <a class="nav-link @tab6 p-2 m-2" data-bs-toggle="pill" href="#unpaid" style="width:100%">
+        <a class="nav-link p-2 m-2" data-bs-toggle="pill" href="#unpaid" style="width:100%">
             <div>
-                 <div class="d-flex"><i class="bi bi-coin pe-2 mt-1 d-none d-sm-block"></i><h5>UNPAID</h5></div>
-                    <h3 style="font-weight:700">@Model.UnpaidCount</h3>
+                <div class="d-flex"><i class="bi bi-coin pe-2 mt-1 d-none d-sm-block"></i><h5>UNPAID</h5></div>
+                <h3 style="font-weight:700">@Model.UnpaidCount</h3>
             </div>
         </a>
     </li>
 </ul>
 
-<div class="tab-content" style="margin-bottom:50px;">
-
-    <div class="tab-pane @tab1 m-2  mt-3" id="new">
-            
+<div class="d-flex justify-content-between" id="bgcolor">
+    <h3>Patients(new)</h3>
+    <div>
+        <button class="btn btn-info text-white" onclick="ShowModal({ActionType:'SendLink'})"><i class="bi bi-send px-1"></i><span class="d-none d-sm-none d-md-inline d-lg-inline d-xl-inline">send link</span></button>
+        <button class="btn btn-info text-white" onclick="loadActionView({ActionType:'CreateRequest'})"><i class="bi bi-pencil-square px-1 "></i><span class="d-none d-sm-none d-md-inline d-lg-inline d-xl-inline">create requests</span></button>
+        <button class="btn btn-info text-white" onclick="exportToExcel('DashboardFilterd')"><i class="bi bi-share-fill px-1"></i><span class="d-none d-sm-none d-md-inline d-lg-inline d-xl-inline">export</span></button>
+        <button class="btn btn-info text-white" onclick="exportToExcel('DashboardAll')"><i class="bi bi-share-fill px-1"></i><span class="d-none d-sm-none d-md-inline d-lg-inline d-xl-inline">export all</span></button>
+        <button class="btn btn-info text-white" onclick="ShowModal({ActionType:'RequestDTYSupport'})"><i class="bi bi-file-person px-1"></i><span class="d-none d-sm-none d-md-inline d-lg-inline d-xl-inline">Request DTY support</span></button>
     </div>
-
-    <div class="tab-pane @tab2 mt-3" id="pending">
-    </div>
-
-    <div class="tab-pane @tab3 mt-3" id="active">
-    </div>
-
-    <div class="tab-pane @tab4 mt-3" id="conclude">
-    </div>
-
-    <div class="tab-pane @tab5 mt-3" id="toclose">
-    </div>
-
-    <div class="tab-pane @tab6 mt-3" id="unpaid">
-    </div>
-
-        <div class="d-flex justify-content-between" id="bgcolor">
-            <h3>Patients(new)</h3>
-            <div>
-                <button class="btn btn-info text-white" onclick="ShowModal({ActionType:'SendLink'})"><i class="bi bi-send px-1"></i><span class="d-none d-sm-none d-md-inline d-lg-inline d-xl-inline">send link</span></button>
-                <button class="btn btn-info text-white" onclick="loadActionView({ActionType:'CreateRequest'})"><i class="bi bi-pencil-square px-1 "></i><span class="d-none d-sm-none d-md-inline d-lg-inline d-xl-inline">create requests</span></button>
-                <button class="btn btn-info text-white" onclick="exportToExcel()"><i class="bi bi-share-fill px-1"></i><span class="d-none d-sm-none d-md-inline d-lg-inline d-xl-inline">export</span></button>
-                <a class="btn btn-info text-white" asp-action="exportAll"><i class="bi bi-share-fill px-1"></i><span class="d-none d-sm-none d-md-inline d-lg-inline d-xl-inline">export all</span></a>
-                <button class="btn btn-info text-white" onclick="ShowModal({ActionType:'RequestDTYSupport'})"><i class="bi bi-file-person px-1"></i><span class="d-none d-sm-none d-md-inline d-lg-inline d-xl-inline">Request DTY support</span></button>
-            </div>
-        </div>
-
-        <div class="d-flex justify-content-between p-3 mt-2 bgcolor row">
-            <div class="d-flex  col-12 col-sm-12 col-md-4">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="customSearch">
-                <select class="form-select" aria-label="Default select example" id="region123">
-                    <option value="0" selected>All Region</option>
-                    @{
-                        foreach (var a in Model.regions)
-                        {
-                            <option value="@a.Regionid">@a.Name</option>
-                        }
-                    }
-                </select>
-            </div>
-            <div class="d-flex justify-content-md-end col-12 col-sm-12 col-md-6 mt-3 justify-content-start ">
-                <button class="btn btn-outline-dark d-none d-sm-inline"> All</button>
-                <div onclick="reqtype(1)" class="m-2 d-grid d-sm-grid d-sm-flex"><div class="colored-dot bg-success m-1"></div><div>Patients</div></div>
-                <div onclick="reqtype(2)" class="m-2 d-grid d-sm-grid d-sm-flex"><div class="colored-dot bg-warning m-1"></div><div>Family_friend</div></div>
-                <div onclick="reqtype(3)" class="m-2 d-grid d-sm-grid d-sm-flex"><div class="colored-dot bg-danger m-1 "></div><div>Business</div></div>
-                <div onclick="reqtype(4)" class="m-2 d-grid d-sm-grid d-sm-flex"><div class="colored-dot bg-primary m-1"></div><div>Concierge</div></div>
-                <div onclick="reqtype(5)" class="m-2 d-grid d-sm-grid d-sm-flex"><div class="colored-dot bg-success m-1"></div><div>Vip</div></div>
-            </div>
-        </div>
-
-        <div id="tabledata"></div>
-
-        
 </div>
 
-}
+<div class="d-flex justify-content-between p-3 mt-2 bgcolor row">
+    <div class="d-flex  col-12 col-sm-12 col-md-4">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="customSearch">
+        <select class="form-select" aria-label="Default select example" id="region123">
+            <option value="0" selected>All Region</option>
+            @{
+                foreach (var a in Model.regions)
+                {
+                    <option value="@a.Regionid">@a.Name</option>
+                }
+            }
+        </select>
+    </div>
+    <div class="d-flex justify-content-md-end col-12 col-sm-12 col-md-6 mt-3 justify-content-start ">
+        <button class="btn btn-outline-dark d-none d-sm-inline"> All</button>
+        <div onclick="reqtype(1)" class="m-2 d-grid d-sm-grid d-sm-flex"><div class="colored-dot bg-success m-1"></div><div>Patients</div></div>
+        <div onclick="reqtype(2)" class="m-2 d-grid d-sm-grid d-sm-flex"><div class="colored-dot bg-warning m-1"></div><div>Family_friend</div></div>
+        <div onclick="reqtype(3)" class="m-2 d-grid d-sm-grid d-sm-flex"><div class="colored-dot bg-danger m-1 "></div><div>Business</div></div>
+        <div onclick="reqtype(4)" class="m-2 d-grid d-sm-grid d-sm-flex"><div class="colored-dot bg-primary m-1"></div><div>Concierge</div></div>
+        <div onclick="reqtype(5)" class="m-2 d-grid d-sm-grid d-sm-flex"><div class="colored-dot bg-success m-1"></div><div>Vip</div></div>
+    </div>
+</div>
+
+<div id="tabledata"></div>
+
+
 
 <script>
     var tab = "new";
@@ -165,7 +98,11 @@
             tab = targetTab;
             loadPartialView(targetTab,1);
         });
-        loadPartialView("new",1);
+        if (localStorage.getItem("DashTab") != null) {
+            loadPartialView(localStorage.getItem("StatusTab"), true);
+        } else {
+            loadPartialView("new");
+        }
 
         $('#customSearch').on('keyup change', function () {
             var search = document.getElementById('customSearch').value;

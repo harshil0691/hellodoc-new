@@ -11,6 +11,11 @@ namespace hellodoc.Repositories.Repository.Interface
 {
     public interface IRequests
     {
+        string PatientRequest(RequestFormModal requestForm);
+        string FriendRequest(RequestFormModal requestForm);
+        string ConciergeRequest(RequestFormModal requestForm);
+        string BusinessRequest(RequestFormModal requestForm);
+
         Task<AspNetUser> SetAspNetUser(PatientReqModel patientReq);
 
         Task<User> SetUser(PatientReqModel patientReq, int aspid);

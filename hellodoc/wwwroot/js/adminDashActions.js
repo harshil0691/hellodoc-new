@@ -16,15 +16,11 @@ function adminDashload(dataObject) {
             var ele = document.getElementById(dataObject.id);
             ele.classList.add('active');
 
-            const dropdownParents1 = document.querySelectorAll('.tab-pane');
-            dropdownParents1.forEach(parent => {
-                parent.classList.remove('active');
-            });
 
             if (dataObject.actionType == 'GetView') {
                 searchrecords(dataObject.action, '1', dataObject.Back);
             }
-
+           
         },
         error: function () {
             console.error('Error loading partial view.');
@@ -33,7 +29,6 @@ function adminDashload(dataObject) {
 }
 
 function ShowModal(DataObject) {
-    console.log(DataObject);
     $.ajax({
         url: '/DashActionView/Openmodal',
         type: 'Post',
@@ -64,28 +59,7 @@ function loadActionView(DataObject) {
             }
 
             if (DataObject.ActionType == "dashboard") {
-                switch (DataObject.activeid) {
-                   
-                    case 1 :
-                        loadPartialView("new");
-                        break;
-                    case 2:
-                        loadPartialView("pending");
-                        break;
-                    case 3:
-                        loadPartialView("active");
-                        break;
-                    case 4:
-                        loadPartialView("conclude");
-                        break;
-                    case 5:
-                        loadPartialView("toclose");
-                        break;
-                    case 6:
-                        loadPartialView("unpaid");
-                    default:
-                        loadPartialView("new");
-                }
+                loadPartialView(localStorage.getItem("StatusTab"),'1');
             }
             
         },

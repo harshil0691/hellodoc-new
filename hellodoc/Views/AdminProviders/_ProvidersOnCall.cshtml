@@ -9,12 +9,12 @@
 
             <div class="d-flex justify-content-between">
                 <h5> MDs On Call </h5>
-                <button class="btn btn-outline-info bg-transparent text-info" onclick="adminDashload({actionType : 'scheduling',tab: '#provider',id : 'provideractive',controller : 'AdminDash'})"><i class="bi bi-chevron-left"></i>Back</button>
+                <button class="btn btn-outline-info bg-transparent text-info" onclick="GetProvidersView({actionType : 'scheduling' })"><i class="bi bi-chevron-left"></i>Back</button>
             </div>
             
             <div class="d-flex justify-content-between mt-3">
                 <div class="col-3">
-                    <select class="form-select h-100" aria-label="Default select example" asp-for="regionselect" onchange="MDsXShiftReview('provideroncall','1')" id="region">
+                    <select class="form-select h-100" aria-label="Default select example" asp-for="regionselect" onchange="GetProvidersView({actionType : 'provideroncall',regionid : $('#region').val() })" id="region">
                         <option selected>All Region</option>
                         @{
                             foreach (var a in Model.regions)

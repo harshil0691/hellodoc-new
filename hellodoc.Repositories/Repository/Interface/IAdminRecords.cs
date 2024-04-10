@@ -10,7 +10,7 @@ namespace hellodoc.Repositories.Repository.Interface
 {
     public interface IAdminRecords
     {
-        AdminRecordsListModal SearchRecords(AdminRecordsListModal adminRecords);
+        AdminRecordsListModal SearchRecords(AdminRecordsListModal adminRecords,bool export);
 
         AdminRecordsListModal EmailLogs(AdminRecordsListModal adminRecords);
         AdminRecordsListModal SMSLogs(AdminRecordsListModal adminRecords);

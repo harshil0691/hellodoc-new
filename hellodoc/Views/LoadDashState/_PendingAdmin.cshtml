@@ -178,56 +178,36 @@
         }
     </div>
 
-
-
 </div>
 
-<script>
-    var tt = '@HttpContextAccessor.HttpContext.Session.GetInt32("totalrequest")'
-    $('#TotalPage').text(tt);
-
-    var data = @Html.Raw(datalist);
-
-    function exportToExcel() {
-        // Convert dictionary array to array of arrays
-        var dataArray = [];
-        var headers = Object.keys(data[0]);
-        dataArray.push(headers);
-
-        var search = document.getElementById("customSearch").value;
-        console.log(search);
-        var region = document.getElementById("region").value;
-        console.log(region);
-
-        var data1 = [];
-
-        for (var item of data) {
-            if (item.regionid == region) {
-                data1.push(item);
+<div class="d-flex justify-content-between m-2">
+    <div>
+        @Model.entries
+    </div>
+    <div>
+        @{
+            if (Model.pageNumber > 1)
+            {
+                var previousPage = Model.pageNumber - 1;
+                <button class="btn btn-outline-secondary" onclick="loadPartialView('pending', '@previousPage' ,'@Model.search' , '@Model.regionid')"><i class="bi bi-chevron-left"></i></button>
+            }
+            else
+            {
+                <button class="btn btn-outline-secondary"><i class="bi bi-chevron-left"></i></button>
             }
         }
 
-
-        data1.forEach(function (dictionary) {
-            var row = [];
-
-            Object.keys(dictionary).forEach(function (key) {
-                row.push([dictionary[key]]);
-            });
-            dataArray.push(row);
-        });
-
-        console.log(dataArray);
-
-        // Prepare Excel data
-        var ws = XLSX.utils.aoa_to_sheet(dataArray);
-        var wb = XLSX.utils.book_new();
-
-        XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
-        var wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
-
-        // Save Excel file
-        saveAs(new Blob([wbout], { type: 'application/octet-stream' }), 'datalist.xlsx');
-    }
-
-</script>
+        <button class="btn btn-outline-info">@Model.pageNumber</button>
+        @{
+            if (Model.morePages == true)
+            {
+                var nextpage = Model.pageNumber + 1;
+                <button class="btn btn-outline-secondary" onclick="loadPartialView('pending', '@nextpage' ,'@Model.search' , '@Model.regionid')"><i class="bi bi-chevron-right"></i></button>
+            }
+            else
+            {
+                <button class="btn btn-outline-secondary"><i class="bi bi-chevron-right"></i></button>
+            }
+        }
+    </div>
+</div>

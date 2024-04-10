@@ -114,10 +114,6 @@ namespace hellodoc.Controllers
             {
 
                 case "dashboard":
-
-                    RequestCountByStatus request = _adminDashRepository.GetCount().Result;
-                    request.activeid = HttpContext.Session.GetInt32("activeid") ?? 1;
-
                     return RedirectToAction("LoadPartialDashView", "AdminDash",new { tabId = "dashboard"});
 
                 case "ViewUploads":

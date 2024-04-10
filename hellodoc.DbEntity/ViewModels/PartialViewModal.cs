@@ -10,6 +10,7 @@ namespace hellodoc.DbEntity.ViewModels
     {
         public string actionType { get; set; }
         public int requestid { get; set; }
+        public int regionid { get; set; }
         public int requestwisefileid { get; set; }  
         public string bcolor { get; set; }
         public string btext { get; set; }
@@ -24,5 +25,8 @@ namespace hellodoc.DbEntity.ViewModels
         public int pageNumber { get; set; }
         public string search { get; set; }
         public int professionalType { get; set; }
+
+        public string exportType { get; set; }
+        AdminRecordsListModal AdminRecords;
     }
 }

@@ -9,6 +9,8 @@ using Google.Apis.Calendar.v3;
 using Google.Apis.Calendar.v3.Data;
 using Google.Apis.Services;
 using System;
+using OfficeOpenXml;
+using static Org.BouncyCastle.Bcpg.Attr.ImageAttrib;
 
 namespace hellodoc.Controllers
 
@@ -26,8 +28,9 @@ namespace hellodoc.Controllers
         private readonly IAdminProviders _adminProviders;
         private readonly IAdminAccess _adminAccess;
         private readonly IAdminProviderLocation _providerLocation;
+        private readonly IAdminRecords _adminRecords;
 
-        public AdminDashController(ILogger<AdminDashController> logger,IAdminDashRepository adminDashRepository, IPatientLogin patientLogin, IRequests requests,IHostingEnvironment hostingEnvironment,IAuthManager authManager,IAdminProviders adminProviders,IAdminAccess adminAccess,IAdminProviderLocation providerLocation)
+        public AdminDashController(ILogger<AdminDashController> logger,IAdminDashRepository adminDashRepository, IPatientLogin patientLogin, IRequests requests,IHostingEnvironment hostingEnvironment,IAuthManager authManager,IAdminProviders adminProviders,IAdminAccess adminAccess,IAdminProviderLocation providerLocation,IAdminRecords adminRecords)
         {
             _logger = logger;
             _adminDashRepository = adminDashRepository;
@@ -38,6 +41,7 @@ namespace hellodoc.Controllers
             _adminProviders = adminProviders;
             _adminAccess = adminAccess;
             _providerLocation = providerLocation;
+            _adminRecords = adminRecords;
         }
 
         public IActionResult admin_dash()
@@ -95,23 +99,16 @@ namespace hellodoc.Controllers
                     return PartialView("_MyProfile", profileModal);
 
                 case "provider":
-                    var phy = _adminProviders.ProvidersTable();
-                    DashboardListsModal dashboardLists = new DashboardListsModal();
-                    dashboardLists.providersTableModal = phy;
-                    return PartialView("_Providers", dashboardLists);
+                    return RedirectToAction("GetProvidersView","AdminProviders", new {actionType = "provider"});
 
                 case "partner":
 
                     return RedirectToAction("GetView", "AdminPartners",new { actionType = "Partners" });
 
                 case "access":
-
-                    var list = _adminDashRepository.accessTables();
-
-                    return PartialView("_Access", list);
+                    return PartialView("_Access", _adminDashRepository.accessTables());
 
                 case "records":
-
                     return RedirectToAction("GetView", "AdminRecords",new {actionType = "SearchRecords"});
 
 
@@ -152,19 +149,6 @@ namespace hellodoc.Controllers
             return PartialView("_MyProfile", profileModal);
         }
 
-        
-        public IActionResult invoicing()
-        {
-
-            return PartialView("_Invoicing");
-        }
-        public IActionResult providers()
-        {
-            var phy = _adminProviders.ProvidersTable();
-            DashboardListsModal dashboardLists = new DashboardListsModal();
-            dashboardLists.providersTableModal = phy;
-            return PartialView("_Providers", dashboardLists);
-        }
 
         public IActionResult createrole(int accounttype)
         {
@@ -201,6 +185,62 @@ namespace hellodoc.Controllers
         public List<ProviderLocation> providerLocations()
         {
             return _providerLocation.GetProviderLocations();
+        }
+
+        [HttpPost]
+        public IActionResult exportToExcel(PartialViewModal partialView , AdminRecordsListModal adminRecords)
+        {
+            var stream = new MemoryStream();
+            ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+
+            switch (partialView.exportType)
+            {
+                case "DashboardAll":
+                    var status1 = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+                    var dashModel1 = _adminDashRepository.GetRequests(status1, 1, "", 0,true);
+
+                    using (var package = new ExcelPackage(stream))
+                    {
+                        var workSheet = package.Workbook.Worksheets.Add("Sheet1");
+                        workSheet.Cells.LoadFromCollection(dashModel1.adminDashModels, true);
+                        package.Save();
+                    }
+
+                    break;
+
+                case "DashboardFilterd":
+
+                    var status = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+                    var dashModel = _adminDashRepository.GetRequests(status, 1, partialView.search, partialView.regionid, true);
+
+                    using (var package = new ExcelPackage(stream))
+                    {
+                        var workSheet = package.Workbook.Worksheets.Add("Sheet1");
+                        workSheet.Cells.LoadFromCollection(dashModel.adminDashModels, true);
+                        package.Save();
+                    }
+
+                    break;
+
+                case "SearchRecords":
+
+                    using (var package = new ExcelPackage(stream))
+                    {
+                        var workSheet = package.Workbook.Worksheets.Add("Sheet1");
+                        workSheet.Cells.LoadFromCollection(_adminRecords.SearchRecords(adminRecords,true).searchRecords, true);
+                        package.Save();
+                    }
+
+                    break;
+            }
+
+            
+            stream.Position = 0;
+            string excelName = $"UserList-{DateTime.Now.ToString("yyyyMMddHHmmssfff")}.xlsx";
+
+            return File(stream, "application/octet-stream", excelName);
         }
 
     }

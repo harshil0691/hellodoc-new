@@ -1,0 +1,78 @@
+﻿@model hellodoc.DbEntity.ViewModels.DashboardLists.DashboardListsModal
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+<div class="login" id="main" style="margin-bottom:100px">
+
+    <div class="row bgcolor1">
+
+        <div class=" col-12 col-sm-12 col-md-10 col-lg-8 mx-auto d-flex justify-content-between mt-4 mb-2">
+            <h2> Scheduling  </h2>
+            <button class="btn btn-outline-info"><i class="bi bi-chevron-left"></i>Back</button>
+        </div>
+        <div class="d-grid gap-2 col-12 col-sm-12 col-md-10 col-lg-8 mx-auto d-flex flex-column rounded-3 bgcolor px-4 mt-4">
+
+            <div class="d-flex justify-content-between mt-3">
+                <div class="col-3">
+                    <select class="form-select h-100" aria-label="Default select example"  id="region">
+                        <option selected>All Region</option>
+                        @{
+                        foreach (var a in Model.regions)
+                        {
+                        <option value="@a.Regionid">@a.Name</option>
+                        }
+                        }
+                    </select>
+                </div>
+                <div>
+                    <button class="btn btn-info text-white mx-1" onclick="GetProvidersView({actionType : 'provideroncall'})">Providers On Call</button>
+                    <button class="btn btn-info text-white mx-1" onclick="GetProvidersView({actionType : 'shiftreview',pageNumber : '1'})">Shifts For Review</button>
+                    <button class="btn btn-info text-white mx-1" onclick="providersModal({actionType:'createshift'})">Add new Shift</button>
+                </div>
+            </div>
+
+            <div class="m-2 fs-5 fw-bold" id="datediv">
+                date here
+            </div>
+
+            <div class="m-2 d-flex justify-content-end">
+                <div class="d-flex">
+                    <div class="rounded-3 mx-1" style="height:25px;width:50px;background-color:pink"></div> 
+                    <div class="mx-1">Pendig Shifts</div>
+                    <div class="rounded-3 mx-1" style="height:25px;width:50px;background-color:lightgreen"></div>
+                    <div class="mx-1">Approved Shifts</div>
+                </div>
+            </div>
+
+            <div class="m-2 d-flex justify-content-between">
+                <div class="d-flex">
+                    <button class="mx-2 bg-info rounded-5 d-flex justify-content-center align-items-center" style="height:30px;width:30px;border:none;" onclick="previousCalendar()"><i class="bi bi-chevron-left"></i></button>
+                    <button class="upload-btn-wrapper bg-transparent fs-5 border-0" onclick="showcalender()">
+                        <i class="bi bi-calendar-week"></i>
+                        <div id="cal"><input type="month" id="month-input" onchange="monthchange()" /></div>
+                    </button>
+                    <button class="mx-2 bg-info rounded-5 d-flex justify-content-center align-items-center" style="height:30px;width:30px;border:none;" onclick="nextCalendar()"><i class="bi bi-chevron-right"></i></button>
+                </div>
+                <div class="d-flex">
+                    <button class="btn btn-outline-info mx-1" onclick="ShiftCalender('day');">Day</button>
+                    <button class="btn btn-outline-info mx-1" onclick="ShiftCalender('week');">Week</button>
+                    <button class="btn btn-outline-info mx-1" onclick="ShiftCalender('month');">Month</button>
+                </div>
+            </div>
+
+            <div id="shiftTable"></div>
+
+        </div>
+
+
+    </div>
+</div>
+    
+<script>
+    
+    
+</script>
+ @section Scripts{
+    @{
+        <Partial name="_ValidationScriptsPartial" />
+     }
+ }
