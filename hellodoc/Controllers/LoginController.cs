@@ -43,7 +43,6 @@ namespace hellodoc.Controllers
 
                 if (aspnetuser != null)
                 {
-                    var userId = _requests.GetUser(aspnetuser.Id);
                     TempData["success"] = "User LogIn Successfully";
                     HttpContext.Session.SetInt32("Aspid",aspnetuser.Id);
 
@@ -65,7 +64,35 @@ namespace hellodoc.Controllers
                 }
         }
 
-        
+        public IActionResult PatientLogin(AspNetUser obj)
+        {
+
+            var aspnetuser = _authManger.Login(obj.Email, obj.Passwordhash);
+
+            if (aspnetuser != null)
+            {
+                TempData["success"] = "User LogIn Successfully";
+                HttpContext.Session.SetInt32("Aspid", aspnetuser.Id);
+
+                SessionUtils.SetLoggedInUser(HttpContext.Session, aspnetuser);
+
+                var jwttoken = _jwtServices.GenarateJwtToken(aspnetuser);
+                Response.Cookies.Append("jwt", jwttoken);
+
+
+                return RedirectToAction("patient_dashboard", "Patient");
+
+            }
+            else
+            {
+
+                TempData["error"] = "Username or Password is Incorrect";
+                ModelState.AddModelError(string.Empty, "Invalid email or Password");
+                return View();
+            }
+        }
+
+
         public IActionResult Logout()
         {
             Response.Cookies.Delete("jwt");

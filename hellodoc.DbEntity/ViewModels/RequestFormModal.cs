@@ -16,21 +16,28 @@ namespace hellodoc.DbEntity.ViewModels
     {
         public string RequestType { get; set; }
         public int Requestid { get; set; }
-
+        [Required]
         public string Firstname { get; set; } = null!;
+        [Required]
         public string Lastname { get; set; } = null!;
+        [Required]
         public DateOnly? DateOfBirth { get; set; }
-        public string Symptoms { get; set; } = null!;
-        public string Email { get; set; } = null!;
+        public string Symptoms { get; set; }
+        public string PatientEmail { get; set; }
+        [Required]
         public long Phonenumber { get; set; }
         public string Street { get; set; } = null!;
         public string City { get; set; } = null!;
         public string State { get; set; } = null!;
+        [Required]
         public long Zipcode { get; set; }
         public string? Roomno { get; set; }
+        [Required]
         public string Password { get; set; }
+        [Required(ErrorMessage = "Confirm Password is Required")]
+        [Compare("Password", ErrorMessage = "Confirm Password Address do not Match Password")]
         public string Conform_password { get; set; }
-        public IFormFile Doc { get; set; }
+        public IFormFile? Doc { get; set; }
 
         public string? Confirmationnumber { get; set; }
         public string requesttypeid { get; set; }

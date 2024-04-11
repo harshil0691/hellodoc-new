@@ -27,7 +27,7 @@ namespace hellodoc.Repositories.Repository
         {
             var userid = uid;
 
-            var request = _context.Requests.Where(u => u.Userid == userid);
+            var request = _context.Requests.Where(u => u.User.Aspnetuserid == userid);
 
 
             var requestlist = request.Select(r => new RequestTableModel
@@ -41,7 +41,7 @@ namespace hellodoc.Repositories.Repository
             PatientReqModel patientReq = new PatientReqModel();
             patientReq.requestTable = requestlist.ToList();
 
-            var user = _context.Users.FirstOrDefault(u=> u.Userid == userid);
+            var user = _context.Users.FirstOrDefault(u=> u.Aspnetuserid == userid);
 
             patientReq.Firstname = user.Firstname;
             patientReq.Lastname = user.Lastname;

@@ -60,21 +60,21 @@ namespace hellodoc.Controllers
 
         }
 
-        public void SaveFile(IFormFile uploadfile, int rid)
-        {
-            string uniqueFilename = null;
+        //public void SaveFile(IFormFile uploadfile, int rid)
+        //{
+        //    string uniqueFilename = null;
 
-            if (uploadfile != null)
-            {
-                string uploadfolder = Path.Combine(HostingEnviroment.WebRootPath, "uploads");
-                uniqueFilename = Guid.NewGuid().ToString() + "_" + uploadfile.FileName;
-                string filename = Path.Combine(uploadfolder, uniqueFilename);
-                uploadfile.CopyTo(new FileStream(filename, FileMode.Create));
+        //    if (uploadfile != null)
+        //    {
+        //        string uploadfolder = Path.Combine(HostingEnviroment.WebRootPath, "uploads");
+        //        uniqueFilename = Guid.NewGuid().ToString() + "_" + uploadfile.FileName;
+        //        string filename = Path.Combine(uploadfolder, uniqueFilename);
+        //        uploadfile.CopyTo(new FileStream(filename, FileMode.Create));
 
-                _requests.SetRequestWiseFile(uniqueFilename, rid);
-            }
+        //        _requests.SetRequestWiseFile(uniqueFilename, rid);
+        //    }
 
-        }
+        //}
 
         public IActionResult LoadPartialDashView(string tabId)
         {

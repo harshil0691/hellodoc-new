@@ -35,12 +35,10 @@ namespace hellodoc.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Index(AspNetUser obj)
+        public IActionResult Index1(AspNetUser obj)
         {
             var aspnetuser = _patientLogin.GetAspNetUser(obj.Username,obj.Passwordhash);
 
-            
-            
             if (ModelState.IsValid) { 
             if (aspnetuser.Result != null)
             {
@@ -49,7 +47,6 @@ namespace hellodoc.Controllers
                     HttpContext.Session.SetInt32("userid", userId.Result);
                     HttpContext.Session.SetString("username", aspnetuser.Result.Username);
                     
-
                 return RedirectToAction("patient_dashboard", "Patient");
 
             }

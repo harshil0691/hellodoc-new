@@ -2028,6 +2028,7 @@
           "Microsoft.AspNetCore.Authentication.JwtBearer": "7.0.0",
           "Microsoft.AspNetCore.Mvc.Abstractions": "2.2.0",
           "Newtonsoft.Json": "13.0.3",
+          "Twilio": "7.0.0",
           "hellodoc.DbEntity": "1.0.0"
         },
         "runtime": {

@@ -155,7 +155,7 @@ public partial class ApplicationDbContext : DbContext
         {
             entity.HasKey(e => e.Blockrequestid).HasName("BlockRequests_pkey");
 
-            entity.Property(e => e.Blockrequestid).UseIdentityAlwaysColumn();
+            entity.Property(e => e.Blockrequestid).ValueGeneratedNever();
 
             entity.HasOne(d => d.Request).WithMany(p => p.BlockRequests)
                 .OnDelete(DeleteBehavior.ClientSetNull)
@@ -187,7 +187,7 @@ public partial class ApplicationDbContext : DbContext
         {
             entity.HasKey(e => e.Emaillogid).HasName("EmailLog_pkey");
 
-            entity.Property(e => e.Emaillogid).ValueGeneratedNever();
+            entity.Property(e => e.Emaillogid).UseIdentityAlwaysColumn();
 
             entity.HasOne(d => d.Admin).WithMany(p => p.EmailLogs).HasConstraintName("fk_emaillog_admin");
 
@@ -471,7 +471,7 @@ public partial class ApplicationDbContext : DbContext
         {
             entity.HasKey(e => e.Smslogid).HasName("SMSLog_pkey");
 
-            entity.Property(e => e.Smslogid).ValueGeneratedNever();
+            entity.Property(e => e.Smslogid).UseIdentityAlwaysColumn();
 
             entity.HasOne(d => d.Admin).WithMany(p => p.Smslogs).HasConstraintName("fk_smslog_admin");
 

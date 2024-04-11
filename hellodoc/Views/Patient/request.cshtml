@@ -1,5 +1,5 @@
 ﻿
-        <partial name="_RHeader" />
+<partial name="_RHeader" />
 
 <div id="patientViews">
     <div class="row" style="height:90vh">
@@ -37,6 +37,29 @@
             success: function (data) {
                 console.log(1)
                 $('#patientViews').html(data);
+            },
+            error: function (e) {
+                console.log(e);
+            }
+        });
+    }
+
+
+    function CreateRequest(requestType) {
+
+        console.log(requestType);
+
+        var formdata = $('#requestForm').serializeArray();
+        formdata.push({ name: "RequestType", value: requestType });
+        console.log(formdata);
+        var form = $.param(formdata);
+
+        $.ajax({
+            url: '/Patient/CreateRequest',
+            type: 'Post',
+            data: form,
+            success: function (data) {
+                console.log(data);
             },
             error: function (e) {
                 console.log(e);

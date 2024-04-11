@@ -737,6 +737,10 @@
       "PackagePath": "staticwebassets\\uploads\\790ad7bd-c880-4984-a62d-63731053b05d_Fig2. Forgot Password.jpg"
     },
     {
+      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\8052c8ed-eee2-401c-bdfd-5d4838bdfa7f_Fig24. Provider Menu.jpg",
+      "PackagePath": "staticwebassets\\uploads\\8052c8ed-eee2-401c-bdfd-5d4838bdfa7f_Fig24. Provider Menu.jpg"
+    },
+    {
       "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\843d6b14-1290-4897-948f-772ec0e64a3e_7768657_3763028 - Copy.jpg",
       "PackagePath": "staticwebassets\\uploads\\843d6b14-1290-4897-948f-772ec0e64a3e_7768657_3763028 - Copy.jpg"
     },
@@ -909,8 +913,16 @@
       "PackagePath": "staticwebassets\\uploads\\f83f7d10-8ee6-4482-b2b8-f9ed991f7361_Fig23.Request Support.png"
     },
     {
+      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\f8b70c05-544a-4ca1-87ae-df7d92f6d35f_Fig22 Regions menu.jpg",
+      "PackagePath": "staticwebassets\\uploads\\f8b70c05-544a-4ca1-87ae-df7d92f6d35f_Fig22 Regions menu.jpg"
+    },
+    {
       "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\fa5c60ff-7cb8-4b83-9f87-7ad6e8ab2c80_Fig2. Forgot Password.jpg",
       "PackagePath": "staticwebassets\\uploads\\fa5c60ff-7cb8-4b83-9f87-7ad6e8ab2c80_Fig2. Forgot Password.jpg"
+    },
+    {
+      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\feb611e8-c7ed-40b0-aa1f-85ceb86381bb_Fig24. Provider Menu.jpg",
+      "PackagePath": "staticwebassets\\uploads\\feb611e8-c7ed-40b0-aa1f-85ceb86381bb_Fig24. Provider Menu.jpg"
     },
     {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.build.hellodoc.props",

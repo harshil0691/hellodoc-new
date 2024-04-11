@@ -2944,6 +2944,22 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\790ad7bd-c880-4984-a62d-63731053b05d_Fig2. Forgot Password.jpg))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\8052c8ed-eee2-401c-bdfd-5d4838bdfa7f_Fig24. Provider Menu.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>hellodoc</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/hellodoc</BasePath>
+      <RelativePath>uploads/8052c8ed-eee2-401c-bdfd-5d4838bdfa7f_Fig24. Provider Menu.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\8052c8ed-eee2-401c-bdfd-5d4838bdfa7f_Fig24. Provider Menu.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\843d6b14-1290-4897-948f-772ec0e64a3e_7768657_3763028 - Copy.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>hellodoc</SourceId>
@@ -3632,6 +3648,22 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\f83f7d10-8ee6-4482-b2b8-f9ed991f7361_Fig23.Request Support.png))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\f8b70c05-544a-4ca1-87ae-df7d92f6d35f_Fig22 Regions menu.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>hellodoc</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/hellodoc</BasePath>
+      <RelativePath>uploads/f8b70c05-544a-4ca1-87ae-df7d92f6d35f_Fig22 Regions menu.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\f8b70c05-544a-4ca1-87ae-df7d92f6d35f_Fig22 Regions menu.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\fa5c60ff-7cb8-4b83-9f87-7ad6e8ab2c80_Fig2. Forgot Password.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>hellodoc</SourceId>
@@ -3647,6 +3679,22 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\fa5c60ff-7cb8-4b83-9f87-7ad6e8ab2c80_Fig2. Forgot Password.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\feb611e8-c7ed-40b0-aa1f-85ceb86381bb_Fig24. Provider Menu.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>hellodoc</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/hellodoc</BasePath>
+      <RelativePath>uploads/feb611e8-c7ed-40b0-aa1f-85ceb86381bb_Fig24. Provider Menu.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\feb611e8-c7ed-40b0-aa1f-85ceb86381bb_Fig24. Provider Menu.jpg))</OriginalItemSpec>
     </StaticWebAsset>
   </ItemGroup>
 </Project>

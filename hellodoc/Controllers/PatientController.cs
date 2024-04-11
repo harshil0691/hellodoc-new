@@ -15,6 +15,9 @@ using hellodoc.Repositories.Repository.Interface;
 using hellodoc.DbEntity.ViewModels;
 using static hellodoc.DbEntity.ViewModels.RequestTableModel;
 using hellodoc.Repositories.Repository;
+using NUnit.Framework;
+using hellodoc.DbEntity.DataModels;
+using hellodoc.Repositories.Services.Interface;
 //using hellodoc.DbEntity.DataModels;
 
 namespace hellodoc.Controllers
@@ -25,13 +28,17 @@ namespace hellodoc.Controllers
         private readonly IHostingEnvironment  HostingEnviroment;
         private readonly IRequests _requests;
         private readonly IPatientDashboard _patientDashboard;
+        private readonly IAuthManager _authManager;
+        private readonly IJwtServices _jwtServices;
         
-        public PatientController(ILogger<PatientController> logger,IHostingEnvironment hostingEnvironment,IRequests  requests, IPatientDashboard patientDashboard)
+        public PatientController(ILogger<PatientController> logger,IHostingEnvironment hostingEnvironment,IRequests  requests, IPatientDashboard patientDashboard,IAuthManager authManager,IJwtServices jwtServices)
         {
             _logger = logger;
             HostingEnviroment = hostingEnvironment;
             _requests = requests;
             _patientDashboard = patientDashboard;
+            _authManager = authManager;
+            _jwtServices = jwtServices;
         }
 
         public IActionResult GetPatientView(PartialViewModal partialView)
@@ -51,29 +58,82 @@ namespace hellodoc.Controllers
             }
         }
 
-        public string CreateRequest(RequestFormModal requestForm)
+
+        public IActionResult CreateRequest(RequestFormModal requestForm,string RequestType)
         {
-            switch (requestForm.RequestType)
+            var responseString = "";
+            switch (RequestType)
             {
                 case "patient_request":
-                    _requests.PatientRequest(requestForm);
-                    break;
-                case "friend_request":
-                    _requests.FriendRequest(requestForm);
-                    break;
-                case "concierge_request":
-                    _requests.ConciergeRequest(requestForm);
-                    break;
-                case "business_request":
-                    _requests.BusinessRequest(requestForm);
-                    break;
-            }
+                    if (_requests.PatientRequest(requestForm) == "ok")
+                    {
+                        var aspnetuser = new AspNetUser();
+                        if (requestForm.Password == null)
+                        {
+                            aspnetuser = _requests.GetAspUser(requestForm.PatientEmail);
+                            
+                        }
+                        else
+                        {
+                            aspnetuser = _authManager.Login(requestForm.PatientEmail, requestForm.Password);
+                        }
+                        return RedirectToAction("PatientLogin","Login",aspnetuser);
+                    }
+                    else
+                    {
+                        return RedirectToAction("send_request","",new { type = "error",  tempdata = "User Not Created Internal Issue"});
+                    }
 
-            return "ok";
+                case "friend_request":
+                    responseString = _requests.FriendRequest(requestForm);
+                    break;
+
+                case "concierge_request":
+                    responseString =  _requests.ConciergeRequest(requestForm);
+                    break;
+
+                case "business_request":
+                    responseString =  _requests.BusinessRequest(requestForm);
+                    break;
+
+            }
+            if (RequestType != "patient_request")
+            {
+                if (responseString == "ok")
+                {
+                    return RedirectToAction("send_request", "Patient", new { type = "success", tempdata = "Request Created Successfully" });
+                }
+                else if (responseString == "bloked")
+                {
+                    return RedirectToAction("send_request", "Patient", new { type = "error", tempdata = "User Bloked To Create Request" });
+                }
+                else if (responseString == "userNotExist")
+                {
+                    return RedirectToAction("send_request", "Patient", new { type = "warn", tempdata = "User Not Exist Mail/SMS Sent To User" });
+                }
+                else
+                {
+                    return RedirectToAction("send_request", "Patient", new { type = "error", tempdata = "Request Not Created Internal Error" });
+                }
+            }
+            return RedirectToAction("send_request");
         }
 
-        public IActionResult send_request()
+        public IActionResult send_request(string type,string tempdata)
         {
+            if(type == "success")
+            {
+                TempData["success"] = tempdata;
+            }
+            else if(type == "warn")
+            {
+                TempData["warn"] = tempdata;
+            }
+            else
+            {
+                TempData["error"] = tempdata;
+            }
+            
             return View();
         }
 
@@ -87,9 +147,9 @@ namespace hellodoc.Controllers
         public IActionResult CheckEmailExistence(string email)
         {
             // Check if email exists in the database
-            var emailex = _requests.GetAspUser(email).Result;
+            var emailex = _requests.GetAspUser(email);
             bool emailExists;
-            if (emailex == 0)
+            if (emailex.Id == 0)
             {
                 emailExists = false;
             }
@@ -101,123 +161,12 @@ namespace hellodoc.Controllers
             return Ok(new { Exists = emailExists });
         }
 
-        public IActionResult patient_request()
-        {
-            return View();
-        }
 
-        // ----------------------------- patient request----------------------------------------------------------------------------------------
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> patient_request(PatientReqModel patientReq)
-        {
-            var aspNetUserid = _requests.GetAspUser(patientReq.Email).Result;
-
-            if (aspNetUserid == null)
-            {
-                
-                var aspNetUser1 = _requests.SetAspNetUser(patientReq).Result; 
-                var user = _requests.SetUser(patientReq, aspNetUser1.Id).Result;
-                var request = _requests.SetRequest(patientReq ,user.Userid).Result;
-                var requestclient = _requests.SetRequestClient(patientReq , request.Requestid).Result;
-
-                SaveFile(patientReq.Doc, request.Requestid);
-
-                var userid1 = _requests.GetUser(aspNetUserid).Result;
-                
-                HttpContext.Session.SetInt32("userid", userid1);
-                HttpContext.Session.SetInt32("requestid", request.Requestid);
-                HttpContext.Session.SetString("username",patientReq.Firstname+" " + patientReq.Lastname);
-                return RedirectToAction("patient_dashboard","Patient");
-
-            }
-            if (aspNetUserid != null)
-            {
-                var userid1 = _requests.GetUser(aspNetUserid).Result;
-
-                var request = _requests.SetRequest(patientReq, userid1).Result;
-                var requestClient = _requests.SetRequestClient(patientReq, request.Requestid);
-
-                SaveFile(patientReq.Doc, request.Requestid);
-
-                HttpContext.Session.SetInt32("userid", userid1);
-                HttpContext.Session.SetInt32("requestid", request.Requestid);
-                HttpContext.Session.SetString("username", patientReq.Firstname + " " + patientReq.Lastname);
-                return RedirectToAction("patient_dashboard", "Patient");
-            }
-
-            return View();
-        }
-
-        public IActionResult friend_request()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult friend_request(FriendReqModel friendReq)
-        {
-
-            var requestid = _requests.SetRequest(friendReq).Result;
-
-            _requests.SetRequestClient(friendReq, requestid);
-
-            SaveFile(friendReq.Doc, requestid);
-
-            return RedirectToAction("send_request", "Patient");
-
-        }
-
-        
-
-        public IActionResult concierge_request() 
-        {
-            return View();   
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult concierge_request_info(ConciergeReqModel conciergeReq)
-        {
-            
-            var rid = _requests.SetRequest(conciergeReq).Result;
-            _requests.SetRequestClient(conciergeReq, rid);
-            _requests.SetConcierge(conciergeReq);
-
-            return RedirectToAction("send_request", "Patient");
-        }
-
-        public IActionResult business_request()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult business_request(BusinessReqModel businessReq)
-        {
-            if (ModelState.IsValid) {
-
-              var rid =  _requests.SetRequest(businessReq).Result;
-              _requests.SetRequestClient(businessReq, rid);
-              _requests.Setbusiness(businessReq);
-
-            return RedirectToAction("send_request", "Patient");
-            }
-            else
-            {
-                return View();
-            }
-
-        }
 
         [CustomAuthorize("user")]
         public IActionResult patient_dashboard()
         {
-            var u1 = HttpContext.Session.GetInt32("userId");
-
+            var u1 = HttpContext.Session.GetInt32("Aspid");
 
             PatientReqModel patient = _patientDashboard.GetRequestList(u1);
 
@@ -263,7 +212,7 @@ namespace hellodoc.Controllers
             var doc1 = HttpContext.Session.GetInt32("userid");
             var req1 = HttpContext.Session.GetInt32("requestid");
 
-            SaveFile(patientReq.Doc, req1??1);
+            //SaveFile(patientReq.Doc, req1??1);
 
             var document = _requests.GetDocuments(req1 ??1 , doc1 ?? 1);
 
@@ -282,22 +231,6 @@ namespace hellodoc.Controllers
 
         }
 
-
-        public void SaveFile(IFormFile uploadfile, int rid)
-        {
-            string uniqueFilename = null;
-
-            if (uploadfile != null)
-            {
-                string uploadfolder = Path.Combine(HostingEnviroment.WebRootPath, "uploads");
-                uniqueFilename = Guid.NewGuid().ToString() + "_" + uploadfile.FileName;
-                string filename = Path.Combine(uploadfolder, uniqueFilename);
-                uploadfile.CopyTo(new FileStream(filename, FileMode.Create));
-
-                _requests.SetRequestWiseFile(uniqueFilename, rid);
-            }
-
-        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

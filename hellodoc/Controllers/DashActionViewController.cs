@@ -264,30 +264,30 @@ namespace hellodoc.Controllers
             return RedirectToAction("admin_dash", "AdminDash");
         }
 
-        [HttpPost]
-        public IActionResult create_request(PatientReqModel patientReq)
-        {
-            var aspNetUserid = _requests.GetAspUser(patientReq.Email).Result;
+        //[HttpPost]
+        //public IActionResult create_request(PatientReqModel patientReq)
+        //{
+        //    var aspNetUserid = _requests.GetAspUser(patientReq.Email).Result;
 
-            if (aspNetUserid == 0)
-            {
-                var request = _requests.SetRequest(patientReq,18).Result;
-                var requestclient = _requests.SetRequestClient(patientReq, request.Requestid).Result;
+        //    if (aspNetUserid == 0)
+        //    {
+        //        var request = _requests.SetRequest(patientReq,18).Result;
+        //        var requestclient = _requests.SetRequestClient(patientReq, request.Requestid).Result;
 
-                var link = "https://localhost:7036/Patient/CreateAccount";
+        //        var link = "https://localhost:7036/Patient/CreateAccount";
 
-                string message = "Create a Account for track your request on hellodoc \n\n\n use below link :\n\n"+ link;
+        //        string message = "Create a Account for track your request on hellodoc \n\n\n use below link :\n\n"+ link;
 
-                SendMail("Patient Request from Admin", message , patientReq.Email);
-            }else
-            {
-                var userid1 = _requests.GetUser(aspNetUserid).Result;
-                var request = _requests.SetRequest(patientReq, userid1).Result;
-                var requestClient = _requests.SetRequestClient(patientReq, request.Requestid);
-            }
+        //        SendMail("Patient Request from Admin", message , patientReq.Email);
+        //    }else
+        //    {
+        //        var userid1 = _requests.GetUser(aspNetUserid).Result;
+        //        var request = _requests.SetRequest(patientReq, userid1).Result;
+        //        var requestClient = _requests.SetRequestClient(patientReq, request.Requestid);
+        //    }
 
-            return RedirectToAction("admin_dash","AdminDash");
-        }
+        //    return RedirectToAction("admin_dash","AdminDash");
+        //}
 
         [HttpPost]
         public IActionResult DocumentActions(List<int> selectedCheck, int requestid, string actionType)
@@ -387,31 +387,32 @@ namespace hellodoc.Controllers
         {
             var req = HttpContext.Session.GetInt32("requestid");
             var doc1 = HttpContext.Session.GetInt32("userid");
-            SaveFile(file1, req ?? 1);
+
+            _requests.SaveFile(file1,req??0);
 
             var document = _requests.GetDocuments(req ?? 1, doc1 ?? 1);
             
             return PartialView("_ViewUploads", document);
         }
 
-        public void SaveFile(IFormFile uploadfile, int rid)
-        {
-            string uniqueFilename = null;
+        //public void SaveFile(IFormFile uploadfile, int rid)
+        //{
+        //    //string uniqueFilename = null;
 
-            if (uploadfile != null)
-            {
-                string uploadfolder = Path.Combine(HostingEnviroment.WebRootPath, "uploads");
-                uniqueFilename = Guid.NewGuid().ToString() + "_" + uploadfile.FileName;
-                string filename = Path.Combine(uploadfolder, uniqueFilename);
-                using(FileStream file = new FileStream(filename, FileMode.Create))
-                {
-                    uploadfile.CopyTo(file);
-                }
-                
-                _requests.SetRequestWiseFile(uniqueFilename, rid);
-            }
+        //    //if (uploadfile != null)
+        //    //{
+        //    //    string uploadfolder = Path.Combine(HostingEnviroment.WebRootPath, "uploads");
+        //    //    uniqueFilename = Guid.NewGuid().ToString() + "_" + uploadfile.FileName;
+        //    //    string filename = Path.Combine(uploadfolder, uniqueFilename);
+        //    //    using (FileStream file = new FileStream(filename, FileMode.Create))
+        //    //    {
+        //    //        uploadfile.CopyTo(file);
+        //    //    }
 
-        }
+        //    //    _requests.SaveFile(uniqueFilename, rid);
+        //    //}
+
+        //}
 
 
         public IActionResult cancel_case(int requestid,CancelCaseModel cancelCase)

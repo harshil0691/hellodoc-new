@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "XxjupwA56Td0vwLfvOjTxqGCwADf6xEFMJem7BT8g/E=",
+  "Hash": "RZMW9ykaiTwXvt/+vP/7wDpOKWDJBdHsHTDDfnLytRI=",
   "Source": "hellodoc",
   "BasePath": "_content/hellodoc",
   "Mode": "Default",
@@ -3162,6 +3162,23 @@
       "OriginalItemSpec": "wwwroot\\uploads\\790ad7bd-c880-4984-a62d-63731053b05d_Fig2. Forgot Password.jpg"
     },
     {
+      "Identity": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\8052c8ed-eee2-401c-bdfd-5d4838bdfa7f_Fig24. Provider Menu.jpg",
+      "SourceId": "hellodoc",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\",
+      "BasePath": "_content/hellodoc",
+      "RelativePath": "uploads/8052c8ed-eee2-401c-bdfd-5d4838bdfa7f_Fig24. Provider Menu.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\8052c8ed-eee2-401c-bdfd-5d4838bdfa7f_Fig24. Provider Menu.jpg"
+    },
+    {
       "Identity": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\843d6b14-1290-4897-948f-772ec0e64a3e_7768657_3763028 - Copy.jpg",
       "SourceId": "hellodoc",
       "SourceType": "Discovered",
@@ -3893,6 +3910,23 @@
       "OriginalItemSpec": "wwwroot\\uploads\\f83f7d10-8ee6-4482-b2b8-f9ed991f7361_Fig23.Request Support.png"
     },
     {
+      "Identity": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\f8b70c05-544a-4ca1-87ae-df7d92f6d35f_Fig22 Regions menu.jpg",
+      "SourceId": "hellodoc",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\",
+      "BasePath": "_content/hellodoc",
+      "RelativePath": "uploads/f8b70c05-544a-4ca1-87ae-df7d92f6d35f_Fig22 Regions menu.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\f8b70c05-544a-4ca1-87ae-df7d92f6d35f_Fig22 Regions menu.jpg"
+    },
+    {
       "Identity": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\fa5c60ff-7cb8-4b83-9f87-7ad6e8ab2c80_Fig2. Forgot Password.jpg",
       "SourceId": "hellodoc",
       "SourceType": "Discovered",
@@ -3908,6 +3942,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\fa5c60ff-7cb8-4b83-9f87-7ad6e8ab2c80_Fig2. Forgot Password.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\feb611e8-c7ed-40b0-aa1f-85ceb86381bb_Fig24. Provider Menu.jpg",
+      "SourceId": "hellodoc",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\",
+      "BasePath": "_content/hellodoc",
+      "RelativePath": "uploads/feb611e8-c7ed-40b0-aa1f-85ceb86381bb_Fig24. Provider Menu.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\feb611e8-c7ed-40b0-aa1f-85ceb86381bb_Fig24. Provider Menu.jpg"
     }
   ]
 }

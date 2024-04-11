@@ -22,7 +22,7 @@ public partial class EmailLog
 
     [Column("emailid")]
     [StringLength(200)]
-    public string Emailid { get; set; } = null!;
+    public string? Emailid { get; set; }
 
     [Column("confirmationnumber")]
     [StringLength(200)]

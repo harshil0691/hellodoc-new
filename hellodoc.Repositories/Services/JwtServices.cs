@@ -1,5 +1,7 @@
-﻿using hellodoc.DbEntity.DataModels;
+﻿using hellodoc.DbEntity.DataContext;
+using hellodoc.DbEntity.DataModels;
 using hellodoc.Repositories.Services.Interface;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -16,10 +18,12 @@ namespace hellodoc.Repositories.Services
     public class JwtServices : IJwtServices
     {
         private readonly IConfiguration _configuration;
+        private readonly ApplicationDbContext _context;
 
-        public JwtServices(IConfiguration configuration)
+        public JwtServices(IConfiguration configuration,ApplicationDbContext applicationDb)
         {
             _configuration = configuration;
+            _context = applicationDb;
         }
 
         public string GenarateJwtToken(AspNetUser aspNetUser)
@@ -27,7 +31,7 @@ namespace hellodoc.Repositories.Services
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Email, aspNetUser.Email),
-                new Claim(ClaimTypes.Role, aspNetUser.AspNetUserRole.Role.Name),
+                new Claim(ClaimTypes.Role,aspNetUser.AspNetUserRole.Role.Name),
                 new Claim("aspuserid", aspNetUser.Id.ToString()),
                 new Claim("username",aspNetUser.Username)
             };
