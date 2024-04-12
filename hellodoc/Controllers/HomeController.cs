@@ -35,7 +35,7 @@ namespace hellodoc.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Index1(AspNetUser obj)
+        public IActionResult Index(AspNetUser obj)
         {
             var aspnetuser = _patientLogin.GetAspNetUser(obj.Username,obj.Passwordhash);
 

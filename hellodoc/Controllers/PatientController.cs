@@ -53,6 +53,25 @@ namespace hellodoc.Controllers
                     return PartialView("_ConciergeRequest");
                 case "business_request":
                     return PartialView("_BusinessRequest");
+                case "patient_dashboard":
+                    var u1 = HttpContext.Session.GetInt32("Aspid");
+
+                    PatientReqModel patient = _patientDashboard.GetRequestList(u1);
+                    return PartialView("_Patientdashboard",patient);
+                case "patient_profile":
+                    var u2 = HttpContext.Session.GetInt32("Aspid");
+
+                    RequestFormModal patient2 = _requests.GetPatientProfile(u2??0);
+                    return PartialView("_PatientProfile", patient2);
+                case "patient_documents":
+                    if (partialView.requestid == 0)
+                    {
+                        partialView.requestid = HttpContext.Session.GetInt32("requestid") ??0;
+                    }
+                    HttpContext.Session.SetInt32("requestid", partialView.requestid);
+
+                    var document = _requests.GetDocuments(partialView.requestid);
+                    return PartialView("_PatientDocument",document);
                 default:
                     return PartialView("_Default");
             }
@@ -137,6 +156,8 @@ namespace hellodoc.Controllers
             return View();
         }
 
+
+
         public IActionResult request()
         {
             return View();
@@ -162,7 +183,6 @@ namespace hellodoc.Controllers
         }
 
 
-
         [CustomAuthorize("user")]
         public IActionResult patient_dashboard()
         {
@@ -174,14 +194,24 @@ namespace hellodoc.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult update_profile(PatientReqModel patientReq)
+        public string PatientUpdateData(PartialViewModal partialView, RequestFormModal updateForm)
         {
-            var uid =  HttpContext.Session.GetInt32("userid");
+            switch (partialView.actionType)
+            {
+                case "upload_doc":
+                    _requests.SaveFile(updateForm.Doc, HttpContext.Session.GetInt32("requestid") ?? 0);
+                    return "Document Uploded";
+                case "update_profile":
+                    var uid = HttpContext.Session.GetInt32("Aspid");
+                    _requests.UpdateUser(updateForm, uid ?? 1);
+                    return "User Profile Updated";
+            }
+            return "internal error";
+        }
 
-            _requests.UpdateUser(patientReq, uid ??1);
-
-            return RedirectToAction("patient_dashboard","Patient");
+        public IActionResult patient_login()
+        {
+            return View();
         }
 
         public IActionResult request_me()
@@ -194,32 +224,6 @@ namespace hellodoc.Controllers
             return View();
         }
 
-        public IActionResult patient_documents(int reqid)
-        {
-            var doc1 =  HttpContext.Session.GetInt32("userid");
-            HttpContext.Session.SetInt32("requestid", reqid);
-
-            var document = _requests.GetDocuments(reqid,doc1??1);
-
-            return View(document);
-        }
-
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult patient_documents(PatientReqModel patientReq)
-        {
-            var doc1 = HttpContext.Session.GetInt32("userid");
-            var req1 = HttpContext.Session.GetInt32("requestid");
-
-            //SaveFile(patientReq.Doc, req1??1);
-
-            var document = _requests.GetDocuments(req1 ??1 , doc1 ?? 1);
-
-            return View(document);
-        }
-
-       
         public IActionResult download(int download)
         {
             var download1 = download;
@@ -227,7 +231,6 @@ namespace hellodoc.Controllers
 
             var filepath = Path.Combine(HostingEnviroment.WebRootPath, "uploads", fname1);
             return File(System.IO.File.ReadAllBytes(filepath), "multipart/form-data", System.IO.Path.GetFileName(filepath));
-
 
         }
 

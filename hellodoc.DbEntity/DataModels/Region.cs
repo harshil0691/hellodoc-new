@@ -22,6 +22,9 @@ public partial class Region
     public string? Abbreviation { get; set; }
 
     [InverseProperty("Region")]
+    public virtual ICollection<AdminRegion> AdminRegions { get; } = new List<AdminRegion>();
+
+    [InverseProperty("Region")]
     public virtual ICollection<Admin> Admins { get; } = new List<Admin>();
 
     [InverseProperty("Region")]

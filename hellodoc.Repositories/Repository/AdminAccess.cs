@@ -1,5 +1,6 @@
 ﻿using hellodoc.DbEntity.DataContext;
 using hellodoc.DbEntity.DataModels;
+using hellodoc.DbEntity.ViewModels;
 using hellodoc.DbEntity.ViewModels.AdminAccess;
 using hellodoc.Repositories.Repository.Interface;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +20,41 @@ namespace hellodoc.Repositories.Repository
         public AdminAccess(ApplicationDbContext context)
         {
             _context = context;
+        }
+
+        public AdminAccessModal AccountAccessData(int pagenumber)
+        {
+            var pageSize = 5;
+            var pageNumber = 1;
+            if (pagenumber > 0)
+            {
+                pageNumber = pagenumber;
+            }
+
+            var role = _context.Roles.Where(u => u.Isdeleted != 1);
+            var list = role.Select(a => new AccessTableModal
+            {
+                accessName = a.Name,
+                accountType = a.Accounttype,
+                roleid = a.Roleid,
+            });
+
+            AdminAccessModal adminAccess = new AdminAccessModal();
+            adminAccess.accessTables = list.ToList();
+
+            adminAccess.accessTables = list.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
+            adminAccess.pageNumber = pageNumber;
+            adminAccess.pageSize = pageSize;
+            adminAccess.totalEntries = list.Count();
+            if (list.Skip((pageNumber) * pageSize).Take(pageSize).Count() > 0)
+            {
+                adminAccess.morePages = true;
+            }
+            adminAccess.entries = ((pageNumber - 1) * pageSize + 1) + "-" + (((pageNumber - 1) * pageSize) + adminAccess.accessTables.Count());
+
+            return adminAccess;
+
+
         }
 
         public List<AccessTableModal> accessTables()
@@ -132,6 +168,74 @@ namespace hellodoc.Repositories.Repository
             role.Modifiedby = aspid.ToString();
 
             _context.SaveChanges();
+        }
+
+        public string CreateAdmin(AdminProfileModal adminProfile)
+        {
+            if (adminProfile == null)
+            {
+                return "Admin Not Create Internal Error";
+            }
+            else
+            {
+                AspNetUser aspNetUser = new AspNetUser
+                {
+                    Username = adminProfile.username,
+                    Passwordhash = adminProfile.password,
+                    Email = adminProfile.Email,
+                    Phonenumber = adminProfile.Phone,
+                    Createddate = DateTime.Now,
+                };
+                Admin admin = new Admin
+                {
+                    Firstname = adminProfile.Firstname,
+                    Lastname = adminProfile.Lastname,
+                    Email = adminProfile.Email,
+                    Mobile = adminProfile.Phone,
+                    Address1 = adminProfile.Address1,
+                    Address2 = adminProfile.Address2,
+                    City = adminProfile.City,
+                    Zip = adminProfile.Zipcode,
+                    Altphone = adminProfile.MailingNumber,
+                    Status = 1,
+                    //Createddate = DateTime.Now.ToString("yyyy-MM-dd"),
+                    Createdby = adminProfile.aspid.ToString(),
+
+                    Aspnetuser = aspNetUser,
+                };
+                _context.AspNetUsers.Add(aspNetUser);
+                _context.Admins.Add(admin);
+                _context.SaveChanges();
+                foreach(var i in adminProfile.selectedRegion)
+                {
+                    AdminRegion adminRegion = new AdminRegion()
+                    {
+                        Regionid = i,
+                        Adminid = admin.Adminid
+                    };
+                    _context.AdminRegions.Add(adminRegion);
+                }
+
+                AspNetUserRole aspNetUserRole = new AspNetUserRole()
+                {
+                    User = aspNetUser,
+                    Roleid = adminProfile.selectrole,
+                };
+
+                _context.AspNetUserRoles.Add(aspNetUserRole);
+                _context.SaveChanges();
+            }
+            return "New Admin Are Created";
+        }
+
+        public AdminProfileModal GetForCreateAdmin()
+        {
+            AdminProfileModal adminProfile = new AdminProfileModal()
+            {
+                regions = _context.Regions.ToList(),
+                roles = _context.Roles.ToList(),
+            };
+            return adminProfile;
         }
 
     }

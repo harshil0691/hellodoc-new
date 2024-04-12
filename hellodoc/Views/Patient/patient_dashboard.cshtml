@@ -6,194 +6,62 @@
 
     <div class="login" id="main">
         <Partial name="_Notification" />
-
         <partial name="_header" />
 
         <ul class="nav nav-underline mx-3 mt-2">
             <li class="nav-item">
-                <a class="nav-link active" data-bs-toggle="pill" href="#dashboard">Dashboard</a>
+            <a class="nav-link active" data-bs-toggle="pill" href="#dashboard" onclick="GetPatientView({ actionType : 'patient_dashboard'});">Dashboard</a>
             </li>
             <li class="nav-item mx-3">
-                <a class="nav-link " data-bs-toggle="pill" href="#profile">Profile</a>
+            <a class="nav-link " data-bs-toggle="pill" href="#profile" onclick="GetPatientView({ actionType : 'patient_profile'});">Profile</a>
             </li>
         </ul>
 
-        <!-- Tab panes -->
-        <div class="tab-content bgcolor1">
-            <div class="tab-pane container active mt-3" id="dashboard">
-                <h2 class="pt-5 mb-3">Medical history</h2>
-
-                <div class="d-grid container bgcolor mt-5 rounded-3">
-
-                    <!-- Button trigger modal -->
-                    <button type="button" class=" btn btn-outline-info mx-2 mt-3 " data-bs-toggle="modal" data-bs-target="#exampleModal" style="justify-self:flex-end;">
-                        Create New Request
-                    </button>
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content" style="font-weight:600">
-                                <div class="modal-header bg-info text-white">
-                                    <h5 class="modal-title" id="exampleModalLabel"> Create New Request </h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <p>Here , I create request for...</p>
-                                    <div class="d-flex justify-content-center">
-                                        <button type="button" class="btn btn-outline-info m-2" value="me" onclick="me1(this)">Me</button>
-                                        <button type="button" class="btn btn-outline-info m-2" value="someone" onclick="se1(this)">Someone Else</button>
-                                    </div>
-
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-outline-info" onclick="create_request()">Continue</button>
-                                    <button type="button" class="btn btn-outline-info" data-bs-dismiss="modal">Cancel</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <table class="table mt-4" id="patientdash">
-                        <thead>
-                            <tr>
-                                <th scope="col" style="background-color:#bdbdbd">Created Date</th>
-                                <th scope="col" style="background-color:#bdbdbd">Status</th>
-                                <th scope="col" style="background-color:#bdbdbd">Document</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @{
-                                foreach (var a in Model.requestTable)
-                                {
-                                    <tr>
-                                        <td>@a.Createddate</td>
-                                        <td>@a.Status</td>
-                                        <td>
-                                            @{
-                                                if (@a.Documents != "0")
-                                                {
-                                                    <a asp-action="patient_documents" asp-route-reqid=@a.Requestid><button class="btn btn-outline-info">(@a.Documents)Documents</button></a>
-                                                }
-
-                                            }
-                                        </td>
-                                    </tr>
-                                }
-                            }
-                        </tbody>
-                    </table>
-
-                </div>
-            </div>
-
-
-
-            <div class="tab-pane container fade" id="profile">
-
-                <div class=" col-12 col-sm-12 col-md-12 col-lg-12 mx-auto d-flex justify-content-between pt-5 ">
-                    <h2>User Profile</h2>
-                    <a asp-action="patient_dashboard" class="d-flex btn btn-outline-info bg-transparent text-decoration-none fs-5 text-info text-end p-1">
-                        <span class="material-icons pt-2">
-                            chevron_left
-                        </span>
-                        <span class="pe-2">Back</span>
-                    </a>
-
-                </div>
-                <div class="d-grid gap-2 col-12 col-sm-12 col-md-12 col-lg-12 mx-auto d-flex content px-4 mt-4">
-
-                    
-                    <form method="post" asp-action="update_profile">
-                        <h3 id="t1" class="pt-2 pb-4">General Information</h3>
-
-
-
-                        <div class="row">
-                            <div class="form-floating mb-3  col-md-6 col-lg-6">
-                                <input type="text" class="form-control" id="floatingInput" asp-for="@Model.Firstname" placeholder="Firstname" disabled>
-                                <label for="floatingInput" class="mx-3">First Name</label>
-                                <span asp-validation-for="Firstname" class="text-danger"></span>
-                            </div>
-                            <div class="form-floating mb-3 col-md-6 col-lg-6">
-                                <input type="text" class="form-control" id="floatingInput" asp-for="@Model.Lastname" placeholder="Lastname" disabled>
-                                <label for="floatingInput" class="mx-3">Last Name</label>
-                                <span asp-validation-for="Lastname" class="text-danger"> </span>
-                            </div>
-                            <div class="form-floating mb-3 col-md-6 col-lg-6">
-                                <input type="Date" class="form-control" id="floatingInput" asp-for="@Model.DateOfBirth" placeholder="DateOfBirth" disabled>
-                                <label for="floatingInput" class="mx-3">Date Of Birth</label>
-                                <span asp-validation-for="DateOfBirth" class="text-danger"></span>
-                            </div>
-                        </div>
-
-                        <h3 class="pt-2 pb-4" id="t1">
-                            Patient Contact Information
-                        </h3>
-
-                        <div class="row">
-                            <div class="form-floating mb-3 col-md-6 col-lg-6">
-                                <input type="email" class="form-control" id="floatingInput" asp-for="@Model.Email" placeholder="Email"  disabled>
-                                <label for="floatingInput" class="mx-3">Email address</label>
-                                <span asp-validation-for="Email" class="text-danger"></span>
-                            </div>
-                            <div class="form-floating col-md-6 col-lg-6">
-                                <input type="tel" class="form-control pt-3 pb-3" id="phone" asp-for="@Model.Phonenumber" placeholder="Phone number"  disabled>
-                                <span asp-validation-for="Phonenumber" class="text-danger"></span>
-                            </div>
-                        </div>
-
-
-                        <h3 class="pt-2 pb-4" id="t1">
-                            Patient Location
-                        </h3>
-
-                        <div class="row">
-                            <div class="form-floating mb-3  col-md-6 col-lg-6">
-                                <input type="text" class="form-control" id="floatingInput" asp-for="@Model.Street" placeholder="Street"  disabled>
-                                <label for="floatingInput" class="mx-3">Street</label>
-                                <span asp-validation-for="Street" class="text-danger"></span>
-                            </div>
-                            <div class="form-floating mb-3 col-md-6 col-lg-6">
-                                <input type="text" class="form-control" id="floatingInput" asp-for="@Model.City" placeholder="City"  disabled>
-                                <label for="floatingInput" class="mx-3">City</label>
-                                <span asp-validation-for="City" class="text-danger"></span>
-                            </div>
-                            <div class="form-floating mb-3  col-md-6 col-lg-6">
-                                <input type="text" class="form-control" id="floatingInput" asp-for="@Model.State" placeholder="State"  disabled>
-                                <label for="floatingInput" class="mx-3">State</label>
-                                <span asp-validation-for="State" class="text-danger"></span>
-                            </div>
-                            <div class="form-floating mb-3 col-md-6 col-lg-6">
-                                <input type="number" class="form-control" id="floatingInput" asp-for="@Model.Zipcode" placeholder="ZipCode" disabled>
-                                <label for="floatingInput" class="mx-3">Zip Code</label>
-                                <span asp-validation-for="Zipcode" class="text-danger"></span>
-                            </div>
-
-                        </div>
-
-
-
-                        <div class="d-flex justify-content-end" id="edit1">
-                            <button type="button" class="btn btn-info mx-3 p-2 px-3 mb-2" onclick="edit()" id="e1">Edit</button>
-                        </div>
-                        <div class="d-flex justify-content-end" id="edit2">
-                            <button type="submit" class="btn btn-info mx-3 p-2 px-3 mb-2" id="b1" style="display:none;">Save</button>
-                            <button type="button" class="btn btn-dark mx-3 p-2 px-3 mb-2" id="b2" style="display:none;" onclick="cancel()">Cancel</button>
-                        </div>
-                    </form>
-                </div>
-
-            </div>
-
-        </div>
+        <div id="patientViews"></div>
 
     </div>
 
-    <footer style="position:fixed;bottom:0; width:100%;">
-        <div style="padding-right: 40px;">
-            <a href="" style="color: white;">Terms Of Conditions</a> |
-            <a href="" style="color: white;">Privacy Policy</a>
-        </div>
-    </footer>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+    GetPatientView({ actionType: "patient_dashboard" });
+
+    function GetPatientView(DataObject) {
+
+        $.ajax({
+            url: '/Patient/GetPatientView',
+            type: 'Post',
+            data: DataObject,
+            success: function (data) {
+                $('#patientViews').html(data);
+            },
+            error: function (e) {
+                console.log(e);
+            }
+        });
+    }
+
+    function savedoc() {
+
+        var formdata = new FormData();
+        var fileupload = document.getElementById('file1');
+        var f = fileupload.files[0];
+        formdata.append('Doc', f);
+        formdata.append('actionType', 'upload_doc');
+
+        $.ajax({
+            url: '/Patient/PatientUpdateData',
+            type: 'POST',
+            data: formdata,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                toastr.success(data);
+                GetPatientView({ actionType: 'patient_documents' });
+            },
+            error: function () {
+                console.error('Error loading partial view.');
+            }
+        });
+    }
+
+</script>

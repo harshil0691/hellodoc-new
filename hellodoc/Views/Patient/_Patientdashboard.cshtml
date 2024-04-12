@@ -1,0 +1,76 @@
+﻿@{
+    ViewData["Title"] = "Patient dashboard";
+}
+@model hellodoc.DbEntity.ViewModels.PatientReqModel
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+<div class="tab-content bgcolor1">
+    <div class="tab-pane container active mt-3" id="dashboard">
+        <h2 class="pt-5 mb-3">Medical history</h2>
+
+        <div class="d-grid container bgcolor mt-5 rounded-3">
+
+            <!-- Button trigger modal -->
+            <button type="button" class=" btn btn-outline-info mx-2 mt-3 " data-bs-toggle="modal" data-bs-target="#exampleModal" style="justify-self:flex-end;">
+                Create New Request
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content" style="font-weight:600">
+                        <div class="modal-header bg-info text-white">
+                            <h5 class="modal-title" id="exampleModalLabel"> Create New Request </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Here , I create request for...</p>
+                            <div class="d-flex justify-content-center">
+                                <button type="button" class="btn btn-outline-info m-2" value="me" onclick="me1(this)">Me</button>
+                                <button type="button" class="btn btn-outline-info m-2" value="someone" onclick="se1(this)">Someone Else</button>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-info" onclick="create_request()">Continue</button>
+                            <button type="button" class="btn btn-outline-info" data-bs-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <table class="table mt-4" id="patientdash">
+                <thead>
+                    <tr>
+                        <th scope="col" style="background-color:#bdbdbd">Created Date</th>
+                        <th scope="col" style="background-color:#bdbdbd">Status</th>
+                        <th scope="col" style="background-color:#bdbdbd">Document</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        foreach (var a in Model.requestTable)
+                        {
+                            <tr>
+                                <td>@a.Createddate</td>
+                                <td>@a.Status</td>
+                                <td>
+                                    @{
+                                        if (@a.Documents != "0")
+                                        {
+                                            <button class="btn btn-outline-info" onclick="GetPatientView({actionType : 'patient_documents',requestid : '@a.Requestid'})">(@a.Documents)Documents</button>
+                                        }
+
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+</div>

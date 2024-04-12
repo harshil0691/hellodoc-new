@@ -31,8 +31,13 @@
         <li class="nav-item mx-2">
             <a class="nav-link " data-bs-toggle="pill" href="#partner">Partners</a>
         </li>
-        <li class="nav-item mx-2">
+        <li class="nav-item mx-2 dropdown1">
             <a class="nav-link " data-bs-toggle="pill" href="#access">Access</a>
+            <div class="dropdown-content1">
+                <a onclick="GetAccessView({actionType : 'accountAccess'})">Account Access</a>
+                <a onclick="GetAccessView({actionType : 'userAccess'})">User Access</a>
+                <a onclick="GetAccessView({actionType : 'createAdmin'})">Create Admin</a>
+            </div>
         </li>
         <li class="nav-item mx-2 dropdown1">
             <a class="nav-link " data-bs-toggle="pill" id="recordsactive" href="#records">Records</a>
@@ -57,7 +62,7 @@
 <script src="/js/AdminDashboard.js" asp-append-version="true"></script>
 <script src="/js/AdminRecords.js" asp-append-version="true"></script>
 <script src="/js/AdminProviders.js" asp-append-version="true"></script>
-
+<script src="/js/AdminAccess.js" asp-append-version="true"></script>
 
 @section Scripts{
     @{

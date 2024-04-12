@@ -62,6 +62,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Patient}/{action=send_request}/{id?}");
+    pattern: "{controller=AdminDash}/{action=admin_dash}/{id?}");
 
 app.Run();

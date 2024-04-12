@@ -15,7 +15,7 @@ using static Org.BouncyCastle.Bcpg.Attr.ImageAttrib;
 namespace hellodoc.Controllers
 
 {
-    [CustomAuthorize("admin")]
+    [CustomAuthorize("admin", "EmailLogs")]
     [ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
     public class AdminDashController : Controller
     {
@@ -89,7 +89,6 @@ namespace hellodoc.Controllers
                     return PartialView("_dashboard", request);
 
                 case "providerlocation":
-
                     return PartialView("_ProviderLocation");
 
 
@@ -102,11 +101,10 @@ namespace hellodoc.Controllers
                     return RedirectToAction("GetProvidersView","AdminProviders", new {actionType = "provider"});
 
                 case "partner":
-
                     return RedirectToAction("GetView", "AdminPartners",new { actionType = "Partners" });
 
                 case "access":
-                    return PartialView("_Access", _adminDashRepository.accessTables());
+                    return RedirectToAction("GetAccessView","AdminAccess",new { actionType = "accountAccess"});
 
                 case "records":
                     return RedirectToAction("GetView", "AdminRecords",new {actionType = "SearchRecords"});

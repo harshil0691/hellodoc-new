@@ -18,11 +18,11 @@ namespace hellodoc.Repositories.Repository.Interface
         string BusinessRequest(RequestFormModal requestForm);
 
         void SaveFile(IFormFile formFile,int requestid);
-
+        RequestFormModal GetPatientProfile(int uid);
         AspNetUser GetAspUser(string email);
         Task<Int32> GetUser(int aspid);
-        Task UpdateUser(PatientReqModel patientReq, int userid);
-        PatientReqModel GetDocuments(int rid, int uid);
+        Task UpdateUser(RequestFormModal updateForm, int userid);
+        PatientReqModel GetDocuments(int rid);
         Task<string> GetFilename(int reqcliid);
 
         Task UpdateCloseCase(int requestid,CloseCaseModal closeCase);

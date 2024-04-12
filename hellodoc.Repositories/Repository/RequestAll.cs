@@ -399,6 +399,23 @@ public class RequestAll : IRequests
         _context.SaveChanges();
     }
 
+    public RequestFormModal GetPatientProfile(int uid)
+    {
+        var user = _context.Users.FirstOrDefault(u => u.Aspnetuserid == uid);
+
+        RequestFormModal requestForm = new RequestFormModal 
+        {
+            Firstname = user.Firstname,
+            Lastname = user.Lastname,
+            PatientEmail = user.Email,
+            Phonenumber = user.Mobile ?? 0,
+            Street = user.Street,
+            State = user.State,
+            Zipcode = user.Zipcode ?? 0,
+            City = user.City,
+       };
+        return requestForm;
+    }
 
     public AspNetUser GetAspUser(string email)
     {
@@ -419,32 +436,31 @@ public class RequestAll : IRequests
         return aspNetUser.Result.Userid;
     }
 
-    public async Task UpdateUser(PatientReqModel patientReq,int userid)
+    public async Task UpdateUser(RequestFormModal updateForm,int userid)
     {
 
-        var user1 = _context.Users.FirstOrDefault(u => u.Userid == userid);
+        var user1 = _context.Users.FirstOrDefault(u => u.Aspnetuserid == userid);
 
-        user1.Firstname = patientReq.Firstname;
-        user1.Lastname = patientReq.Lastname;
-        user1.Email = patientReq.Email;
-        user1.Mobile = patientReq.Phonenumber;
+        user1.Firstname = updateForm.Firstname;
+        user1.Lastname = updateForm.Lastname;
+        user1.Email = updateForm.PatientEmail;
+        user1.Mobile = updateForm.Phonenumber;
         user1.Modifieddate = DateTime.Now;
-        user1.State = patientReq.State;
-        user1.Street = patientReq.Street;
-        user1.City = patientReq.City;
-        user1.Zipcode = patientReq.Zipcode;
+        user1.State = updateForm.State;
+        user1.Street = updateForm.Street;
+        user1.City = updateForm.City;
+        user1.Zipcode = updateForm.Zipcode;
 
         var aspnetuser = _context.AspNetUsers.FirstOrDefault(u => u.Id == user1.Aspnetuserid);
 
-        aspnetuser.Phonenumber = patientReq.Phonenumber;
-        aspnetuser.Email = patientReq.Email;
-        aspnetuser.Username = patientReq.Firstname + " " + patientReq.Lastname;
+        aspnetuser.Phonenumber = updateForm.Phonenumber;
+        aspnetuser.Email = updateForm.PatientEmail;
+        aspnetuser.Username = updateForm.Firstname + " " + updateForm.Lastname;
 
         _context.SaveChanges();
-
     }
 
-    public PatientReqModel GetDocuments(int rid,int uid)
+    public PatientReqModel GetDocuments(int rid)
     {
         var doc = _context.RequestWiseFiles.Where(u => u.Requestid == rid && u.Isdeleted != 1);
 

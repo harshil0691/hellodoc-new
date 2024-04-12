@@ -104,7 +104,7 @@ public partial class ApplicationDbContext : DbContext
         {
             entity.HasKey(e => e.Adminid).HasName("Admin_pkey");
 
-            entity.Property(e => e.Adminid).ValueGeneratedNever();
+            entity.Property(e => e.Adminid).UseIdentityAlwaysColumn();
 
             entity.HasOne(d => d.Aspnetuser).WithMany(p => p.Admins)
                 .OnDelete(DeleteBehavior.ClientSetNull)
@@ -120,6 +120,14 @@ public partial class ApplicationDbContext : DbContext
             entity.HasKey(e => e.Adminregionid).HasName("AdminRegion_pkey");
 
             entity.Property(e => e.Adminregionid).ValueGeneratedNever();
+
+            entity.HasOne(d => d.Admin).WithMany(p => p.AdminRegions)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("fk_adminregion_admin");
+
+            entity.HasOne(d => d.Region).WithMany(p => p.AdminRegions)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("fk_adminregion_region");
         });
 
         modelBuilder.Entity<AspNetRole>(entity =>
@@ -144,7 +152,7 @@ public partial class ApplicationDbContext : DbContext
 
             entity.HasOne(d => d.Role).WithMany(p => p.AspNetUserRoles)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("fk_aspnetuserrole_aspnetrole");
+                .HasConstraintName("fk_aspnetuserrole_role");
 
             entity.HasOne(d => d.User).WithOne(p => p.AspNetUserRole)
                 .OnDelete(DeleteBehavior.ClientSetNull)
@@ -414,6 +422,10 @@ public partial class ApplicationDbContext : DbContext
             entity.HasKey(e => e.Roleid).HasName("Role_pkey");
 
             entity.Property(e => e.Roleid).UseIdentityAlwaysColumn();
+
+            entity.HasOne(d => d.AccounttypeNavigation).WithMany(p => p.Roles)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("fk_role_aspnetrole");
         });
 
         modelBuilder.Entity<RoleMenu>(entity =>

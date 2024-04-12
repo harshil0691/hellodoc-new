@@ -18,7 +18,7 @@ public partial class Role
     public string Name { get; set; } = null!;
 
     [Column("accounttype")]
-    public short Accounttype { get; set; }
+    public int Accounttype { get; set; }
 
     [Column("createdby")]
     [StringLength(128)]
@@ -41,8 +41,15 @@ public partial class Role
     [StringLength(20)]
     public string? Ip { get; set; }
 
+    [ForeignKey("Accounttype")]
+    [InverseProperty("Roles")]
+    public virtual AspNetRole AccounttypeNavigation { get; set; } = null!;
+
     [InverseProperty("Role")]
     public virtual ICollection<Admin> Admins { get; } = new List<Admin>();
+
+    [InverseProperty("Role")]
+    public virtual ICollection<AspNetUserRole> AspNetUserRoles { get; } = new List<AspNetUserRole>();
 
     [InverseProperty("Role")]
     public virtual ICollection<Physician> Physicians { get; } = new List<Physician>();

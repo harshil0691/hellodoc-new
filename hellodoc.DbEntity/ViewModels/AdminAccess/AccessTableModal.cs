@@ -9,7 +9,7 @@ namespace hellodoc.DbEntity.ViewModels.AdminAccess
     public partial class AccessTableModal
     {
         public string accessName { get; set; }
-        public short accountType { get; set; }
+        public int accountType { get; set; }
         public int roleid { get; set; }
     }
 }

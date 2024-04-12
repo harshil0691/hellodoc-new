@@ -41,10 +41,12 @@ namespace hellodoc.Repositories.Repository
 
     public class CustomAuthorize : Attribute, IAuthorizationFilter
     {
-        private readonly string _role;
-        public CustomAuthorize(string role ="")
+        private readonly ApplicationDbContext _context = new ApplicationDbContext();
+        private readonly string[] _role;
+
+        public CustomAuthorize(params string[] role)
         {
-             _role = role;
+            _role = role;
         }
 
         public void OnAuthorization(AuthorizationFilterContext filterContext)
@@ -68,13 +70,21 @@ namespace hellodoc.Repositories.Repository
             var handler = new JwtSecurityTokenHandler();
             var jwtToken = handler.ReadJwtToken(token);
 
-            var roleClaim = jwtToken.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.Role);
+            var roleClaim = jwtToken.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.Role).Value;
 
-            if(roleClaim == null || string.IsNullOrWhiteSpace(_role) || roleClaim.Value != _role)
+            var rolelist = _context.RoleMenus.Where(r => r.Roleid.ToString() == roleClaim).Select(m => m.Menu.Name);
+
+            foreach (var r in _role)
             {
-                filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Login", action = "login" }));
-                return;
+                if (roleClaim == null || string.IsNullOrWhiteSpace(r) || !rolelist.Contains(r))
+
+                {
+                    filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Login", action = "login" }));
+                    return;
+                }
             }
+
+            
 
 
             //var user = SessionUtils.GetLoggedInUser(filterContext.HttpContext.Session);
@@ -92,7 +102,7 @@ namespace hellodoc.Repositories.Repository
             //        filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "AdminDash", action = "admin_dash" }));
             //    }
             //}
-            
+
         }
     }
 }

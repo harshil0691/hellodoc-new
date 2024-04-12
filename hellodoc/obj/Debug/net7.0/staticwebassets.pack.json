@@ -341,6 +341,10 @@
       "PackagePath": "staticwebassets\\images\\frontpage image.png"
     },
     {
+      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\js\\AdminAccess.js",
+      "PackagePath": "staticwebassets\\js\\AdminAccess.js"
+    },
+    {
       "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\js\\AdminDashboard.js",
       "PackagePath": "staticwebassets\\js\\AdminDashboard.js"
     },
@@ -645,6 +649,10 @@
       "PackagePath": "staticwebassets\\uploads\\248c2523-dfd8-464d-bbdf-15ea967414d1_7768657_3763028 - Copy.jpg"
     },
     {
+      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\28b0ead8-4a22-4429-a4f5-27c8a940e4f8_Fig23.Request Support.png",
+      "PackagePath": "staticwebassets\\uploads\\28b0ead8-4a22-4429-a4f5-27c8a940e4f8_Fig23.Request Support.png"
+    },
+    {
       "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\2afb1b50-d4b4-4023-a873-826585645ef3_Fig2. Forgot Password.jpg",
       "PackagePath": "staticwebassets\\uploads\\2afb1b50-d4b4-4023-a873-826585645ef3_Fig2. Forgot Password.jpg"
     },
@@ -707,6 +715,10 @@
     {
       "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\64bc9683-fa4d-4154-be1b-0388a513b280_7774236_3736765.jpg",
       "PackagePath": "staticwebassets\\uploads\\64bc9683-fa4d-4154-be1b-0388a513b280_7774236_3736765.jpg"
+    },
+    {
+      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\6718ea32-b0da-4867-af82-56f04e738275_Fig24. Provider Menu.jpg",
+      "PackagePath": "staticwebassets\\uploads\\6718ea32-b0da-4867-af82-56f04e738275_Fig24. Provider Menu.jpg"
     },
     {
       "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\699b42d0-8d02-4c7a-9b91-62f8623729dd_Fig7. Admin dashboard in Conclude state.jpg",
@@ -813,6 +825,10 @@
       "PackagePath": "staticwebassets\\uploads\\b5246287-230a-429b-bd7d-2bbda6540a5d_Fig5. Admin dashboard in pending state.jpg"
     },
     {
+      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\b69e7f2b-9700-44b2-b260-e28d911d744f_Fig22 Regions menu.jpg",
+      "PackagePath": "staticwebassets\\uploads\\b69e7f2b-9700-44b2-b260-e28d911d744f_Fig22 Regions menu.jpg"
+    },
+    {
       "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\b7076281-d4cb-4e3a-b195-d2244a31ce1f_Fig4. Admin dashboard in New state.jpg",
       "PackagePath": "staticwebassets\\uploads\\b7076281-d4cb-4e3a-b195-d2244a31ce1f_Fig4. Admin dashboard in New state.jpg"
     },
@@ -891,6 +907,10 @@
     {
       "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\e3ea0591-1128-4077-aa32-274e534b0dab_Fig3. Admin Dashboard.jpg",
       "PackagePath": "staticwebassets\\uploads\\e3ea0591-1128-4077-aa32-274e534b0dab_Fig3. Admin Dashboard.jpg"
+    },
+    {
+      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\e546837b-aedf-4936-ac88-6aa43224635e_Fig26. Edit Physician Account.png",
+      "PackagePath": "staticwebassets\\uploads\\e546837b-aedf-4936-ac88-6aa43224635e_Fig26. Edit Physician Account.png"
     },
     {
       "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\e55bfcad-7f67-41e1-9f00-a67e9e7875a0_Fig3. Admin Dashboard.jpg",

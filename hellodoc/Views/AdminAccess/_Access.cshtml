@@ -1,0 +1,90 @@
+﻿@model hellodoc.DbEntity.ViewModels.AdminAccess.AdminAccessModal
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+<div class="login" id="main" style="margin-bottom:100px">
+
+    <div class="row bgcolor1">
+
+        <div class=" col-12 col-sm-12 col-md-10 col-lg-8 mx-auto d-flex justify-content-between mt-4 mb-2">
+            <h2>Account Access</h2>
+        </div>
+        <div class="d-grid gap-2 col-12 col-sm-12 col-md-10 col-lg-8 mx-auto d-flex flex-column rounded-3 bgcolor px-4 mt-3 shadow-lg">
+
+            <div class="d-flex justify-content-end mt-3">
+                <button class="btn btn-info text-white" onclick="GetAccessView({actionType : 'createRole'})">Create Access</button>
+            </div>
+
+            <div style="margin-bottom:50px;" class="table-responsive d-none d-sm-none d-md-block d-lg-block d-xl-block">
+                <table style="width:100%;z-index:5">
+                    <thead>
+                        <tr class="bgcolor1">
+                            <th class="p-3 col-5">Access Name</th>
+                            <th class="p-3 col-6">Account Type</th>
+                            <th class="p-3 col-1">Actions</th>
+
+                        </tr>
+                    </thead>
+                    <tbody style="font-size:larger;font-weight:400;" id="newtable">
+                        @{
+                            foreach (var a in Model.accessTables)
+                            {
+                                <tr class=" m-2 border-bottom">
+                                    <td class="text-black p-3 col-5">@a.accessName</td>
+                                    <td class="text-black p-3 col-6">@a.accountType</td>
+                                    <td class="p-3 d-flex col-1">
+                                        <button class="btn btn-outline-info mx-2" onclick="GetAccessView({actionType : 'editRole',roleid : '@a.roleid'})">Edit</button>
+                                        <button class="btn btn-outline-info mx-2" onclick="loadAccessView('deleterole','@a.roleid')">Delete</button>
+                                    </td>
+                                </tr>
+                            }
+                        }
+
+                    </tbody>
+                </table>
+
+            </div>
+
+            <div class="d-flex justify-content-between m-2">
+                <div>
+                    @Model.entries
+                </div>
+                <div>
+                    @{
+                        if (Model.pageNumber > 1)
+                        {
+                            var previousPage = Model.pageNumber - 1;
+                            <button class="btn btn-outline-secondary" onclick="GetAccessView({actionType : 'accountAccess',pageNumber :'@previousPage'})"><i class="bi bi-chevron-left"></i></button>
+                        }
+                        else
+                        {
+                            <button class="btn btn-outline-secondary"><i class="bi bi-chevron-left"></i></button>
+                        }
+                    }
+
+                    <button class="btn btn-outline-info">@Model.pageNumber</button>
+                    @{
+                        if (Model.morePages == true)
+                        {
+                            var nextpage = Model.pageNumber + 1;
+                            <button class="btn btn-outline-secondary" onclick="GetAccessView({actionType : 'accountAccess',pageNumber :'@nextpage'})"><i class="bi bi-chevron-right"></i></button>
+                        }
+                        else
+                        {
+                            <button class="btn btn-outline-secondary"><i class="bi bi-chevron-right"></i></button>
+                        }
+                    }
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+@section Scripts{
+    @{
+        <Partial name="_ValidationScriptsPartial" />
+    }
+    }

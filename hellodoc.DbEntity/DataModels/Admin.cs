@@ -51,8 +51,7 @@ public partial class Admin
     public long? Zip { get; set; }
 
     [Column("altphone")]
-    [StringLength(20)]
-    public string? Altphone { get; set; }
+    public long? Altphone { get; set; }
 
     [Column("createdby")]
     [StringLength(128)]
@@ -76,6 +75,9 @@ public partial class Admin
 
     [Column("roleid")]
     public int? Roleid { get; set; }
+
+    [InverseProperty("Admin")]
+    public virtual ICollection<AdminRegion> AdminRegions { get; } = new List<AdminRegion>();
 
     [ForeignKey("Aspnetuserid")]
     [InverseProperty("Admins")]

@@ -1,0 +1,88 @@
+﻿@model hellodoc.DbEntity.ViewModels.PatientReqModel
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+<Partial name="_Notification" />
+
+<div class="login" id="main">
+
+    <div class="row" style="background-color:#e7e7e7">
+
+        <div class=" col-12 col-sm-12 col-md-10 col-lg-8 mx-auto d-flex justify-content-between mt-4 mb-2">
+            <h2>Documents </h2>
+            <a asp-action="patient_dashboard" class="d-flex back-btn  text-end btn btn-outline-info text-decoration-none">
+                <i class="bi bi-chevron-left"></i> Back
+            </a>
+
+        </div>
+        <div class="d-grid gap-2 col-12 col-sm-12 col-md-10 col-lg-8 mx-auto d-flex content mb-5 px-4 pt-4">
+
+            <p>Patient Name</p>
+            <h3 class="text-info">@HttpContextAccessor.HttpContext.Session.GetString("username") &nbsp;<span class="text-black fs-5">(MD05127897872)</span></h3>
+            <p>check here for any files that you or the doctors of your subsequents requestors have attached for you to review</p>
+
+            <form id="fileUpload" method="post" enctype="multipart/form-data">
+                <div class="input-group mb-3">
+                    <input type="file" id="file1" class="form-control" id="inputGroupFile02" placeholder="Select File" asp-for="Doc">
+                    <button type="button" onclick="savedoc()" class="mx-2 btn btn-outline-info bg-info text-white"><img src="/images/cloud-upload-icon.svg" class="p-1" alt="">Upload</button>
+                </div>
+            </form>
+
+            <h3> Documents </h3>
+            <div class="d-grid justify-content-end">
+                <button class="btn btn-outline-info mx-4 p-2 px-3">Download All</button>
+            </div>
+            <table class="table mt-4" id="patientdash">
+                <thead>
+                    <tr>
+                        <th scope="col" style="background-color:#bdbdbd"><input type="checkbox" class="custom-check" id="check-header" /></th>
+                        <th scope="col" style="background-color:#bdbdbd"></th>
+                        <th scope="col" style="background-color:#bdbdbd">uploder</th>
+                        <th scope="col" style="background-color:#bdbdbd">uploaded date</th>
+                        <th scope="col" style="background-color:#bdbdbd">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        foreach (var a in Model.patientDocuments)
+                        {
+                            <tr>
+                                <td> <input type="checkbox" class="custom-check" /> </td>
+                                <td>
+
+                                    @a.Filename
+                                </td>
+                                <td></td>
+                                <td>@a.Createddate</td>
+                                <td>
+                                    <a asp-route-download=@a.Requestwisefileid asp-action="download" class="btn btn-outline-info">download</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+<script>
+
+    document.getElementById("check-header").addEventListener("click", function () {
+        var checkboxes = document.querySelectorAll(".custom-check");
+        checkboxes.forEach(function (checkbox) {
+            checkbox.checked = document.getElementById("check-header").checked;
+        });
+    });
+
+    
+</script>
+
+@section Scripts{
+    @{
+        <Partial name="_ValidationScriptsPartial" />
+    }
+    }

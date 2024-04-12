@@ -120,7 +120,7 @@ namespace hellodoc.Controllers
                     var doc1 = HttpContext.Session.GetInt32("userid");
                     HttpContext.Session.SetInt32("requestid", partialView.requestid);
 
-                    var document = _requests.GetDocuments(partialView.requestid, doc1 ?? 1);
+                    var document = _requests.GetDocuments(partialView.requestid);
 
                     return PartialView("_ViewUploads", document);
 
@@ -131,7 +131,7 @@ namespace hellodoc.Controllers
                     var doc2 = HttpContext.Session.GetInt32("userid");
                     HttpContext.Session.SetInt32("requestid", partialView.requestid);
 
-                    var document1 = _requests.GetDocuments(partialView.requestid, doc2 ?? 1);
+                    var document1 = _requests.GetDocuments(partialView.requestid);
 
                     return PartialView("_ViewUploads", document1);
 
@@ -304,7 +304,7 @@ namespace hellodoc.Controllers
                     var doc2 = HttpContext.Session.GetInt32("userid");
                     HttpContext.Session.SetInt32("requestid", requestid);
 
-                    var document1 = _requests.GetDocuments(requestid, doc2 ?? 1);
+                    var document1 = _requests.GetDocuments(requestid);
 
                     return PartialView("_ViewUploads", document1);
 
@@ -314,7 +314,7 @@ namespace hellodoc.Controllers
 
                     sendEmail("hpdhaduk0605@gmail.com", "your uploads", "document", list);
 
-                    var document = _requests.GetDocuments(requestid, 1);
+                    var document = _requests.GetDocuments(requestid);
 
                     return PartialView("_ViewUploads", document);
 
@@ -390,7 +390,7 @@ namespace hellodoc.Controllers
 
             _requests.SaveFile(file1,req??0);
 
-            var document = _requests.GetDocuments(req ?? 1, doc1 ?? 1);
+            var document = _requests.GetDocuments(req ?? 1);
             
             return PartialView("_ViewUploads", document);
         }

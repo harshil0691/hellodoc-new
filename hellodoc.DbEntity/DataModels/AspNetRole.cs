@@ -17,10 +17,10 @@ public partial class AspNetRole
     public string Name { get; set; } = null!;
 
     [InverseProperty("Role")]
-    public virtual ICollection<AspNetUserRole> AspNetUserRoles { get; } = new List<AspNetUserRole>();
-
-    [InverseProperty("Role")]
     public virtual ICollection<EmailLog> EmailLogs { get; } = new List<EmailLog>();
+
+    [InverseProperty("AccounttypeNavigation")]
+    public virtual ICollection<Role> Roles { get; } = new List<Role>();
 
     [InverseProperty("Role")]
     public virtual ICollection<Smslog> Smslogs { get; } = new List<Smslog>();
