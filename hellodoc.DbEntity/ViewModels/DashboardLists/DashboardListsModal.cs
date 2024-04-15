@@ -30,5 +30,7 @@ namespace hellodoc.DbEntity.ViewModels.DashboardLists
         public int pageSize { get; set; }
         public string entries { get; set; }
         public bool morePages { get; set; }
+        public int physicianId { get; set; }    
+        public string role { get; set; }
     }
 }

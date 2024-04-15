@@ -2,6 +2,7 @@
 using hellodoc.DbEntity.DataModels;
 using hellodoc.Repositories.Services.Interface;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -33,6 +34,7 @@ namespace hellodoc.Repositories.Services
             {
                 new Claim(ClaimTypes.Email, aspNetUser.Email),
                 new Claim(ClaimTypes.Role, aspNetUser.AspNetUserRole.Role.Roleid.ToString()),
+                new Claim(ClaimTypes.UserData, role),
                 new Claim("aspuserid", aspNetUser.Id.ToString()),
                 new Claim("username",aspNetUser.Username)
             };

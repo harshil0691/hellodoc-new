@@ -36,15 +36,21 @@ namespace hellodoc.Repositories.Repository
             return aspnetuser;
         }
 
-        
+        public int GetPhysician(int aspid)
+        {
+            var physician = _context.Physicians.FirstOrDefault(p => p.Aspnetuserid == aspid).Physicianid;
+
+            return physician;
+        }
+
     }
 
     public class CustomAuthorize : Attribute, IAuthorizationFilter
     {
         private readonly ApplicationDbContext _context = new ApplicationDbContext();
-        private readonly string[] _role;
+        private readonly string _role;
 
-        public CustomAuthorize(params string[] role)
+        public CustomAuthorize(string role)
         {
             _role = role;
         }
@@ -55,7 +61,7 @@ namespace hellodoc.Repositories.Repository
 
             if(jwtservice == null)
             {
-                filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Login", action = "login" }));
+                filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Login", action = "login"})) ;
                 return;
             }
 
@@ -74,17 +80,75 @@ namespace hellodoc.Repositories.Repository
 
             var rolelist = _context.RoleMenus.Where(r => r.Roleid.ToString() == roleClaim).Select(m => m.Menu.Name);
 
-            foreach (var r in _role)
+            if (roleClaim == null || string.IsNullOrWhiteSpace(_role) || !rolelist.Contains(_role))
             {
-                if (roleClaim == null || string.IsNullOrWhiteSpace(r) || !rolelist.Contains(r))
-
-                {
-                    filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Login", action = "login" }));
-                    return;
-                }
+                filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Login", action = "AccesDenied" }));
+                return;
             }
 
-            
+
+
+
+            //var user = SessionUtils.GetLoggedInUser(filterContext.HttpContext.Session);
+            //if (user == null)
+            //{
+            //    filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Login", action  = "login" }));
+            //    return;
+            //}
+
+            //if(!string.IsNullOrEmpty(user.Name))
+            //{
+
+            //    if(!(user.Role == _role))
+            //    {
+            //        filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "AdminDash", action = "admin_dash" }));
+            //    }
+            //}
+
+        }
+    }
+
+    public class CustomUserAuthorize : Attribute, IAuthorizationFilter
+    {
+        private readonly ApplicationDbContext _context = new ApplicationDbContext();
+        private readonly string[] _role;
+
+        public CustomUserAuthorize(params string[] role)
+        {
+            _role = role;
+        }
+
+        public void OnAuthorization(AuthorizationFilterContext filterContext)
+        {
+            var jwtservice = filterContext.HttpContext.RequestServices.GetService<IJwtServices>();
+
+            if (jwtservice == null)
+            {
+                filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Login", action = "login", loginType = _role }));
+                return;
+            }
+
+            var request = filterContext.HttpContext.Request;
+            var token = request.Cookies["jwt"];
+
+            if (token == null || !jwtservice.ValidateToken(token, out JwtSecurityToken jwtSecurityToken))
+            {
+                filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Login", action = "login", loginType = _role }));
+                return;
+            }
+            var handler = new JwtSecurityTokenHandler();
+            var jwtToken = handler.ReadJwtToken(token);
+
+            var roleClaim = jwtToken.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.UserData).Value;
+
+
+            if (roleClaim == null ||  !_role.Contains(roleClaim))
+            {
+                filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Login", action = "login" , loginType = _role}));
+                return;
+            }
+
+
 
 
             //var user = SessionUtils.GetLoggedInUser(filterContext.HttpContext.Session);

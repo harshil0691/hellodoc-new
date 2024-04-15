@@ -18,8 +18,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace hellodoc.Controllers
 {
-    [CustomAuthorize("admin")]
-    [ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
+    [CustomUserAuthorize("admin","provider")]
     public class DashActionViewController : Controller
 
     {
@@ -31,7 +30,7 @@ namespace hellodoc.Controllers
         private readonly IAuthManager _authManger;
         private readonly IAdminProviders _adminProviders;
 
-        public DashActionViewController(ILogger<AdminDashController> logger, IAdminDashRepository adminDashRepository,IRequests requests,IWebHostEnvironment hostingEnvironment,IAdminProviders adminProviders)
+        public DashActionViewController(ILogger<AdminDashController> logger, IAdminDashRepository adminDashRepository, IRequests requests, IWebHostEnvironment hostingEnvironment, IAdminProviders adminProviders)
         {
             _logger = logger;
             _adminDashRepository = adminDashRepository;
@@ -57,7 +56,7 @@ namespace hellodoc.Controllers
                 case "AssignCase":
                     AssignCaseModal assignCase = new AssignCaseModal
                     {
-                        Regions = _adminDashRepository.GetRegions(),
+                        Regions = _adminDashRepository.GetRegions(0),
                         Physicians = _adminDashRepository.GetPhysicianList(),
                         Requestid = partialView.requestid,
                         Modaltype = partialView.patientName,
@@ -99,7 +98,10 @@ namespace hellodoc.Controllers
                     {
                         physicianid = partialView.physicianid,
                     };
-                    return PartialView("_ContactProvider",contactProvider);
+                    return PartialView("_ContactProvider", contactProvider);
+                case "encounter":
+                    ViewBag.requestid = partialView.requestid;
+                    return PartialView("_Encounter");
 
                 default:
                     return PartialView("_default");
@@ -107,14 +109,14 @@ namespace hellodoc.Controllers
 
         }
 
-        public IActionResult LoadActionViews(PartialViewModal  partialView)
+        public IActionResult LoadActionViews(PartialViewModal partialView)
         {
 
             switch (partialView.actionType)
             {
 
                 case "dashboard":
-                    return RedirectToAction("LoadPartialDashView", "AdminDash",new { tabId = "dashboard"});
+                    return RedirectToAction("LoadPartialDashView", "AdminDash", new { tabId = "dashboard" });
 
                 case "ViewUploads":
                     var doc1 = HttpContext.Session.GetInt32("userid");
@@ -170,10 +172,10 @@ namespace hellodoc.Controllers
 
                 case "CloseCase":
                     HttpContext.Session.SetInt32("reqid", partialView.requestid);
-                    CloseCaseModal closeCase= _adminDashRepository.GetCloseCaseModal(partialView.requestid).Result;
+                    CloseCaseModal closeCase = _adminDashRepository.GetCloseCaseModal(partialView.requestid).Result;
                     closeCase.patientName = partialView.patientName;
 
-                    return PartialView("_closeCase",closeCase);
+                    return PartialView("_closeCase", closeCase);
 
                 case "EncounterForm":
                     HttpContext.Session.SetInt32("requestId", partialView.requestid);
@@ -181,21 +183,110 @@ namespace hellodoc.Controllers
                     Encounter encounter = _adminDashRepository.GetEncounter(partialView.requestid);
                     if (encounter.Isfinalized == 1)
                     {
-                        return Json(new { isfinalized = 1}) ;
+                        return Json(new { isfinalized = 1 });
                     }
-                    return PartialView("_EncounterForm",encounter);
+                    return PartialView("_EncounterForm", encounter);
 
                 case "CreateRequest":
                     return PartialView("_CreateRequest");
 
-                
+
 
                 default:
                     return PartialView("_DefaultTab");
             }
         }
 
-        public IActionResult contact_provider(ContactProviderModal contactProvider,int physicianid)
+        public IActionResult ViewCase(PartialViewModal partialView)
+        {
+            PatientReqModel patientReq = _adminDashRepository.Getpatientdata(partialView.requestid).Result;
+            patientReq.bgcolor = partialView.bcolor;
+            patientReq.btext = partialView.btext;
+
+            return PartialView("_ViewCase", patientReq);
+        }
+
+        public IActionResult dashboard(PartialViewModal partialView)
+        {
+            return RedirectToAction("LoadPartialDashView", "AdminDash", new { tabId = "dashboard" });
+        }
+        public IActionResult ViewUploads(PartialViewModal partialView)
+        {
+            var doc1 = HttpContext.Session.GetInt32("userid");
+            HttpContext.Session.SetInt32("requestid", partialView.requestid);
+
+            var document = _requests.GetDocuments(partialView.requestid);
+
+            return PartialView("_ViewUploads", document);
+        }
+                    
+        public IActionResult deleteDoc(PartialViewModal partialView)
+        {
+            _adminDashRepository.DeleteDocument(partialView.requestwisefileid);
+
+            var doc2 = HttpContext.Session.GetInt32("userid");
+            HttpContext.Session.SetInt32("requestid", partialView.requestid);
+
+            var document1 = _requests.GetDocuments(partialView.requestid);
+
+            return PartialView("_ViewUploads", document1);
+        }
+        
+        public IActionResult Orders(PartialViewModal partialView)
+        {
+            OrdersModal ordersModal = new OrdersModal();
+            ordersModal.professionName = _adminDashRepository.GetListProfessionTypes();
+            ordersModal.requestid = partialView.requestid;
+            ordersModal.aspid = HttpContext.Session.GetInt32("userid");
+
+            return PartialView("_Orders", ordersModal);
+        }
+
+        public IActionResult ViewNotes(PartialViewModal partialView)
+        {
+            NotesModel notesModel = new NotesModel();
+            if (partialView.requestid == 0)
+            {
+                var req = HttpContext.Session.GetInt32("requestid");
+                notesModel = _adminDashRepository.GetNotes(req ?? 1).Result;
+            }
+            else
+            {
+                HttpContext.Session.SetInt32("requestid", partialView.requestid);
+                notesModel = _adminDashRepository.GetNotes(partialView.requestid).Result;
+            }
+
+            return PartialView("_ViewNotes", notesModel);
+        }
+
+        public IActionResult CloseCase(PartialViewModal partialView)
+        {
+            HttpContext.Session.SetInt32("reqid", partialView.requestid);
+            CloseCaseModal closeCase = _adminDashRepository.GetCloseCaseModal(partialView.requestid).Result;
+            closeCase.patientName = partialView.patientName;
+
+            return PartialView("_closeCase", closeCase);
+        }
+                    
+        public IActionResult EncounterForm(PartialViewModal partialView)
+        {
+            HttpContext.Session.SetInt32("requestId", partialView.requestid);
+
+            Encounter encounter = _adminDashRepository.GetEncounter(partialView.requestid);
+            if (encounter.Isfinalized == 1)
+            {
+                return Json(new { isfinalized = 1 });
+            }
+            return PartialView("_EncounterForm", encounter);
+        }
+
+        public IActionResult CreateRequest()
+        {
+            return PartialView("_CreateRequest");
+        }
+
+
+    public IActionResult contact_provider(ContactProviderModal contactProvider,int physicianid)
         {
             var physician = _adminProviders.GetPhysicianAsync(physicianid);
 
@@ -260,7 +351,6 @@ namespace hellodoc.Controllers
         [HttpPost]
         public IActionResult request_support(RequestSupportModal supportModal)
         {
-
             return RedirectToAction("admin_dash", "AdminDash");
         }
 
@@ -472,7 +562,11 @@ namespace hellodoc.Controllers
             SendMail(subject, message,sendAgreement.email);
 
             SendSMS(message, sendAgreement.phonenumber);
-
+            var role = HttpContext.Session.GetString("loginType");
+            if (role == "provider")
+            {
+                return RedirectToAction("dashboard", "ProviderDashboard");
+            }
             return RedirectToAction("admin_dash", "AdminDash");
         }
 
@@ -543,6 +637,12 @@ namespace hellodoc.Controllers
 
             return RedirectToAction("admin_dash", "AdminDash");
         }
+        [HttpPost]
+        public string Encounter(PartialViewModal partialView)
+        {
+            _adminDashRepository.Encouter(partialView.requestid,partialView.callType);
+            return "Request is Encounter To " + partialView.callType;
+        }
 
         public void SendMail(string subject,string message,string mailto)
         {
@@ -564,7 +664,7 @@ namespace hellodoc.Controllers
         public void SendSMS(string message,long? phone)
         {
             const string accountSid = "ACbab82685c56693b60c76b5f7e372f1fc";
-            const string authToken = "192147860503a6d615f8e333a5fbc049";
+            const string authToken = "d1fc25823b60dfa35f7278ccb354ac04";
             const string twilioPhoneNumber = "+15162999172";
 
             TwilioClient.Init(accountSid, authToken);

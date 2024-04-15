@@ -5,6 +5,7 @@ using hellodoc.Utils;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Mail;
 using System.Net;
+using Microsoft.AspNetCore.Http;
 
 namespace hellodoc.Controllers
 {
@@ -28,8 +29,12 @@ namespace hellodoc.Controllers
         }
 
 
-        public IActionResult login()
+        public IActionResult login(string loginType)
         {
+            if (loginType != null)
+            {
+                HttpContext.Session.SetString("loginType", loginType);
+            }
             return View();
         }
 
@@ -39,29 +44,43 @@ namespace hellodoc.Controllers
 
             //var aspnetuser = _patientLogin.GetAspNetUser(obj.Username, obj.Passwordhash);
 
-            var  aspnetuser = _authManger.Login(obj.Email, obj.Passwordhash);
+            var loginType = HttpContext.Session.GetString("loginType");
+            var aspnetuser = _authManger.Login(obj.Email, obj.Passwordhash);
 
-                if (aspnetuser != null)
-                {
-                    TempData["success"] = "User LogIn Successfully";
-                    HttpContext.Session.SetInt32("Aspid",aspnetuser.Id);
+            if (loginType == "provider" && aspnetuser != null)
+            {
+                TempData["success"] = "User LogIn Successfully";
+                HttpContext.Session.SetInt32("Aspid", aspnetuser.Id);
+                var physicianid = _authManger.GetPhysician(aspnetuser.Id);
 
-                    SessionUtils.SetLoggedInUser(HttpContext.Session, aspnetuser);
+                SessionUtils.SetLoggedInUser(HttpContext.Session, aspnetuser);
+                HttpContext.Session.SetInt32("physicianid", physicianid);
+                var jwttoken = _jwtServices.GenarateJwtToken(aspnetuser);
+                Response.Cookies.Append("jwt", jwttoken);
 
-                    var jwttoken = _jwtServices.GenarateJwtToken(aspnetuser);
-                    Response.Cookies.Append("jwt", jwttoken);
-                    
 
-                    return RedirectToAction("admin_dash", "AdminDash",aspnetuser.AspNetUserRole.Role.Name);
+                return RedirectToAction("dashboard", "ProviderDashboard", aspnetuser.AspNetUserRole.Role.Name);
+            }
+            else if (aspnetuser != null && loginType == "admin")
+            {
+                TempData["success"] = "User LogIn Successfully";
+                HttpContext.Session.SetInt32("Aspid", aspnetuser.Id);
 
-                }
-                else
-                {
+                SessionUtils.SetLoggedInUser(HttpContext.Session, aspnetuser);
+                var jwttoken = _jwtServices.GenarateJwtToken(aspnetuser);
+                Response.Cookies.Append("jwt", jwttoken);
 
-                    TempData["error"] = "Username or Password is Incorrect";
-                    ModelState.AddModelError(string.Empty, "Invalid email or Password");
-                    return View();
-                }
+
+                return RedirectToAction("admin_dash", "AdminDash", aspnetuser.AspNetUserRole.Role.Name);
+            }
+            else
+            {
+
+                TempData["error"] = "Username or Password is Incorrect";
+                ModelState.AddModelError(string.Empty, "Invalid email or Password");
+                return View();
+            }
+                
         }
 
         public IActionResult PatientLogin(AspNetUser obj)
@@ -96,7 +115,7 @@ namespace hellodoc.Controllers
         public IActionResult Logout()
         {
             Response.Cookies.Delete("jwt");
-            return RedirectToAction("Login", "login");
+            return RedirectToAction("Login", "login",new { loginType = HttpContext.Session.GetString("loginType")});
         }
 
         public IActionResult Index()

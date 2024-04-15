@@ -105,14 +105,19 @@ namespace hellodoc.Repositories.Repository
             _context.SaveChanges();
         }
 
-        public List<ShiftDetailsmodal> ShiftDetailsmodal(DateTime date, DateTime sunday, DateTime saturday,string type)
+        public List<ShiftDetailsmodal> ShiftDetailsmodal(DateTime date, DateTime sunday, DateTime saturday,string type, int physicianid)
         {
             var shiftdetails = _context.ShiftDetails.Where(u => u.Shiftdate.Month == date.Month && u.Shiftdate.Year == date.Year);
 
             switch (type)
             {
                 case "month":
-                    shiftdetails = _context.ShiftDetails.Where(u => u.Shiftdate.Month == date.Month && u.Shiftdate.Year == date.Year && u.Isdeleted != 1);
+                    shiftdetails = _context.ShiftDetails.Where(
+                        u => u.Shiftdate.Month == date.Month && 
+                        u.Shiftdate.Year == date.Year 
+                        && u.Isdeleted != 1 && 
+                        ((physicianid !=0 )? u.Shift.Physicianid == physicianid : true)
+                        );
                     break;
 
                 case "week":

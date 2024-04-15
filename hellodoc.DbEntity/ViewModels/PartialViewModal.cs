@@ -27,8 +27,12 @@ namespace hellodoc.DbEntity.ViewModels
         public int pageNumber { get; set; }
         public string search { get; set; }
         public int professionalType { get; set; }
-
+        public List<int> status { get; set; }  
+        public bool export { get; set; }
+        public bool provider { get; set; }
+        public string tabId { get; set; }
         public string exportType { get; set; }
+        public string callType { get; set; }
         AdminRecordsListModal AdminRecords;
     }
 }

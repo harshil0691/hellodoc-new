@@ -10,5 +10,6 @@ namespace hellodoc.Repositories.Repository.Interface
     public partial interface IAuthManager
     {
         public AspNetUser Login(string email, string password);
+        int GetPhysician(int aspid);
     }
 }

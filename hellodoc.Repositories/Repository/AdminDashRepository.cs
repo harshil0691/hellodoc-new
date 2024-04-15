@@ -22,47 +22,71 @@ namespace hellodoc.Repositories.Repository
         }
 
 
-        public AdminParent GetRequests(List<int> status, int page, string search, int regionid,bool export)
+        public AdminParent GetRequests(PartialViewModal partialView)
         {
-            if (page <= 0)
+            var page = 1;
+            if (partialView.pageNumber >1)
             {
-                page = 1;
+                page = partialView.pageNumber;
             }
             var request = _context.Requests.Where(
                 r => 
-                (status.Contains(r.Status)) &&
-                (((search != null )? r.RequestClients.FirstOrDefault().Firstname.Contains(search) :true) ||
-                ((search != null) ? r.RequestClients.FirstOrDefault().Lastname.Contains(search):true)) && 
-                ((regionid !=0 )? r.RequestClients.FirstOrDefault().Regionid == regionid : true)
+                (partialView.status.Contains(r.Status)) &&
+                (((partialView.search != null )? r.RequestClients.FirstOrDefault().Firstname.Contains(partialView.search) :true) ||
+                ((partialView.search != null) ? r.RequestClients.FirstOrDefault().Lastname.Contains(partialView.search):true)) && 
+                ((partialView.regionid !=0 )? r.RequestClients.FirstOrDefault().Regionid == partialView.regionid : true) && 
+                ((partialView.physicianid != 0) ? r.Physicianid == partialView.physicianid : true)
             );
             int pagesize = 5;
 
-            var requestlist = request.Select(r => new AdminDashModel
-            {
-                Requestid = r.Requestid,
-                PatientName = r.RequestClients.Select(rc => rc.Firstname).FirstOrDefault() + " " + r.RequestClients.Select(rc => rc.Lastname).FirstOrDefault(),
-                DateOfBirth = r.DateOfBirth,
-                Phonenumber_P = r.RequestClients.Select(rc => rc.Phonenumber).FirstOrDefault(),
-                Phonenumber_R = r.Phonenumber,
-                Status = r.Status,
-                Createddate = r.Createddate,
-                Address = r.RequestClients.Select(rc => rc.City + " " + rc.State + " " + rc.Zipcode ).FirstOrDefault(),
-                RequestorName = r.Firstname + " " + r.Lastname,
-                Requesttypeid = r.Requesttypeid,
-                Requestclientid = r.RequestClients.Select(rc => rc.Requestclientid).FirstOrDefault(),
-                Email = r.Email,
-                Physicianname = _context.Physicians.FirstOrDefault(p => p.Physicianid  == r.Physicianid).Firstname,
-                regionid = r.RequestClients.Select(rc => rc.Regionid).FirstOrDefault() ?? 0,
-            }
+            var requestlist = new List<AdminDashModel>();
 
-            );
+            if(partialView.provider == true)
+            {
+                requestlist = request.Select(r => new AdminDashModel
+                {
+                    Requestid = r.Requestid,
+                    PatientName = r.RequestClients.Select(rc => rc.Firstname).FirstOrDefault() + " " + r.RequestClients.Select(rc => rc.Lastname).FirstOrDefault(),
+                    Phonenumber_P = r.RequestClients.Select(rc => rc.Phonenumber).FirstOrDefault(),
+                    Phonenumber_R = r.Phonenumber,
+                    Status = r.Status,
+                    Address = r.RequestClients.Select(rc => rc.City + " " + rc.State + " " + rc.Zipcode).FirstOrDefault(),
+                    Requesttypeid = r.Requesttypeid,
+                    Requestclientid = r.RequestClients.Select(rc => rc.Requestclientid).FirstOrDefault(),
+                    Email = r.Email,
+                    regionid = r.RequestClients.Select(rc => rc.Regionid).FirstOrDefault() ?? 0,
+                    CallType = (r.Calltype != 0 && r.Calltype != null)? 
+                                ((r.Calltype == 1)? "HouseCall": "Consult") : "-" ,
+
+                }).ToList();
+            }
+            else
+            {
+                requestlist = request.Select(r => new AdminDashModel
+                {
+                    Requestid = r.Requestid,
+                    PatientName = r.RequestClients.Select(rc => rc.Firstname).FirstOrDefault() + " " + r.RequestClients.Select(rc => rc.Lastname).FirstOrDefault(),
+                    DateOfBirth = r.DateOfBirth,
+                    Phonenumber_P = r.RequestClients.Select(rc => rc.Phonenumber).FirstOrDefault(),
+                    Phonenumber_R = r.Phonenumber,
+                    Status = r.Status,
+                    Createddate = r.Createddate,
+                    Address = r.RequestClients.Select(rc => rc.City + " " + rc.State + " " + rc.Zipcode).FirstOrDefault(),
+                    RequestorName = r.Firstname + " " + r.Lastname,
+                    Requesttypeid = r.Requesttypeid,
+                    Requestclientid = r.RequestClients.Select(rc => rc.Requestclientid).FirstOrDefault(),
+                    Email = r.Email,
+                    Physicianname = _context.Physicians.FirstOrDefault(p => p.Physicianid == r.Physicianid).Firstname,
+                    regionid = r.RequestClients.Select(rc => rc.Regionid).FirstOrDefault() ?? 0,
+                }).ToList();
+            }
 
             AdminParent admin = new AdminParent();
             admin.requestcount = requestlist.Count();
-            admin.search = search;
-            admin.regionid = regionid;
+            admin.search = partialView.search;
+            admin.regionid = partialView.regionid;
 
-            if(export == true)
+            if(partialView.export == true)
             {
                 admin.adminDashModels = requestlist.ToList();
                 return admin;
@@ -101,16 +125,28 @@ namespace hellodoc.Repositories.Repository
             return model;
         }
 
-        public async Task<RequestCountByStatus> GetCount()
+        public async Task<RequestCountByStatus> GetCount(string accountType,int physicianid)
         {
-            RequestCountByStatus requestCount  = new RequestCountByStatus();
+            RequestCountByStatus requestCount = new RequestCountByStatus();
 
-            requestCount.NewCount = _context.Requests.Where(u => u.Status == 1).Count();
-            requestCount.PendingCount = _context.Requests.Where(u =>u.Status == 2).Count();
-            requestCount.ActiveCount = _context.Requests.Where(u =>u.Status == 4 || u.Status == 5).Count();
-            requestCount.ConcludeCount = _context.Requests.Where(u => u.Status == 6).Count();
-            requestCount.TocloseCount = _context.Requests.Where(u => u.Status == 7  || u.Status == 8 || u.Status == 3).Count();
-            requestCount.UnpaidCount = _context.Requests.Where(u => u.Status == 9).Count();
+            if (accountType == "provider")
+            {
+                requestCount.NewCount = _context.Requests.Where(u => u.Status == 1 && u.Physicianid == physicianid).Count();
+                requestCount.PendingCount = _context.Requests.Where(u => u.Status == 2 && u.Physicianid == physicianid).Count();
+                requestCount.ActiveCount = _context.Requests.Where(u => (u.Status == 4 || u.Status == 5) && u.Physicianid == physicianid).Count();
+                requestCount.ConcludeCount = _context.Requests.Where(u => u.Status == 6 && u.Physicianid == physicianid).Count();
+                requestCount.TocloseCount = _context.Requests.Where(u => (u.Status == 7 || u.Status == 8 || u.Status == 3) && u.Physicianid == physicianid).Count();
+                requestCount.UnpaidCount = _context.Requests.Where(u => u.Status == 9 && u.Physicianid == physicianid).Count();
+            }
+            else
+            {
+                requestCount.NewCount = _context.Requests.Where(u => u.Status == 1).Count();
+                requestCount.PendingCount = _context.Requests.Where(u => u.Status == 2).Count();
+                requestCount.ActiveCount = _context.Requests.Where(u => u.Status == 4 || u.Status == 5).Count();
+                requestCount.ConcludeCount = _context.Requests.Where(u => u.Status == 6).Count();
+                requestCount.TocloseCount = _context.Requests.Where(u => u.Status == 7 || u.Status == 8 || u.Status == 3).Count();
+                requestCount.UnpaidCount = _context.Requests.Where(u => u.Status == 9).Count();
+            }
 
             return requestCount;
         }
@@ -217,7 +253,7 @@ namespace hellodoc.Repositories.Repository
             if (request != null)
             {
                 RequestStatusLog requestStatusLog = new RequestStatusLog();
-                requestStatusLog.Status = 2;
+                requestStatusLog.Status = 1;
                 requestStatusLog.Notes = assignCase.Discription;
                 requestStatusLog.Requestid = request.Requestid;
                 requestStatusLog.Adminid = adminid;
@@ -231,7 +267,6 @@ namespace hellodoc.Repositories.Repository
 
                 _context.RequestStatusLogs.Add(requestStatusLog);
 
-                request.Status = 2;
                 request.Physicianid = assignCase.Physicianid;
 
                 _context.SaveChanges();
@@ -268,10 +303,20 @@ namespace hellodoc.Repositories.Repository
             }
         }
 
-        public  List<Region> GetRegions()
+        public  List<Region> GetRegions(int physicianid)
         {
-            var regions = _context.Regions.ToList();
-            return  regions;
+            if (physicianid !=0 )
+            {
+                var regionidlist = _context.PhysicianRegions.Where(p => p.Physicianid == physicianid).Select(p => p.Regionid).ToList();
+                var regions = _context.Regions.Where(r  => regionidlist.Contains(r.Regionid)).ToList();
+                return regions;
+            }
+            else
+            {
+                var regions = _context.Regions.ToList();
+                return regions;
+            }
+            
         }
 
         public List<Physician> GetPhysicianList()
@@ -484,6 +529,7 @@ namespace hellodoc.Repositories.Repository
                 encounter.Modifiedby = "admin2";
                 encounter.Modifieddate = DateTime.Now;
 
+                _context.Encounters.Add(encounter);
                 _context.SaveChanges();
                 return encounter;
             }
@@ -527,6 +573,20 @@ namespace hellodoc.Repositories.Repository
             }
         }
 
+        public string Encouter(int requestid,string callType)
+        {
+            var request = _context.Requests.FirstOrDefault(r => r.Requestid == requestid);
+            if(callType == "HouseCall")
+            {
+                request.Calltype = 1;
+            }
+            else if(callType == "Consult")
+            {
+                request.Calltype = 2;
+            }
+            _context.SaveChanges();
+            return "ok";
+        }
         public List<AccessTableModal> accessTables()
         {
             var role = _context.Roles;

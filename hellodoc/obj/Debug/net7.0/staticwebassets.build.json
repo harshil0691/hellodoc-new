@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "vMYG2PD+5mKegqW6+O1lXBEqSssQlp3nUn8Sm+KqPVM=",
+  "Hash": "UZSfna4sH18Z/XDgrzBn8hlRT/vtXs1oErDz6U2gAOs=",
   "Source": "hellodoc",
   "BasePath": "_content/hellodoc",
   "Mode": "Default",
@@ -2735,6 +2735,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\1c8f0403-3a5f-49e9-8a5f-baec26720904_SRS-23-24-Trainees-21Feb24.pdf"
+    },
+    {
+      "Identity": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\1d734c5a-3a51-4cdd-9619-61dc6f872345_Fig23.Request Support.png",
+      "SourceId": "hellodoc",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\",
+      "BasePath": "_content/hellodoc",
+      "RelativePath": "uploads/1d734c5a-3a51-4cdd-9619-61dc6f872345_Fig23.Request Support.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\1d734c5a-3a51-4cdd-9619-61dc6f872345_Fig23.Request Support.png"
     },
     {
       "Identity": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\1f271f8c-fadf-48b2-9d08-1d708241da8d_Fig21. Admin My profile..jpg",

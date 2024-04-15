@@ -22,9 +22,16 @@
 
                     </select>
 
-                    <select class="form-select mt-3" aria-label="Default select example" asp-for="@Model.Physicianid" id="Physicianselect">
-                        <option selected>Select Physician</option>
-                    </select>
+                    @{
+                        if (Model.Physicianid == 0)
+                        {
+                            <select class="form-select mt-3" aria-label="Default select example" asp-for="@Model.Physicianid" id="Physicianselect">
+                                <option selected>Select Physician</option>
+                            </select>
+                        }
+                    }
+
+                    
 
                     <div class="form-floating mt-3 vs">
                         <input type="Date" class="form-control vs" asp-for="Shiftdate" id="dateInput" onchange="checkShiftAvailability()" placeholder="Shiftdate">

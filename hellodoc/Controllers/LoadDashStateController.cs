@@ -17,45 +17,65 @@ namespace hellodoc.Controllers
             _adminDashRepository = adminDashRepository;
         }
 
-        public IActionResult LoadPartialView(string tabId,int pagenumber, string search, int regionid)
+        public IActionResult LoadPartialView(PartialViewModal partialView)
         {
-            switch (tabId)
+            switch (partialView.tabId)
             {
                 case "new":
-                    var status1 = new List<int> { 1 };
-
-                    var dashModel1 = _adminDashRepository.GetRequests(status1,pagenumber,search,regionid,false);
+                    partialView.status = new List<int> { 1 };
+                    partialView.physicianid = HttpContext.Session.GetInt32("physicianid") ?? 0;
+                    var dashModel1 = _adminDashRepository.GetRequests(partialView);
+                    dashModel1.RequestStatus = partialView.tabId;
+                    if(partialView.provider == true)
+                    {
+                        return PartialView("_ProviderTable",dashModel1);
+                    }
                     return PartialView("_NewAdmin", dashModel1);
 
                 case "pending":
-                    var status2 = new List<int> { 2 };
-
-                    var dashModel2 = _adminDashRepository.GetRequests(status2,pagenumber, search, regionid,false);
+                    partialView.status = new List<int> { 2 };
+                    partialView.physicianid = HttpContext.Session.GetInt32("physicianid") ?? 0;
+                    var dashModel2 = _adminDashRepository.GetRequests(partialView);
+                    dashModel2.RequestStatus = partialView.tabId;
+                    if (partialView.provider == true)
+                    {
+                        return PartialView("_ProviderTable", dashModel2);
+                    }
                     return PartialView("_PendingAdmin", dashModel2);
 
 
                 case "active":
-                    var status3 = new List<int> { 4, 5 };
-
-                    var dashModel3 = _adminDashRepository.GetRequests(status3, pagenumber, search, regionid, false);
+                    partialView.status = new List<int> { 4, 5 };
+                    partialView.physicianid = HttpContext.Session.GetInt32("physicianid") ?? 0;
+                    var dashModel3 = _adminDashRepository.GetRequests(partialView);
+                    dashModel3.RequestStatus = partialView.tabId;
+                    if (partialView.provider == true)
+                    {
+                        return PartialView("_ProviderTable", dashModel3);
+                    }
                     return PartialView("_ActiveAdmin", dashModel3);
 
                 case "conclude":
-                    var status4 = new List<int> { 6 };
-
-                    var dashModel4 = _adminDashRepository.GetRequests(status4,pagenumber, search, regionid,false);
+                    partialView.status = new List<int> { 6 };
+                    partialView.physicianid = HttpContext.Session.GetInt32("physicianid") ?? 0;
+                    var dashModel4 = _adminDashRepository.GetRequests(partialView);
+                    dashModel4.RequestStatus = partialView.tabId;
+                    if (partialView.provider == true)
+                    {
+                        return PartialView("_ProviderTable", dashModel4);
+                    }
                     return PartialView("_ConcludeAdmin", dashModel4);
 
                 case "toclose":
-                    var status5 = new List<int> { 3, 7, 8 };
+                    partialView.status = new List<int> { 3, 7, 8 };
 
-                    var dashModel5 = _adminDashRepository.GetRequests(status5, pagenumber, search, regionid, false);
+                    var dashModel5 = _adminDashRepository.GetRequests(partialView);
                     return PartialView("_ToCloseAdmin", dashModel5);
 
                 case "unpaid":
-                    var status6 = new List<int> { 9 };
+                    partialView.status = new List<int> { 9 };
 
-                    var dashModel6 = _adminDashRepository.GetRequests(status6,pagenumber, search, regionid,false);
+                    var dashModel6 = _adminDashRepository.GetRequests(partialView);
                     return PartialView("_UnpaidAdmin", dashModel6);
 
 

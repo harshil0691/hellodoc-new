@@ -13,9 +13,8 @@ using OfficeOpenXml;
 using static Org.BouncyCastle.Bcpg.Attr.ImageAttrib;
 
 namespace hellodoc.Controllers
-
 {
-    [CustomAuthorize("admin", "EmailLogs")]
+    [CustomUserAuthorize("admin")]
     [ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
     public class AdminDashController : Controller
     {
@@ -46,7 +45,7 @@ namespace hellodoc.Controllers
 
         public IActionResult admin_dash()
         {
-                var request = _adminDashRepository.GetCount().Result;
+                var request = _adminDashRepository.GetCount("admin",0).Result;
                 return View(request);
             
         }
@@ -82,8 +81,8 @@ namespace hellodoc.Controllers
             switch (tabId)
             {
                 case "dashboard":
-                    RequestCountByStatus request = _adminDashRepository.GetCount().Result;
-                    request.regions = _adminDashRepository.GetRegions();
+                    RequestCountByStatus request = _adminDashRepository.GetCount("admin",0).Result;
+                    request.regions = _adminDashRepository.GetRegions(0);
                     request.activeid = HttpContext.Session.GetInt32("activeid") ?? 1;
 
                     return PartialView("_dashboard", request);
@@ -196,7 +195,7 @@ namespace hellodoc.Controllers
                 case "DashboardAll":
                     var status1 = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
-                    var dashModel1 = _adminDashRepository.GetRequests(status1, 1, "", 0,true);
+                    var dashModel1 = _adminDashRepository.GetRequests(partialView);
 
                     using (var package = new ExcelPackage(stream))
                     {
@@ -211,7 +210,7 @@ namespace hellodoc.Controllers
 
                     var status = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
-                    var dashModel = _adminDashRepository.GetRequests(status, 1, partialView.search, partialView.regionid, true);
+                    var dashModel = _adminDashRepository.GetRequests(partialView);
 
                     using (var package = new ExcelPackage(stream))
                     {

@@ -33,5 +33,6 @@ namespace hellodoc.DbEntity.ViewModels.Shifts
         public List<Physician> physics { get; set; }
         public string regionname { get; set; }
         public string datename { get; set; }
+        public string role { get; set; }
     }
 }

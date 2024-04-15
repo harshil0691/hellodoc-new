@@ -402,6 +402,11 @@ input[type="checkbox"]:checked {
     border-bottom: 1px solid gray;
 }
 
+#newtable tr td {
+    font-size: 18px;
+    padding: 15px;
+    border-bottom: 1px solid white;
+}
 
 
 .actions {

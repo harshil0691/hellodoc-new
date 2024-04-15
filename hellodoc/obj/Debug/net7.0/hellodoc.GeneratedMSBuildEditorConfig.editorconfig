@@ -204,8 +204,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaEFjdGlvblZpZXdcX0NyZWF0ZVJlcXVlc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/DashActionView/_dashboard.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaEFjdGlvblZpZXdcX2Rhc2hib2FyZC5jc2h0bWw=
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/DashActionView/_Encounter.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaEFjdGlvblZpZXdcX0VuY291bnRlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/DashActionView/_EncounterForm.cshtml]
@@ -230,6 +230,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/DashActionView/_SendLink.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaEFjdGlvblZpZXdcX1NlbmRMaW5rLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/DashActionView/_TransferRequest.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaEFjdGlvblZpZXdcX1RyYW5zZmVyUmVxdWVzdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/DashActionView/_ViewCase.cshtml]
@@ -270,6 +274,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/LoadDashState/_PendingAdmin.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9hZERhc2hTdGF0ZVxfUGVuZGluZ0FkbWluLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/LoadDashState/_ProviderTable.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9hZERhc2hTdGF0ZVxfUHJvdmlkZXJUYWJsZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/LoadDashState/_ToCloseAdmin.cshtml]
@@ -346,6 +354,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/Patient/_PatientRequest.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF0aWVudFxfUGF0aWVudFJlcXVlc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/ProviderDashboard/dashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvdmlkZXJEYXNoYm9hcmRcZGFzaGJvYXJkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/ProviderDashboard/_Dashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvdmlkZXJEYXNoYm9hcmRcX0Rhc2hib2FyZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/Shared/Error.cshtml]

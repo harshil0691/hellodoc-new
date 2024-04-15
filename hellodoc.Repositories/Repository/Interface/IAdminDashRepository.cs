@@ -12,10 +12,10 @@ namespace hellodoc.Repositories.Repository.Interface
 {
     public interface IAdminDashRepository
     {
-        AdminParent GetRequests(List<int> status,int page,string search , int regionid,bool export);
+        AdminParent GetRequests(PartialViewModal partialView);
 
         Task<PatientReqModel> Getpatientdata(int rid);
-        Task<RequestCountByStatus> GetCount();
+        Task<RequestCountByStatus> GetCount(string accountType,int physicianid);
 
         Task SetNotes(NotesModel note, int? reqid, string? username);
 
@@ -23,7 +23,7 @@ namespace hellodoc.Repositories.Repository.Interface
 
         Task CancelRequest(int? reqid, CancelCaseModel cancelCase, int? adminid);
 
-        List<Region> GetRegions();
+        List<Region> GetRegions(int physicianid);
         List<Physician> GetPhysicianList();
 
         List<Physician> GetPhysicianList2(int select);
@@ -53,6 +53,7 @@ namespace hellodoc.Repositories.Repository.Interface
         Task UpdateAdminAddress(AdminProfileModal adminProfile, int aspid);
         Encounter GetEncounter(int requestid);
         Encounter SetEncounter(int requestid, Encounter encounter);
+        string Encouter(int requestid,string callType);
         Task FinalizeEncounter(int requestid, Encounter encounter1);
 
         List<AccessTableModal> accessTables();

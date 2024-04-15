@@ -1,5 +1,6 @@
 ﻿
 using hellodoc.DbEntity.DataModels;
+using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,5 +30,7 @@ namespace hellodoc.DbEntity.ViewModels
         public int pageSize { get; set; }
         public string entries { get; set; }
         public bool morePages { get; set; }
+        public string RequestStatus { get; set; }
+        public string CallType { get; set; }
     }
 }

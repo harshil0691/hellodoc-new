@@ -25,5 +25,7 @@ namespace hellodoc.DbEntity.ViewModels
 
         public List<Region> regions { get; set; }
 
+        public string dashboardType { get; set; }
+
     }
 }
