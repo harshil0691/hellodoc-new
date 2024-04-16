@@ -86,6 +86,9 @@ public partial class Admin
     [InverseProperty("Admin")]
     public virtual ICollection<EmailLog> EmailLogs { get; } = new List<EmailLog>();
 
+    [InverseProperty("Admin")]
+    public virtual ICollection<NotificationMessage> NotificationMessages { get; } = new List<NotificationMessage>();
+
     [ForeignKey("Regionid")]
     [InverseProperty("Admins")]
     public virtual Region? Region { get; set; }

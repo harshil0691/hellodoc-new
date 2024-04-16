@@ -2,7 +2,7 @@
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 
 
-<div class="table-responsive d-none d-sm-none d-md-block d-lg-block d-xl-block">
+<div class="table-responsive d-none d-sm-none d-md-block d-lg-block d-xl-block newtable">
     <table style="width:100%;z-index:5">
         <thead>
             <tr>
@@ -17,7 +17,7 @@
                 <th>Actions</th>
             </tr>
         </thead>
-        <tbody style="font-size:larger;font-weight:400;color:white;" id="newtable">
+        <tbody style="font-size:larger;font-weight:400;color:white;">
             @{
                 foreach (var a in Model.adminDashModels)
                 {
@@ -46,19 +46,21 @@
                     }
 
                     <tr class="m-2" style="background-color:@reqcolor">
-                        <td class="p-3">@a.PatientName </td>
-                        <td class="p-4">@a.Createddate</td>
+                        <td >@a.PatientName </td>
+                        <td >@a.Createddate</td>
                         <td>@a.RequestorName</td>
                         <td>@a.Createddate</td>
                         <td>
                             @{
                                 if (a.Phonenumber_P != null)
                                 {
-                                    <button class="btn btn-outline-light">@a.Phonenumber_P</button>
+                                    <button class="btn btn-outline-light mt-2">@a.Phonenumber_P</button> <br />
+                                    <span>(Patient)</span><br />
                                 }
                                 if (a.Phonenumber_R != null && a.Requesttypeid != 2)
                                 {
-                                    <button class="btn btn-outline-light">@a.Phonenumber_R</button>
+                                    <button class="btn btn-outline-light mt-2">@a.Phonenumber_R</button><br />
+                                    <span>(@text)</span><br />
                                 }
                             }
                         </td>

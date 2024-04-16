@@ -82,7 +82,7 @@ namespace hellodoc.Repositories.Repository
 
             if (roleClaim == null || string.IsNullOrWhiteSpace(_role) || !rolelist.Contains(_role))
             {
-                filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Login", action = "AccesDenied" }));
+                filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Login", action = "AccessDenied" }));
                 return;
             }
 

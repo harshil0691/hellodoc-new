@@ -12,7 +12,7 @@ namespace hellodoc.Repositories.Repository.Interface
 {
     public interface IAdminAccess
     {
-        AdminAccessModal AccountAccessData(int pageNumber);
+        AdminAccessModal AccountAccessData(int pageNumber,string accessType);
         CreateRoleModal CreateRole(int accounttype,int roleid);
         Task NewRole(List<int> menulist,int aspid,string name, short accounttype);
         Task EditRole(List<int> menulist,short accounttype,int roleid,int aspid, string name);

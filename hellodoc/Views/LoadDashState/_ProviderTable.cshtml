@@ -97,7 +97,7 @@
                                             <li><a class="dropdown-item" onclick="loadActionView({ActionType:'ViewCase',requestid :@a.Requestid,bcolor:'@reqcolor',btext:'@text'})"><i class="bi bi-journal-text me-2"></i>View Case</a></li>
                                             <li><button class="dropdown-item" onclick="loadActionView({ActionType:'ViewUploads',requestid :'@a.Requestid'})"><i class="bi bi-file-earmark-arrow-up me-2"></i>View Uploads</button></li>
                                             <li><button class="dropdown-item" onclick="loadActionView({ActionType:'ViewNotes',requestid :@a.Requestid})"><i class="bi bi-journals me-2"></i>View Notes</button></li>
-                                            <li><button type="button" class="dropdown-item " onclick="ShowModal({ActionType:'AssignCase',requestid :@a.Requestid,patientName :'Transfer'})"><i class="bi bi-card-text me-2"></i>Transfer</button></li>
+                                            <li><button type="button" class="dropdown-item " onclick="ShowModal({ActionType:'transfertoadmin',requestid :@a.Requestid})"><i class="bi bi-card-text me-2"></i>Transfer</button></li>
                                         }else if (Model.RequestStatus == "active")
                                         {
                                             <li><button class="dropdown-item" onclick="loadActionView({ActionType:'ViewCase',requestid :@a.Requestid,bcolor:'@reqcolor',btext:'@text'})"><i class="bi bi-journal-text me-2"></i>View Case</button></li>
@@ -108,7 +108,7 @@
                                         }
                                         else if(Model.RequestStatus == "conclude")
                                         {
-                                            <li><button class="dropdown-item" onclick="loadActionView({ActionType:'ViewCase',requestid :@a.Requestid,bcolor:'@reqcolor',btext:'@text'})"><i class="bi bi-journal-text me-2"></i>Conclude Care</button></li>
+                                            <li><button class="dropdown-item" onclick="loadActionView({ActionType:'ConcludeCare',requestid :@a.Requestid})"><i class="bi bi-journal-text me-2"></i>Conclude Care</button></li>
                                             <li><button class="dropdown-item" onclick="loadActionView({ActionType:'ViewCase',requestid :@a.Requestid,bcolor:'@reqcolor',btext:'@text'})"><i class="bi bi-journal-text me-2"></i>View Case</button></li>
                                             <li><button class="dropdown-item" onclick="loadActionView({ActionType:'ViewUploads',requestid :'@a.Requestid'})"><i class="bi bi-file-earmark-arrow-up me-2"></i>View Uploads</button></li>
                                             <li><button class="dropdown-item" onclick="loadActionView({ActionType:'ViewNotes',requestid :@a.Requestid})"><i class="bi bi-journals me-2"></i>View Notes</button></li>
@@ -327,10 +327,15 @@
                 if (data.isfinalized) {
                     ShowModal({ ActionType: 'finalizedencounter' })
                 } 
-                else if (DataObject.ActionType == "Encounter") {
+                else if (DataObject.ActionType == "Encounter" || DataObject.ActionType == "TransferToAdmin") {
                     $('#myModal').modal('hide');
                     toastr.success(data);
-                    loadPartialView('active','1');
+                    //if (DataObject.ActionType == "TransferToAdmin"){
+                    //    loadPartialView('pending', '1');
+                    //}else{
+                    //    loadPartialView('active', '1');
+                    //}
+                    window.location.reload();
                 }
                 else{
                     $('#mainDashContent').html(data);

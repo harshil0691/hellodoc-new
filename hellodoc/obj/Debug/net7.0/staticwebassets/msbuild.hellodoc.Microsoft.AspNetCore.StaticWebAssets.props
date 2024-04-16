@@ -2512,6 +2512,22 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\11e4c400-c3d9-4c07-9237-87475c376926_Fig20.Close case.png))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\16087468-0370-4ae1-b928-5e0e1dabfcaf_Fig24. Provider Menu.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>hellodoc</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/hellodoc</BasePath>
+      <RelativePath>uploads/16087468-0370-4ae1-b928-5e0e1dabfcaf_Fig24. Provider Menu.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\16087468-0370-4ae1-b928-5e0e1dabfcaf_Fig24. Provider Menu.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\1b9250ab-8810-4874-8908-14f1cb11ce93_7768657_3763028 - Copy.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>hellodoc</SourceId>

@@ -4,6 +4,7 @@ using hellodoc.Repositories.Repository;
 using hellodoc.Repositories.Repository.Interface;
 using hellodoc.Repositories.Services.Interface;
 using hellodoc.Repositories.Services;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -42,7 +43,7 @@ builder.Services.AddScoped<IAdminAccess, AdminAccess>();
 builder.Services.AddScoped<IAdminRecords, AdminRecords>();
 builder.Services.AddScoped<IAdminPartners, AdminPartners>();
 builder.Services.AddScoped<IProviderRepo, ProviderRepo>();
-builder.Services.AddScoped<IAdminProviderLocation, AdminProviderLocation>();    
+builder.Services.AddScoped<IAdminProviderLocation, AdminProviderLocation>();
 var app = builder.Build();
 
 
@@ -63,6 +64,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=ProviderDashboard}/{action=dashboard}/{id?}");
+    pattern: "{controller=AdminDash}/{action=admin_dash}/{id?}");
 
 app.Run();

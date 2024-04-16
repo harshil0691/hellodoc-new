@@ -9,8 +9,10 @@
 <Partial name="_header">
 
 
-    @* <div class="collapse navbar-collapse" id="navbarSupportedContent">*@
-    <ul class="nav nav-underline mt-2 mx-2 shadow-sm" id="mydashboard">
+    <div class="collapse navbar-collapse d-md-block" id="navbarSupportedContent">
+    <p class="m-2 pt-2 d-block d-md-none">Welcome <strong>@HttpContextAccessor.HttpContext.Session.GetString("username")</strong></p>
+    <div class="d-md-flex justify-content-between">
+    <ul class="nav nav-underline mt-2 mx-2 d-grid d-md-flex shadow-sm" id="mydashboard">
         <li class="nav-item mx-2">
             <a class="nav-link" data-bs-toggle="pill" href="#dashboard">Dashboard</a>
         </li>
@@ -50,15 +52,19 @@
             </div>
         </li>
     </ul>
-
-
-    <div id="mainDashContent" class="bgcolor1"></div>
+    <div>
+        <button class="btn btn-outline-info m-2"><i class="bi bi-bell-fill"></i></button>
+    </div>
+    </div>
+    </div>
+    <div id="mainDashContent" class="bgcolor1 px-3"></div>
 
     <div id="partialContainer"></div>
         
-    
-<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <div id="notification" class="notification"></div>
 
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script src="/js/AdminDashboard.js" asp-append-version="true"></script>
 <script src="/js/AdminRecords.js" asp-append-version="true"></script>
 <script src="/js/AdminProviders.js" asp-append-version="true"></script>

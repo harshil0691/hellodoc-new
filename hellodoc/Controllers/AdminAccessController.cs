@@ -52,9 +52,9 @@ namespace hellodoc.Controllers
             switch (partialView.actionType)
             {
                 case "accountAccess":
-                    return PartialView("_Access", _adminAccess.AccountAccessData(partialView.pageNumber));
+                    return PartialView("_Access", _adminAccess.AccountAccessData(partialView.pageNumber,"access"));
                 case "userAccess":
-                    return PartialView("_UserAccess", _adminAccess.AccountAccessData(partialView.pageNumber));
+                    return PartialView("_UserAccess", _adminAccess.AccountAccessData(partialView.pageNumber, "userAccess"));
                 case "createAdmin":
                     return PartialView("_CreateAdmin", _adminAccess.GetForCreateAdmin());
                 case "createRole":

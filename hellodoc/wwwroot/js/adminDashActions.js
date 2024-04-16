@@ -48,7 +48,7 @@ function ShowModal(DataObject) {
 function loadActionView(DataObject) {
 
     $.ajax({
-        url: '/DashActionView/LoadActionViews',
+        url: '/DashActionView/'+DataObject.ActionType,
         type: 'POST',
         data: DataObject,
         success: function (data) {

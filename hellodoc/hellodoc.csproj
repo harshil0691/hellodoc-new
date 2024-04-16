@@ -43,6 +43,7 @@
 
   <ItemGroup>
     <Folder Include="Views\DashPartialView\" />
+    <Folder Include="wwwroot\EncounterForns\" />
     <Folder Include="wwwroot\uploads\" />
   </ItemGroup>
 

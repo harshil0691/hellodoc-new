@@ -43,7 +43,7 @@ namespace hellodoc.DbEntity.ViewModels
 
         public string? Confirmationnumber { get; set; }
 
-        public DateTime Createddate { get; set; }
+        public string Createddate { get; set; }
 
         public BitArray? Isdeleted { get; set; }
 

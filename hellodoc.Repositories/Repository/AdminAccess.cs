@@ -21,23 +21,39 @@ namespace hellodoc.Repositories.Repository
         {
             _context = context;
         }
-
-        public AdminAccessModal AccountAccessData(int pagenumber)
+        
+        public AdminAccessModal AccountAccessData(int pagenumber, string accessType)
         {
             var pageSize = 5;
             var pageNumber = 1;
+            var list = new List<AccessTableModal>();
             if (pagenumber > 0)
             {
                 pageNumber = pagenumber;
             }
 
-            var role = _context.Roles.Where(u => u.Isdeleted != 1);
-            var list = role.Select(a => new AccessTableModal
+            if (accessType == "userAccess")
             {
-                accessName = a.Name,
-                accountType = a.Accounttype,
-                roleid = a.Roleid,
-            });
+                var aspnetuser = _context.AspNetUsers;
+                list = aspnetuser.Select(u => new AccessTableModal
+                {
+                    aspid = u.Id,
+                    accountPOC = u.Username,
+                    accountType1 = _context.AspNetRoles.FirstOrDefault(r => r.Id == u.AspNetUserRole.Role.Accounttype).Name,
+                    phoneNumber = u.Phonenumber??0,
+                }).ToList();
+            }
+            else
+            {
+                var role = _context.Roles.Where(u => u.Isdeleted != 1);
+                list = role.Select(a => new AccessTableModal
+                {
+                    accessName = a.Name,
+                    accountType = a.Accounttype,
+                    roleid = a.Roleid,
+                }).ToList();
+            }
+
 
             AdminAccessModal adminAccess = new AdminAccessModal();
             adminAccess.accessTables = list.ToList();

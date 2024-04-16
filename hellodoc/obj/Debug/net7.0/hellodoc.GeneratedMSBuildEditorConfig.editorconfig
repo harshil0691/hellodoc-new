@@ -40,20 +40,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5EYXNoXGFkbWluX2Rhc2guY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/AdminDash/_Access.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5EYXNoXF9BY2Nlc3MuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/AdminDash/_CreateRole.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5EYXNoXF9DcmVhdGVSb2xlLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/AdminDash/_dashboard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5EYXNoXF9kYXNoYm9hcmQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/AdminDash/_EditRole.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5EYXNoXF9FZGl0Um9sZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/AdminDash/_MyProfile.cshtml]
@@ -196,6 +184,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaEFjdGlvblZpZXdcX0Nsb3NlQ2FzZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/DashActionView/_ConcludeCare.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaEFjdGlvblZpZXdcX0NvbmNsdWRlQ2FyZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/DashActionView/_ContactProvider.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaEFjdGlvblZpZXdcX0NvbnRhY3RQcm92aWRlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -286,6 +278,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/LoadDashState/_UnpaidAdmin.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9hZERhc2hTdGF0ZVxfVW5wYWlkQWRtaW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/Login/AccessDenied.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cQWNjZXNzRGVuaWVkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/Login/forgot_password.cshtml]

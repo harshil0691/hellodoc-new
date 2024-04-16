@@ -11,6 +11,7 @@ using Google.Apis.Services;
 using System;
 using OfficeOpenXml;
 using static Org.BouncyCastle.Bcpg.Attr.ImageAttrib;
+using hellodoc.DbEntity.DataModels;
 
 namespace hellodoc.Controllers
 {
@@ -48,6 +49,10 @@ namespace hellodoc.Controllers
                 var request = _adminDashRepository.GetCount("admin",0).Result;
                 return View(request);
             
+        }
+        public List<NotificationMessage> GetNotification()
+        {
+            return _adminDashRepository.GetNotification();
         }
 
         public IActionResult download(int download)

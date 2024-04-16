@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "UZSfna4sH18Z/XDgrzBn8hlRT/vtXs1oErDz6U2gAOs=",
+  "Hash": "xPoMSLh9Kgk+HvVaci38mGUVcahakXW/OP+ytmz+8xk=",
   "Source": "hellodoc",
   "BasePath": "_content/hellodoc",
   "Mode": "Default",
@@ -2701,6 +2701,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\11e4c400-c3d9-4c07-9237-87475c376926_Fig20.Close case.png"
+    },
+    {
+      "Identity": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\16087468-0370-4ae1-b928-5e0e1dabfcaf_Fig24. Provider Menu.jpg",
+      "SourceId": "hellodoc",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\",
+      "BasePath": "_content/hellodoc",
+      "RelativePath": "uploads/16087468-0370-4ae1-b928-5e0e1dabfcaf_Fig24. Provider Menu.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\16087468-0370-4ae1-b928-5e0e1dabfcaf_Fig24. Provider Menu.jpg"
     },
     {
       "Identity": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\1b9250ab-8810-4874-8908-14f1cb11ce93_7768657_3763028 - Copy.jpg",

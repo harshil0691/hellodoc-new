@@ -102,6 +102,10 @@ namespace hellodoc.Controllers
                 case "encounter":
                     ViewBag.requestid = partialView.requestid;
                     return PartialView("_Encounter");
+                case "transfertoadmin":
+                    ViewBag.requestid = partialView.requestid;
+                    ViewBag.physicianid = HttpContext.Session.GetInt32("physicianid");
+                    return PartialView("_TransferRequest");
 
                 default:
                     return PartialView("_default");
@@ -219,7 +223,20 @@ namespace hellodoc.Controllers
 
             return PartialView("_ViewUploads", document);
         }
-                    
+        public IActionResult ConcludeCare(int requestid)
+        {
+            Encounter encounter = _adminDashRepository.GetEncounter(requestid);
+            ConcludCare concludCare = new ConcludCare();
+            if (encounter.Isfinalized == 1)
+            {
+                concludCare.isfinalized = 1; 
+            }
+            concludCare.patientDocuments = _requests.GetDocuments(requestid).patientDocuments;
+            concludCare.PatientName = _requests.GetDocuments(requestid).Firstname;
+            return PartialView("_ConcludeCare",concludCare);
+        }
+
+
         public IActionResult deleteDoc(PartialViewModal partialView)
         {
             _adminDashRepository.DeleteDocument(partialView.requestwisefileid);
@@ -434,6 +451,13 @@ namespace hellodoc.Controllers
 
         }
 
+        [HttpPost]
+        public string TransferToAdmin(PartialViewModal partialView)
+        {
+            _adminDashRepository.TransferToAdmin(partialView.requestid,partialView.transferNotes,partialView.physicianid);
+            return "Request is transfer to admin successfully";
+        }
+
         public Task sendEmail(string email, string subject, string message, List<string> files)
         {
             var mail = "pdhaduk300@gmail.com";
@@ -635,7 +659,7 @@ namespace hellodoc.Controllers
             var reqid = HttpContext.Session.GetInt32("requestId");
             _adminDashRepository.FinalizeEncounter(reqid??1, encounter);
 
-            return RedirectToAction("admin_dash", "AdminDash");
+            return RedirectToAction("dashboard", "ProviderDashboard");
         }
         [HttpPost]
         public string Encounter(PartialViewModal partialView)

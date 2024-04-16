@@ -6,6 +6,7 @@ using hellodoc.DbEntity.ViewModels.PopUpModal;
 using hellodoc.Repositories.Repository.Interface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -35,7 +36,8 @@ namespace hellodoc.Repositories.Repository
                 (((partialView.search != null )? r.RequestClients.FirstOrDefault().Firstname.Contains(partialView.search) :true) ||
                 ((partialView.search != null) ? r.RequestClients.FirstOrDefault().Lastname.Contains(partialView.search):true)) && 
                 ((partialView.regionid !=0 )? r.RequestClients.FirstOrDefault().Regionid == partialView.regionid : true) && 
-                ((partialView.physicianid != 0) ? r.Physicianid == partialView.physicianid : true)
+                ((partialView.physicianid != 0) ? r.Physicianid == partialView.physicianid : true) && 
+                ((partialView.requesttype != 0)? r.Requesttypeid == partialView.requesttype:true)
             );
             int pagesize = 5;
 
@@ -70,7 +72,7 @@ namespace hellodoc.Repositories.Repository
                     Phonenumber_P = r.RequestClients.Select(rc => rc.Phonenumber).FirstOrDefault(),
                     Phonenumber_R = r.Phonenumber,
                     Status = r.Status,
-                    Createddate = r.Createddate,
+                    //Createddate = r.Createddate,
                     Address = r.RequestClients.Select(rc => rc.City + " " + rc.State + " " + rc.Zipcode).FirstOrDefault(),
                     RequestorName = r.Firstname + " " + r.Lastname,
                     Requesttypeid = r.Requesttypeid,
@@ -264,7 +266,6 @@ namespace hellodoc.Repositories.Repository
                     requestStatusLog.Transtophysicianid = assignCase.Physicianid;
                 }
                 
-
                 _context.RequestStatusLogs.Add(requestStatusLog);
 
                 request.Physicianid = assignCase.Physicianid;
@@ -549,6 +550,7 @@ namespace hellodoc.Repositories.Repository
                 encounter2.Finalizedby = "admin";
                 encounter2.Finalizeddate = DateTime.Now;
                 encounter2.Isfinalized = 1;
+                encounter2.Requestid = requestid;
 
                 _context.Encounters.Add(encounter2);
                 _context.SaveChanges();
@@ -616,6 +618,32 @@ namespace hellodoc.Repositories.Repository
            
 
             return createRoleModal;
+        }
+
+        public string TransferToAdmin(int requestid, string transferNotes, int physicianid)
+        {
+            var request = _context.Requests.FirstOrDefault(r => r.Requestid == requestid);
+
+            request.Status = 1;
+
+            RequestStatusLog requestStatus = new RequestStatusLog
+            {
+                Notes = transferNotes,
+                Createddate = DateTime.Now,
+                Physicianid = physicianid,
+                Requestid = requestid,
+                Transtoadmin = new BitArray(1,true),
+            };
+
+            _context.RequestStatusLogs.Add(requestStatus);
+            _context.SaveChanges();
+
+            return "ok";
+        }
+
+        public List<NotificationMessage> GetNotification()
+        {
+            return _context.NotificationMessages.ToList();
         }
     }
 }

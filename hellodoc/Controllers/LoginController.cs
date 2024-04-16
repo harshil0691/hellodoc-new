@@ -123,6 +123,10 @@ namespace hellodoc.Controllers
             return View();
         }
 
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
         //post 
 
         [HttpPost]

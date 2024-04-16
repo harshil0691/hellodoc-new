@@ -32,7 +32,7 @@ function loadPartialDashView(tabId,ptab) {
             if (tabId == 'records') {
                 searchrecords('SearchRecords','1');
             }
-
+            ShowNotification();
             localStorage.setItem("DashTab", tabId);
         },
         error: function () {
@@ -41,7 +41,37 @@ function loadPartialDashView(tabId,ptab) {
     });
 }
 
-function loadPartialView(tabId, page, search, regionid) {
+function closeNotification() {
+    var notification = document.getElementById('notification');
+    notification.style.display = 'none';
+}
+
+function ShowNotification() {
+
+    setTimeout(function () {
+        notification.style.display = 'none';
+    }, 5000); // Hide after 30 seconds (30 * 1000 milliseconds)
+
+    $.ajax({
+        url: '/AdminDash/GetNotification',
+        type: 'GET',
+        success: function (data) {
+
+            var notification = document.getElementById('notification');
+            notification.innerHTML = data[0].notification + '<span class="close-btn m-2" onclick="closeNotification()">&times;</span>';
+            notification.style.display = 'block';
+        },
+        error: function () {
+            console.error('Error loading partial view.');
+        }
+    });
+}
+
+function loadPartialView(tabId, page, search, regionid, requesttype) {
+    console.log(tabId);
+    if (requesttype != 0 && requesttype != null) {
+        tabId = localStorage.getItem("StatusTab");
+    }
 
     var element = document.querySelectorAll('[href="#' + tabId + '"]');
     element.forEach(a => {
@@ -49,12 +79,14 @@ function loadPartialView(tabId, page, search, regionid) {
     });
 
     $.ajax({
-        url: '/LoadDashState/LoadPartialView',
+        url: '/LoadDashState/' + tabId,
         type: 'GET',
-        data: { tabId: tabId, pagenumber: page, search: search, regionid: regionid },
+        data: { tabId: tabId, pagenumber: page, search: search, regionid: regionid, requesttype: requesttype },
         success: function (data) {
             $('#tabledata').html(data);
             localStorage.setItem("StatusTab", tabId);
+
+            $('#state').html('('+tabId+')');
         },
         error: function () {
             console.error('Error loading partial view.');

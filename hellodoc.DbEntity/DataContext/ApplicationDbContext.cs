@@ -48,6 +48,8 @@ public partial class ApplicationDbContext : DbContext
 
     public virtual DbSet<Menu> Menus { get; set; }
 
+    public virtual DbSet<NotificationMessage> NotificationMessages { get; set; }
+
     public virtual DbSet<OrderDetail> OrderDetails { get; set; }
 
     public virtual DbSet<PatientDocument> PatientDocuments { get; set; }
@@ -241,6 +243,19 @@ public partial class ApplicationDbContext : DbContext
             entity.HasKey(e => e.Menuid).HasName("Menu_pkey");
 
             entity.Property(e => e.Menuid).ValueGeneratedNever();
+        });
+
+        modelBuilder.Entity<NotificationMessage>(entity =>
+        {
+            entity.HasKey(e => e.Notificationid).HasName("pk_notificationid");
+
+            entity.Property(e => e.Notificationid).ValueGeneratedNever();
+
+            entity.HasOne(d => d.Admin).WithMany(p => p.NotificationMessages).HasConstraintName("fk_notification_admin");
+
+            entity.HasOne(d => d.Aspetuser).WithMany(p => p.NotificationMessages).HasConstraintName("fk_notification_aspnetuser");
+
+            entity.HasOne(d => d.Physician).WithMany(p => p.NotificationMessages).HasConstraintName("fk_notification_physician");
         });
 
         modelBuilder.Entity<OrderDetail>(entity =>

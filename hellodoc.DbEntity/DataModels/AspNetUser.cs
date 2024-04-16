@@ -6,7 +6,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace hellodoc.DbEntity.DataModels;
 
-[Index("Username", Name = "AspNetUsers_username_key", IsUnique = true)]
 public partial class AspNetUser
 {
     [Key]
@@ -39,6 +38,9 @@ public partial class AspNetUser
 
     [InverseProperty("User")]
     public virtual AspNetUserRole? AspNetUserRole { get; set; }
+
+    [InverseProperty("Aspetuser")]
+    public virtual ICollection<NotificationMessage> NotificationMessages { get; } = new List<NotificationMessage>();
 
     [InverseProperty("Aspnetuser")]
     public virtual ICollection<Physician> Physicians { get; } = new List<Physician>();

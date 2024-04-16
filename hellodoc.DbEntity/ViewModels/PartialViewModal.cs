@@ -31,8 +31,10 @@ namespace hellodoc.DbEntity.ViewModels
         public bool export { get; set; }
         public bool provider { get; set; }
         public string tabId { get; set; }
+        public int requesttype { get; set; }
         public string exportType { get; set; }
         public string callType { get; set; }
+        public string transferNotes { get; set; }
         AdminRecordsListModal AdminRecords;
     }
 }

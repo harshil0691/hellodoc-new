@@ -6,21 +6,20 @@
     <div class="row bgcolor1">
 
         <div class=" col-12 col-sm-12 col-md-10 col-lg-8 mx-auto d-flex justify-content-between mt-4 mb-2">
-            <h2>Account Access</h2>
+            <h2>User Access</h2>
         </div>
         <div class="d-grid gap-2 col-12 col-sm-12 col-md-10 col-lg-8 mx-auto d-flex flex-column rounded-3 bgcolor px-4 mt-3 shadow-lg">
 
-            <div class="d-flex justify-content-end mt-3">
-                <button class="btn btn-info text-white" onclick="loadAccessView('createrole')">Create Access</button>
-            </div>
-
-            <div style="margin-bottom:50px;" class="table-responsive d-none d-sm-none d-md-block d-lg-block d-xl-block">
-                <table style="width:100%;z-index:5">
+            <div style="margin-bottom:50px;" class="table-responsive d-none d-sm-none d-md-block d-lg-block d-xl-block" id="accessTable">
+                <table class="mt-3 w-100">
                     <thead>
                         <tr class="bgcolor1">
-                            <th class="p-3 col-5">Access Name</th>
-                            <th class="p-3 col-6">Account Type</th>
-                            <th class="p-3 col-1">Actions</th>
+                            <th class="p-3 ">Account Type</th>
+                            <th class="p-3 ">Account POC</th>
+                            <th class="p-3 ">Phone</th>
+                            <th class="p-3 ">Status</th>
+                            <th class="p-3 ">Open Requests</th>
+                            <th class="p-3 ">Actions</th>
 
                         </tr>
                     </thead>
@@ -29,11 +28,13 @@
                             foreach (var a in Model.accessTables)
                             {
                                 <tr class=" m-2 border-bottom">
-                                    <td class="text-black p-3 col-5">@a.accessName</td>
-                                    <td class="text-black p-3 col-6">@a.accountType</td>
+                                    <td class="text-black p-3 col-5">@a.accountType1</td>
+                                    <td class="text-black p-3 col-6">@a.accountPOC</td>
+                                    <td class="text-black p-3 col-6">@a.phoneNumber</td>
+                                    <td class="text-black p-3 col-6">Active</td>
+                                    <td class="text-black p-3 col-6">0</td>
                                     <td class="p-3 d-flex col-1">
-                                        <button class="btn btn-outline-info mx-2" onclick="loadAccessView('editroleview','@a.roleid')">Edit</button>
-                                        <button class="btn btn-outline-info mx-2" onclick="loadAccessView('deleterole','@a.roleid')">Delete</button>
+                                        <button class="btn btn-outline-info mx-2" onclick="GetAccessView({actionType : 'editRole',roleid : '@a.roleid'})">Edit</button>
                                     </td>
                                 </tr>
                             }
@@ -44,42 +45,44 @@
 
             </div>
 
+            <div class="d-flex justify-content-between m-2">
+                <div>
+                    @Model.entries
+                </div>
+                <div>
+                    @{
+                        if (Model.pageNumber > 1)
+                        {
+                            var previousPage = Model.pageNumber - 1;
+                            <button class="btn btn-outline-secondary" onclick="GetAccessView({actionType : 'userAccess',pageNumber :'@previousPage'})"><i class="bi bi-chevron-left"></i></button>
+                        }
+                        else
+                        {
+                            <button class="btn btn-outline-secondary"><i class="bi bi-chevron-left"></i></button>
+                        }
+                    }
+
+                    <button class="btn btn-outline-info">@Model.pageNumber</button>
+                    @{
+                        if (Model.morePages == true)
+                        {
+                            var nextpage = Model.pageNumber + 1;
+                            <button class="btn btn-outline-secondary" onclick="GetAccessView({actionType : 'userAccess',pageNumber :'@nextpage'})"><i class="bi bi-chevron-right"></i></button>
+                        }
+                        else
+                        {
+                            <button class="btn btn-outline-secondary"><i class="bi bi-chevron-right"></i></button>
+                        }
+                    }
+                </div>
+            </div>
+
         </div>
 
     </div>
 </div>
 
-<div class="d-flex justify-content-between m-2">
-    <div>
-        @Model.entries
-    </div>
-    <div>
-        @{
-            if (Model.pageNumber > 1)
-            {
-                var previousPage = Model.pageNumber - 1;
-                <button class="btn btn-outline-secondary" onclick="searchrecords('BlockedHistory','@previousPage')"><i class="bi bi-chevron-left"></i></button>
-            }
-            else
-            {
-                <button class="btn btn-outline-secondary"><i class="bi bi-chevron-left"></i></button>
-            }
-        }
 
-        <button class="btn btn-outline-info">@Model.pageNumber</button>
-        @{
-            if (Model.morePages == true)
-            {
-                var nextpage = Model.pageNumber + 1;
-                <button class="btn btn-outline-secondary" onclick="searchrecords('BlockedHistory','@nextpage')"><i class="bi bi-chevron-right"></i></button>
-            }
-            else
-            {
-                <button class="btn btn-outline-secondary"><i class="bi bi-chevron-right"></i></button>
-            }
-        }
-    </div>
-</div>
 
 @section Scripts{
     @{

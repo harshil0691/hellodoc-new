@@ -477,6 +477,7 @@ public class RequestAll : IRequests
         PatientReqModel patient = new PatientReqModel {
             patientDocuments = showdoc.ToList(),
             Requestid = rid,
+            Firstname = _context.Requests.FirstOrDefault(r => r.Requestid == rid).Firstname,
         };
 
         return  patient;

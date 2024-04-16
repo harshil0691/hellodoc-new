@@ -58,5 +58,8 @@ namespace hellodoc.Repositories.Repository.Interface
 
         List<AccessTableModal> accessTables();
         CreateRoleModal CreateRole(int accounttype);
+
+        string TransferToAdmin(int requestid , string transferNotes,int physicianid);
+        List<NotificationMessage> GetNotification();
     }
 }
