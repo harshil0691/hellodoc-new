@@ -1,5 +1,7 @@
-﻿@model hellodoc.DbEntity.ViewModels.PatientReqModel
+﻿@model hellodoc.DbEntity.ViewModels.RequestFormModal
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+<Partial name="_Notification" />
 
 <div class="login" id="main" style="margin-bottom:100px">
 
@@ -7,12 +9,11 @@
 
         <div class=" col-12 col-sm-12 col-md-10 col-lg-8 mx-auto d-flex justify-content-between mt-4 mb-2">
             <h2> New Request <button class="mx-2 text-white rounded-5 p-2 fs-4 border-0" style="background-color:@Model.bgcolor;"> @Model.btext </button> </h2>
-            <div><button class="btn btn-outline-info" onclick="loadActionView({ActionType: 'dashboard',activeid: @HttpContextAccessor.HttpContext.Session.GetInt32("activeid")})"><i class="bi bi-chevron-left"></i>Back</button></div>
+            <div><button class="btn btn-outline-info bg-transparent text-info" onclick="loadPartialDashView('dashboard')"><i class="bi bi-chevron-left"></i>Back</button></div>
 
         </div>
         <div class="d-grid gap-2 col-12 col-sm-12 col-md-10 col-lg-8 mx-auto d-flex content px-4 pt-4">
 
-            <form method="post" asp-action="update_profile">
                 <h3 id="t1" class="pt-2 pb-4">Patient Information</h3>
 
                 <h5>Confirmation number</h5>
@@ -24,35 +25,39 @@
                     <label for="floatingTextarea2" class="mx-1">Symptoms</label>
                     <span asp-validation-for="Symptoms" class="text-danger"></span>
                 </div>
-
+                <form method="post" id="viewcaseform"> 
                 <div class="row mt-5">
                     <div class="form-floating mb-3  col-md-6 col-lg-6">
-                        <input type="text" class="form-control" id="floatingInput" asp-for="@Model.Firstname" placeholder="Firstname" disabled>
+                        <input type="text" class="form-control vc" id="floatingInput" asp-for="@Model.Firstname" placeholder="Firstname" disabled>
                         <label for="floatingInput" class="mx-3">First Name</label>
                         <span asp-validation-for="Firstname" class="text-danger"></span>
                     </div>
                     <div class="form-floating mb-3 col-md-6 col-lg-6">
-                        <input type="text" class="form-control" id="floatingInput" asp-for="@Model.Lastname" placeholder="Lastname" disabled>
+                        <input type="text" class="form-control vc" id="floatingInput" asp-for="@Model.Lastname" placeholder="Lastname" disabled>
                         <label for="floatingInput" class="mx-3">Last Name</label>
                         <span asp-validation-for="Lastname" class="text-danger"> </span>
                     </div>
                     <div class="form-floating mb-3 col-md-6 col-lg-6">
-                        <input type="Date" class="form-control" id="floatingInput" asp-for="@Model.DateOfBirth" placeholder="DateOfBirth" disabled>
+                        <input type="Date" class="form-control vc" id="floatingInput" asp-for="@Model.DOB" placeholder="DateOfBirth" disabled>
                         <label for="floatingInput" class="mx-3">Date Of Birth</label>
                         <span asp-validation-for="DateOfBirth" class="text-danger"></span>
                     </div>
                     <div class="form-floating col-md-6 col-lg-6">
-                        <input type="tel" class="form-control pt-3 pb-3" id="phone" asp-for="@Model.Phonenumber" placeholder="Phone number" disabled>
+                        <input type="tel" class="form-control pt-3 pb-3 vc" id="phone" asp-for="@Model.Phonenumber" placeholder="Phone number" disabled>
                         <span asp-validation-for="Phonenumber" class="text-danger"></span>
                     </div>
                     <div class="form-floating mb-3 col-md-6 col-lg-6">
-                        <input type="email" class="form-control" id="floatingInput" asp-for="@Model.Email" placeholder="Email" disabled>
+                        <input type="email" class="form-control vc" id="floatingInput" asp-for="@Model.PatientEmail" placeholder="Email" disabled>
                         <label for="floatingInput" class="mx-3">Email address</label>
-                        <span asp-validation-for="Email" class="text-danger"></span>
+                        <span asp-validation-for="PatientEmail" class="text-danger"></span>
                     </div>
-
+                    <div class="col-md-6 p-3 d-flex">
+                        <button type="button" class="btn btn-outline-info " onclick="editviewcase()" id="edit">Edit</button>
+                        <button type="button" class="btn btn-info text-white p-2 mx-2" style="display:none" onclick="FormSubmitAction('ViewCaseUpdate','#viewcaseform','@Model.Requestid','@Model.bgcolor','@Model.btext')" id="save">Save</button>
+                        <button type="reset" class="btn btn-outline-info p-2 mx-2" style="display:none" id="cancel">Cancel</button>
+                    </div>
                 </div>
-
+                </form>
 
                 <h3 class="pt-2 pb-4" id="t1">
                     Patient Location
@@ -79,41 +84,33 @@
 
 
 
-                <div class="d-flex justify-content-end" id="edit1">
-                    <button type="button" class="btn btn-info text-white mx-3 p-2 px-3 mb-2" onclick="edit()" id="e1">Assign</button>
-                    <button onclick="loadActionView('ViewNotes','@Model.Requestid')" class="btn btn-info text-white mx-3 p-2 px-3 mb-2">View Notes</button>
-                    <button type="button" onclick="ShowModal('@Model.Requestid','@Model.Firstname','CancelCase')" class="btn btn-danger text-white mx-3 p-2 px-3 mb-2" id="e1">Cancel</button>
+                <div class="d-flex justify-content-end">
+                    <button type="button" class="btn btn-info text-white mx-3 p-2 px-3 mb-2" onclick="ShowModal({ActionType:'AssignCase',requestid :@Model.Requestid,patientName :'Assign'})">Assign</button>
+                    <button onclick="loadActionView({ActionType:'ViewNotes',requestid :@Model.Requestid})" class="btn btn-info text-white mx-3 p-2 px-3 mb-2">View Notes</button>
+                    <button type="button" onclick="ShowModal({ActionType:'CancelCase',requestid :@Model.Requestid,patientName :''@Model.Firstname' + '@Model.Lastname'})" class="btn btn-danger text-white mx-3 p-2 px-3 mb-2" id="e1">Cancel</button>
                     
                 </div>
-                <div class="d-flex justify-content-end" id="edit2">
-                    <button type="submit" class="btn btn-info mx-3 p-2 px-3 mb-2" id="b1" style="display:none;">Save</button>
-                    <button type="button" class="btn btn-dark mx-3 p-2 px-3 mb-2" id="b2" style="display:none;">Cancel</button>
-                </div>
-            </form>
-
-
+               
         </div>
 
 
     </div>
 
 </div>
-<footer style=" position:fixed;bottom:0; width:100%;">
-    <div style="padding-right: 40px;">
-        <a href="" style="color: white;">Terms Of Conditions</a> |
-        <a href="" style="color: white;">Privacy Policy</a>
-    </div>
-</footer>
-
 <script>
-    
-    const phoneInputField = document.querySelector("#phone");
-    const phoneInput = window.intlTelInput(phoneInputField, {
-        utilsScript:
-            "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
-    });
+    function editviewcase(){
+        document.getElementById("save").style.display = 'block';
+        document.getElementById("cancel").style.display = 'block';
+        document.getElementById("edit").style.display = 'none';
 
-    
+        var inputs = document.getElementsByClassName("vc");
+
+        for (var i = 0; i < inputs.length; i++) {
+            inputs[i].disabled = false;
+        }
+    }
+
+
 </script>
 
 @section Scripts{

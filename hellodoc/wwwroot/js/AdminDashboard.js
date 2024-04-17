@@ -68,7 +68,7 @@ function ShowNotification() {
 }
 
 function loadPartialView(tabId, page, search, regionid, requesttype) {
-    console.log(tabId);
+
     if (requesttype != 0 && requesttype != null) {
         tabId = localStorage.getItem("StatusTab");
     }
@@ -79,7 +79,7 @@ function loadPartialView(tabId, page, search, regionid, requesttype) {
     });
 
     $.ajax({
-        url: '/LoadDashState/' + tabId,
+        url: '/LoadDashState/LoadPartialView',
         type: 'GET',
         data: { tabId: tabId, pagenumber: page, search: search, regionid: regionid, requesttype: requesttype },
         success: function (data) {

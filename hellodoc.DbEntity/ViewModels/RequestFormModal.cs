@@ -15,6 +15,7 @@ namespace hellodoc.DbEntity.ViewModels
     public partial class RequestFormModal
     {
         public string RequestType { get; set; }
+        public DateTime DOB { get; set; }
         public int Requestid { get; set; }
         [Required]
         public string Firstname { get; set; } = null!;

@@ -1,13 +1,14 @@
 ﻿@model hellodoc.DbEntity.ViewModels.NotesModel
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 
+<Partial name="_Notification" />
 <div class="login" id="main" style="margin-bottom:100px">
 
     <div class="row">
 
         <div class=" col-12 col-sm-12 col-md-10 col-lg-8 mx-auto d-flex justify-content-between mt-4 mb-2 mx-6">
             <h2 class="px-4">Notes</h2>
-            <div><button class="btn btn-outline-info" onclick="loadActionView({ActionType: 'dashboard',activeid: @HttpContextAccessor.HttpContext.Session.GetInt32("activeid")})"><i class="bi bi-chevron-left"></i>Back</button></div>
+            <div><button class="btn btn-outline-info bg-transparent" onclick="loadPartialDashView('dashboard')"><i class="bi bi-chevron-left"></i>Back</button></div>
 
 
         </div>
@@ -36,7 +37,16 @@
                     <i class="bi bi-person-fill m-3 fs-3"></i>
                     <div>
                         <h4>Physician Notes</h4>
-                        <p>hiii </p>
+                        @{
+                            if (@Model.Physiciannotes != null)
+                            {
+                                <p>@Model.Physiciannotes</p>
+                            }
+                            else
+                            {
+                                <p>...</p>
+                            }
+                        }
                     </div>
                 </div>
             </div>
@@ -66,9 +76,9 @@
 
                     <form method="post" id="note">
                         <textarea class="form-control" placeholder="admin notes" id="floatingTextarea2" rows="5" asp-for="Adminnotes"></textarea>
-
+                        <span asp-validation-for="Adminnotes" class="text-danger"></span>
                         <div class="d-flex justify-content-end m-3">
-                            <button type="button" class="btn btn-info text-white " onclick="FormSubmitAction('save_note','#note')">Save Changes</button>
+                            <button type="button" class="btn btn-info text-white " onclick="FormSubmitAction('SaveNote','#note')">Save Changes</button>
                         </div>
                     </form>
                 </div>

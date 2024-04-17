@@ -463,7 +463,7 @@ public class RequestAll : IRequests
     public PatientReqModel GetDocuments(int rid)
     {
         var doc = _context.RequestWiseFiles.Where(u => u.Requestid == rid && u.Isdeleted != 1);
-
+        var request = _context.Requests.FirstOrDefault(r => r.Requestid == rid);
         var showdoc = doc.Select(r => new ShowDocModal
         {
             Requestid = r.Requestid,
@@ -477,7 +477,9 @@ public class RequestAll : IRequests
         PatientReqModel patient = new PatientReqModel {
             patientDocuments = showdoc.ToList(),
             Requestid = rid,
-            Firstname = _context.Requests.FirstOrDefault(r => r.Requestid == rid).Firstname,
+            Firstname = request.Firstname,
+            Lastname = request.Lastname,
+            Confirmationnumber = request.Confirmationnumber
         };
 
         return  patient;

@@ -407,7 +407,7 @@ public partial class ApplicationDbContext : DbContext
 
             entity.Property(e => e.Requeststatuslogid).UseIdentityAlwaysColumn();
 
-            entity.HasOne(d => d.Admin).WithMany(p => p.RequestStatusLogs).HasConstraintName("fk_requeststatuslog_admin");
+            entity.HasOne(d => d.Admin).WithMany(p => p.RequestStatusLogs).HasConstraintName("fk_rlog_admin");
 
             entity.HasOne(d => d.Physician).WithMany(p => p.RequestStatusLogs).HasConstraintName("fk_requeststatuslog_physician");
 

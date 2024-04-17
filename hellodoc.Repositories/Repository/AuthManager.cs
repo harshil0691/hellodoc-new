@@ -17,6 +17,8 @@ using System.Reflection.Metadata.Ecma335;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using hellodoc.Repositories.Services;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Abstractions;
 
 namespace hellodoc.Repositories.Repository
 {
@@ -43,7 +45,78 @@ namespace hellodoc.Repositories.Repository
             return physician;
         }
 
+        public void authaction(HttpContext httpContext, string role)
+        {
+            var filterContext = new AuthorizationFilterContext(new ActionContext(httpContext, new RouteData(), new ActionDescriptor()), new List<IFilterMetadata>());
+            var auth = AuthorizationHelper.IsAuthorized(filterContext, role);
+
+            if (!auth)
+            {
+                RedirectToAccessDenied(httpContext);
+            }
+        }
+        private static void RedirectToAccessDenied(HttpContext httpContext)
+        {
+            httpContext.Response.Redirect("/Login/AccessDenied");
+        }
     }
+
+    public class AuthorizationHelper
+    {
+        private static readonly ApplicationDbContext _context = new ApplicationDbContext();
+        public static bool IsAuthorized(AuthorizationFilterContext filterContext, string requiredRole)
+        {
+            var jwtservice = filterContext.HttpContext.RequestServices.GetService<IJwtServices>();
+
+            if (jwtservice == null)
+            {
+                RedirectToLogin(filterContext);
+                return false;
+            }
+
+            var request = filterContext.HttpContext.Request;
+            var token = request.Cookies["jwt"];
+
+            if (token == null || !jwtservice.ValidateToken(token, out JwtSecurityToken jwtSecurityToken))
+            {
+                RedirectToLogin(filterContext);
+                return false;
+            }
+
+            var handler = new JwtSecurityTokenHandler();
+            var jwtToken = handler.ReadJwtToken(token);
+
+            var roleClaim = jwtToken.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.Role)?.Value;
+
+            if (roleClaim == null || string.IsNullOrWhiteSpace(requiredRole))
+            {
+                filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Login", action = "AccessDenied" }));
+                return false;
+            }
+
+            // Assuming _context is disposed properly elsewhere
+            var rolelist = _context.RoleMenus.Where(r => r.Roleid.ToString() == roleClaim).Select(m => m.Menu.Name);
+
+            if (!rolelist.Contains(requiredRole))
+            {
+                RedirectToAccessDenied(filterContext);
+                return false;
+            }
+
+            return true;
+        }
+
+        private static void RedirectToLogin(AuthorizationFilterContext filterContext)
+        {
+            filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Login", action = "login" }));
+        }
+
+        private static IActionResult RedirectToAccessDenied(AuthorizationFilterContext filterContext)
+        {
+            return new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Login", action = "AccessDenied" }));
+        }
+    }
+
 
     public class CustomAuthorize : Attribute, IAuthorizationFilter
     {
@@ -85,6 +158,7 @@ namespace hellodoc.Repositories.Repository
                 filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Login", action = "AccessDenied" }));
                 return;
             }
+
 
 
 

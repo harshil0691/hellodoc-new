@@ -34,7 +34,6 @@ function ShowModal(DataObject) {
         type: 'Post',
         data: DataObject,
         success: function (data) {
-            console.log(1)
             $('#partialContainer').html(data);
             $('#myModal').modal('show');
         },
@@ -48,7 +47,7 @@ function ShowModal(DataObject) {
 function loadActionView(DataObject) {
 
     $.ajax({
-        url: '/DashActionView/'+DataObject.ActionType,
+        url: '/DashActionView/LoadActionViews',
         type: 'POST',
         data: DataObject,
         success: function (data) {
@@ -69,16 +68,23 @@ function loadActionView(DataObject) {
     });
 }
 
-function FormSubmitAction(actionType,id,tab) {
+function FormSubmitAction(actionType,id,requestid,bcolor,btext) {
 
-    var formdata = $(id).serialize();
+    var form = $(id).serializeArray();
+    form.push({ name : "requestid", value : requestid });
+    var formdata = $.param(form);
 
     $.ajax({
         url: '/DashActionView/' + actionType,
         type: 'POST',
         data: formdata,
         success: function (data) {
-            $('#mainDashContent').html(data);
+            if (actionType == "ViewCaseUpdate") {
+                loadActionView({ ActionType: 'ViewCase', requestid: requestid, bcolor: bcolor, btext: btext });
+            } else {
+                $('#mainDashContent').html(data);
+            }
+            
         },
         error: function () {
             console.error('Error loading partial view.');
@@ -105,9 +111,7 @@ function FormSubmitAction1(actionType, id) {
 
 function deleteAll(requestid, actionType) {
     var selectedCheck = [];
-
     var checkboxes = document.querySelectorAll(".custom-check");
-
     checkboxes.forEach(function (checkbox) {
         if (checkbox.checked) {
             selectedCheck.push(checkbox.value);
@@ -142,22 +146,24 @@ function savedoc() {
     var fileupload = document.getElementById('file1');
     var f = fileupload.files[0];
     formdata.append('file1', f);
-
-    console.log(formdata);
-
-    $.ajax({
-        url: '/DashActionView/view_uploads',
-        type: 'POST',
-        data: formdata,
-        processData: false,
-        contentType: false,
-        success: function (data) {
-            $('#mainDashContent').html(data);
-        },
-        error: function () {
-            console.error('Error loading partial view.');
-        }
-    });
+    if (f != null) {
+        $.ajax({
+            url: '/DashActionView/view_uploads',
+            type: 'POST',
+            data: formdata,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                $('#mainDashContent').html(data);
+            },
+            error: function () {
+                console.error('Error loading partial view.');
+            }
+        });
+    } else {
+        toastr.error("Please Select a File");
+    }
+    
 }
 
 
@@ -183,7 +189,7 @@ function OpenSwal(Requestid) {
     }).then((result) => {
         if (result.isConfirmed) {
             $.ajax({
-                url: '/AdminDash/ClearCase',
+                url: '/DashActionView/ClearCase',
                 type: 'Post',
                 data: { Requestid: Requestid },
                 success: function (data) {

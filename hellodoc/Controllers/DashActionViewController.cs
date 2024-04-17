@@ -15,6 +15,9 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 //using IronPdf;
 using System.IO;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using Microsoft.DotNet.Scaffolding.Shared.Project;
+using System;
+using Org.BouncyCastle.Ocsp;
 
 namespace hellodoc.Controllers
 {
@@ -45,24 +48,20 @@ namespace hellodoc.Controllers
             switch (partialView.actionType)
             {
                 case "CancelCase":
-                    CancelCaseModel cancelCase = new CancelCaseModel
+                    return PartialView("_CancelCase", new CancelCaseModel
                     {
                         Requestid = partialView.requestid,
                         PatientName = partialView.patientName,
-                    };
-
-                    return PartialView("_CancelCase", cancelCase);
+                    });
 
                 case "AssignCase":
-                    AssignCaseModal assignCase = new AssignCaseModal
+                    return PartialView("_AssignCase", new AssignCaseModal
                     {
                         Regions = _adminDashRepository.GetRegions(0),
                         Physicians = _adminDashRepository.GetPhysicianList(),
                         Requestid = partialView.requestid,
                         Modaltype = partialView.patientName,
-                    };
-
-                    return PartialView("_AssignCase", assignCase);
+                    });
 
                 case "BlockCase":
                     BlockCaseModal blockCase = new BlockCaseModal
@@ -87,7 +86,6 @@ namespace hellodoc.Controllers
                     return PartialView("_SendAgreement", sendAgreement);
 
                 case "SendLink":
-
                     return PartialView("_SendLink");
                 case "RequestDTYSupport":
                     return PartialView("_RequestDTYSupport");
@@ -110,7 +108,6 @@ namespace hellodoc.Controllers
                 default:
                     return PartialView("_default");
             }
-
         }
 
         public IActionResult LoadActionViews(PartialViewModal partialView)
@@ -118,27 +115,28 @@ namespace hellodoc.Controllers
 
             switch (partialView.actionType)
             {
-
                 case "dashboard":
                     return RedirectToAction("LoadPartialDashView", "AdminDash", new { tabId = "dashboard" });
 
                 case "ViewUploads":
-                    var doc1 = HttpContext.Session.GetInt32("userid");
-                    HttpContext.Session.SetInt32("requestid", partialView.requestid);
+                    try
+                    {
+                        HttpContext.Session.SetInt32("requestid", partialView.requestid);
+                        var document = _requests.GetDocuments(partialView.requestid);
 
-                    var document = _requests.GetDocuments(partialView.requestid);
-
-                    return PartialView("_ViewUploads", document);
+                        return PartialView("_ViewUploads", document);
+                    }
+                    catch
+                    {
+                        TempData["error"] = "Internal Error View Case Is Not Displayed";
+                        return RedirectToAction("admin_dash", "AdminDash");
+                    }
 
                 case "deleteDoc":
 
                     _adminDashRepository.DeleteDocument(partialView.requestwisefileid);
-
-                    var doc2 = HttpContext.Session.GetInt32("userid");
                     HttpContext.Session.SetInt32("requestid", partialView.requestid);
-
                     var document1 = _requests.GetDocuments(partialView.requestid);
-
                     return PartialView("_ViewUploads", document1);
 
                 case "Orders":
@@ -151,28 +149,43 @@ namespace hellodoc.Controllers
                     return PartialView("_Orders", ordersModal);
 
                 case "ViewCase":
-
-                    PatientReqModel patientReq = _adminDashRepository.Getpatientdata(partialView.requestid).Result;
-                    patientReq.bgcolor = partialView.bcolor;
-                    patientReq.btext = partialView.btext;
-
-                    return PartialView("_ViewCase", patientReq);
+                    try
+                    {
+                        RequestFormModal reqform = _adminDashRepository.Getpatientdata(partialView.requestid).Result;
+                        reqform.bgcolor = partialView.bcolor;
+                        reqform.btext = partialView.btext;
+                        return PartialView("_ViewCase", reqform);
+                    }
+                    catch
+                    {
+                        TempData["error"] = "Internal Error Case Is Not Assigned";
+                        return RedirectToAction("admin_dash", "AdminDash");
+                    }
 
                 case "ViewNotes":
-
+                    var user = HttpContext.Session.GetInt32("Aspid");
                     NotesModel notesModel = new NotesModel();
-                    if (partialView.requestid == 0)
+                    try
                     {
-                        var req = HttpContext.Session.GetInt32("requestid");
-                        notesModel = _adminDashRepository.GetNotes(req ?? 1).Result;
-                    }
-                    else
-                    {
-                        HttpContext.Session.SetInt32("requestid", partialView.requestid);
-                        notesModel = _adminDashRepository.GetNotes(partialView.requestid).Result;
-                    }
+                        if (partialView.requestid == 0)
+                        {
+                            var req = HttpContext.Session.GetInt32("requestid");
+                            notesModel = _adminDashRepository.GetNotes(req ?? 1,user??1).Result;
+                        }
+                        else
+                        {
+                            HttpContext.Session.SetInt32("requestid", partialView.requestid);
+                            notesModel = _adminDashRepository.GetNotes(partialView.requestid,user??1).Result;
+                        }
 
-                    return PartialView("_ViewNotes", notesModel);
+                        return PartialView("_ViewNotes", notesModel);
+                    }
+                    catch
+                    {
+                        TempData["error"] = "Internal Error to Load View Notes";
+                        return RedirectToAction("admin_dash", "AdminDash");
+                    }
+                    
 
                 case "CloseCase":
                     HttpContext.Session.SetInt32("reqid", partialView.requestid);
@@ -193,113 +206,21 @@ namespace hellodoc.Controllers
 
                 case "CreateRequest":
                     return PartialView("_CreateRequest");
-
+                case "ConcludeCare":
+                    Encounter encounter1 = _adminDashRepository.GetEncounter(partialView.requestid);
+                    ConcludCare concludCare = new ConcludCare();
+                    if (encounter1.Isfinalized == 1)
+                    {
+                        concludCare.isfinalized = 1;
+                    }
+                    concludCare.patientDocuments = _requests.GetDocuments(partialView.requestid).patientDocuments;
+                    concludCare.PatientName = _requests.GetDocuments(partialView.requestid).Firstname;
+                    return PartialView("_ConcludeCare", concludCare);
 
 
                 default:
                     return PartialView("_DefaultTab");
             }
-        }
-
-        public IActionResult ViewCase(PartialViewModal partialView)
-        {
-            PatientReqModel patientReq = _adminDashRepository.Getpatientdata(partialView.requestid).Result;
-            patientReq.bgcolor = partialView.bcolor;
-            patientReq.btext = partialView.btext;
-
-            return PartialView("_ViewCase", patientReq);
-        }
-
-        public IActionResult dashboard(PartialViewModal partialView)
-        {
-            return RedirectToAction("LoadPartialDashView", "AdminDash", new { tabId = "dashboard" });
-        }
-        public IActionResult ViewUploads(PartialViewModal partialView)
-        {
-            var doc1 = HttpContext.Session.GetInt32("userid");
-            HttpContext.Session.SetInt32("requestid", partialView.requestid);
-
-            var document = _requests.GetDocuments(partialView.requestid);
-
-            return PartialView("_ViewUploads", document);
-        }
-        public IActionResult ConcludeCare(int requestid)
-        {
-            Encounter encounter = _adminDashRepository.GetEncounter(requestid);
-            ConcludCare concludCare = new ConcludCare();
-            if (encounter.Isfinalized == 1)
-            {
-                concludCare.isfinalized = 1; 
-            }
-            concludCare.patientDocuments = _requests.GetDocuments(requestid).patientDocuments;
-            concludCare.PatientName = _requests.GetDocuments(requestid).Firstname;
-            return PartialView("_ConcludeCare",concludCare);
-        }
-
-
-        public IActionResult deleteDoc(PartialViewModal partialView)
-        {
-            _adminDashRepository.DeleteDocument(partialView.requestwisefileid);
-
-            var doc2 = HttpContext.Session.GetInt32("userid");
-            HttpContext.Session.SetInt32("requestid", partialView.requestid);
-
-            var document1 = _requests.GetDocuments(partialView.requestid);
-
-            return PartialView("_ViewUploads", document1);
-        }
-        
-        public IActionResult Orders(PartialViewModal partialView)
-        {
-            OrdersModal ordersModal = new OrdersModal();
-            ordersModal.professionName = _adminDashRepository.GetListProfessionTypes();
-            ordersModal.requestid = partialView.requestid;
-            ordersModal.aspid = HttpContext.Session.GetInt32("userid");
-
-            return PartialView("_Orders", ordersModal);
-        }
-
-        public IActionResult ViewNotes(PartialViewModal partialView)
-        {
-            NotesModel notesModel = new NotesModel();
-            if (partialView.requestid == 0)
-            {
-                var req = HttpContext.Session.GetInt32("requestid");
-                notesModel = _adminDashRepository.GetNotes(req ?? 1).Result;
-            }
-            else
-            {
-                HttpContext.Session.SetInt32("requestid", partialView.requestid);
-                notesModel = _adminDashRepository.GetNotes(partialView.requestid).Result;
-            }
-
-            return PartialView("_ViewNotes", notesModel);
-        }
-
-        public IActionResult CloseCase(PartialViewModal partialView)
-        {
-            HttpContext.Session.SetInt32("reqid", partialView.requestid);
-            CloseCaseModal closeCase = _adminDashRepository.GetCloseCaseModal(partialView.requestid).Result;
-            closeCase.patientName = partialView.patientName;
-
-            return PartialView("_closeCase", closeCase);
-        }
-                    
-        public IActionResult EncounterForm(PartialViewModal partialView)
-        {
-            HttpContext.Session.SetInt32("requestId", partialView.requestid);
-
-            Encounter encounter = _adminDashRepository.GetEncounter(partialView.requestid);
-            if (encounter.Isfinalized == 1)
-            {
-                return Json(new { isfinalized = 1 });
-            }
-            return PartialView("_EncounterForm", encounter);
-        }
-
-        public IActionResult CreateRequest()
-        {
-            return PartialView("_CreateRequest");
         }
 
 
@@ -322,7 +243,6 @@ namespace hellodoc.Controllers
                     SendMail("Message From admin", contactProvider.Message, physician.Email);
                     break;
             }
-
             return RedirectToAction("admin_dash", "AdminDash");
         }
 
@@ -395,6 +315,67 @@ namespace hellodoc.Controllers
 
         //    return RedirectToAction("admin_dash","AdminDash");
         //}
+        public IActionResult AssignCase(int requestid, AssignCaseModal assignCase, string Modaltype)
+        {
+            var aspnetuser = HttpContext.Session.GetInt32("Aspid");
+            try
+            {
+                assignCase.Modaltype = Modaltype;
+                _adminDashRepository.AssignCase(requestid, assignCase, aspnetuser);
+                TempData["success"] = "Case Is Assigned SuccessFully";
+            }
+            catch
+            {
+                TempData["error"] = "Internal Error Case Is Not Assigned";
+            }
+
+            return RedirectToAction("admin_dash", "AdminDash");
+        }
+
+        public IActionResult BlockCase(int requestid, BlockCaseModal blockCase)
+        {
+            var user = HttpContext.Session.GetInt32("Aspid");
+            if (_adminDashRepository.BlockCase(requestid, blockCase, user) == true)
+            {
+                TempData["success"] = "Case Is Bloked";
+            }
+            else
+            {
+                TempData["error"] = "Internal Error Case Is Not Blocked";
+            }
+            
+            return RedirectToAction("admin_dash", "AdminDash");
+        }
+
+        public IActionResult CancelCase(int requestid, CancelCaseModel cancelCase)
+        {
+            var user = HttpContext.Session.GetInt32("Aspid");
+            try
+            {
+                _adminDashRepository.CancelRequest(requestid, cancelCase, user??1);
+                TempData["success"] = "Case Is Cancelled";
+            }
+            catch
+            {
+                TempData["error"] = "Internal Error Case Is Not Cancelled";
+            }
+            
+
+            return RedirectToAction("admin_dash", "AdminDash");
+        }
+
+        public void ViewCaseUpdate(int requestid, RequestFormModal requestForm)
+        {
+            var user = HttpContext.Session.GetInt32("Aspid");
+            if (_adminDashRepository.ViewCaseUpdate(requestid, requestForm, user ?? 1) == true)
+            {
+                TempData["success"] = "ViewCase Updated";
+            }
+            else
+            {
+                TempData["error"] = "Internal Error Case Is Not Assigned";
+            }
+        }
 
         [HttpPost]
         public IActionResult DocumentActions(List<int> selectedCheck, int requestid, string actionType)
@@ -402,28 +383,48 @@ namespace hellodoc.Controllers
             switch (actionType)
             {
                 case "DeleteAll":
-
-                    foreach (int id in selectedCheck)
+                    try
                     {
-                        _adminDashRepository.DeleteDocument(id);
+                        foreach (int id in selectedCheck)
+                        {
+                            _adminDashRepository.DeleteDocument(id);
+                        }
+                        TempData["success"] = "Selected Document Deleted Successfully";
                     }
-
-                    var doc2 = HttpContext.Session.GetInt32("userid");
-                    HttpContext.Session.SetInt32("requestid", requestid);
-
-                    var document1 = _requests.GetDocuments(requestid);
-
-                    return PartialView("_ViewUploads", document1);
+                    catch
+                    {
+                        TempData["error"] = "Internal Error Documnet Are Not Deleted";
+                        return RedirectToAction("admin_dash", "AdminDash");
+                    }
+                    try
+                    {
+                        HttpContext.Session.SetInt32("requestid", requestid);
+                        var document1 = _requests.GetDocuments(requestid);
+                        return PartialView("_ViewUploads", document1);
+                    }
+                    catch
+                    {
+                        TempData["error"] = "Documnet Are Deleted But Not Able To Load View Load Page";
+                        return RedirectToAction("admin_dash", "AdminDash");
+                    }
+                    
 
                 case "SendEmail":
+                    try
+                    {
+                        var list = _adminDashRepository.GetListFilename(selectedCheck);
+                        sendEmail("hpdhaduk0605@gmail.com", "your uploads", "document", list);
+                        var document = _requests.GetDocuments(requestid);
+                        TempData["success"] = "Documnet Are Successfully Sent To Email";
+                        return PartialView("_ViewUploads", document);
+                    }
+                    catch
+                    {
+                        TempData["error"] = "Documnet Are Not Sent To Email";
+                        return RedirectToAction("admin_dash", "AdminDash");
+                    }
+                    
 
-                    var list = _adminDashRepository.GetListFilename(selectedCheck);
-
-                    sendEmail("hpdhaduk0605@gmail.com", "your uploads", "document", list);
-
-                    var document = _requests.GetDocuments(requestid);
-
-                    return PartialView("_ViewUploads", document);
 
                 case "DownloadAll":
 
@@ -451,6 +452,7 @@ namespace hellodoc.Controllers
 
         }
 
+        
         [HttpPost]
         public string TransferToAdmin(PartialViewModal partialView)
         {
@@ -484,16 +486,32 @@ namespace hellodoc.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult save_note(NotesModel note)
+        public IActionResult SaveNote(NotesModel note)
         {
-            var req = HttpContext.Session.GetInt32("requestid");
-            var user = HttpContext.Session.GetString("username");
-            _adminDashRepository.SetNotes(note, req, user);
+            try
+            {
+                var req = HttpContext.Session.GetInt32("requestid");
+                var user = HttpContext.Session.GetString("username");
+                var aspnetuser = HttpContext.Session.GetInt32("Aspid");
+                _adminDashRepository.SetNotes(note, req, user);
 
-            NotesModel notesModel = new NotesModel();
-            notesModel = _adminDashRepository.GetNotes(req ?? 1).Result;
+                NotesModel notesModel = new NotesModel();
+                notesModel = _adminDashRepository.GetNotes(req ?? 1, aspnetuser ?? 1).Result;
+                TempData["success"] = "Notes Saved Successfully";
+                return PartialView("_ViewNotes", notesModel);
+            }
+            catch
+            {
 
-            return PartialView("_ViewNotes", notesModel);
+                var req = HttpContext.Session.GetInt32("requestid");
+                var aspnetuser = HttpContext.Session.GetInt32("Aspid");
+                NotesModel notesModel = new NotesModel();
+                notesModel = _adminDashRepository.GetNotes(req ?? 1, aspnetuser ?? 1).Result;
+                TempData["error"] = "Notes Not Saved";
+                return PartialView("_ViewNotes", notesModel);
+                
+            }
+            
         }
 
         [HttpPost]
@@ -505,7 +523,7 @@ namespace hellodoc.Controllers
             _requests.SaveFile(file1,req??0);
 
             var document = _requests.GetDocuments(req ?? 1);
-            
+            TempData["success"] = "Document Uploaded Successfully";
             return PartialView("_ViewUploads", document);
         }
 
@@ -528,42 +546,19 @@ namespace hellodoc.Controllers
 
         //}
 
-
-        public IActionResult cancel_case(int requestid,CancelCaseModel cancelCase)
-        {
-            var user = 1;
-
-            _adminDashRepository.CancelRequest(requestid,cancelCase,user);
-
-            return RedirectToAction("admin_dash","AdminDash");
-        }
-
-        public IActionResult assign_case(int requestid, AssignCaseModal assignCase, string Modaltype)
-        {
-            var user = 1;
-
-            assignCase.Modaltype = Modaltype;
-
-            _adminDashRepository.AssignCase(requestid, assignCase, user);
-
-            return RedirectToAction("admin_dash", "AdminDash");
-        }
-
-        public IActionResult block_case(int requestid, BlockCaseModal blockCase)
-        {
-            var user = 1;
-
-            _adminDashRepository.BlockCase(requestid, blockCase, user);
-
-            return RedirectToAction("admin_dash", "AdminDash");
-        }
-
+        
         public IActionResult ClearCase(int requestid)
         {
-            var user = 1;
-
-            _adminDashRepository.Clearcase(requestid, user);
-
+            try
+            {
+                var user = HttpContext.Session.GetInt32("Aspid");
+                _adminDashRepository.Clearcase(requestid, user);
+                TempData["success"] = "Case Is Clear Now This Request In To Close";
+            }
+            catch
+            {
+                TempData["error"] = "Internal Error Case Is Not Cleared";
+            }
             return RedirectToAction("admin_dash", "AdminDash");
         }
 

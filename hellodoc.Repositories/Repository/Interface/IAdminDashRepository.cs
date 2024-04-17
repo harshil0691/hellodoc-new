@@ -14,14 +14,14 @@ namespace hellodoc.Repositories.Repository.Interface
     {
         AdminParent GetRequests(PartialViewModal partialView);
 
-        Task<PatientReqModel> Getpatientdata(int rid);
+        Task<RequestFormModal> Getpatientdata(int rid);
         Task<RequestCountByStatus> GetCount(string accountType,int physicianid);
 
         Task SetNotes(NotesModel note, int? reqid, string? username);
 
-        Task<NotesModel> GetNotes(int reqid);
+        Task<NotesModel> GetNotes(int reqid,int aspid);
 
-        Task CancelRequest(int? reqid, CancelCaseModel cancelCase, int? adminid);
+        Task CancelRequest(int? reqid, CancelCaseModel cancelCase, int aspid);
 
         List<Region> GetRegions(int physicianid);
         List<Physician> GetPhysicianList();
@@ -29,7 +29,8 @@ namespace hellodoc.Repositories.Repository.Interface
         List<Physician> GetPhysicianList2(int select);
 
         Task AssignCase(int? reqid, AssignCaseModal assignCase, int? adminid);
-        Task BlockCase(int? reqid, BlockCaseModal blockCase, int? adminid);
+        bool BlockCase(int? reqid, BlockCaseModal blockCase, int? adminid);
+        bool ViewCaseUpdate(int requestid,RequestFormModal requestForm,int aspid);
         Task Clearcase(int? reqid, int? adminid);
 
         Task DeleteDocument(int docid); 

@@ -56,8 +56,9 @@ public partial class PatientReqModel
 
     [Required]
     public string Conform_password { get; set; }
-
+    
     [Column("document1")]
+    [Required]
     public IFormFile Doc { get; set; }
 
     public string? Confirmationnumber { get; set; }

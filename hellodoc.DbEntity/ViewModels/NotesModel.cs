@@ -19,7 +19,7 @@ namespace hellodoc.DbEntity.ViewModels
         public int Requestid { get; set; }
 
         public string? Physiciannotes { get; set; }
-
+        [Required]
         public string? Adminnotes { get; set; }
 
         public string? Createdby { get; set; }

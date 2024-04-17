@@ -9,6 +9,8 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Globalization;
+using System.Linq;
 
 namespace hellodoc.Repositories.Repository
 {
@@ -57,9 +59,7 @@ namespace hellodoc.Repositories.Repository
                     Requestclientid = r.RequestClients.Select(rc => rc.Requestclientid).FirstOrDefault(),
                     Email = r.Email,
                     regionid = r.RequestClients.Select(rc => rc.Regionid).FirstOrDefault() ?? 0,
-                    CallType = (r.Calltype != 0 && r.Calltype != null)? 
-                                ((r.Calltype == 1)? "HouseCall": "Consult") : "-" ,
-
+                    Notes = _context.RequestStatusLogs.Where(rs => rs.Requestid == r.Requestid).Select(rc => rc.Notes).ToString(),
                 }).ToList();
             }
             else
@@ -72,14 +72,15 @@ namespace hellodoc.Repositories.Repository
                     Phonenumber_P = r.RequestClients.Select(rc => rc.Phonenumber).FirstOrDefault(),
                     Phonenumber_R = r.Phonenumber,
                     Status = r.Status,
-                    //Createddate = r.Createddate,
+                    Createddate = r.Createddate.ToString("MMM")+r.Createddate.ToString("dd")+", "+r.Createddate.ToString("yyyy"),
                     Address = r.RequestClients.Select(rc => rc.City + " " + rc.State + " " + rc.Zipcode).FirstOrDefault(),
                     RequestorName = r.Firstname + " " + r.Lastname,
                     Requesttypeid = r.Requesttypeid,
                     Requestclientid = r.RequestClients.Select(rc => rc.Requestclientid).FirstOrDefault(),
                     Email = r.Email,
-                    Physicianname = _context.Physicians.FirstOrDefault(p => p.Physicianid == r.Physicianid).Firstname,
+                    Physicianname = r.Physician.Firstname,
                     regionid = r.RequestClients.Select(rc => rc.Regionid).FirstOrDefault() ?? 0,
+                    Notes = r.RequestStatusLogs.OrderBy(n => n.Requeststatuslogid).Select(r => r.Notes).LastOrDefault(),
                 }).ToList();
             }
 
@@ -107,24 +108,66 @@ namespace hellodoc.Repositories.Repository
             return admin;
         }
 
-        public async Task<PatientReqModel> Getpatientdata(int rid)
+        public async Task<RequestFormModal> Getpatientdata(int rid)
         {
-            PatientReqModel model = new PatientReqModel();
+            var requestClient = _context.RequestClients.FirstOrDefault(u => u.Requestid == rid);
+            var request = _context.Requests.FirstOrDefault(u => u.Requestid == rid);
 
-            var data = _context.RequestClients.FirstOrDefault(u => u.Requestid == rid);
-            var data1 = _context.Requests.FirstOrDefault(u => u.Requestid == rid);
-
-            model.Firstname = data.Firstname;
-            model.Lastname = data.Lastname;
-            model.Symptoms = data.Notes;
-            model.City = data.City;
-            model.Roomno = data.Address;
-            model.Confirmationnumber = data1.Confirmationnumber;
-            model.Email = data.Email;
-            model.Phonenumber = data.Phonenumber??1;
-            model.Requestid = rid;
-
+            RequestFormModal model = new RequestFormModal
+            {
+                Firstname = requestClient.Firstname,
+                Lastname = requestClient.Lastname,
+                Symptoms = requestClient.Notes,
+                City = requestClient.City,
+                Roomno = requestClient.Address,
+                Confirmationnumber = requestClient.Request.Confirmationnumber,
+                PatientEmail = requestClient.Email,
+                Phonenumber = requestClient.Phonenumber ?? 1,
+                Requestid = rid,
+                DOB = new DateTime(requestClient.Intyear??1, DateTime.ParseExact(requestClient.Strmonth, "MMMM", CultureInfo.InvariantCulture).Month, requestClient.Intdate??0),
+            };
             return model;
+
+        }
+
+        public bool ViewCaseUpdate(int requestid, RequestFormModal requestForm, int aspid)
+        {
+            try
+            {
+                var requestClient = _context.RequestClients.FirstOrDefault(r => r.Requestid == requestid);
+                var admin = _context.Admins.FirstOrDefault(u => u.Aspnetuserid == aspid);
+
+                requestClient.Firstname = requestForm.Firstname;
+                requestClient.Lastname = requestForm.Lastname;
+                requestClient.Strmonth = requestForm.DOB.ToString("MMMM");
+                requestClient.Intdate = requestForm.DOB.Day;
+                requestClient.Intyear = requestForm.DOB.Year;
+                requestClient.Email = requestForm.PatientEmail;
+                requestClient.Phonenumber = requestForm.Phonenumber;
+
+                var request = _context.Requests.FirstOrDefault(u => u.Requestid == requestid);
+
+                if (request.Userid != 0 || request.Userid != null)
+                {
+                    var user = _context.Users.FirstOrDefault(u => u.Userid == requestClient.Request.Userid);
+
+                    user.Firstname = requestForm.Firstname;
+                    user.Lastname = requestForm.Lastname;
+                    user.Strmonth = requestForm.DOB.ToString("MMMM");
+                    user.Intdate = requestForm.DOB.Day;
+                    user.Intyear = requestForm.DOB.Year;
+                    user.Email = requestForm.PatientEmail;
+                    user.Mobile = requestForm.Phonenumber;
+                }
+
+                _context.SaveChanges();
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public async Task<RequestCountByStatus> GetCount(string accountType,int physicianid)
@@ -180,127 +223,152 @@ namespace hellodoc.Repositories.Repository
 
         }
 
-        public async Task<NotesModel> GetNotes(int reqid)
+        public async Task<NotesModel> GetNotes(int reqid,int aspid)
         {
-            var rnote = _context.RequestNotes.FirstOrDefaultAsync(u => u.Requestid == reqid).Result;
+            var Notes = "";
+            var request = _context.Requests.FirstOrDefault(r => r.Requestid == reqid);
+            var admin = _context.Admins.FirstOrDefault(a=>a.Aspnetuserid == aspid);
+            var rnote = _context.RequestNotes.FirstOrDefault(u => u.Requestid == reqid);
             var rslnote = _context.RequestStatusLogs.Where(u => u.Requestid==reqid);
 
             NotesModel requestNote = new NotesModel();
-            if(rnote != null)
+
+            foreach (var i in rslnote)
             {
-                requestNote.Adminnotes = rnote.Adminnotes;
-                requestNote.Requestid = reqid;
+                Notes += "(status : "+ i.Status+") "+ i.Notes + "\n";
             }
-
-            foreach (var a in rslnote)
+            requestNote.TransferNotes = Notes;
+            if (rnote != null)
             {
-                if (a.Transtophysicianid != null)
-                {
-                    requestNote.TransferNotes = a.Notes;
-                }
-
+                requestNote.Adminnotes = (rnote.Adminnotes != null) ? rnote.Adminnotes : "";
+                requestNote.Physiciannotes = (rnote.Physiciannotes != null) ? rnote.Physiciannotes : "";
             }
-
-
+            
             return requestNote;
         }
 
 
-        public async Task CancelRequest(int? reqid,CancelCaseModel cancelCase, int? adminid)
+        public async Task CancelRequest(int? reqid,CancelCaseModel cancelCase, int aspid)
         {
-            Request request = _context.Requests.FirstOrDefaultAsync(u => u.Requestid == reqid).Result;
-
-            if (request != null)
+            try
             {
-                RequestStatusLog requestStatusLog = new RequestStatusLog();
-                requestStatusLog.Status = 8;
-                requestStatusLog.Notes = cancelCase.CancelNotes;
-                requestStatusLog.Requestid = request.Requestid;
-                requestStatusLog.Adminid = adminid;
-                requestStatusLog.Createddate = DateTime.Now;
-
-                _context.RequestStatusLogs.Add(requestStatusLog);
-
-                request.Status = 8;
-                request.Casetag = cancelCase.CancelReasonValue;
-
-                _context.SaveChanges();
-            }
-        }
-
-        public async Task Clearcase(int? reqid, int? adminid)
-        {
-            Request request = _context.Requests.FirstOrDefaultAsync(u => u.Requestid == reqid).Result;
-
-            if (request != null)
-            {
-                RequestStatusLog requestStatusLog = new RequestStatusLog();
-                requestStatusLog.Status = 8;
-                requestStatusLog.Requestid = request.Requestid;
-                requestStatusLog.Adminid = adminid;
-                requestStatusLog.Createddate = DateTime.Now;
-
-                _context.RequestStatusLogs.Add(requestStatusLog);
-
-                request.Status = 8;
-
-                _context.SaveChanges();
-            }
-        }
-
-        public async Task AssignCase(int? reqid, AssignCaseModal assignCase, int? adminid)
-        {
-            Request request = _context.Requests.FirstOrDefaultAsync(u => u.Requestid == reqid).Result;
-
-            if (request != null)
-            {
-                RequestStatusLog requestStatusLog = new RequestStatusLog();
-                requestStatusLog.Status = 1;
-                requestStatusLog.Notes = assignCase.Discription;
-                requestStatusLog.Requestid = request.Requestid;
-                requestStatusLog.Adminid = adminid;
-                requestStatusLog.Physicianid = assignCase.Physicianid;
-                requestStatusLog.Createddate = DateTime.Now;
-                if(assignCase.Modaltype == "Transfer")
+                var request = _context.Requests.FirstOrDefault(u => u.Requestid == reqid);
+                var admin = _context.Admins.FirstOrDefault(a => a.Aspnetuserid == aspid);
+                if (request != null)
                 {
-                    requestStatusLog.Transtophysicianid = assignCase.Physicianid;
+                    RequestStatusLog requestStatusLog = new RequestStatusLog();
+                    requestStatusLog.Status = 8;
+                    requestStatusLog.Notes = cancelCase.CancelNotes;
+                    requestStatusLog.Requestid = request.Requestid;
+                    requestStatusLog.Admin = admin;
+                    requestStatusLog.Createddate = DateTime.Now;
+
+                    _context.RequestStatusLogs.Add(requestStatusLog);
+
+                    request.Status = 8;
+                    request.Casetag = cancelCase.CancelReasonValue;
+
+                    _context.SaveChanges();
                 }
-                
+            }
+            catch { }
+            
+        }
+
+        public async Task Clearcase(int? reqid, int? aspid)
+        {
+            var request = _context.Requests.FirstOrDefault(u => u.Requestid == reqid);
+            var admin = _context.Admins.FirstOrDefault(a => a.Aspnetuserid == aspid);
+            if (request != null)
+            {
+                RequestStatusLog requestStatusLog = new RequestStatusLog();
+                requestStatusLog.Status = 8;
+                requestStatusLog.Requestid = request.Requestid;
+                requestStatusLog.Adminid = admin.Adminid;
+                requestStatusLog.Createddate = DateTime.Now;
+
                 _context.RequestStatusLogs.Add(requestStatusLog);
 
-                request.Physicianid = assignCase.Physicianid;
+                request.Status = 8;
 
                 _context.SaveChanges();
             }
         }
 
-        public async Task BlockCase(int? reqid, BlockCaseModal blockCase, int? adminid)
+        public async Task AssignCase(int? reqid, AssignCaseModal assignCase, int? aspid)
         {
-            Request request = _context.Requests.FirstOrDefaultAsync(u => u.Requestid == reqid).Result;
-            RequestClient requestClient = _context.RequestClients.FirstOrDefaultAsync(u => u.Requestid == reqid).Result;
-
-            if (request != null)
+            try
             {
-                RequestStatusLog requestStatusLog = new RequestStatusLog();
-                requestStatusLog.Status = 3;
-                requestStatusLog.Notes = blockCase.Blocknotes;
-                requestStatusLog.Requestid = request.Requestid;
-                requestStatusLog.Adminid = adminid;
-                requestStatusLog.Createddate = DateTime.Now;
+                var request = _context.Requests.FirstOrDefault(u => u.Requestid == reqid);
+                var admin = _context.Admins.FirstOrDefault(a => a.Aspnetuserid == aspid);
 
-                _context.RequestStatusLogs.Add(requestStatusLog);
+                if (request != null)
+                {
+                    RequestStatusLog requestStatusLog = new RequestStatusLog
+                    {
+                        Status =1 ,
+                        Notes = assignCase.Discription,
+                        Requestid = request.Requestid,
+                        Admin = admin,
+                        Physicianid = assignCase.Physicianid,
+                        Createddate = DateTime.Now,
+                    };
+                    
+                    if (assignCase.Modaltype == "Transfer")
+                    {
+                        requestStatusLog.Transtophysicianid = assignCase.Physicianid;
+                    }
+                    request.Physicianid = assignCase.Physicianid;
+                    _context.RequestStatusLogs.Add(requestStatusLog);
+                    _context.SaveChanges();
+                }
+            }
+            catch
+            {
 
-                BlockRequest blockRequest = new BlockRequest { 
-                    Requestid = request.Requestid,
-                    Phonenumber = requestClient.Phonenumber,
-                    Email = requestClient.Email,
-                    Createddate = DateTime.Now,
-                    Reason = blockCase.Blocknotes
-                };
+            }
+            
+        }
 
-                request.Status = 3;
+        public bool BlockCase(int? reqid, BlockCaseModal blockCase, int? aspid)
+        {
+            try
+            {
+                var request = _context.Requests.FirstOrDefault(u => u.Requestid == reqid);
+                var requestClient = _context.RequestClients.FirstOrDefault(u => u.Requestid == reqid);
+                var admin = _context.Admins.FirstOrDefault(a => a.Aspnetuserid == aspid);
 
-                _context.SaveChanges();
+                if (request != null)
+                {
+                    RequestStatusLog requestStatusLog = new RequestStatusLog();
+                    requestStatusLog.Status = 3;
+                    requestStatusLog.Notes = blockCase.Blocknotes;
+                    requestStatusLog.Requestid = request.Requestid;
+                    requestStatusLog.Adminid = admin.Adminid;
+                    requestStatusLog.Createddate = DateTime.Now;
+
+                    _context.RequestStatusLogs.Add(requestStatusLog);
+
+                    BlockRequest blockRequest = new BlockRequest
+                    {
+                        Requestid = request.Requestid,
+                        Phonenumber = requestClient.Phonenumber,
+                        Email = requestClient.Email,
+                        Createddate = DateTime.Now,
+                        Reason = blockCase.Blocknotes
+                    };
+
+                    _context.BlockRequests.Add(blockRequest);
+
+                    request.Status = 10;
+
+                    _context.SaveChanges();
+                }
+                return true;
+            }
+            catch
+            {
+                return false;
             }
         }
 

@@ -46,7 +46,7 @@ namespace hellodoc.Repositories.Repository
                 PatientName = b.Request.Firstname + ' ' + b.Request.Lastname,
                 PhoneNumber = b.Request.Phonenumber??0,
                 Email = b.Email,
-                CreatedDate = b.Createddate,
+                //CreatedDate = b.Createddate,
             });
 
             adminRecords.blokedHistory = list.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();

@@ -3,7 +3,7 @@
 
 <ul class="nav pt-3" id="myTabs">
     <li class="nav-item col-4 col-md-2  admin-btn ad-btn ad-btn1 ">
-        <a class="nav-link p-2 m-2 w-100" data-bs-toggle="pill" href="#newtab" >
+        <a class="nav-link p-2 m-2 w-100" data-bs-toggle="pill" href="#new" >
             <div class="d-flex"><i class="bi bi-person-plus pe-2 mt-1 d-none d-sm-block"></i><h5>NEW</h5></div>
             <h3 style="font-weight:700">@Model.NewCount</h3>
         </a>
@@ -91,7 +91,7 @@
 
 
 <script>
-    var tab = "newtab";
+    var tab = "new";
 
     $(document).ready(function () {
         $('#myTabs a').on('shown.bs.tab', function (e) {
@@ -102,7 +102,7 @@
         if (localStorage.getItem("StatusTab") != null) {
             loadPartialView(localStorage.getItem("StatusTab"), true);
         } else {
-            loadPartialView("newtab");
+            loadPartialView("new");
         }
 
         $('#customSearch').on('keyup change', function () {
