@@ -1,29 +1,4 @@
 ﻿
-var selectedCheck = [];
-var checkboxes1 = document.querySelectorAll(".providerscheck");
-
-checkboxes1.forEach(function (checkbox) {
-    if (checkbox.checked) {
-        selectedCheck.push(checkbox.value);
-    }
-});
-
-$(".providerscheck").change(function () {
-    var selectedCheck1 = [];
-    var checkboxes11 = document.querySelectorAll(".providerscheck");
-
-    checkboxes11.forEach(function (checkbox) {
-        if (checkbox.checked) {
-            selectedCheck1.push(checkbox.value);
-        }
-    });
-
-    if (selectedCheck1.toString() != selectedCheck.toString()) {
-        document.getElementById("ProvidersSave").style.display = "block";
-    } else {
-        document.getElementById("ProvidersSave").style.display = "none";
-    }
-});
 
 function saveStopNotification() {
 
@@ -50,6 +25,7 @@ function saveStopNotification() {
         success: function (data) {
             document.getElementById("ProvidersSave").style.display = "none";
             selectedCheck = idlist;
+            toastr.success("Notification Changes Saved Successfully");
         },
         error: function () {
             console.error('Error loading partial view.');
@@ -297,6 +273,41 @@ function checkShiftAvailability1() {
         }
     })
 
+}
+
+function CreateProvider() {
+    var regionlist = [];
+    var checkboxes = document.querySelectorAll(".regioncheck");
+
+    checkboxes.forEach(function (checkbox) {
+        if (checkbox.checked) {
+            regionlist.push(checkbox.value);
+        }
+    });
+
+    var formdata = [];
+    var formdata = new FormData($('#providerProfile')[0]);
+    formdata.append("selectedRegion", JSON.stringify(regionlist));
+    formdata.append("IndependentContractorManagement", $('#IndependentContractorManagement')[0].files[0]);
+    formdata.append("BackgroungCheck", $('#BackgroungCheck')[0].files[0]);
+    formdata.append("HIPAA", $('#HIPAA')[0].files[0]);
+    formdata.append("NondisclosureAggrement", $('#NondisclosureAggrement')[0].files[0]);
+    formdata.append("photo", $('#photo')[0].files[0]);
+    console.log(formdata);
+
+    $.ajax({
+        url: '/AdminProviders/CreateProvider',
+        type: 'POST',
+        data: formdata,
+        processData: false,
+        contentType: false,
+        success: function (data) {
+            loadPartialDashView('provider');
+        },
+        error: function () {
+            console.error('Error loading partial view.');
+        }
+    });
 }
 
 function reminder() {

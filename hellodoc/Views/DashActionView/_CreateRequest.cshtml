@@ -1,4 +1,4 @@
-﻿@model hellodoc.DbEntity.ViewModels.PatientReqModel
+﻿@model hellodoc.DbEntity.ViewModels.RequestFormModal
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 
 <div class="login" id="main" style="margin-bottom:100px">
@@ -37,9 +37,9 @@
                     <span asp-validation-for="DateOfBirth " class="text-danger"></span>
                 </div>
                 <div class="form-floating mb-3 col-md-6 col-lg-6">
-                    <input type="email" class="form-control" id="floatingInput12" asp-for="Email" placeholder="Email">
+                    <input type="email" class="form-control" id="floatingInput12" asp-for="PatientEmail" placeholder="Email">
                     <label class="mx-3">Email address</label>
-                     
+                     <span asp-validation-for="PatientEmail" class="text-danger"></span>
                 </div>
                 <div class="form-floating col-md-6 col-lg-6">
                     <input type="tel" class="form-control pt-3 pb-3" id="phone" asp-for="Phonenumber" placeholder="Phone Number">
@@ -77,8 +77,8 @@
                     <span asp-validation-for="Roomno" class="text-danger"></span>
                 </div>
                 <div class="form-floating mb-3  col-md-6 col-lg-6">
-                    <button class="btn btn-outline-info">Verify</button>
-                    <button class="btn btn-outline-info"><i class="bi bi-geo-alt mx-2"></i>Map</button>
+                    <button type="button" class="btn btn-outline-info">Verify</button>
+                        <button type="button" class="btn btn-outline-info" onclick="ShowModal({actionType : 'SelectMap'})"><i class="bi bi-geo-alt mx-1"></i>Map</button>
                 </div>
                 </div>
 

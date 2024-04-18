@@ -1,6 +1,7 @@
 ﻿using hellodoc.DbEntity.DataModels;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,14 +12,17 @@ namespace hellodoc.DbEntity.ViewModels.PopUpModal
     {
         public int requestid { get; set; }
         public int? aspid { get; set; }
+        [Required]
         public int Business { get; set; }
-
+        [Required]
         public long BusinessContact { get; set; }
-        public string Email { get; set; }
+        [Required]
+        public string OrderEmail { get; set; }
+        [Required]
         public long Faxnumber { get; set; }
 
         public string Prescription { get; set; }
-
+        [Required]
         public int SelectProfession { get; set; }
         public int NumberOfRefills { get ; set; }
 

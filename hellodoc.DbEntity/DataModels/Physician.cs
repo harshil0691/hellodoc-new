@@ -36,25 +36,24 @@ public partial class Physician
     [StringLength(500)]
     public string? Medicallicense { get; set; }
 
-    [Column("photo")]
-    [StringLength(100)]
+    [Column("photo", TypeName = "character varying")]
     public string? Photo { get; set; }
 
     [Column("adminnotes")]
     [StringLength(500)]
     public string? Adminnotes { get; set; }
 
-    [Column("isagreementdoc", TypeName = "bit(1)")]
-    public BitArray? Isagreementdoc { get; set; }
+    [Column("isagreementdoc", TypeName = "character varying")]
+    public string? Isagreementdoc { get; set; }
 
-    [Column("isbackgrounddoc", TypeName = "bit(1)")]
-    public BitArray? Isbackgrounddoc { get; set; }
+    [Column("isbackgrounddoc", TypeName = "character varying")]
+    public string? Isbackgrounddoc { get; set; }
 
-    [Column("istrainingdoc", TypeName = "bit(1)")]
-    public BitArray? Istrainingdoc { get; set; }
+    [Column("istrainingdoc", TypeName = "character varying")]
+    public string? Istrainingdoc { get; set; }
 
-    [Column("isnondisclosuredoc", TypeName = "bit(1)")]
-    public BitArray? Isnondisclosuredoc { get; set; }
+    [Column("isnondisclosuredoc", TypeName = "character varying")]
+    public string? Isnondisclosuredoc { get; set; }
 
     [Column("address1")]
     [StringLength(500)]
@@ -80,10 +79,10 @@ public partial class Physician
 
     [Column("createdby")]
     [StringLength(128)]
-    public string Createdby { get; set; } = null!;
+    public string? Createdby { get; set; }
 
     [Column("createddate", TypeName = "timestamp without time zone")]
-    public DateTime Createddate { get; set; }
+    public DateTime? Createddate { get; set; }
 
     [Column("modifiedby")]
     [StringLength(128)]
@@ -97,11 +96,11 @@ public partial class Physician
 
     [Column("businessname")]
     [StringLength(100)]
-    public string Businessname { get; set; } = null!;
+    public string? Businessname { get; set; }
 
     [Column("businesswebsite")]
     [StringLength(200)]
-    public string Businesswebsite { get; set; } = null!;
+    public string? Businesswebsite { get; set; }
 
     [Column("isdeleted", TypeName = "bit(1)")]
     public BitArray? Isdeleted { get; set; }
@@ -110,18 +109,16 @@ public partial class Physician
     public int? Roleid { get; set; }
 
     [Column("npinumber")]
-    [StringLength(500)]
-    public string? Npinumber { get; set; }
+    public long? Npinumber { get; set; }
 
-    [Column("islicensedoc", TypeName = "bit(1)")]
-    public BitArray? Islicensedoc { get; set; }
+    [Column("islicensedoc", TypeName = "character varying")]
+    public string? Islicensedoc { get; set; }
 
-    [Column("signature")]
-    [StringLength(100)]
+    [Column("signature", TypeName = "character varying")]
     public string? Signature { get; set; }
 
-    [Column("iscredentialdoc", TypeName = "bit(1)")]
-    public BitArray? Iscredentialdoc { get; set; }
+    [Column("iscredentialdoc", TypeName = "character varying")]
+    public string? Iscredentialdoc { get; set; }
 
     [Column("istokengenerate", TypeName = "bit(1)")]
     public BitArray? Istokengenerate { get; set; }

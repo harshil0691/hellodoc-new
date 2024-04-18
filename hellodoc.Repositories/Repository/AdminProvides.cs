@@ -4,6 +4,8 @@ using hellodoc.DbEntity.ViewModels;
 using hellodoc.DbEntity.ViewModels.DashboardLists;
 using hellodoc.DbEntity.ViewModels.Shifts;
 using hellodoc.Repositories.Repository.Interface;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
@@ -21,10 +23,11 @@ namespace hellodoc.Repositories.Repository
     public class AdminProvides : IAdminProviders
     {
         private readonly ApplicationDbContext _context;
-
-        public AdminProvides(ApplicationDbContext context)
+        private readonly IHostingEnvironment HostingEnviroment;
+        public AdminProvides(ApplicationDbContext context, IHostingEnvironment hostingEnviroment)
         {
             _context = context;
+            HostingEnviroment = hostingEnviroment;
         }
 
         public Physician GetPhysicianAsync(int physicianid)
@@ -32,9 +35,18 @@ namespace hellodoc.Repositories.Repository
             Physician physician = _context.Physicians.FirstOrDefault(u => u.Physicianid == physicianid);
             return physician;
         }
-        public List<ProvidersTableModal> ProvidersTable()
+        public DashboardListsModal ProvidersTable(int pageNumber,int regionid)
         {
-            var physicians = _context.Physicians;
+            var pageSize = 5;
+            if (pageNumber <= 0)
+            {
+                pageNumber = 1;
+            }
+
+            var physicians = _context.Physicians.Where(
+                p => 
+                (regionid != 0)? p.Regionid == regionid :true
+            );
 
             var list = physicians.Select(p => new ProvidersTableModal
             {
@@ -45,7 +57,19 @@ namespace hellodoc.Repositories.Repository
                 stopnotification = p.PhysicianNotifications.FirstOrDefault(),
             }).ToList();
 
-            return list;
+            DashboardListsModal dashboardListsModal = new DashboardListsModal();
+            dashboardListsModal.regions = _context.Regions.ToList();
+            dashboardListsModal.providersTableModal = list.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
+            dashboardListsModal.pageNumber = pageNumber;
+            dashboardListsModal.pageSize = pageSize;
+            dashboardListsModal.totalEntries = list.Count();
+            if (list.Skip((pageNumber) * pageSize).Take(pageSize).Count() > 0)
+            {
+                dashboardListsModal.morePages = true;
+            }
+            dashboardListsModal.entries = ((pageNumber - 1) * pageSize + 1) + "-" + (((pageNumber - 1) * pageSize) + dashboardListsModal.providersTableModal.Count());
+
+            return dashboardListsModal;
         }
 
         public async Task<ProviderProfileModal> ProviderProfileData(int physicianid)
@@ -62,16 +86,261 @@ namespace hellodoc.Repositories.Repository
 
                 Firstname = physician.Firstname,
                 Lastname = physician.Lastname,
-                Email = physician.Email,
+                ProviderEmail = physician.Email,
                 Phone = physician.Mobile,
 
                 Address1 = physician.Address1,
                 Address2 = physician.Address2,
                 City = physician.City,
                 Zipcode = physician.Zip,
+
+                photoPath = physician.Photo,
+                IndependentContractorManagementPath = physician.Isagreementdoc,
+                BackgroungCheckPath = physician.Isbackgrounddoc,
+                HIPAAPath = physician.Iscredentialdoc,
+                NondisclosureAggrementPath = physician.Isnondisclosuredoc,
+                SignaturePath = physician.Signature,
+                LicensePath = physician.Islicensedoc,
+            };
+
+            providerProfile.roles = _context.Roles.ToList();
+            providerProfile.regions = _context.Regions.ToList();
+            providerProfile.regionList = _context.PhysicianRegions.Where(p => p.Physicianid == physicianid).Select(r => r.Regionid).ToList();
+            providerProfile.physicianId = physicianid;
+
+            return providerProfile;
+        }
+
+        public bool UpdateProvider(ProviderProfileModal providerProfile)
+        {
+            var physician = _context.Physicians.FirstOrDefault(p => p.Physicianid == providerProfile.physicianId);
+            var aspuser = _context.AspNetUsers.FirstOrDefault(a => a.Id == physician.Aspnetuserid);
+
+            switch (providerProfile.updateType)
+            {
+                case "AspDetails":
+                    aspuser.Username = providerProfile.username;
+                    physician.Status = providerProfile.status;
+                    aspuser.AspNetUserRole.Roleid = providerProfile.selectrole;
+
+                    _context.SaveChanges();
+                    return true;
+
+                case "resetPassword":
+                    aspuser.Passwordhash = providerProfile.password;
+                    _context.SaveChanges();
+                    return true;
+
+                case "physician":
+                    physician.Firstname = providerProfile.Firstname;
+                    physician.Lastname = providerProfile.Lastname;
+                    physician.Email = providerProfile.ProviderEmail;
+                    physician.Mobile = providerProfile.Phone;
+                    physician.Medicallicense = providerProfile.MediacalLicense;
+                    physician.Npinumber = providerProfile.NPI;
+                    physician.Syncemailaddress = providerProfile.SynEmail;
+                    _context.SaveChanges();
+
+                    var physicianregion = _context.PhysicianRegions.Where(p => p.Physicianid == providerProfile.physicianId);
+                    foreach(var i in physicianregion)
+                    {
+                        _context.PhysicianRegions.Remove(i);
+                    }
+                    _context.SaveChanges();
+                    
+                    foreach(var region in providerProfile.regionList)
+                    {
+                        PhysicianRegion physicianRegion = new PhysicianRegion
+                        {
+                            Physicianid = physician.Physicianid,
+                            Regionid = region,
+                        };
+                        _context.PhysicianRegions.Add(physicianRegion);
+                    }
+                    _context.SaveChanges();
+
+                    return true;
+
+                case "mailingInformation":
+                    physician.Address1 = providerProfile.Address1;
+                    physician.Address2 = providerProfile.Address2;
+                    physician.City = providerProfile.City;
+                    physician.Zip = providerProfile.Zipcode;
+                    
+                    _context.SaveChanges();
+                    return true;
+
+                case "providerProfile":
+                    physician.Businessname = providerProfile.BusinessName;
+                    physician.Businesswebsite = providerProfile.BusinessWebsite;
+                    var photo = "";
+                    if (providerProfile.photo != null)
+                    {
+                        photo = Guid.NewGuid().ToString() + "_" + providerProfile.photo.FileName;
+                        var filepath = Path.Combine(Path.Combine(HostingEnviroment.WebRootPath, "PhysicianDoc"), photo);
+                        providerProfile.photo.CopyTo(new FileStream(filepath, FileMode.Create));
+
+                    }
+                    physician.Photo = photo;
+                    physician.Adminnotes = providerProfile.AdminNotes;
+                    _context.SaveChanges();
+
+                    return true;
+                case "onboarding":
+
+                    var IndependentContractorManagement = "";
+                    var BackgroungCheck = "";
+                    var HIPAA = "";
+                    var NondisclosureAggrement = "";
+
+                    if (providerProfile.IndependentContractorManagement != null)
+                    {
+                        IndependentContractorManagement = Guid.NewGuid().ToString() + "_" + providerProfile.IndependentContractorManagement.FileName;
+                        var filepath = Path.Combine(Path.Combine(HostingEnviroment.WebRootPath, "PhysicianDoc"), IndependentContractorManagement);
+                        providerProfile.IndependentContractorManagement.CopyTo(new FileStream(filepath, FileMode.Create));
+                    }
+                    if (providerProfile.BackgroungCheck != null)
+                    {
+                        BackgroungCheck = Guid.NewGuid().ToString() + "_" + providerProfile.BackgroungCheck.FileName;
+                        var filepath = Path.Combine(Path.Combine(HostingEnviroment.WebRootPath, "PhysicianDoc"), BackgroungCheck);
+                        providerProfile.BackgroungCheck.CopyTo(new FileStream(filepath, FileMode.Create));
+                    }
+                    if (providerProfile.HIPAA != null)
+                    {
+                        HIPAA = Guid.NewGuid().ToString() + "_" + providerProfile.HIPAA.FileName;
+                        var filepath = Path.Combine(Path.Combine(HostingEnviroment.WebRootPath, "PhysicianDoc"), HIPAA);
+                        providerProfile.HIPAA.CopyTo(new FileStream(filepath, FileMode.Create));
+                    }
+                    if (providerProfile.NondisclosureAggrement != null)
+                    {
+                        NondisclosureAggrement = Guid.NewGuid().ToString() + "_" + providerProfile.NondisclosureAggrement.FileName;
+                        var filepath = Path.Combine(Path.Combine(HostingEnviroment.WebRootPath, "PhysicianDoc"), NondisclosureAggrement);
+                        providerProfile.NondisclosureAggrement.CopyTo(new FileStream(filepath, FileMode.Create));
+                    }
+
+                    physician.Isagreementdoc = IndependentContractorManagement;
+                    physician.Isbackgrounddoc = BackgroungCheck;
+                    physician.Iscredentialdoc = HIPAA;
+                    physician.Isnondisclosuredoc = NondisclosureAggrement;
+
+                    return true;
+
+                default:
+                    return false;
+            }
+
+        }
+
+        public ProviderProfileModal GetForCreateProvider()
+        {
+            ProviderProfileModal providerProfile = new ProviderProfileModal
+            {
+                roles = _context.Roles.ToList(),
+                regions = _context.Regions.ToList(),
             };
 
             return providerProfile;
+        }
+
+        public void CreateProvider(ProviderProfileModal providerProfile)
+        {
+            if (providerProfile != null)
+            {
+                AspNetUser aspNetUser = new AspNetUser
+                {
+                    Username = providerProfile.username,
+                    Passwordhash = providerProfile.password,
+                    Email = providerProfile.ProviderEmail,
+                    Phonenumber = providerProfile.Phone,
+                    Createddate = DateTime.Now,
+                };
+                _context.AspNetUsers.Add(aspNetUser);
+                _context.SaveChanges();
+
+                var photo = "";
+                var IndependentContractorManagement = "";
+                var BackgroungCheck = "";
+                var HIPAA = "";
+                var NondisclosureAggrement = "";
+
+                if (providerProfile.photo != null)
+                {
+                    photo = Guid.NewGuid().ToString() + "_" + providerProfile.photo.FileName;
+                    var filepath = Path.Combine(Path.Combine(HostingEnviroment.WebRootPath, "PhysicianDoc"), photo);
+                    providerProfile.photo.CopyTo(new FileStream(filepath, FileMode.Create));
+
+                }
+                if (providerProfile.IndependentContractorManagement != null)
+                {
+                    IndependentContractorManagement = Guid.NewGuid().ToString() + "_" + providerProfile.IndependentContractorManagement.FileName;
+                    var filepath = Path.Combine(Path.Combine(HostingEnviroment.WebRootPath, "PhysicianDoc"), IndependentContractorManagement);
+                    providerProfile.IndependentContractorManagement.CopyTo(new FileStream(filepath, FileMode.Create));
+                }
+                if (providerProfile.BackgroungCheck != null)
+                {
+                    BackgroungCheck = Guid.NewGuid().ToString() + "_" + providerProfile.BackgroungCheck.FileName;
+                    var filepath = Path.Combine(Path.Combine(HostingEnviroment.WebRootPath, "PhysicianDoc"), BackgroungCheck);
+                    providerProfile.BackgroungCheck.CopyTo(new FileStream(filepath, FileMode.Create));
+                }
+                if (providerProfile.HIPAA != null)
+                {
+                    HIPAA = Guid.NewGuid().ToString() + "_" + providerProfile.HIPAA.FileName;
+                    var filepath = Path.Combine(Path.Combine(HostingEnviroment.WebRootPath, "PhysicianDoc"), HIPAA);
+                    providerProfile.HIPAA.CopyTo(new FileStream(filepath, FileMode.Create));
+                }
+                if (providerProfile.NondisclosureAggrement != null)
+                {
+                    NondisclosureAggrement = Guid.NewGuid().ToString() + "_" + providerProfile.NondisclosureAggrement.FileName;
+                    var filepath = Path.Combine(Path.Combine(HostingEnviroment.WebRootPath, "PhysicianDoc"), NondisclosureAggrement);
+                    providerProfile.NondisclosureAggrement.CopyTo(new FileStream(filepath, FileMode.Create));
+                }
+
+
+
+                Physician physician = new Physician
+                {
+                    Aspnetuser = aspNetUser,
+                    Firstname = providerProfile.Firstname,
+                    Lastname = providerProfile.Lastname,
+                    Email = providerProfile.ProviderEmail,
+                    Mobile = providerProfile.Phone,
+                    Address1 = providerProfile.Address1,
+                    Address2 = providerProfile.Address2,
+                    Zip = providerProfile.Zipcode,
+                    City = providerProfile.City,
+                    Createdby = "admin",
+                    Businessname = providerProfile.BusinessName,
+                    Npinumber = providerProfile.NPI,
+                    Photo = photo,
+                    Isagreementdoc = IndependentContractorManagement,
+                    Isbackgrounddoc = BackgroungCheck,
+                    Iscredentialdoc = HIPAA,
+                    Isnondisclosuredoc = NondisclosureAggrement,
+                    Roleid = providerProfile.selectrole,
+                };
+
+                _context.Physicians.Add(physician);
+                _context.SaveChanges();
+
+                foreach (var i in providerProfile.regionList)
+                {
+                    PhysicianRegion physicianRegion = new PhysicianRegion()
+                    {
+                        Regionid = i,
+                        Physicianid = physician.Physicianid
+                    };
+                    _context.PhysicianRegions.Add(physicianRegion);
+                }
+
+                AspNetUserRole aspNetUserRole = new AspNetUserRole()
+                {
+                    User = aspNetUser,
+                    Roleid = providerProfile.selectrole,
+                };
+
+                _context.AspNetUserRoles.Add(aspNetUserRole);
+                _context.SaveChanges();
+            }
         }
 
         public async Task StopNotification(List<int> idlist, List<int> totallist)

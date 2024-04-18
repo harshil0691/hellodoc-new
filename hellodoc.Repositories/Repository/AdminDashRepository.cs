@@ -447,7 +447,7 @@ namespace hellodoc.Repositories.Repository
             orderDetail.Requestid = requestid;
             orderDetail.Vendorid = orders.Business;
             orderDetail.Faxnumber = orders.Faxnumber.ToString();
-            orderDetail.Email = orders.Email;
+            orderDetail.Email = orders.OrderEmail;
             orderDetail.Createdby = aspid.ToString();
             orderDetail.Businesscontact = orders.BusinessContact.ToString();
 
@@ -475,22 +475,23 @@ namespace hellodoc.Repositories.Repository
             return closeCase;
         }
 
-        public async Task CloseCase(int reqid,int adminid)
+        public async Task CloseCase(int reqid,int aspid)
         {
             var req = _context.Requests.FirstOrDefault(u => u.Requestid == reqid);
+            var admin = _context.Admins.FirstOrDefault(a => a.Aspnetuserid == aspid);
             
             RequestStatusLog requestStatusLog = new RequestStatusLog();
             requestStatusLog.Status = 9;
             requestStatusLog.Notes = "Request is closed";
             requestStatusLog.Requestid = reqid;
-            requestStatusLog.Adminid = adminid;
+            requestStatusLog.Adminid = 2;
             requestStatusLog.Createddate = DateTime.Now;
 
             _context.RequestStatusLogs.Add(requestStatusLog);
 
             req.Status = 9;
 
-           await _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
 
         public void SetSMSLogs(Smslog smslog)
@@ -501,28 +502,40 @@ namespace hellodoc.Repositories.Repository
 
         public AdminProfileModal GetAdminProfileData(int aspnetuserid)
         {
-            var admin = _context.Admins.FirstOrDefault(u => u.Aspnetuserid == aspnetuserid);
-            var aspuser = _context.AspNetUsers.FirstOrDefault( u => u.Id == aspnetuserid);
-
-            AdminProfileModal adminProfile = new AdminProfileModal
+            try
             {
-                username = aspuser.Username,
-                status = admin.Status.Value,
-                role = _context.Roles.FirstOrDefault(u => u.Roleid == admin.Roleid).Name,
-                aspid = aspnetuserid,
+                var admin = _context.Admins.FirstOrDefault(u => u.Aspnetuserid == aspnetuserid);
+                var aspuser = _context.AspNetUsers.FirstOrDefault(u => u.Id == aspnetuserid);
 
-                Firstname = admin.Firstname,
-                Lastname = admin.Lastname,
-                Email = admin.Email,
-                Phone = admin.Mobile,
+                AdminProfileModal adminProfile = new AdminProfileModal
+                {
+                    username = aspuser.Username,
+                    status = admin.Status.Value,
+                    role = _context.Roles.FirstOrDefault(u => u.Roleid == admin.Roleid).Name,
+                    aspid = aspnetuserid,
 
-                Address1 = admin.Address1,
-                Address2 = admin.Address2,
-                City = admin.City,
-                Zipcode = admin.Zip,
-            };
+                    Firstname = admin.Firstname,
+                    Lastname = admin.Lastname,
+                    Email = admin.Email,
+                    Phone = admin.Mobile,
 
-            return adminProfile;
+                    Address1 = admin.Address1,
+                    Address2 = admin.Address2,
+                    City = admin.City,
+                    Zipcode = admin.Zip,
+                };
+
+                adminProfile.regions = _context.Regions.ToList();
+                adminProfile.roles = _context.Roles.ToList();
+                return adminProfile;
+            }
+            catch
+            {
+                return new AdminProfileModal();
+            }
+            
+
+           
         }
 
         public async Task UpdatePassword(int aspid, string password)

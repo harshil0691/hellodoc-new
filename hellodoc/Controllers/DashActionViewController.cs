@@ -104,6 +104,8 @@ namespace hellodoc.Controllers
                     ViewBag.requestid = partialView.requestid;
                     ViewBag.physicianid = HttpContext.Session.GetInt32("physicianid");
                     return PartialView("_TransferRequest");
+                case "SelectMap":
+                    return PartialView("_MapModal");
 
                 default:
                     return PartialView("_default");
@@ -140,13 +142,21 @@ namespace hellodoc.Controllers
                     return PartialView("_ViewUploads", document1);
 
                 case "Orders":
+                    try
+                    {
+                        OrdersModal ordersModal = new OrdersModal();
+                        ordersModal.professionName = _adminDashRepository.GetListProfessionTypes();
+                        ordersModal.requestid = partialView.requestid;
+                        ordersModal.aspid = HttpContext.Session.GetInt32("Aspid");
 
-                    OrdersModal ordersModal = new OrdersModal();
-                    ordersModal.professionName = _adminDashRepository.GetListProfessionTypes();
-                    ordersModal.requestid = partialView.requestid;
-                    ordersModal.aspid = HttpContext.Session.GetInt32("userid");
-
-                    return PartialView("_Orders", ordersModal);
+                        return PartialView("_Orders", ordersModal);
+                    }
+                    catch
+                    {
+                        TempData["error"] = "Internal Error To Display View";
+                        return RedirectToAction("admin_dash", "AdminDash");
+                    }
+                    
 
                 case "ViewCase":
                     try
@@ -217,7 +227,9 @@ namespace hellodoc.Controllers
                     concludCare.PatientName = _requests.GetDocuments(partialView.requestid).Firstname;
                     return PartialView("_ConcludeCare", concludCare);
 
-
+                case "Encounter":
+                    _adminDashRepository.Encouter(partialView.requestid, partialView.callType);
+                    return Json(new {data = "Request is Encounter To " + partialView.callType });
                 default:
                     return PartialView("_DefaultTab");
             }
@@ -291,30 +303,24 @@ namespace hellodoc.Controllers
             return RedirectToAction("admin_dash", "AdminDash");
         }
 
-        //[HttpPost]
-        //public IActionResult create_request(PatientReqModel patientReq)
-        //{
-        //    var aspNetUserid = _requests.GetAspUser(patientReq.Email).Result;
+        [HttpPost]
+        public IActionResult create_request(RequestFormModal requestForm)
+        {
+            requestForm.RequestCreatedBy = HttpContext.Session.GetString("loginType");
+            if (requestForm.RequestCreatedBy == "provider")
+            {
+                requestForm.PhysicianId = HttpContext.Session.GetInt32("physicianid")??0;
+            }
+            if (_requests.PatientRequest(requestForm) == "ok")
+            {
+                return RedirectToAction("admin_dash", "AdminDash", new { type = "error", tempdata = "Request Is Created" });
+            }
+            else
+            {
+                return RedirectToAction("admin_dash", "AdminDash", new { type = "error", tempdata = "Request Is Not Created Internal Error" });
+            }
+        }
 
-        //    if (aspNetUserid == 0)
-        //    {
-        //        var request = _requests.SetRequest(patientReq,18).Result;
-        //        var requestclient = _requests.SetRequestClient(patientReq, request.Requestid).Result;
-
-        //        var link = "https://localhost:7036/Patient/CreateAccount";
-
-        //        string message = "Create a Account for track your request on hellodoc \n\n\n use below link :\n\n"+ link;
-
-        //        SendMail("Patient Request from Admin", message , patientReq.Email);
-        //    }else
-        //    {
-        //        var userid1 = _requests.GetUser(aspNetUserid).Result;
-        //        var request = _requests.SetRequest(patientReq, userid1).Result;
-        //        var requestClient = _requests.SetRequestClient(patientReq, request.Requestid);
-        //    }
-
-        //    return RedirectToAction("admin_dash","AdminDash");
-        //}
         public IActionResult AssignCase(int requestid, AssignCaseModal assignCase, string Modaltype)
         {
             var aspnetuser = HttpContext.Session.GetInt32("Aspid");
@@ -527,25 +533,6 @@ namespace hellodoc.Controllers
             return PartialView("_ViewUploads", document);
         }
 
-        //public void SaveFile(IFormFile uploadfile, int rid)
-        //{
-        //    //string uniqueFilename = null;
-
-        //    //if (uploadfile != null)
-        //    //{
-        //    //    string uploadfolder = Path.Combine(HostingEnviroment.WebRootPath, "uploads");
-        //    //    uniqueFilename = Guid.NewGuid().ToString() + "_" + uploadfile.FileName;
-        //    //    string filename = Path.Combine(uploadfolder, uniqueFilename);
-        //    //    using (FileStream file = new FileStream(filename, FileMode.Create))
-        //    //    {
-        //    //        uploadfile.CopyTo(file);
-        //    //    }
-
-        //    //    _requests.SaveFile(uniqueFilename, rid);
-        //    //}
-
-        //}
-
         
         public IActionResult ClearCase(int requestid)
         {
@@ -636,9 +623,9 @@ namespace hellodoc.Controllers
         public IActionResult closeCase()
         {
             int requestid = HttpContext.Session.GetInt32("reqid") ?? 0;
-            var doc1 = HttpContext.Session.GetInt32("userid");
+            var aspnetuserid = HttpContext.Session.GetInt32("Aspid");
 
-            _adminDashRepository.CloseCase(requestid,doc1??0);
+            _adminDashRepository.CloseCase(requestid,aspnetuserid??0);
 
             return RedirectToAction("admin_dash", "AdminDash");
         }
@@ -656,12 +643,7 @@ namespace hellodoc.Controllers
 
             return RedirectToAction("dashboard", "ProviderDashboard");
         }
-        [HttpPost]
-        public string Encounter(PartialViewModal partialView)
-        {
-            _adminDashRepository.Encouter(partialView.requestid,partialView.callType);
-            return "Request is Encounter To " + partialView.callType;
-        }
+        
 
         public void SendMail(string subject,string message,string mailto)
         {

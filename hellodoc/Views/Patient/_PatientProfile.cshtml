@@ -86,7 +86,13 @@
                     <label for="floatingInput" class="mx-3">Zip Code</label>
                     <span asp-validation-for="Zipcode" class="text-danger"></span>
                 </div>
+                    <div class="form-floating mb-3 col-12 col-sm-2 mt-3">
+                        @{
+                            string address = Model.Street + "," + Model.City + "," + Model.State;
+                        }
 
+                        <a class="btn btn-white text-info border-1 border-info rounded bg-transparent px-3 py-2" id="openBtn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=@Uri.EscapeDataString(address)"><i class="bi bi-geo-alt"></i>Map</a>
+                    </div>
             </div>
 
 

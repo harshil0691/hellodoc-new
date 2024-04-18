@@ -72,6 +72,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5QYXJ0bmVyc1xfUGFydG5lcnNUYWJsZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/AdminProviders/_CreateProvider.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Qcm92aWRlcnNcX0NyZWF0ZVByb3ZpZGVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/AdminProviders/_CreateShift.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Qcm92aWRlcnNcX0NyZWF0ZVNoaWZ0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -110,6 +114,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/AdminProviders/_ShiftsForReview.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Qcm92aWRlcnNcX1NoaWZ0c0ZvclJldmlldy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/AdminProviders/_SignatureModal.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Qcm92aWRlcnNcX1NpZ25hdHVyZU1vZGFsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/AdminProviders/_ViewShift.cshtml]
@@ -206,6 +214,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/DashActionView/_FinalizedEncounter.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaEFjdGlvblZpZXdcX0ZpbmFsaXplZEVuY291bnRlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/DashActionView/_MapModal.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaEFjdGlvblZpZXdcX01hcE1vZGFsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/DashActionView/_Orders.cshtml]

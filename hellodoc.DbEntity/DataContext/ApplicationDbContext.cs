@@ -278,7 +278,9 @@ public partial class ApplicationDbContext : DbContext
         {
             entity.HasKey(e => e.Physicianid).HasName("Physician_pkey");
 
-            entity.Property(e => e.Physicianid).ValueGeneratedNever();
+            entity.Property(e => e.Physicianid)
+                .UseIdentityAlwaysColumn()
+                .HasIdentityOptions(null, null, 0L, null, null, null);
 
             entity.HasOne(d => d.Aspnetuser).WithMany(p => p.Physicians).HasConstraintName("fk_physician_aspnetuser");
 

@@ -13,6 +13,7 @@ using NUnit.Framework.Internal.Execution;
 using hellodoc.DbEntity.ViewModels.DashboardLists;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 
 namespace hellodoc.Controllers
 {
@@ -48,10 +49,7 @@ namespace hellodoc.Controllers
             switch (partialView.actionType)
             {
                 case "provider":
-                    var phy = _adminProviders.ProvidersTable();
-                    DashboardListsModal dashboardLists = new DashboardListsModal();
-                    dashboardLists.providersTableModal = phy;
-                    return PartialView("_Providers",dashboardLists);
+                    return PartialView("_Providers", _adminProviders.ProvidersTable(partialView.pageNumber,partialView.regionid));
                 case "scheduling":
                     DashboardListsModal listsModal = new DashboardListsModal();
                     listsModal.regions = _adminDashRepository.GetRegions(0);
@@ -67,25 +65,60 @@ namespace hellodoc.Controllers
                 case "shiftreview":
                     var list = _adminProviders.ShiftsDetailsList(partialView.regionid, partialView.pageNumber);
                     return PartialView("_ShiftsForReview", list);
+                case "createProvider":
+                    return PartialView("_CreateProvider",_adminProviders.GetForCreateProvider());
+
                 default:
                     return PartialView("_default");
+            }
+        }
+
+        public void CreateProvider(ProviderProfileModal providerProfile)
+        {
+            try
+            {
+                List<int> list = JsonConvert.DeserializeObject<List<int>>(providerProfile.selectedRegion);
+                providerProfile.regionList = list;
+                _adminProviders.CreateProvider(providerProfile);
+                TempData["success"] = "Provider Is Created";
+            }
+            catch
+            {
+                TempData["Error"] = "Internal Error Provider Is Not Created";
             }
         }
 
         [HttpPost]
         public void stopnotification(List<int> idlist,List<int> totallist)
         {
-            _adminProviders.StopNotification(idlist, totallist);
+            try
+            {
+                _adminProviders.StopNotification(idlist, totallist);
+            }
+            catch
+            {
+            }
+            
         }
 
         [HttpPost]
         public IActionResult edit_physician(int physicianid)
         {
             var userid1 = HttpContext.Session.GetInt32("Aspid");
-
             ProviderProfileModal providerProfile = _adminProviders.ProviderProfileData(physicianid).Result;
-
             return PartialView("_ProviderProfile", providerProfile);
+        }
+
+        public void UpdateProvider(ProviderProfileModal providerProfile)
+        {
+            if(providerProfile.selectedRegion != null)
+            {
+                List<int> list = JsonConvert.DeserializeObject<List<int>>(providerProfile.selectedRegion);
+                providerProfile.regionList = list;
+            }
+
+            providerProfile.aspid = HttpContext.Session.GetInt32("Aspid")??0;
+            //_adminProviders.UpdateProvider(providerProfile);
         }
 
         [HttpPost]
@@ -174,6 +207,8 @@ namespace hellodoc.Controllers
                     shiftDetailsmodal.Shiftdate = DateTime.Now;
                     return PartialView("_CreateShift", shiftDetailsmodal);
 
+                case "signature":
+                    return PartialView("_SignatureModal");
 
                 default:
                     return PartialView("_default");

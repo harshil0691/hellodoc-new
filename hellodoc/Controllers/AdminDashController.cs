@@ -98,8 +98,17 @@ namespace hellodoc.Controllers
 
                 case "myprofile":
                     var userid = HttpContext.Session.GetInt32("Aspid");
-                    AdminProfileModal profileModal = _adminDashRepository.GetAdminProfileData(userid ?? 1);
-                    return PartialView("_MyProfile", profileModal);
+                    AdminProfileModal adminProfile = _adminDashRepository.GetAdminProfileData(userid ?? 1);
+                    if ( adminProfile != null)
+                    {
+                        return PartialView("_MyProfile", adminProfile);
+                    }
+                    else
+                    {
+                        TempData["error"] = "Internal Error To Load View";
+                        return RedirectToAction("admin_dash", "AdminDash");
+                    }
+                    
 
                 case "provider":
                     return RedirectToAction("GetProvidersView","AdminProviders", new {actionType = "provider"});
@@ -156,31 +165,6 @@ namespace hellodoc.Controllers
         {
             var role = _adminDashRepository.CreateRole(accounttype);
             return PartialView("_CreateRole",role);
-        }
-
-        [HttpPost]
-        public void newrole(List<int> menulist,string name,short accounttype)
-        {
-            var aspid = HttpContext.Session.GetInt32("userId");
-            _adminAccess.NewRole(menulist,aspid??1,name,accounttype);
-        }
-        [HttpPost]
-        public IActionResult editroleview(int roleid)
-        {
-            var role = _adminAccess.CreateRole(0,roleid);
-            return PartialView("_EditRole", role);
-        }
-        public void editrole(List<int> menulist, string name, short accounttype,int roleid)
-        {
-            var aspid = HttpContext.Session.GetInt32("userId");
-            var role = _adminAccess.EditRole(menulist,accounttype,roleid,aspid??1,name);
-        }
-
-        [HttpPost]
-        public void deleterole(int roleid)
-        {
-            var aspid = HttpContext.Session.GetInt32("userId");
-            _adminAccess.DeleteRole(roleid,aspid??1);
         }
 
 

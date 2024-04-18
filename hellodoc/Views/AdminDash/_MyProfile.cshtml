@@ -78,31 +78,17 @@
                     <label for="floatingInput" class="mx-3">Phone Number</label>
                     <span asp-validation-for="Phone" class="text-danger"> </span>
                 </div>
-                <div class="mb-3 col-md-6 col-lg-6">
-                    <div class="d-sm-flex">
-                        <div class="form-check m-2">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                            <label for="exampleCheck1">District Of Colambia</label>
-                        </div>
-                        <div class="form-check m-2">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck2">
-                            <label for="exampleCheck2">New York</label>
-                        </div>
-                    </div>
-                    <div class="d-sm-flex">
-                        <div class="form-check m-2">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck3">
-                            <label for="exampleCheck13">Virginia</label>
-                        </div>
-                        <div class="form-check m-2">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck4">
-                            <label for="exampleCheck4">Maryland</label>
-                        </div>
-
-                    </div>
-                    
-                </div>
-                
+                    @*<div class="form-floating mb-3 col-md-4">
+                        <select class="form-select" aria-label="Default select example" asp-for="selectrole">
+                            <option value="0" selected disabled>All</option>
+                            @{
+                                foreach (var role in Model.roles)
+                                {
+                                    <option value="@role.Roleid"> @role.Name </option>
+                                }
+                            }
+                        </select>
+                    </div>*@
             </div>
             
 
@@ -110,7 +96,7 @@
                 <button type="button" class="btn btn-info text-white px-2" onclick="edit1()" id="e1">Edit</button>
             </div>
             <div class="d-flex justify-content-end" id="edit2">
-                    <button type="button" class="btn btn-info mx-3 p-2 px-3 mb-2" id="b1" onclick="FormSubmitAction1('update_admin','#updateAdmin','#myprofile')" style="display:none;">Save</button>
+                <button type="button" class="btn btn-info mx-3 p-2 px-3 mb-2" id="b1" onclick="FormSubmitAction1('update_admin','#updateAdmin','#myprofile')" style="display:none;">Save</button>
                 <button type="reset" class="btn btn-dark mx-3 p-2 px-3 mb-2" id="b2" style="display:none;" onclick="cancel1()">Cancel</button>
             </div>
             </form>
@@ -155,7 +141,7 @@
                 <button type="button" class="btn btn-info text-white px-2" onclick="edit2()" id="e2">Edit</button>
             </div>
             <div class="d-flex justify-content-end" id="edit2">
-                    <button type="button" class="btn btn-info mx-3 p-2 px-3 mb-2" id="ab1" onclick="FormSubmitAction1('update_admin_address','#updateAdminAddress','#myprofile')" style="display:none;">Save</button>
+                 <button type="button" class="btn btn-info mx-3 p-2 px-3 mb-2" id="ab1" onclick="FormSubmitAction1('update_admin_address','#updateAdminAddress','#myprofile')" style="display:none;">Save</button>
                 <button type="reset" class="btn btn-dark mx-3 p-2 px-3 mb-2" id="ab2" style="display:none;" onclick="cancel2()">Cancel</button>
             </div>
             </form>

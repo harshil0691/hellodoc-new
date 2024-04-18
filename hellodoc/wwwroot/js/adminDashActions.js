@@ -53,7 +53,12 @@ function loadActionView(DataObject) {
         success: function (data) {
             if (data.isfinalized) {
                 ShowModal({ ActionType: 'finalizedencounter'})
-            } else {
+            }
+            else if (DataObject.ActionType == "Encounter") {
+                $('#myModal').hide();
+                toastr.success(data.data);
+            }
+            else {
                 $('#mainDashContent').html(data);
             }
 

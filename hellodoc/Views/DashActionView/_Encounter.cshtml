@@ -19,10 +19,31 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-info text-white" onclick="loadActionView({ActionType:'Encounter',requestid : @ViewBag.requestid})">Save</button>
+                    <button type="button" class="btn btn-info text-white" onclick="loadActionView({ActionType:'Encounter',requestid : @ViewBag.requestid})">Save</button>
                     <button type="button" class="btn btn-outline-info" data-bs-dismiss="modal">Cancel</button>
                 </div>
 
         </div>
     </div>
 </div>
+<script>
+    var calltype = "";
+    var othercalltype = ""
+    function enccounterradio(clickType) {
+        if (clickType == "housecall") {
+            calltype = "HouseCall";
+            othercalltype = "consult";
+
+        } else {
+            calltype = "Consult";
+            othercalltype = "housecall";
+        }
+        var h = document.getElementById(clickType);
+        h.classList.remove("btn-outline-info");
+        h.classList.add("btn-info", "text-white");
+
+        var c = document.getElementById(othercalltype);
+        c.classList.remove("btn-info", "text-white");
+        c.classList.add("btn-outline-info");
+    }
+</script>

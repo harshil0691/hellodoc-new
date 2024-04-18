@@ -19,7 +19,7 @@ namespace hellodoc.DbEntity.ViewModels
         public string role { get; set; }
         public string? password { get; set; }
         public string username { get; set; }
-
+        public string updateType { get; set; }
         public string? Firstname { get; set; }
         public string? Lastname { get; set; }
         public string MediacalLicense { get; set; }
@@ -29,9 +29,12 @@ namespace hellodoc.DbEntity.ViewModels
         public DateOnly? DateOfService { get; set; }
         public long? Phone { get; set; }
 
+        public int physicianId { get; set; }
+        public string resetPassword { get; set; }
+
         [Required(ErrorMessage = "Email is required")]
         [EmailAddress(ErrorMessage = "Email is Invalid")]
-        public string? Email { get; set; }
+        public string? ProviderEmail { get; set; }
 
         public string? SynEmail { get; set; }
 
@@ -44,11 +47,29 @@ namespace hellodoc.DbEntity.ViewModels
 
         public string BusinessName { get; set; }
         public string BusinessEmail { get; set; }
+        public string BusinessWebsite { get; set; }
         public IFormFile photo { get; set; }
-        public IFormFile sign { get; set; }
+        public IFormFile IndependentContractorManagement { get; set; }
+        public IFormFile BackgroungCheck { get; set; }
+        public IFormFile HIPAA { get; set; }
+        public IFormFile NondisclosureAggrement { get; set; }
+        public IFormFile Signature { get; set; }
+        public IFormFile License { get; set; }
+
+        public string? photoPath { get; set; }
+        public string SignaturePath { get; set; }
+        public string IndependentContractorManagementPath { get; set; }
+        public string BackgroungCheckPath { get; set; }
+        public string HIPAAPath { get; set; }
+        public string NondisclosureAggrementPath { get; set; }
+        public string LicensePath { get; set; }
+
         public string AdminNotes { get; set; }
-
-
+        public string selectedRegion {  get; set; }
+        public int selectrole { get; set; }
+        public List<Role> roles { get; set; }
+        public List<Region> regions { get; set; }
+        public List<int> regionList { get; set; }
         public List<RequestWiseFile> PatientDocuments { get; set; }
     }
 }

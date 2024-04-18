@@ -114,8 +114,9 @@ namespace hellodoc.Controllers
 
         public IActionResult Logout()
         {
+            var login = HttpContext.Session.GetString("loginType");
             Response.Cookies.Delete("jwt");
-            return RedirectToAction("Login", "login",new { loginType = HttpContext.Session.GetString("loginType")});
+            return RedirectToAction("Login", "login",new { loginType = login });
         }
 
         public IActionResult Index()

@@ -13,12 +13,13 @@ namespace hellodoc.Repositories.Repository.Interface
     public interface IAdminProviders
     {
         Physician GetPhysicianAsync(int physicianid);
-        List<ProvidersTableModal> ProvidersTable();
+        DashboardListsModal ProvidersTable(int pageNumber,int regionid);
         Task StopNotification(List<int> idlist,List<int> totallist);
         Task<ProviderProfileModal> ProviderProfileData(int physicianid);
         List<ShiftDetailsmodal> ShiftDetailsmodal(DateTime date,DateTime sunday, DateTime saturday,string type,int physicianid);
         ShiftDetailsmodal GetShift(int shiftdetailsid);
         List<Physician> physicians();
+        bool UpdateProvider(ProviderProfileModal providerProfile);
         void EditShift(int shiftdetailsid,ShiftDetailsmodal shiftDetailsmodal,int aspid);
         void DeleteShift(int shiftdetailsid,int aspid);
         void StatusChangeShift(int shiftdetailsid, int aspid);
@@ -27,5 +28,7 @@ namespace hellodoc.Repositories.Repository.Interface
         DashboardListsModal ProvidersOnCallList(int regionid,DateTime date);
         DashboardListsModal ShiftsDetailsList(int regionid,int pageNumber);
         void SelectedShiftOperation(List<int> shiftdetailid, string actionType);
+        ProviderProfileModal GetForCreateProvider();
+        void CreateProvider(ProviderProfileModal providerProfile);
     }
 }

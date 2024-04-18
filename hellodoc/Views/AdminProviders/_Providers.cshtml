@@ -1,6 +1,7 @@
 ﻿@model hellodoc.DbEntity.ViewModels.DashboardLists.DashboardListsModal
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 
+<Partial name="_Notification" />
 <div class="login" id="main" style="margin-bottom:100px">
 
     <div class="row bgcolor1">
@@ -12,24 +13,24 @@
 
         <div class="d-flex justify-content-between mt-3">
             <div class="col-3">
-                <select class="form-select" aria-label="Default select example" onchange="fetchRegion()" id="region">
-                    <option selected>All Region</option>
-                    @*@{
+                <select class="form-select" aria-label="Default select example" id="region">
+                    <option selected value="0">All Region</option>
+                    @{
                         foreach (var a in Model.regions)
                         {
                             <option value="@a.Regionid">@a.Name</option>
                         }
-                    }*@
+                    }
                 </select>
             </div>
             <div class="d-flex">
                     <button class="btn btn-info text-white mx-2" style="display:none" id="ProvidersSave" onclick="saveStopNotification()">Save</button>
-                    <button class="btn btn-info text-white">Create Provider Account</button>
+                    <button class="btn btn-info text-white" onclick="GetProvidersView({actionType : 'createProvider'})">Create Provider Account</button>
             </div>
         </div>
 
-            <div style="margin-bottom:50px;" class="table-responsive d-none d-sm-none d-md-block d-lg-block d-xl-block">
-                <table id="providerss" class="table" style="width:100%;z-index:5">
+            <div style="margin-bottom:50px;" class="table-responsive d-none d-sm-none d-md-block d-lg-block d-xl-block mt-4" id="searchrecordstable">
+                <table class="w-100">
                     <thead>
                         <tr>
                             <th>Stop Notification</th>
@@ -40,7 +41,7 @@
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody style="font-size:larger;font-weight:400;" id="newtable">
+                    <tbody style="font-size:larger;font-weight:400;">
                         @{
                             foreach (var a in Model.providersTableModal)
                             {
@@ -63,23 +64,77 @@
                 </table>
 
             </div>
+            <div class="d-flex justify-content-between m-2">
+                <div>
+                    @Model.entries
+                </div>
+                <div>
+                    @{
+                        if (Model.pageNumber > 1)
+                        {
+                            var previousPage = Model.pageNumber - 1;
+                            <button class="btn btn-outline-secondary" onclick="GetProvidersView({actionType:'provider',pageNumber:'@previousPage'})"><i class="bi bi-chevron-left"></i></button>
+                        }
+                        else
+                        {
+                            <button class="btn btn-outline-secondary"><i class="bi bi-chevron-left"></i></button>
+                        }
+                    }
+
+                    <button class="btn btn-outline-info">@Model.pageNumber</button>
+                    @{
+                        if (Model.morePages == true)
+                        {
+                            var nextpage = Model.pageNumber + 1;
+                            <button class="btn btn-outline-secondary" onclick="GetProvidersView({actionType:'provider',pageNumber:'@nextpage'})"><i class="bi bi-chevron-right"></i></button>
+                        }
+                        else
+                        {
+                            <button class="btn btn-outline-secondary"><i class="bi bi-chevron-right"></i></button>
+                        }
+                    }
+                </div>
+            </div>
 
         </div>
-
+        
 
     </div>
 </div>
 
 <script>
-    var table = new DataTable('#providerss', { searching: false, paging: false });
 
-    //$("#region123").change(function () {
-    //    regionid = this.value;
-    //    search = "";
-    //    filtertable();
-    //});
+    $("#region").change(function () {
+        regionid = this.value;
+        GetProvidersView({actionType : 'provider',pageNumber : '1',regionid : regionid});
+    });
 
-    
+
+    var selectedCheck = [];
+    var checkboxes1 = document.querySelectorAll(".providerscheck");
+
+    checkboxes1.forEach(function (checkbox) {
+        if (checkbox.checked) {
+            selectedCheck.push(checkbox.value);
+        }
+    });
+
+    $(".providerscheck").change(function () {
+        var selectedCheck1 = [];
+        var checkboxes11 = document.querySelectorAll(".providerscheck");
+
+        checkboxes11.forEach(function (checkbox) {
+            if (checkbox.checked) {
+                selectedCheck1.push(checkbox.value);
+            }
+        });
+
+        if (selectedCheck1.toString() != selectedCheck.toString()) {
+            document.getElementById("ProvidersSave").style.display = "block";
+        } else {
+            document.getElementById("ProvidersSave").style.display = "none";
+        }
+    });
 </script>
 
 @section Scripts{
