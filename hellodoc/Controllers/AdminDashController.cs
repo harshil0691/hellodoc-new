@@ -146,11 +146,12 @@ namespace hellodoc.Controllers
         }
 
         [HttpPost]
-        public void UpdateAdmin(AdminProfileModal profile)
+        public IActionResult UpdateAdmin(AdminProfileModal profile)
         {
             var aspid = HttpContext.Session.GetInt32("Aspid");
             _adminDashRepository.UpdateAdmin(profile, aspid??1);
 
+            return RedirectToAction("admin_dash","AdminDash");
         }
 
         [HttpPost]

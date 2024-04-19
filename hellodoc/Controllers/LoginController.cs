@@ -59,10 +59,19 @@ namespace hellodoc.Controllers
             {
                 TempData["success"] = "User LogIn Successfully";
                 HttpContext.Session.SetInt32("Aspid", aspnetuser.Id);
-                var physicianid = _authManger.GetPhysician(aspnetuser.Id);
+                try
+                {
+                    var physicianid = _authManger.GetPhysician(aspnetuser.Id);
+                    HttpContext.Session.SetInt32("physicianid", physicianid);
+                }
+                catch
+                {
+                    return RedirectToAction("login", "Login");
+                }
+                
 
                 SessionUtils.SetLoggedInUser(HttpContext.Session, aspnetuser);
-                HttpContext.Session.SetInt32("physicianid", physicianid);
+               
                 var jwttoken = _jwtServices.GenarateJwtToken(aspnetuser);
                 Response.Cookies.Append("jwt", jwttoken);
                 Response.Cookies.Append("Aspid", aspnetuser.Id.ToString(), new CookieOptions { Expires = DateTime.Now.AddDays(1)});
