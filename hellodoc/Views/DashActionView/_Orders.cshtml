@@ -34,6 +34,12 @@
                 <div class="form-floating mb-3 col-md-6 col-lg-6">
                     <select class="form-select mt-3" aria-label="Default select example" id="professionSelect" asp-for="Business">
                         <option selected disabled> Business</option>
+                            @{
+                                foreach (var a in Model.healthProfessionals)
+                                {
+                                    <option value="@a.Vendorid">@a.Vendorname</option>
+                                }
+                            }
                     </select>
                 </div>
                 <div class="form-floating mb-3 col-md-6 col-lg-6">
@@ -97,26 +103,21 @@
 
         $("#professionTypeSelect").change(function () {
             var select = $(this).val();
-            console.log(select);
-
             getvendor(select);
         })
 
         $("#professionSelect").change(function () {
             var select = $(this).val();
             console.log(select);
-
             getvendordata(select);
         })
     
     
     function getvendor(select) {
-
         var vendor = $("#professionSelect");
-
         $.ajax({
-            url: '/DashActinView/GetVendors',
-            type: 'POST',
+            url: '/DashActionView/GetVendors',
+            type: 'GET',
             data: { select: select },
             dataType: 'json',
             success: function (data) {
@@ -143,7 +144,6 @@
             data: { select: select },
             dataType: 'json',
             success: function (data) {
-
                     $("#businessContact12").val(data.phonenumber);
                     $("#Vemail").val(data.email);
                     $("#Vfaxnumber").val(data.faxnumber);

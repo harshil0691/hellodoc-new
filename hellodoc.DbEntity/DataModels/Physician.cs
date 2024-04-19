@@ -114,7 +114,7 @@ public partial class Physician
     [Column("islicensedoc", TypeName = "character varying")]
     public string? Islicensedoc { get; set; }
 
-    [Column("signature", TypeName = "character varying")]
+    [Column("signature")]
     public string? Signature { get; set; }
 
     [Column("iscredentialdoc", TypeName = "character varying")]

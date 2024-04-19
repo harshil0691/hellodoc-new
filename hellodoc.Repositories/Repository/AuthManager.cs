@@ -160,9 +160,6 @@ namespace hellodoc.Repositories.Repository
             }
 
 
-
-
-
             //var user = SessionUtils.GetLoggedInUser(filterContext.HttpContext.Session);
             //if (user == null)
             //{
@@ -214,7 +211,6 @@ namespace hellodoc.Repositories.Repository
             var jwtToken = handler.ReadJwtToken(token);
 
             var roleClaim = jwtToken.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.UserData).Value;
-
 
             if (roleClaim == null ||  !_role.Contains(roleClaim))
             {

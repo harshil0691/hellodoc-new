@@ -30,6 +30,44 @@ function searchrecords(actionType, pageNumber, back, userid) {
 
 }
 
+function GetRecordsView(dataObject) {
+
+    $.ajax({
+        url:'/AdminRecords/GetView',
+        type: 'POST',
+        data: { actionType: dataObject.action, userid: dataObject.UserId },
+        success: function (data) {
+            var element = document.querySelectorAll('[href="#' + localStorage.getItem("DashTab") + '"]');
+            element.forEach(a => {
+                a.classList.remove('active');
+            });
+            localStorage.setItem("DashTab", 'records');
+            var element = document.querySelectorAll('[href="#records"]');
+            element.forEach(a => {
+                a.classList.add('active');
+            });
+
+            $('#mainDashContent').html(data);
+
+            const dropdownParents = document.querySelectorAll('.nav-link');
+            dropdownParents.forEach(parent => {
+                parent.classList.remove('active');
+            });
+            var ele = document.getElementById(dataObject.id);
+            ele.classList.add('active');
+
+            if (dataObject.actionType == 'GetView') {
+                searchrecords(dataObject.action, '1', dataObject.Back);
+            }
+
+        },
+        error: function () {
+            console.error('Error loading partial view.');
+        }
+    });
+}
+
+
 function recordsoperation(dataObeject) {
 
     $.ajax({

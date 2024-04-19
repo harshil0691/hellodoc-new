@@ -46,6 +46,7 @@ namespace hellodoc.DbEntity.ViewModels
         public int selectrole { get; set; }
         public List<Region> regions { get; set; }
         public List<int> selectedRegion { get; set; }
+        public string SelectedRegionString { get; set; }
 
         public string actionType { get; set; }
 

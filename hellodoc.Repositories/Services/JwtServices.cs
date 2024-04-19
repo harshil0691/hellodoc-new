@@ -30,18 +30,19 @@ namespace hellodoc.Repositories.Services
         public string GenarateJwtToken(AspNetUser aspNetUser)
         {
             var role = _context.AspNetRoles.FirstOrDefault(u=> u.Id == aspNetUser.AspNetUserRole.Role.Accounttype).Name;
+
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Email, aspNetUser.Email),
                 new Claim(ClaimTypes.Role, aspNetUser.AspNetUserRole.Role.Roleid.ToString()),
                 new Claim(ClaimTypes.UserData, role),
-                new Claim("aspuserid", aspNetUser.Id.ToString()),
-                new Claim("username",aspNetUser.Username)
+                new Claim(ClaimTypes.NameIdentifier, aspNetUser.Id.ToString()),
+                new Claim(ClaimTypes.Name,aspNetUser.Username)
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes( _configuration ["Jwt:Key"]));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-            var expires = DateTime.Now.AddMinutes(30);
+            var expires = DateTime.Now.AddMinutes(60);
 
             var token = new JwtSecurityToken(
                 Convert.ToString(_configuration ["Jwt:Issuer"]),

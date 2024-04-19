@@ -11,66 +11,85 @@
         <div class="d-grid container bgcolor mt-5 rounded-3">
 
             <!-- Button trigger modal -->
-            <button type="button" class=" btn btn-outline-info mx-2 mt-3 " data-bs-toggle="modal" data-bs-target="#exampleModal" style="justify-self:flex-end;">
+            <button type="button" class=" btn btn-outline-info mx-2 mt-3 " style="justify-self:flex-end;" onclick="GetPatientView({ actionType: 'requestModal' })">
                 Create New Request
             </button>
 
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content" style="font-weight:600">
-                        <div class="modal-header bg-info text-white">
-                            <h5 class="modal-title" id="exampleModalLabel"> Create New Request </h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <p>Here , I create request for...</p>
-                            <div class="d-flex justify-content-center">
-                                <button type="button" class="btn btn-outline-info m-2" value="me" onclick="me1(this)">Me</button>
-                                <button type="button" class="btn btn-outline-info m-2" value="someone" onclick="se1(this)">Someone Else</button>
-                            </div>
+            <div class="d-none d-md-block">
+                <table class="table mt-4 " id="patientdash">
+                    <thead>
+                        <tr>
+                            <th scope="col" style="background-color:#bdbdbd">Created Date</th>
+                            <th scope="col" style="background-color:#bdbdbd">Status</th>
+                            <th scope="col" style="background-color:#bdbdbd">Document</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            foreach (var a in Model.requestTable)
+                            {
+                                <tr>
+                                    <td>@a.Createddate</td>
+                                    <td>@a.Status</td>
+                                    <td>
+                                        @{
+                                            if (@a.Documents != "0")
+                                            {
+                                                <button class="btn btn-outline-info" onclick="GetPatientView({actionType : 'patient_documents',requestid : '@a.Requestid'})">(@a.Documents)Documents</button>
+                                            }
 
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-info" onclick="create_request()">Continue</button>
-                            <button type="button" class="btn btn-outline-info" data-bs-dismiss="modal">Cancel</button>
-                        </div>
-                    </div>
-                </div>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
             </div>
+            
+            <div class="mt-3 d-block d-sm-block d-md-none d-lg-none d-xl-none">
+                <div class="accordion" id="accordionExample">
 
-
-            <table class="table mt-4" id="patientdash">
-                <thead>
-                    <tr>
-                        <th scope="col" style="background-color:#bdbdbd">Created Date</th>
-                        <th scope="col" style="background-color:#bdbdbd">Status</th>
-                        <th scope="col" style="background-color:#bdbdbd">Document</th>
-                    </tr>
-                </thead>
-                <tbody>
                     @{
                         foreach (var a in Model.requestTable)
                         {
-                            <tr>
-                                <td>@a.Createddate</td>
-                                <td>@a.Status</td>
-                                <td>
-                                    @{
-                                        if (@a.Documents != "0")
-                                        {
-                                            <button class="btn btn-outline-info" onclick="GetPatientView({actionType : 'patient_documents',requestid : '@a.Requestid'})">(@a.Documents)Documents</button>
-                                        }
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed  d-flex" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_@a.Requestid" aria-expanded="true" aria-controls="collapse_@a.Requestid">
+                                        <div class="m-2">
+                                            <i class="bi bi-clock text-info"></i>
+                                            <span class="mx-2">Create Date :-</span> <span>@a.Createddate</span>
+                                        </div>
+                                    
+                                    </button>
 
-                                    }
-                                </td>
-                            </tr>
+                                </h2>
+
+                                <div id="collapse_@a.Requestid" class="accordion-collapse collapse" data-bs-parent="#accordionExample" style="background-color:#d7ffffde;">
+                                    
+                                    <div class="accordion-body">
+                                        <div class="d-flex">
+                                            <i class="bi bi-person-circle text-info"></i> Provider :- 
+                                        </div>
+                                        <div class="d-flex">
+                                            <i class="bi bi-check2-circle text-info pe-2 mt-1"></i> :- @a.Status
+                                        </div>
+                                        @{
+                                            if (@a.Documents != "0")
+                                            {
+                                                <button class="btn btn-outline-info" onclick="GetPatientView({actionType : 'patient_documents',requestid : '@a.Requestid'})">(@a.Documents)Documents</button>
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+
                         }
                     }
-                </tbody>
-            </table>
-
+                </div>
+            </div>
         </div>
     </div>
 
 </div>
+

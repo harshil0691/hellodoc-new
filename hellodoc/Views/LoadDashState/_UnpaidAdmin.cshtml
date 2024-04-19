@@ -5,7 +5,7 @@
     var datalist = Newtonsoft.Json.JsonConvert.SerializeObject(Model.adminDashModels);
 }
 
-<div class="table-responsive d-none d-sm-none d-md-block d-lg-block d-xl-block">
+<div class="table-responsive d-none d-sm-none d-md-block d-lg-block d-xl-block newtable">
     <table style="width:100%;z-index:5">
         <thead>
             <tr>
@@ -18,7 +18,7 @@
                 <th>Actions</th>
             </tr>
         </thead>
-        <tbody style="font-size:larger;font-weight:400;color:white;" id="newtable">
+        <tbody style="font-size:larger;font-weight:400;color:white;">
             @{
                 foreach (var a in Model.adminDashModels)
                 {
@@ -92,7 +92,7 @@
 
 </div>
 
-<div class="d-block d-sm-block d-md-none d-lg-none d-xl-none">
+<div class="d-block d-sm-block d-md-none d-lg-none d-xl-none ">
     <div class="accordion" id="accordionExample">
 
         @{
@@ -148,9 +148,9 @@
                             <div class="mb-2"><i class="bi bi-person-add rounded-pill btn btn-outline-info text-black-50 px-2"></i> Physician : </div>
                             <div class="row">
 
-                                <a class="btn btn-success rounded-5 col-5 m-2 mx-3" asp-action="view_notes" asp-route-requestid=@a.Requestid>View Notes</a>
-                                <a class="btn btn-success rounded-5 col-5 m-2 mx-3" asp-action="view_notes" asp-route-requestid=@a.Requestid>Doctor Notes</a>
-                                <a class="btn btn-success rounded-5 col-5 m-2 mx-3" asp-route-requestid=@a.Requestid asp-action="view_uploads">View Uploads</a>
+                                <button class="btn btn-success rounded-5 col-5 m-2 mx-3" onclick="loadActionView({ActionType:'ViewCase',requestid :@a.Requestid,bcolor:'@reqcolor',btext:'@text'})">View Case</button>
+                                <button class="btn btn-success rounded-5 col-5 m-2 mx-3" onclick="loadActionView({ActionType:'ViewUploads',requestid :'@a.Requestid'})">View Uploads</button>
+                                <button class="btn btn-success rounded-5 col-5 m-2 mx-3" onclick="loadActionView({ActionType:'ViewNotes',requestid :@a.Requestid})">View Notes</button>
                                 
                             </div>
 
@@ -167,7 +167,7 @@
 
 </div>
 
-<div class="d-flex justify-content-between m-2">
+<div class="d-flex justify-content-between m-2 mb-5">
     <div>
         @Model.entries
     </div>

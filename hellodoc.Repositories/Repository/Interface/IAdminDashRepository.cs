@@ -49,7 +49,7 @@ namespace hellodoc.Repositories.Repository.Interface
 
         AdminProfileModal GetAdminProfileData(int aspnetuserid);
         Task UpdatePassword(int aspid, string password);
-        Task UpdateAdmin(AdminProfileModal adminProfile,int aspid);
+        bool UpdateAdmin(AdminProfileModal adminProfile,int aspid);
 
         Task UpdateAdminAddress(AdminProfileModal adminProfile, int aspid);
         Encounter GetEncounter(int requestid);

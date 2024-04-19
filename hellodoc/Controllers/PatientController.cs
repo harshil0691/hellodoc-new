@@ -72,6 +72,13 @@ namespace hellodoc.Controllers
 
                     var document = _requests.GetDocuments(partialView.requestid);
                     return PartialView("_PatientDocument",document);
+
+                case "requestModal":
+                    return PartialView("_CreateRequest");
+                case "request_me":
+                    return PartialView("_RequestMe");
+                case "request_someone":
+                    return PartialView("_RequestSomeone");
                 default:
                     return PartialView("_Default");
             }
@@ -96,6 +103,9 @@ namespace hellodoc.Controllers
                         {
                             aspnetuser = _authManager.Login(requestForm.PatientEmail, requestForm.Password);
                         }
+                        Response.Cookies.Delete("jwt");
+                        var jwttoken = _jwtServices.GenarateJwtToken(aspnetuser);
+                        Response.Cookies.Append("jwt", jwttoken);
                         return RedirectToAction("PatientLogin","Login",aspnetuser);
                     }
                     else
@@ -114,9 +124,15 @@ namespace hellodoc.Controllers
                 case "business_request":
                     responseString =  _requests.BusinessRequest(requestForm);
                     break;
+                case "request_me":
+                    responseString = _requests.RequestMe(requestForm,HttpContext.Session.GetInt32("Aspid")??1);
+                    break;
+                case "request_someone":
+                    responseString = _requests.RequestSomeone(requestForm, HttpContext.Session.GetInt32("Aspid") ?? 1);
+                    break;
 
             }
-            if (RequestType != "patient_request")
+            if (RequestType != "patient_request" || RequestType != "request_me" || RequestType != "request_someone")
             {
                 if (responseString == "ok")
                 {
@@ -135,7 +151,7 @@ namespace hellodoc.Controllers
                     return RedirectToAction("send_request", "Patient", new { type = "error", tempdata = "Request Not Created Internal Error" });
                 }
             }
-            return RedirectToAction("send_request");
+            return RedirectToAction("patient_dashboard");
         }
 
         public IActionResult send_request(string type,string tempdata)
@@ -183,11 +199,10 @@ namespace hellodoc.Controllers
         }
 
 
-        [CustomAuthorize("user")]
+        [CustomUserAuthorize("user")]
         public IActionResult patient_dashboard()
         {
             var u1 = HttpContext.Session.GetInt32("Aspid");
-
             PatientReqModel patient = _patientDashboard.GetRequestList(u1);
 
             return View(patient);

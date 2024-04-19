@@ -42,7 +42,7 @@
                             @{
                                 foreach (var role in Model.roles)
                                 {
-                                    <option value="@role.Roleid"> @role.Name </option>
+                                        <option value="@role.Roleid"> @role.Name </option>
                                 }
                             }
                         </select>
@@ -101,25 +101,25 @@
                         @{
                             foreach (var item in Model.regions)
                             {
-                                <div class="form-check col mx-3">
-                                    @{
+                                    <div class="form-check col mx-3">
+                                        @{
                                         if(Model.regionList.Contains(item.Regionid)){
-                                            <input class="form-check-input regioncheck pedit2" type="checkbox" value="@item.Regionid" id="@item.Name" checked disabled>
+                                                    <input class="form-check-input regioncheck pedit2" type="checkbox" value="@item.Regionid" id="@item.Name" checked disabled>
                                         }
                                         else
-                                        {
-                                            <input class="form-check-input regioncheck pedit2" type="checkbox" value="@item.Regionid" id="@item.Name" disabled>
+                                      
+  {
+                                                    <input class="form-check-input regioncheck pedit2" type="checkbox" value="@item.Regionid" id="@item.Name" disabled>
                                         }
-                                    }
-                                    
-                                    <label class="form-check-label" for="@item.Regionid">
-                                        @item.Name
-                                    </label>
-                                </div>
+                                        }
+                                        
+                                        <label class="form-check-label" for="@item.Regionid">
+                                            @item.Name
+                                        </label>
+                                    </div>
                             }
                         }
                     </div>
-
 
                 </div>
 
@@ -185,7 +185,6 @@
                     <div class="form-floating mb-3 col-md-6 col-lg-6">
                         <input type="email" class="form-control pedit4" id="floatingInput" asp-for="BusinessWebsite" placeholder="Business Website" disabled>
                         <label for="floatingInput" class="mx-3">Business Website</label>
-                        <span asp-validation-for="BusinessWebsite" class="text-danger"></span>
                     </div>
                     <div class="mb-3 col-md-6 col-lg-6">
                         <div class="d-flex upload-btn-wrapper">
@@ -198,7 +197,7 @@
                     <div class="d-flex mb-3 col-md-6 col-lg-6">
                         <div class="d-flex upload-btn-wrapper col-8">
                             <button class="rounded-0 btn btn-outline-secondary pedit4 col-7" id="inputGroupFileAddon03">Select Signature</button>
-                            <input type="file" id="inputGroupFile03" onchange="updateFileName1(this)" class="pedit4" asp-for="photo" />
+                            <input type="file" id="photo" onchange="updateFileName1(this)" class="pedit4" asp-for="photo" />
                             <button type="button" onclick="savedoc()" class="btn btn-info text-white pedit4"><i class="bi bi-cloud-arrow-up p-1"></i>Upload</button>
                         </div>
                         <button type="button" onclick="providersModal({actionType : 'signature'})" class="mx-2 btn btn-info text-white"><i class="bi bi-pencil p-1"></i>Create</button>
@@ -207,7 +206,7 @@
                         @{
                             if(Model.photoPath != "")
                             {
-                                <img src="./PhysicianDoc/@Model.photoPath" class="mx-2" class="col-5" height="100" width="100"/>
+                                    <img src="./PhysicianDoc/@Model.photoPath" class="mx-2" class="col-5" height="100" width="100"/>
                             }
                         }
                         <textarea id="sig-dataUrl" class="form-control" rows="5" hidden>Data URL for your signature will go here!</textarea>
@@ -218,7 +217,7 @@
 
                 <div class="d-flex justify-content-end">
                     <button type="button" class="btn btn-info text-white px-2" onclick="pedit('pedit4','pd1','pd2','pee4')" id="pee4">Edit</button>
-                    <button type="button" class="btn btn-info mx-3 p-2 px-3 mb-2" id="pd1" onclick="UpdateProvider('provider','#provider','@Model.physicianId')" style="display:none;">Save</button>
+                    <button type="button" class="btn btn-info mx-3 p-2 px-3 mb-2" id="pd1" onclick="UpdateProvider('providerProfile','#provider','@Model.physicianId')" style="display:none;">Save</button>
                     <button type="reset" class="btn btn-dark mx-3 p-2 px-3 mb-2" id="pd2" style="display:none;" onclick="pcancel('pedit4','pd1','pd2','pee4')">Cancel</button>
                 </div>
             </form>
@@ -233,22 +232,22 @@
                     @{
                         if (Model.IndependentContractorManagementPath != "")
                         {
-                            <input type="checkbox" class="custom-check bg-info me-3" id="docCheck1" checked />
-                            <h6 class="m-2 col-4">Independent Contractor Agreement</h6>
-                            <div class="upload-btn-wrapper">
-                                <button class="btn btn-info text-white mx-1">Upload</button>
-                                <input type="file" asp-for="IndependentContractorManagement" id="IndependentContractorManagement" onchange="DocSelectCheckbox('docCheck1')" />
-                            </div>
-                            <a class="btn btn-info text-white mx-1" target="_blank" href="./PhysicianDoc/@Model.IndependentContractorManagementPath">View</a>
+                                <input type="checkbox" class="custom-check bg-info me-3" id="docCheck1" checked />
+                                <h6 class="m-2 col-4">Independent Contractor Agreement</h6>
+                                <div class="upload-btn-wrapper">
+                                    <button class="btn btn-info text-white mx-1">Upload</button>
+                                    <input type="file" asp-for="IndependentContractorManagement" id="IndependentContractorManagement" onchange="DocSelectCheckbox('docCheck1')" />
+                                </div>
+                                <a class="btn btn-info text-white mx-1" target="_blank" href="./PhysicianDoc/@Model.IndependentContractorManagementPath">View</a>
                         }
                         else
                         {
-                            <input type="checkbox" class="custom-check bg-info me-3" id="docCheck1" />
-                            <h6 class="m-2 col-4">Independent Contractor Agreement</h6>
-                            <div class="upload-btn-wrapper">
-                                <button class="btn btn-info text-white mx-1">Upload</button>
-                                <input type="file" asp-for="IndependentContractorManagement" id="IndependentContractorManagement" onchange="DocSelectCheckbox('docCheck1')" />
-                            </div>
+                                <input type="checkbox" class="custom-check bg-info me-3" id="docCheck1" />
+                                <h6 class="m-2 col-4">Independent Contractor Agreement</h6>
+                                <div class="upload-btn-wrapper">
+                                    <button class="btn btn-info text-white mx-1">Upload</button>
+                                    <input type="file" asp-for="IndependentContractorManagement" id="IndependentContractorManagement" onchange="DocSelectCheckbox('docCheck1')" />
+                                </div>
                         }
                     }
                     
@@ -258,22 +257,22 @@
                     @{
                         if (Model.BackgroungCheckPath != "")
                         {
-                            <input type="checkbox" class="custom-check bg-info me-3" id="docCheck2" checked />
-                            <h6 class="m-2 col-4">Background Check</h6>
-                            <div class="upload-btn-wrapper">
-                                <button class="btn btn-info text-white mx-1">Upload</button>
-                                <input type="file" asp-for="BackgroungCheck" id="BackgroungCheck" onchange="DocSelectCheckbox('docCheck2')" />
-                            </div>
-                            <a class="btn btn-info text-white mx-1" target="_blank" href="./PhysicianDoc/@Model.BackgroungCheckPath">View</a>
+                                <input type="checkbox" class="custom-check bg-info me-3" id="docCheck2" checked />
+                                <h6 class="m-2 col-4">Background Check</h6>
+                                <div class="upload-btn-wrapper">
+                                    <button class="btn btn-info text-white mx-1">Upload</button>
+                                    <input type="file" asp-for="BackgroungCheck" id="BackgroungCheck" onchange="DocSelectCheckbox('docCheck2')" />
+                                </div>
+                                <a class="btn btn-info text-white mx-1" target="_blank" href="./PhysicianDoc/@Model.BackgroungCheckPath">View</a>
                         }
                         else
                         {
-                            <input type="checkbox" class="custom-check bg-info me-3" id="docCheck2" />
-                            <h6 class="m-2 col-4">Background Check</h6>
-                            <div class="upload-btn-wrapper">
-                                <button class="btn btn-info text-white mx-1">Upload</button>
-                                <input type="file" asp-for="BackgroungCheck" id="BackgroungCheck" onchange="DocSelectCheckbox('docCheck2')" />
-                            </div>
+                                <input type="checkbox" class="custom-check bg-info me-3" id="docCheck2" />
+                                <h6 class="m-2 col-4">Background Check</h6>
+                                <div class="upload-btn-wrapper">
+                                    <button class="btn btn-info text-white mx-1">Upload</button>
+                                    <input type="file" asp-for="BackgroungCheck" id="BackgroungCheck" onchange="DocSelectCheckbox('docCheck2')" />
+                                </div>
                         }
                     }
                 </div>
@@ -281,22 +280,22 @@
                     @{
                         if (Model.HIPAAPath != "")
                         {
-                            <input type="checkbox" class="custom-check bg-info me-3" id="docCheck3" checked />
-                            <h6 class="m-2 col-4">HIPAA Complieance</h6>
-                            <div class="upload-btn-wrapper">
-                                <button class="btn btn-info text-white mx-1">Upload</button>
-                                <input type="file" asp-for="HIPAA" id="HIPAA" onchange="DocSelectCheckbox('docCheck3')" />
-                            </div>
-                            <a class="btn btn-info text-white mx-1" target="_blank" href="./PhysicianDoc/@Model.HIPAAPath">View</a>
+                                <input type="checkbox" class="custom-check bg-info me-3" id="docCheck3" checked />
+                                <h6 class="m-2 col-4">HIPAA Complieance</h6>
+                                <div class="upload-btn-wrapper">
+                                    <button class="btn btn-info text-white mx-1">Upload</button>
+                                    <input type="file" asp-for="HIPAA" id="HIPAA" onchange="DocSelectCheckbox('docCheck3')" />
+                                </div>
+                                <a class="btn btn-info text-white mx-1" target="_blank" href="./PhysicianDoc/@Model.HIPAAPath">View</a>
                         }
                         else
                         {
-                            <input type="checkbox" class="custom-check bg-info me-3" id="docCheck3"/>
-                            <h6 class="m-2 col-4">HIPAA</h6>
-                            <div class="upload-btn-wrapper">
-                                <button class="btn btn-info text-white mx-1">Upload</button>
-                                <input type="file" asp-for="HIPAA" id="HIPAA" onchange="DocSelectCheckbox('docCheck3')" />
-                            </div>
+                                <input type="checkbox" class="custom-check bg-info me-3" id="docCheck3"/>
+                                <h6 class="m-2 col-4">HIPAA</h6>
+                                <div class="upload-btn-wrapper">
+                                    <button class="btn btn-info text-white mx-1">Upload</button>
+                                    <input type="file" asp-for="HIPAA" id="HIPAA" onchange="DocSelectCheckbox('docCheck3')" />
+                                </div>
                         }
                     }
                 </div>
@@ -305,22 +304,22 @@
                     @{
                         if (Model.NondisclosureAggrementPath != "")
                         {
-                            <input type="checkbox" class="custom-check bg-info me-3" id="docCheck4" checked />
-                            <h6 class="m-2 col-4">Non disclosure Aggrement</h6>
-                            <div class="upload-btn-wrapper">
-                                <button class="btn btn-info text-white mx-1">Upload</button>
-                                <input type="file" asp-for="NondisclosureAggrement" id="NondisclosureAggrement" onchange="DocSelectCheckbox('docCheck4')" />
-                            </div>
-                            <a class="btn btn-info text-white mx-1" target="_blank" href="./PhysicianDoc/@Model.NondisclosureAggrementPath">View</a>
+                                <input type="checkbox" class="custom-check bg-info me-3" id="docCheck4" checked />
+                                <h6 class="m-2 col-4">Non disclosure Aggrement</h6>
+                                <div class="upload-btn-wrapper">
+                                    <button class="btn btn-info text-white mx-1">Upload</button>
+                                    <input type="file" asp-for="NondisclosureAggrement" id="NondisclosureAggrement" onchange="DocSelectCheckbox('docCheck4')" />
+                                </div>
+                                <a class="btn btn-info text-white mx-1" target="_blank" href="./PhysicianDoc/@Model.NondisclosureAggrementPath">View</a>
                         }
                         else
                         {
-                            <input type="checkbox" class="custom-check bg-info me-3" id="docCheck4" />
-                            <h6 class="m-2 col-4">Non disclosure Aggrement </h6>
-                            <div class="upload-btn-wrapper">
-                                <button class="btn btn-info text-white mx-1">Upload</button>
-                                <input type="file" asp-for="NondisclosureAggrement" id="NondisclosureAggrement" onchange="DocSelectCheckbox('docCheck4')" />
-                            </div>
+                                <input type="checkbox" class="custom-check bg-info me-3" id="docCheck4" />
+                                <h6 class="m-2 col-4">Non disclosure Aggrement </h6>
+                                <div class="upload-btn-wrapper">
+                                    <button class="btn btn-info text-white mx-1">Upload</button>
+                                    <input type="file" asp-for="NondisclosureAggrement" id="NondisclosureAggrement" onchange="DocSelectCheckbox('docCheck4')" />
+                                </div>
                         }
                     }
                 </div>
@@ -329,22 +328,22 @@
                     @{
                         if (Model.LicensePath != "")
                         {
-                            <input type="checkbox" class="custom-check bg-info me-3" id="docCheck5" checked />
-                            <h6 class="m-2 col-4">License Document</h6>
-                            <div class="upload-btn-wrapper">
-                                <button class="btn btn-info text-white mx-1">Upload</button>
-                                <input type="file" asp-for="License" id="License" onchange="DocSelectCheckbox('docCheck5')" />
-                            </div>
-                            <a class="btn btn-info text-white mx-1" target="_blank" href="./PhysicianDoc/@Model.LicensePath">View</a>
+                                <input type="checkbox" class="custom-check bg-info me-3" id="docCheck5" checked />
+                                <h6 class="m-2 col-4">License Document</h6>
+                                <div class="upload-btn-wrapper">
+                                    <button class="btn btn-info text-white mx-1">Upload</button>
+                                    <input type="file" asp-for="License" id="License" onchange="DocSelectCheckbox('docCheck5')" />
+                                </div>
+                                <a class="btn btn-info text-white mx-1" target="_blank" href="./PhysicianDoc/@Model.LicensePath">View</a>
                         }
                         else
                         {
-                            <input type="checkbox" class="custom-check bg-info me-3" id="docCheck5" />
-                            <h6 class="m-2 col-4">License Document </h6>
-                            <div class="upload-btn-wrapper">
-                                <button class="btn btn-info text-white mx-1">Upload</button>
-                                <input type="file" asp-for="License" id="License" onchange="DocSelectCheckbox('docCheck5')" />
-                            </div>
+                                <input type="checkbox" class="custom-check bg-info me-3" id="docCheck5" />
+                                <h6 class="m-2 col-4">License Document </h6>
+                                <div class="upload-btn-wrapper">
+                                    <button class="btn btn-info text-white mx-1">Upload</button>
+                                    <input type="file" asp-for="License" id="License" onchange="DocSelectCheckbox('docCheck5')" />
+                                </div>
                         }
                     }
                 </div>
@@ -427,8 +426,11 @@
                 break;
             case "providerProfile":
                 formdata.append("photo", $('#photo')[0].files[0]);
-                formdata.append("Signature", $('#sig-image')[0].files[0]);
+                var canvas = document.getElementById("sig-canvas");
+                var dataUrl = canvas.toDataURL();
+                formdata.append("SignaturePath", dataUrl);
                 break;
+
             case "onboarding":
                 formdata.append("IndependentContractorManagement", $('#IndependentContractorManagement')[0].files[0]);
                 formdata.append("BackgroungCheck", $('#BackgroungCheck')[0].files[0]);
@@ -449,7 +451,7 @@
             processData: false,
             contentType: false,
             success: function (data) {
-                loadPartialDashView('provider');
+                loadProviderView('edit_physician', physicianid)
             },
             error: function () {
                 console.error('Error loading partial view.');

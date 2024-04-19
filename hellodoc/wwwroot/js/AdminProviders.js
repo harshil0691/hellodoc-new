@@ -40,6 +40,16 @@ function GetProvidersView(dataObject) {
         type: 'POST',
         data: dataObject,
         success: function (data) {
+            var element = document.querySelectorAll('[href="#' + localStorage.getItem("DashTab") + '"]');
+            element.forEach(a => {
+                a.classList.remove('active');
+            });
+            localStorage.setItem("DashTab", 'provider');
+            var element = document.querySelectorAll('[href="#provider"]');
+            element.forEach(a => {
+                a.classList.add('active');
+            });
+
             $('#mainDashContent').html(data);
             if (dataObject.actionType == 'scheduling') {
                 ShiftCalender('month');

@@ -12,6 +12,9 @@ using System;
 using OfficeOpenXml;
 using static Org.BouncyCastle.Bcpg.Attr.ImageAttrib;
 using hellodoc.DbEntity.DataModels;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using Newtonsoft.Json;
 
 namespace hellodoc.Controllers
 {
@@ -46,8 +49,10 @@ namespace hellodoc.Controllers
 
         public IActionResult admin_dash()
         {
-                var request = _adminDashRepository.GetCount("admin",0).Result;
-                return View(request);
+            var Aspid = Request.Cookies["Aspid"];
+
+            var request = _adminDashRepository.GetCount("admin",0).Result;
+            return View(request);
             
         }
         public List<NotificationMessage> GetNotification()
@@ -95,7 +100,6 @@ namespace hellodoc.Controllers
                 case "providerlocation":
                     return PartialView("_ProviderLocation");
 
-
                 case "myprofile":
                     var userid = HttpContext.Session.GetInt32("Aspid");
                     AdminProfileModal adminProfile = _adminDashRepository.GetAdminProfileData(userid ?? 1);
@@ -142,15 +146,13 @@ namespace hellodoc.Controllers
         }
 
         [HttpPost]
-        public IActionResult update_admin(AdminProfileModal profile)
+        public void UpdateAdmin(AdminProfileModal profile)
         {
             var aspid = HttpContext.Session.GetInt32("Aspid");
-
             _adminDashRepository.UpdateAdmin(profile, aspid??1);
 
-            AdminProfileModal profileModal = _adminDashRepository.GetAdminProfileData(aspid ?? 1);
-            return PartialView("_MyProfile", profileModal);
         }
+
         [HttpPost]
         public IActionResult update_admin_address(AdminProfileModal profile)
         {
@@ -160,12 +162,6 @@ namespace hellodoc.Controllers
             return PartialView("_MyProfile", profileModal);
         }
 
-
-        public IActionResult createrole(int accounttype)
-        {
-            var role = _adminDashRepository.CreateRole(accounttype);
-            return PartialView("_CreateRole",role);
-        }
 
 
         public List<ProviderLocation> providerLocations()

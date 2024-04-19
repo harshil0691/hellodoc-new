@@ -118,7 +118,7 @@ namespace hellodoc.Controllers
             }
 
             providerProfile.aspid = HttpContext.Session.GetInt32("Aspid")??0;
-            //_adminProviders.UpdateProvider(providerProfile);
+            _adminProviders.UpdateProvider(providerProfile);
         }
 
         [HttpPost]

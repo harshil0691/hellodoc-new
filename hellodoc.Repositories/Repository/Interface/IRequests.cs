@@ -16,7 +16,8 @@ namespace hellodoc.Repositories.Repository.Interface
         string FriendRequest(RequestFormModal requestForm);
         string ConciergeRequest(RequestFormModal requestForm);
         string BusinessRequest(RequestFormModal requestForm);
-
+        string RequestMe(RequestFormModal requestForm,int Aspid);
+        string RequestSomeone(RequestFormModal requestForm, int Aspid);
         void SaveFile(IFormFile formFile,int requestid);
         RequestFormModal GetPatientProfile(int uid);
         AspNetUser GetAspUser(string email);

@@ -54,5 +54,6 @@ namespace hellodoc.DbEntity.ViewModels
         public int regionid { get; set; }
 
         public string CallType { get; set; }
+        public string region { get; set; }
     }
 }

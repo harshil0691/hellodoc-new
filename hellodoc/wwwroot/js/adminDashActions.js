@@ -99,12 +99,25 @@ function FormSubmitAction(actionType,id,requestid,bcolor,btext) {
 
 function FormSubmitAction1(actionType, id) {
 
-    var formdata = $(id).serialize();
+    var form = [];
+    var form = new FormData($(id)[0]);
+    var regionlist = [];
+    var checkboxes = document.querySelectorAll(".regioncheck");
+
+    checkboxes.forEach(function (checkbox) {
+        if (checkbox.checked) {
+            regionlist.push(checkbox.value);
+        }
+    });
+
+    form.append("SelectedRegionString", JSON.stringify(regionlist));
 
     $.ajax({
         url: '/AdminDash/' + actionType,
         type: 'POST',
-        data: formdata,
+        data: form,
+        processData: false,
+        contentType: false,
         success: function (data) {
             $('#mainDashContent').html(data);
         },

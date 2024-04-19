@@ -94,6 +94,9 @@ namespace hellodoc.Repositories.Repository
                 City = physician.City,
                 Zipcode = physician.Zip,
 
+                BusinessName = physician.Businessname,
+                BusinessWebsite = physician.Businesswebsite,
+
                 photoPath = physician.Photo,
                 IndependentContractorManagementPath = physician.Isagreementdoc,
                 BackgroungCheckPath = physician.Isbackgrounddoc,
@@ -161,7 +164,7 @@ namespace hellodoc.Repositories.Repository
 
                     return true;
 
-                case "mailingInformation":
+                case "mailing":
                     physician.Address1 = providerProfile.Address1;
                     physician.Address2 = providerProfile.Address2;
                     physician.City = providerProfile.City;
@@ -182,7 +185,9 @@ namespace hellodoc.Repositories.Repository
 
                     }
                     physician.Photo = photo;
+                    physician.Signature = providerProfile.SignaturePath;
                     physician.Adminnotes = providerProfile.AdminNotes;
+
                     _context.SaveChanges();
 
                     return true;
@@ -223,6 +228,7 @@ namespace hellodoc.Repositories.Repository
                     physician.Iscredentialdoc = HIPAA;
                     physician.Isnondisclosuredoc = NondisclosureAggrement;
 
+                    _context.SaveChanges();
                     return true;
 
                 default:
@@ -627,9 +633,7 @@ namespace hellodoc.Repositories.Repository
                         offcalllist.Add(oncall);
                     }
                 }
-
             }
-
             listsModal.offDuty = offcalllist;
             listsModal.onCall = oncalllist;
             listsModal.regionselect = regionid;

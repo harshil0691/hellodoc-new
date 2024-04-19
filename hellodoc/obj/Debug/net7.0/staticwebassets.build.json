@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "+RkJivm6/un5DJx1JvT3KMRGdgSMB4ba43N7cimRcsw=",
+  "Hash": "a5vpXoiJNEA6mxP5K5wpubNhBU75ioy2bHIfE1p+fhc=",
   "Source": "hellodoc",
   "BasePath": "_content/hellodoc",
   "Mode": "Default",
@@ -2686,6 +2686,23 @@
       "OriginalItemSpec": "wwwroot\\PhysicianDoc\\6637e0ad-f305-4746-929a-0df5188defa0_Fig22 Regions menu.jpg"
     },
     {
+      "Identity": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\807c1ca7-0d9c-43b9-9218-9a5ba25cb069_Manuscript_200103042234.docx",
+      "SourceId": "hellodoc",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\",
+      "BasePath": "_content/hellodoc",
+      "RelativePath": "PhysicianDoc/807c1ca7-0d9c-43b9-9218-9a5ba25cb069_Manuscript_200103042234.docx",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\PhysicianDoc\\807c1ca7-0d9c-43b9-9218-9a5ba25cb069_Manuscript_200103042234.docx"
+    },
+    {
       "Identity": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\a3655984-ccbb-4b56-805e-69b94b973c74_Fig25. Contact your Provider.jpg",
       "SourceId": "hellodoc",
       "SourceType": "Discovered",
@@ -2701,6 +2718,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\PhysicianDoc\\a3655984-ccbb-4b56-805e-69b94b973c74_Fig25. Contact your Provider.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\b691d94e-2e82-4e23-b928-fe60fcd15d2a_41de8d61-d682-473f-a9aa-3e92513332fa_Fig3. Admin Dashboard.jpg",
+      "SourceId": "hellodoc",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\",
+      "BasePath": "_content/hellodoc",
+      "RelativePath": "PhysicianDoc/b691d94e-2e82-4e23-b928-fe60fcd15d2a_41de8d61-d682-473f-a9aa-3e92513332fa_Fig3. Admin Dashboard.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\PhysicianDoc\\b691d94e-2e82-4e23-b928-fe60fcd15d2a_41de8d61-d682-473f-a9aa-3e92513332fa_Fig3. Admin Dashboard.jpg"
     },
     {
       "Identity": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\ebdd8ceb-3588-4916-a178-7e2b71b4b5bc_Fig2. Forgot Password.jpg",
@@ -2854,6 +2888,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\16087468-0370-4ae1-b928-5e0e1dabfcaf_Fig24. Provider Menu.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\1a7a8330-9ab6-4bfa-8fd7-ae87482fd5c9_Fig25. Contact your Provider.jpg",
+      "SourceId": "hellodoc",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\",
+      "BasePath": "_content/hellodoc",
+      "RelativePath": "uploads/1a7a8330-9ab6-4bfa-8fd7-ae87482fd5c9_Fig25. Contact your Provider.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\1a7a8330-9ab6-4bfa-8fd7-ae87482fd5c9_Fig25. Contact your Provider.jpg"
     },
     {
       "Identity": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\1b9250ab-8810-4874-8908-14f1cb11ce93_7768657_3763028 - Copy.jpg",
@@ -3349,6 +3400,23 @@
       "OriginalItemSpec": "wwwroot\\uploads\\71b26792-b681-47e0-b534-db00d1fa2b74_Fig2. Forgot Password.jpg"
     },
     {
+      "Identity": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\75abc080-f1a0-41f8-b0d1-7eb3aa31cf4f_Fig20.Close case.png",
+      "SourceId": "hellodoc",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\",
+      "BasePath": "_content/hellodoc",
+      "RelativePath": "uploads/75abc080-f1a0-41f8-b0d1-7eb3aa31cf4f_Fig20.Close case.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\75abc080-f1a0-41f8-b0d1-7eb3aa31cf4f_Fig20.Close case.png"
+    },
+    {
       "Identity": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\7755ef80-dd90-4043-9766-37ec4ff83a27_7768657_3763028 - Copy.jpg",
       "SourceId": "hellodoc",
       "SourceType": "Discovered",
@@ -3638,6 +3706,23 @@
       "OriginalItemSpec": "wwwroot\\uploads\\a9d171b6-db25-4584-bf6d-93be846af567_SRS-23-24-Trainees-2Feb24.pdf"
     },
     {
+      "Identity": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\aa96230d-75f2-4061-875d-cdf2e2e4e620_Abstract_200103042234.docx",
+      "SourceId": "hellodoc",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\",
+      "BasePath": "_content/hellodoc",
+      "RelativePath": "uploads/aa96230d-75f2-4061-875d-cdf2e2e4e620_Abstract_200103042234.docx",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\aa96230d-75f2-4061-875d-cdf2e2e4e620_Abstract_200103042234.docx"
+    },
+    {
       "Identity": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\ad24f51a-11f5-4e6b-8337-ebbacddb027f_Fig2. Forgot Password.jpg",
       "SourceId": "hellodoc",
       "SourceType": "Discovered",
@@ -3806,6 +3891,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\bca20f04-6d04-4bbb-a697-a6840eea62d7_Fig9. Admin dashboard in Unpaid state.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\bcc87473-f070-4953-9e63-803e500d598e_Fig26. Edit Physician Account.png",
+      "SourceId": "hellodoc",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\",
+      "BasePath": "_content/hellodoc",
+      "RelativePath": "uploads/bcc87473-f070-4953-9e63-803e500d598e_Fig26. Edit Physician Account.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\bcc87473-f070-4953-9e63-803e500d598e_Fig26. Edit Physician Account.png"
     },
     {
       "Identity": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\c045e681-3e25-4464-a314-d583a833bb9d_Fig22 Regions menu.jpg",

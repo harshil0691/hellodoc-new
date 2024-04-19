@@ -138,10 +138,12 @@ function se1(button) {
 function create_request() {
     console.log(requestValue);
     if (requestValue == "me") {
-        window.location.href = '@Url.Action("request_me","Patient")';
+        $('#myModal').modal('hide');
+        GetPatientView({ actionType: 'request_me' });
     }
     else {
-        window.location.href = '@Url.Action("request_someone","Patient")'
+        $('#myModal').modal('hide');
+        GetPatientView({ actionType: 'request_someone' });
     }
 
 }

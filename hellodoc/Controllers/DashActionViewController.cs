@@ -146,6 +146,7 @@ namespace hellodoc.Controllers
                     {
                         OrdersModal ordersModal = new OrdersModal();
                         ordersModal.professionName = _adminDashRepository.GetListProfessionTypes();
+                        ordersModal.healthProfessionals = _adminDashRepository.GetHealthProfessionals(0);
                         ordersModal.requestid = partialView.requestid;
                         ordersModal.aspid = HttpContext.Session.GetInt32("Aspid");
 
@@ -554,7 +555,7 @@ namespace hellodoc.Controllers
         {
 
             _adminDashRepository.SetOrder(ordersModal, requestid, HttpContext.Session.GetInt32("userid") ?? 1);
-
+            TempData["success"] = "Send Order Successfully";
             return RedirectToAction("admin_dash", "AdminDash");
         }
 
@@ -597,7 +598,7 @@ namespace hellodoc.Controllers
             return phy;
         }
 
-        [HttpPost]
+       
         public List<HealthProfessional> GetVendors(int select)
         {
             var list = _adminDashRepository.GetHealthProfessionals(select);

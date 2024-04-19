@@ -24,6 +24,7 @@ namespace hellodoc.DbEntity.ViewModels
         public int requestcount { get; set; }
         public string search { get;set; }
         public int regionid { get; set; }
+        public string region { get; set; }
 
         public int pageNumber { get; set; }
         public int totalEntries { get; set; }

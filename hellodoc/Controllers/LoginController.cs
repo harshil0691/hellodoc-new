@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using System.Net.Mail;
 using System.Net;
 using Microsoft.AspNetCore.Http;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 
 namespace hellodoc.Controllers
 {
@@ -35,6 +37,12 @@ namespace hellodoc.Controllers
             {
                 HttpContext.Session.SetString("loginType", loginType);
             }
+            if(HttpContext.Session.GetString("loginType") == "user")
+            {
+                TempData["error"] = "Username or Password is Incorrect";
+                ModelState.AddModelError(string.Empty, "Invalid email or Password");
+                return RedirectToAction("patient_login", "Patient");
+            }
             return View();
         }
 
@@ -57,7 +65,8 @@ namespace hellodoc.Controllers
                 HttpContext.Session.SetInt32("physicianid", physicianid);
                 var jwttoken = _jwtServices.GenarateJwtToken(aspnetuser);
                 Response.Cookies.Append("jwt", jwttoken);
-
+                Response.Cookies.Append("Aspid", aspnetuser.Id.ToString(), new CookieOptions { Expires = DateTime.Now.AddDays(1)});
+                Response.Cookies.Append("username", aspnetuser.Username);
 
                 return RedirectToAction("dashboard", "ProviderDashboard", aspnetuser.AspNetUserRole.Role.Name);
             }
@@ -85,9 +94,8 @@ namespace hellodoc.Controllers
 
         public IActionResult PatientLogin(AspNetUser obj)
         {
-
             var aspnetuser = _authManger.Login(obj.Email, obj.Passwordhash);
-
+            
             if (aspnetuser != null)
             {
                 TempData["success"] = "User LogIn Successfully";
@@ -98,7 +106,6 @@ namespace hellodoc.Controllers
                 var jwttoken = _jwtServices.GenarateJwtToken(aspnetuser);
                 Response.Cookies.Append("jwt", jwttoken);
 
-
                 return RedirectToAction("patient_dashboard", "Patient");
 
             }
@@ -107,7 +114,7 @@ namespace hellodoc.Controllers
 
                 TempData["error"] = "Username or Password is Incorrect";
                 ModelState.AddModelError(string.Empty, "Invalid email or Password");
-                return View();
+                return RedirectToAction("patient_login", "Patient");
             }
         }
 
@@ -116,7 +123,16 @@ namespace hellodoc.Controllers
         {
             var login = HttpContext.Session.GetString("loginType");
             Response.Cookies.Delete("jwt");
-            return RedirectToAction("Login", "login",new { loginType = login });
+            TempData["success"] = "Logout Successfully";
+            if (login == "user")
+            {
+                return RedirectToAction("Patient", "patient_login", new { loginType = login });
+            }
+            else
+            {
+                return RedirectToAction("Login", "login", new { loginType = login });
+            }
+            
         }
 
         public IActionResult Index()

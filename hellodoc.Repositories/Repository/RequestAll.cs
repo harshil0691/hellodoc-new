@@ -65,6 +65,9 @@ public class RequestAll : IRequests
                 City = requestForm.City,
                 State = requestForm.State,
                 Zipcode = requestForm.Zipcode,
+                Strmonth = requestForm.DOB.ToString("MMMM"),
+                Intdate = requestForm.DOB.Day,
+                Intyear = requestForm.DOB.Year,
                 Createdby = requestForm.Firstname + " " + requestForm.Lastname,
                 Createddate = DateTime.Now,
 
@@ -97,6 +100,7 @@ public class RequestAll : IRequests
             Email = requestForm.PatientEmail,
             Phonenumber = requestForm.Phonenumber,
             Createddate = DateTime.Now,
+            Requesttypeid = 1,
             Physicianid = (requestForm.RequestCreatedBy == "provider")? requestForm.PhysicianId:null,
             Confirmationnumber = requestForm.State.Substring(0, 2) + DateTime.Now.ToString().Substring(0, 4)
                                       + requestForm.Lastname.Substring(0, 2) + requestForm.Firstname.Substring(0, 2) + _context.Requests.Where(r => r.Createddate == DateTime.Now).Count().ToString(),
@@ -153,6 +157,7 @@ public class RequestAll : IRequests
             Email = requestForm.F_Email,
             Phonenumber = requestForm.F_Phonenumber,
             Relationname = requestForm.F_RelationType,
+            Requesttypeid =3,
             Createddate = DateTime.Now,
             Confirmationnumber = requestForm.State.Substring(0, 2) + DateTime.Now.ToString().Substring(0, 4)
                                       + requestForm.Lastname.Substring(0, 2) + requestForm.Firstname.Substring(0, 2) + _context.Requests.Where(r => r.Createddate == DateTime.Now).Count().ToString(),
@@ -213,6 +218,7 @@ public class RequestAll : IRequests
             Email = requestForm.C_Email,
             Phonenumber = requestForm.C_Phonenumber,
             Createddate = DateTime.Now,
+            Requesttypeid = 4,
             Confirmationnumber = requestForm.State.Substring(0, 2) + DateTime.Now.ToString().Substring(0, 4)
                                       + requestForm.Lastname.Substring(0, 2) + requestForm.Firstname.Substring(0, 2) + _context.Requests.Where(r => r.Createddate == DateTime.Now).Count().ToString(),
             User = (userexist != null) ? userexist : new User(),
@@ -291,6 +297,7 @@ public class RequestAll : IRequests
             Email = requestForm.B_Email,
             Phonenumber = requestForm.B_Phonenumber,
             Createddate = DateTime.Now,
+            Requesttypeid=1,
             Confirmationnumber = requestForm.State.Substring(0, 2) + DateTime.Now.ToString().Substring(0, 4)
                                       + requestForm.Lastname.Substring(0, 2) + requestForm.Firstname.Substring(0, 2) + _context.Requests.Where(r => r.Createddate == DateTime.Now).Count().ToString(),
 
@@ -321,6 +328,118 @@ public class RequestAll : IRequests
         {
             SendMail("Do Your Register to Hellodoc", "Registration Link", requestForm.PatientEmail, request.Requestid);
             SendSMS("Do Your Registration", 23323, request.Requestid);
+            return "userNotExist";
+        }
+
+        return "ok";
+    }
+
+    public string RequestMe(RequestFormModal requestForm,int Aspid)
+    {
+        var user = _context.Users.FirstOrDefault(u => u.Aspnetuserid == Aspid);
+        var checkBlokedUser = _context.BlockRequests.Where(u => u.Email == requestForm.PatientEmail).Count();
+
+        if (checkBlokedUser > 0)
+        {
+            return "blocked";
+        }
+
+        Request request = new Request()
+        {
+            Status = 1,
+            Firstname = user.Firstname,
+            Lastname = user.Lastname,
+            Email = user.Email,
+            Phonenumber = user.Mobile,
+            Requesttypeid = 2,
+            Createddate = DateTime.Now,
+            User = user,
+            Confirmationnumber = requestForm.State.Substring(0, 2) + DateTime.Now.ToString().Substring(0, 4)
+                                      + requestForm.Lastname.Substring(0, 2) + requestForm.Firstname.Substring(0, 2) + _context.Requests.Where(r => r.Createddate == DateTime.Now).Count().ToString(),
+        };
+
+        RequestClient requestClient = new RequestClient()
+        {
+            Firstname = requestForm.Firstname,
+            Lastname = requestForm.Lastname,
+            Email = requestForm.PatientEmail,
+            Phonenumber = requestForm.Phonenumber,
+            Street = requestForm.Street,
+            City = requestForm.City,
+            State = requestForm.State,
+            Zipcode = requestForm.Zipcode,
+            Notes = requestForm.Symptoms,
+
+            Request = request,
+        };
+
+        _context.Requests.Add(request);
+        _context.RequestClients.Add(requestClient);
+        _context.SaveChanges();
+
+        if (requestForm.Doc != null)
+        {
+            SaveFile(requestForm.Doc, request.Requestid);
+        }
+
+        return "ok";
+
+    }
+    public string RequestSomeone(RequestFormModal requestForm,int Aspid)
+    {
+        var userexist = _context.Users.FirstOrDefault(u => u.Aspnetuserid == Aspid);
+        var checkBlokedUser = _context.BlockRequests.Where(u => u.Email == requestForm.PatientEmail).Count();
+
+        if (checkBlokedUser > 0)
+        {
+            return "blocked";
+        }
+
+        Request request = new Request()
+        {
+            Status = 1,
+            Firstname = userexist.Firstname,
+            Lastname = userexist.Lastname,
+            Email = userexist.Email,
+            Phonenumber = userexist.Mobile,
+            Relationname = requestForm.F_RelationType,
+            Createddate = DateTime.Now,
+            Confirmationnumber = requestForm.State.Substring(0, 2) + DateTime.Now.ToString().Substring(0, 4)
+                                      + requestForm.Lastname.Substring(0, 2) + requestForm.Firstname.Substring(0, 2) + _context.Requests.Where(r => r.Createddate == DateTime.Now).Count().ToString(),
+        };
+        if (userexist != null)
+        {
+            request.User = userexist;
+        }
+        RequestClient requestClient = new RequestClient()
+        {
+            Firstname = requestForm.Firstname,
+            Lastname = requestForm.Lastname,
+            Email = requestForm.PatientEmail,
+            Phonenumber = requestForm.Phonenumber,
+            Street = requestForm.Street,
+            City = requestForm.City,
+            State = requestForm.State,
+            Zipcode = requestForm.Zipcode,
+            Notes = requestForm.Symptoms,
+
+            Request = request,
+        };
+
+        _context.Requests.Add(request);
+        _context.RequestClients.Add(requestClient);
+        _context.SaveChanges();
+
+        if (requestForm.Doc != null)
+        {
+            SaveFile(requestForm.Doc, request.Requestid);
+        }
+
+        if (userexist == null)
+        {
+            SendMail("Do Your Register to Hellodoc", "Registration Link", requestForm.PatientEmail, request.Requestid);
+            SendSMS("Do Your Registration", 23323, request.Requestid);
+
             return "userNotExist";
         }
 
@@ -422,7 +541,7 @@ public class RequestAll : IRequests
 
     public AspNetUser GetAspUser(string email)
     {
-        var aspNetUser = _context.AspNetUsers.FirstOrDefault(u => u.Email == email);
+        var aspNetUser = _context.AspNetUsers.Include(u => u.AspNetUserRole.Role).FirstOrDefault(x => x.Email == email);
 
         if (aspNetUser == null)
         {

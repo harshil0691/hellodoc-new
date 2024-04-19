@@ -24,7 +24,8 @@ namespace hellodoc.DbEntity.ViewModels.PopUpModal
         public string Prescription { get; set; }
         [Required]
         public int SelectProfession { get; set; }
-        public int NumberOfRefills { get ; set; }
+        public int NumberOfRefills { get; set; }
+
 
         public List<HealthProfessionalType> professionName { get; set; }
         public List<HealthProfessional> healthProfessionals { get; set; }

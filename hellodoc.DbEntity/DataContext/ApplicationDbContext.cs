@@ -121,7 +121,7 @@ public partial class ApplicationDbContext : DbContext
         {
             entity.HasKey(e => e.Adminregionid).HasName("AdminRegion_pkey");
 
-            entity.Property(e => e.Adminregionid).ValueGeneratedNever();
+            entity.Property(e => e.Adminregionid).UseIdentityAlwaysColumn();
 
             entity.HasOne(d => d.Admin).WithMany(p => p.AdminRegions)
                 .OnDelete(DeleteBehavior.ClientSetNull)

@@ -59,6 +59,7 @@ namespace hellodoc.Repositories.Repository
                     Requestclientid = r.RequestClients.Select(rc => rc.Requestclientid).FirstOrDefault(),
                     Email = r.Email,
                     regionid = r.RequestClients.Select(rc => rc.Regionid).FirstOrDefault() ?? 0,
+                    region = _context.Regions.FirstOrDefault(rg => rg.Regionid == r.RequestClients.FirstOrDefault().Regionid).Name,
                     Notes = _context.RequestStatusLogs.Where(rs => rs.Requestid == r.Requestid).Select(rc => rc.Notes).ToString(),
                 }).ToList();
             }
@@ -80,6 +81,7 @@ namespace hellodoc.Repositories.Repository
                     Email = r.Email,
                     Physicianname = r.Physician.Firstname,
                     regionid = r.RequestClients.Select(rc => rc.Regionid).FirstOrDefault() ?? 0,
+                    region = _context.Regions.FirstOrDefault(rg => rg.Regionid == r.RequestClients.FirstOrDefault().Regionid).Name,
                     Notes = r.RequestStatusLogs.OrderBy(n => n.Requeststatuslogid).Select(r => r.Notes).LastOrDefault(),
                 }).ToList();
             }
@@ -426,7 +428,7 @@ namespace hellodoc.Repositories.Repository
 
         public List<HealthProfessional> GetHealthProfessionals(int select)
         {
-            var list = _context.HealthProfessionals.Where(u => u.Profession == select);
+            var list = _context.HealthProfessionals.Where(u => (select !=0 )?u.Profession == select :true);
 
             return list.ToList();
         }
@@ -527,6 +529,7 @@ namespace hellodoc.Repositories.Repository
 
                 adminProfile.regions = _context.Regions.ToList();
                 adminProfile.roles = _context.Roles.ToList();
+                adminProfile.selectedRegion = _context.AdminRegions.Where(a => a.Adminid == admin.Adminid).Select(s => s.Regionid).ToList();
                 return adminProfile;
             }
             catch
@@ -545,7 +548,7 @@ namespace hellodoc.Repositories.Repository
             _context.SaveChanges();
         }
 
-        public async Task UpdateAdmin(AdminProfileModal adminProfile,int aspid)
+        public bool UpdateAdmin(AdminProfileModal adminProfile,int aspid)
         {
             var admin = _context.Admins.FirstOrDefault(u => u.Aspnetuserid == aspid);
 
@@ -554,8 +557,25 @@ namespace hellodoc.Repositories.Repository
             admin.Email = adminProfile.Email;
             admin.Mobile = adminProfile.Phone;
 
+            var adminregion = _context.AdminRegions.Where(p => p.Adminid == admin.Adminid);
+            foreach (var i in adminregion)
+            {
+                _context.AdminRegions.Remove(i);
+            }
             _context.SaveChanges();
 
+            foreach (var region in adminProfile.selectedRegion)
+            {
+                AdminRegion adminRegion = new AdminRegion
+                {
+                    Adminid = admin.Adminid,
+                    Regionid = region,
+                };
+                _context.AdminRegions.Add(adminRegion);
+            }
+            _context.SaveChanges();
+
+            return true;
         }
 
         public async Task UpdateAdminAddress(AdminProfileModal adminProfile, int aspid)

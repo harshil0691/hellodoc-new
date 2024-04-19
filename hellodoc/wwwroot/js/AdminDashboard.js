@@ -12,11 +12,17 @@ $(document).ready(function () {
 });
 
 
-function loadPartialDashView(tabId,ptab) {
+function loadPartialDashView(tabId, ptab) {
+
+    var element = document.querySelectorAll('[href="#' + localStorage.getItem("DashTab") + '"]');
+    element.forEach(a => {
+        a.classList.remove('active');
+    });
 
     if (ptab == true) {
         tabId = localStorage.getItem("DashTab");
     }
+    
     var element = document.querySelectorAll('[href="#' + tabId + '"]');
     element.forEach(a => {
         a.classList.add('active');
