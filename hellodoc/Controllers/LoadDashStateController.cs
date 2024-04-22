@@ -10,7 +10,7 @@ namespace hellodoc.Controllers
 {
     [CustomUserAuthorize("admin", "provider")]
     public class LoadDashStateController : Controller
-    {
+    { 
         private readonly ILogger<AdminDashController> _logger;
         private readonly IAdminDashRepository _adminDashRepository;
         private readonly IAuthManager _authManager;
@@ -24,6 +24,12 @@ namespace hellodoc.Controllers
 
         public IActionResult LoadPartialView(PartialViewModal partialView)
         {
+            var physicianaspid = HttpContext.Session.GetInt32("physiciandashid");
+            if (physicianaspid != 0 )
+            {
+                partialView.accoutOpen = HttpContext.Session.GetString("loginType");
+            }
+            partialView.physicianid = HttpContext.Session.GetInt32("physiciandashid")??0;
             switch (partialView.tabId)
             {
                 case "new":

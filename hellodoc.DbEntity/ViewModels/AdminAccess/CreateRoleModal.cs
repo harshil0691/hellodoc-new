@@ -15,6 +15,7 @@ namespace hellodoc.DbEntity.ViewModels.AdminAccess
         [Required(ErrorMessage ="Rolename is required")]
         public string RoleName { get; set; }
 
+        [Required]
         public int accountType { get; set; }
         public List<Menu> menus { get; set; }
         public List<int> selectedAccess { get; set; } 

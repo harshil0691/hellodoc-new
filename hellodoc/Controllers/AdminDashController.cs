@@ -18,6 +18,29 @@ using Newtonsoft.Json;
 
 namespace hellodoc.Controllers
 {
+    public class JwtHelper
+    {
+        public static Dictionary<string, string> GetClaimsFromCookie(HttpContext context, string cookieName)
+        {
+            if (context.Request.Cookies.TryGetValue(cookieName, out string jwtToken))
+            {
+                var handler = new JwtSecurityTokenHandler();
+                var token = handler.ReadJwtToken(jwtToken);
+
+                var claims = new Dictionary<string, string>();
+
+                foreach (var claim in token.Claims)
+                {
+                    claims.Add(claim.Type, claim.Value);
+                }
+
+                return claims;
+            }
+
+            return null; // Cookie not found or no token present
+        }
+    }
+
     [CustomUserAuthorize("admin")]
     [ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
     public class AdminDashController : Controller
@@ -32,8 +55,9 @@ namespace hellodoc.Controllers
         private readonly IAdminAccess _adminAccess;
         private readonly IAdminProviderLocation _providerLocation;
         private readonly IAdminRecords _adminRecords;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public AdminDashController(ILogger<AdminDashController> logger,IAdminDashRepository adminDashRepository, IPatientLogin patientLogin, IRequests requests,IHostingEnvironment hostingEnvironment,IAuthManager authManager,IAdminProviders adminProviders,IAdminAccess adminAccess,IAdminProviderLocation providerLocation,IAdminRecords adminRecords)
+        public AdminDashController(ILogger<AdminDashController> logger,IAdminDashRepository adminDashRepository, IPatientLogin patientLogin, IRequests requests,IHostingEnvironment hostingEnvironment,IAuthManager authManager,IAdminProviders adminProviders,IAdminAccess adminAccess,IAdminProviderLocation providerLocation,IAdminRecords adminRecords,IHttpContextAccessor httpContextAccessor)
         {
             _logger = logger;
             _adminDashRepository = adminDashRepository;
@@ -45,11 +69,31 @@ namespace hellodoc.Controllers
             _adminAccess = adminAccess;
             _providerLocation = providerLocation;
             _adminRecords = adminRecords;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public IActionResult admin_dash()
         {
-            var Aspid = Request.Cookies["Aspid"];
+            var claims = JwtHelper.GetClaimsFromCookie(_httpContextAccessor.HttpContext, "jwt");
+
+            if (claims != null)
+            {
+                if (claims.ContainsKey("username"))
+                {
+                    string userName = claims["username"];
+
+                    HttpContext.Session.SetString("username", userName);
+                }
+                if (claims.ContainsKey("Aspid"))
+                {
+                    string userId = claims["Aspid"];
+                    HttpContext.Session.SetInt32("Aspid",int.Parse(userId));
+                }
+                if (claims.ContainsKey("physicianId"))
+                {
+                    string userId = claims["physicianId"];
+                }
+            }
 
             var request = _adminDashRepository.GetCount("admin",0).Result;
             return View(request);
@@ -135,14 +179,12 @@ namespace hellodoc.Controllers
         }
 
         [HttpPost]
-        public IActionResult update_password(AdminProfileModal admin)
+        public IActionResult UpdatePassword(AdminProfileModal admin)
         {
             var aspid = HttpContext.Session.GetInt32("Aspid");
-
             _adminDashRepository.UpdatePassword(aspid??1, admin.password);
 
-            AdminProfileModal profileModal = _adminDashRepository.GetAdminProfileData(aspid??1);
-            return PartialView("_MyProfile", profileModal);
+            return RedirectToAction("admin_dash", "AdminDash");
         }
 
         [HttpPost]
@@ -155,12 +197,11 @@ namespace hellodoc.Controllers
         }
 
         [HttpPost]
-        public IActionResult update_admin_address(AdminProfileModal profile)
+        public IActionResult UpdateAdminAddress(AdminProfileModal profile)
         {
             var aspid = HttpContext.Session.GetInt32("Aspid");
             _adminDashRepository.UpdateAdminAddress(profile, aspid??1);
-            AdminProfileModal profileModal = _adminDashRepository.GetAdminProfileData(aspid ?? 1);
-            return PartialView("_MyProfile", profileModal);
+            return RedirectToAction("admin_dash", "AdminDash");
         }
 
 

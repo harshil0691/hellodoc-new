@@ -19,6 +19,7 @@ using System.Security.Claims;
 using hellodoc.Repositories.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Abstractions;
+using NUnit.Framework.Constraints;
 
 namespace hellodoc.Repositories.Repository
 {
@@ -40,9 +41,17 @@ namespace hellodoc.Repositories.Repository
 
         public int GetPhysician(int aspid)
         {
-            var physician = _context.Physicians.FirstOrDefault(p => p.Aspnetuserid == aspid).Physicianid;
+            try
+            {
+                var physician = _context.Physicians.FirstOrDefault(p => p.Aspnetuserid == aspid && p.Role.Accounttype == 4).Physicianid == null ? 0 : _context.Physicians.FirstOrDefault(p => p.Aspnetuserid == aspid).Physicianid;
 
-            return physician;
+                return physician;
+            }
+            catch
+            {
+                return 0;
+            }
+            
         }
 
         public void authaction(HttpContext httpContext, string role)

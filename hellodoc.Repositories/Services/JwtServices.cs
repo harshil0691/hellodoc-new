@@ -36,8 +36,8 @@ namespace hellodoc.Repositories.Services
                 new Claim(ClaimTypes.Email, aspNetUser.Email),
                 new Claim(ClaimTypes.Role, aspNetUser.AspNetUserRole.Role.Roleid.ToString()),
                 new Claim(ClaimTypes.UserData, role),
-                new Claim(ClaimTypes.NameIdentifier, aspNetUser.Id.ToString()),
-                new Claim(ClaimTypes.Name,aspNetUser.Username)
+                new Claim("Aspid", aspNetUser.Id.ToString()),
+                new Claim("username",aspNetUser.Username)
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes( _configuration ["Jwt:Key"]));

@@ -44,6 +44,20 @@
 
             </div>
 
+            <div style="margin-bottom:50px;" class="d-block d-md-none">
+                @{
+                    foreach (var a in Model.accessTables)
+                    {
+                        <div class="m-1 p-3 border-1 rounded-1" style="border: 1px solid gray;">
+                        <p class="m-2"> Name : <span class="fs-6">@a.accessName</span></p>
+                        <p class="m-2"> AccountType : <span>@a.accountType</span></p>
+                            <button class="btn btn-outline-info mx-2" onclick="GetAccessView({actionType : 'editRole',roleid : '@a.roleid'})">Edit</button>
+                            <button class="btn btn-outline-info mx-2" onclick="loadAccessView('deleterole','@a.roleid')">Delete</button>
+                        </div>
+                    }
+                }
+            </div>
+
             <div class="d-flex justify-content-between m-2">
                 <div>
                     @Model.entries

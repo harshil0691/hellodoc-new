@@ -1686,7 +1686,6 @@ C:\Users\Asus\Desktop\hellodoc\hellodoc\obj\Debug\net7.0\staticwebassets.pack.js
 C:\Users\Asus\Desktop\hellodoc\hellodoc\obj\Debug\net7.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 C:\Users\Asus\Desktop\hellodoc\hellodoc\obj\Debug\net7.0\scopedcss\bundle\hellodoc.styles.css
 C:\Users\Asus\Desktop\hellodoc\hellodoc\obj\Debug\net7.0\scopedcss\projectbundle\hellodoc.bundle.scp.css
-C:\Users\Asus\Desktop\hellodoc\hellodoc\obj\Debug\net7.0\hellodoc.csproj.CopyComplete
 C:\Users\Asus\Desktop\hellodoc\hellodoc\obj\Debug\net7.0\hellodoc.genruntimeconfig.cache
 C:\Users\Asus\Desktop\hellodoc\hellodoc\obj\Debug\net7.0\ref\hellodoc.dll
 C:\Users\pci235\source\repos\hellodoc\hellodoc\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
@@ -1739,3 +1738,4 @@ C:\Users\Asus\Desktop\hellodoc\hellodoc\bin\Debug\net7.0\runtimes\win\lib\net7.0
 C:\Users\Asus\Desktop\hellodoc\hellodoc\bin\Debug\net7.0\runtimes\win\lib\net7.0\System.Drawing.Common.dll
 C:\Users\Asus\Desktop\hellodoc\hellodoc\bin\Debug\net7.0\runtimes\win\lib\net7.0\System.Management.dll
 C:\Users\Asus\Desktop\hellodoc\hellodoc\obj\Debug\net7.0\hellodoc.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Asus\Desktop\hellodoc\hellodoc\obj\Debug\net7.0\hellodoc.csproj.Up2Date

@@ -91,7 +91,7 @@ function showcalender() {
     document.getElementById("month-input").showPicker();
 }
 
-function ShiftCalender(shifttype) {
+function ShiftCalender(shifttype,regionid) {
     schedulingtype = shifttype;
     var datehere;
     var calendar = document.getElementById("cal");
@@ -115,7 +115,7 @@ function ShiftCalender(shifttype) {
     $.ajax({
         url: '/AdminProviders/loadshift',
         type: 'POST',
-        data: { datestring: date.toISOString(), sundaystring: sunday.toISOString(), saturdaystring: saturday.toISOString(), shifttype: shifttype },
+        data: { datestring: date.toISOString(), sundaystring: sunday.toISOString(), saturdaystring: saturday.toISOString(), shifttype: shifttype,regionid:regionid },
         success: function (data) {
             $('#shiftTable').html(data);
             $('#datediv').text(datehere);
@@ -125,6 +125,7 @@ function ShiftCalender(shifttype) {
         }
     });
 }
+
 
 function monthchange() {
 

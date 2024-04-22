@@ -15,6 +15,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 using Microsoft.AspNetCore.Http;
 using hellodoc.DbEntity.DataModels;
 using Microsoft.AspNetCore.Http.HttpResults;
+using hellodoc.DbEntity.ViewModels.AdminAccess;
 
 namespace hellodoc.Controllers
 {
@@ -76,6 +77,19 @@ namespace hellodoc.Controllers
                 default:
                     return PartialView("_default");
             }
+        }
+
+        [HttpPost]
+        public void NewRole(List<int> menulist,string  name ,short accounttype)
+        {
+            _adminAccess.NewRole(menulist , HttpContext.Session.GetInt32("Aspid")??1,name,accounttype);
+            //return RedirectToAction("admin_dash","AdminDash");
+        }
+        [HttpPost]
+        public void EditRole(List<int> menulist, string name, short accounttype,int roleid)
+        {
+            _adminAccess.EditRole(menulist,accounttype,roleid, HttpContext.Session.GetInt32("Aspid") ?? 1, name);
+            //return RedirectToAction("admin_dash","AdminDash");
         }
     }
 }

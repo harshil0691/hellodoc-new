@@ -19,7 +19,7 @@
 
 
             <h4 class="mt-3">Account Information</h4>
-            <form id="AspDetails" method="post">
+            <form id="AspDetails" method="post" onsubmit="UpdateProvider('AspDetails','#AspDetails','@Model.physicianId')">
                 <div class="row mt-3">
 
                     <div class="form-floating mb-3  col-md-6 col-lg-6">
@@ -52,8 +52,8 @@
 
                 <div class="d-flex justify-content-end">
                     <button type="button" class="btn btn-info text-white mx-2 px-2" id="pee1" onclick="pedit('pedit1','pe1','pe2','pee1')">Edit</button>
-                    <button type="button" class="btn btn-info mx-3 p-2 px-3 mb-2" id="pe1" onclick="UpdateProvider('AspDetails','#AspDetails','@Model.physicianId')" style="display:none;">Save</button>
-                    <button type="reset" class="btn btn-dark mx-3 p-2 px-3 mb-2" id="pe2" style="display:none;" onclick="pcancel('pedit1','pe1','pe2','pee1')">Cancel</button>
+                    <button type="submit" class="btn btn-info mx-3 p-2 px-3 mb-2" id="pe1" style="display:none;">Save</button>
+                    <button type="reset" class="btn btn-outline-info mx-3 p-2 px-3 mb-2" id="pe2" style="display:none;" onclick="pcancel('pedit1','pe1','pe2','pee1')">Cancel</button>
                     <button type="button" class="btn btn-outline-info px-2" onclick="UpdateProvider('resetPassword','#AspDetails','@Model.physicianId')">Reset Password</button>
                 </div>
             </form>
@@ -127,7 +127,7 @@
                 <div class="d-flex justify-content-end">
                     <button type="button" class="btn btn-info text-white px-2" onclick="pedit('pedit2','pb1','pb2','pee2')" id="pee2">Edit</button>
                     <button type="button" class="btn btn-info mx-3 p-2 px-3 mb-2" id="pb1" onclick="UpdateProvider('physician','#physician','@Model.physicianId')" style="display:none;">Save</button>
-                    <button type="reset" class="btn btn-dark mx-3 p-2 px-3 mb-2" id="pb2" style="display:none;" onclick="pcancel('pedit2','pb1','pb2','pee2')">Cancel</button>
+                    <button type="reset" class="btn btn-outline-info mx-3 p-2 px-3 mb-2" id="pb2" style="display:none;" onclick="pcancel('pedit2','pb1','pb2','pee2')">Cancel</button>
                 </div>
             </form>
 
@@ -170,7 +170,7 @@
                 <div class="d-flex justify-content-end">
                     <button type="button" class="btn btn-info text-white px-2" onclick="pedit('pedit3','pc1','pc2','pee3')" id="pee3">Edit</button>
                     <button type="button" class="btn btn-info mx-3 p-2 px-3 mb-2" id="pc1" onclick="UpdateProvider('mailing','#mailing','@Model.physicianId')" style="display:none;">Save</button>
-                    <button type="reset" class="btn btn-dark mx-3 p-2 px-3 mb-2" id="pc2" style="display:none;" onclick="pcancel('pedit3','pc1','pc2','pee3')">Cancel</button>
+                    <button type="reset" class="btn btn-outline-info mx-3 p-2 px-3 mb-2" id="pc2" style="display:none;" onclick="pcancel('pedit3','pc1','pc2','pee3')">Cancel</button>
                 </div>
             </form>
 
@@ -188,37 +188,60 @@
                     </div>
                     <div class="mb-3 col-md-6 col-lg-6">
                         <div class="d-flex upload-btn-wrapper">
-                            <button class="rounded-0 btn btn-outline-secondary  pedit4 col-9" id="inputGroupFileAddon04" >Select Photo</button>
-                            <input type="file" id="inputGroupFile04" onchange="updateFileName(this)" class="pedit4" disabled />
-                            <button type="button" onclick="savedoc()" class="btn btn-info text-white pedit4" ><i class="bi bi-cloud-arrow-up p-1"></i>Upload</button>
+                            <button class="rounded-0 btn btn-outline-secondary  pedit4 col-9" id="inputGroupFileAddon04" disabled>Select Photo</button>
+                            <input type="file" id="imageInput" onchange="updateFileName(this)" class="pedit4" disabled />
+                            <button type="button" class="btn btn-info text-white rounded-0 pedit4" disabled><i class="bi bi-cloud-arrow-up p-1"></i>Upload</button>
                         </div>
                        
                     </div>
                     <div class="d-flex mb-3 col-md-6 col-lg-6">
                         <div class="d-flex upload-btn-wrapper col-8">
-                            <button class="rounded-0 btn btn-outline-secondary pedit4 col-7" id="inputGroupFileAddon03">Select Signature</button>
-                            <input type="file" id="photo" onchange="updateFileName1(this)" class="pedit4" asp-for="photo" />
-                            <button type="button" onclick="savedoc()" class="btn btn-info text-white pedit4"><i class="bi bi-cloud-arrow-up p-1"></i>Upload</button>
+                            <button class="rounded-0 btn btn-outline-secondary col-7 pedit4" id="inputGroupFileAddon03" disabled>Select Signature</button>
+                            <input type="file" id="imageInput1" onchange="updateFileName1(this)" class="pedit4" disabled />
+                            <button type="button" class="btn btn-info text-white rounded-0 pedit4" disabled><i class="bi bi-cloud-arrow-up p-1"></i>Upload</button>
                         </div>
-                        <button type="button" onclick="providersModal({actionType : 'signature'})" class="mx-2 btn btn-info text-white"><i class="bi bi-pencil p-1"></i>Create</button>
+                        <button type="button" onclick="providersModal({actionType : 'signature'})" class="mx-2 btn btn-info text-white pedit4" disabled><i class="bi bi-pencil p-1"></i>Create</button>
                     </div>
                     <div class="row">
-                        @{
-                            if(Model.photoPath != "")
-                            {
-                                    <img src="./PhysicianDoc/@Model.photoPath" class="mx-2" class="col-5" height="100" width="100"/>
+                        <div class="d-flex justify-content-center mx-3 col-12 col-sm-5">
+                            @{
+                                if(Model.photoPath == "")
+                                {
+                                    <img class="m-3" id="imagePreview" src="#" height="100" width="100" alt="Preview">
+                                }
+                                else{
+                                    <img src="./PhysicianDoc/@Model.photoPath" id="imagePreview" height="100" width="100" alt="select Image" />
+                                }
                             }
-                        }
+
+                        </div>
+
+                        <div class="d-flex justify-content-center mx-3 col-12 col-sm-5">
+                            @{
+                                var src = "./PhysicianDoc/" + Model.SignaturePath;
+
+                                if (Model.SignaturePath == "")
+                                {
+                                    <img class="m-3" id="imagePreview" src="#" height="100" width="100" alt="Preview Signature">
+                                }
+                                else
+                                {
+                                    <img src="" id="sig-image" height="100" width="100" alt="select Image" />
+                                }
+                            }
+
+                        </div>
+
                         <textarea id="sig-dataUrl" class="form-control" rows="5" hidden>Data URL for your signature will go here!</textarea>
-                        <img class="mx-2 col-5" height="100" width="100" id="sig-image" src=""/>
+                        @*<img class="mx-2 col-5" height="100" width="100" id="sig-image" src=""/>*@
                     </div>
-                    <textarea class="form-control pedit4" placeholder="admin notes" id="floatingTextarea2" rows="5" asp-for="AdminNotes" disabled></textarea>
+                    <textarea class="form-control mt-3 pedit4" placeholder="admin notes" id="floatingTextarea2" rows="5" asp-for="AdminNotes" disabled></textarea>
                 </div>
 
-                <div class="d-flex justify-content-end">
+                <div class="d-flex justify-content-end mt-3">
                     <button type="button" class="btn btn-info text-white px-2" onclick="pedit('pedit4','pd1','pd2','pee4')" id="pee4">Edit</button>
                     <button type="button" class="btn btn-info mx-3 p-2 px-3 mb-2" id="pd1" onclick="UpdateProvider('providerProfile','#provider','@Model.physicianId')" style="display:none;">Save</button>
-                    <button type="reset" class="btn btn-dark mx-3 p-2 px-3 mb-2" id="pd2" style="display:none;" onclick="pcancel('pedit4','pd1','pd2','pee4')">Cancel</button>
+                    <button type="reset" class="btn btn-outline-info mx-3 p-2 px-3 mb-2" id="pd2" style="display:none;" onclick="pcancel('pedit4','pd1','pd2','pee4')">Cancel</button>
                 </div>
             </form>
 
@@ -236,7 +259,7 @@
                                 <h6 class="m-2 col-4">Independent Contractor Agreement</h6>
                                 <div class="upload-btn-wrapper">
                                     <button class="btn btn-info text-white mx-1">Upload</button>
-                                    <input type="file" asp-for="IndependentContractorManagement" id="IndependentContractorManagement" onchange="DocSelectCheckbox('docCheck1')" />
+                                <input type="file" class="documentInput" asp-for="IndependentContractorManagement" id="IndependentContractorManagement" onchange="DocSelectCheckbox('docCheck1')" />
                                 </div>
                                 <a class="btn btn-info text-white mx-1" target="_blank" href="./PhysicianDoc/@Model.IndependentContractorManagementPath">View</a>
                         }
@@ -246,8 +269,9 @@
                                 <h6 class="m-2 col-4">Independent Contractor Agreement</h6>
                                 <div class="upload-btn-wrapper">
                                     <button class="btn btn-info text-white mx-1">Upload</button>
-                                    <input type="file" asp-for="IndependentContractorManagement" id="IndependentContractorManagement" onchange="DocSelectCheckbox('docCheck1')" />
+                                <input type="file" class="documentInput" asp-for="IndependentContractorManagement" id="IndependentContractorManagement" onchange="DocSelectCheckbox('docCheck1')" />
                                 </div>
+                                <button type="button" class="viewButton btn btn-info text-white mx-2" style="display: none;">View</button>
                         }
                     }
                     
@@ -261,7 +285,7 @@
                                 <h6 class="m-2 col-4">Background Check</h6>
                                 <div class="upload-btn-wrapper">
                                     <button class="btn btn-info text-white mx-1">Upload</button>
-                                    <input type="file" asp-for="BackgroungCheck" id="BackgroungCheck" onchange="DocSelectCheckbox('docCheck2')" />
+                                <input type="file" class="documentInput" asp-for="BackgroungCheck" id="BackgroungCheck" onchange="DocSelectCheckbox('docCheck2')" />
                                 </div>
                                 <a class="btn btn-info text-white mx-1" target="_blank" href="./PhysicianDoc/@Model.BackgroungCheckPath">View</a>
                         }
@@ -271,8 +295,9 @@
                                 <h6 class="m-2 col-4">Background Check</h6>
                                 <div class="upload-btn-wrapper">
                                     <button class="btn btn-info text-white mx-1">Upload</button>
-                                    <input type="file" asp-for="BackgroungCheck" id="BackgroungCheck" onchange="DocSelectCheckbox('docCheck2')" />
+                                <input type="file" class="documentInput" asp-for="BackgroungCheck" id="BackgroungCheck" onchange="DocSelectCheckbox('docCheck2')" />
                                 </div>
+                            <button type="button" class="viewButton btn btn-info text-white mx-2" style="display: none;">View</button>
                         }
                     }
                 </div>
@@ -284,7 +309,7 @@
                                 <h6 class="m-2 col-4">HIPAA Complieance</h6>
                                 <div class="upload-btn-wrapper">
                                     <button class="btn btn-info text-white mx-1">Upload</button>
-                                    <input type="file" asp-for="HIPAA" id="HIPAA" onchange="DocSelectCheckbox('docCheck3')" />
+                                <input type="file" class="documentInput" asp-for="HIPAA" id="HIPAA" onchange="DocSelectCheckbox('docCheck3')" />
                                 </div>
                                 <a class="btn btn-info text-white mx-1" target="_blank" href="./PhysicianDoc/@Model.HIPAAPath">View</a>
                         }
@@ -294,8 +319,9 @@
                                 <h6 class="m-2 col-4">HIPAA</h6>
                                 <div class="upload-btn-wrapper">
                                     <button class="btn btn-info text-white mx-1">Upload</button>
-                                    <input type="file" asp-for="HIPAA" id="HIPAA" onchange="DocSelectCheckbox('docCheck3')" />
+                                <input type="file" class="documentInput" asp-for="HIPAA" id="HIPAA" onchange="DocSelectCheckbox('docCheck3')" />
                                 </div>
+                            <button type="button" class="viewButton btn btn-info text-white mx-2" style="display: none;">View</button>
                         }
                     }
                 </div>
@@ -308,7 +334,7 @@
                                 <h6 class="m-2 col-4">Non disclosure Aggrement</h6>
                                 <div class="upload-btn-wrapper">
                                     <button class="btn btn-info text-white mx-1">Upload</button>
-                                    <input type="file" asp-for="NondisclosureAggrement" id="NondisclosureAggrement" onchange="DocSelectCheckbox('docCheck4')" />
+                                <input type="file" class="documentInput" asp-for="NondisclosureAggrement" id="NondisclosureAggrement" onchange="DocSelectCheckbox('docCheck4')" />
                                 </div>
                                 <a class="btn btn-info text-white mx-1" target="_blank" href="./PhysicianDoc/@Model.NondisclosureAggrementPath">View</a>
                         }
@@ -318,8 +344,9 @@
                                 <h6 class="m-2 col-4">Non disclosure Aggrement </h6>
                                 <div class="upload-btn-wrapper">
                                     <button class="btn btn-info text-white mx-1">Upload</button>
-                                    <input type="file" asp-for="NondisclosureAggrement" id="NondisclosureAggrement" onchange="DocSelectCheckbox('docCheck4')" />
+                                <input type="file" class="documentInput" asp-for="NondisclosureAggrement" id="NondisclosureAggrement" onchange="DocSelectCheckbox('docCheck4')" />
                                 </div>
+                            <button type="button" class="viewButton btn btn-info text-white mx-2" style="display: none;">View</button>
                         }
                     }
                 </div>
@@ -332,7 +359,7 @@
                                 <h6 class="m-2 col-4">License Document</h6>
                                 <div class="upload-btn-wrapper">
                                     <button class="btn btn-info text-white mx-1">Upload</button>
-                                    <input type="file" asp-for="License" id="License" onchange="DocSelectCheckbox('docCheck5')" />
+                                <input type="file" class="documentInput" asp-for="License" id="License" onchange="DocSelectCheckbox('docCheck5')" />
                                 </div>
                                 <a class="btn btn-info text-white mx-1" target="_blank" href="./PhysicianDoc/@Model.LicensePath">View</a>
                         }
@@ -342,8 +369,9 @@
                                 <h6 class="m-2 col-4">License Document </h6>
                                 <div class="upload-btn-wrapper">
                                     <button class="btn btn-info text-white mx-1">Upload</button>
-                                    <input type="file" asp-for="License" id="License" onchange="DocSelectCheckbox('docCheck5')" />
+                                <input type="file" class="documentInput" asp-for="License" id="License" onchange="DocSelectCheckbox('docCheck5')" />
                                 </div>
+                            <button type="button" class="viewButton btn btn-info text-white mx-2" style="display: none;">View</button>
                         }
                     }
                 </div>
@@ -362,6 +390,36 @@
 </div>
 
 <script>
+    var signSelect = "";
+    const imageInput = document.getElementById('imageInput');
+    const imagePreview = document.getElementById('imagePreview');
+
+    imageInput.addEventListener('change', function (event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                imagePreview.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    const imageInput1 = document.getElementById('imageInput1');
+    const imagePreview1 = document.getElementById('sig-image');
+
+    imageInput1.addEventListener('change', function (event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                imagePreview1.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+        signSelect = "photo";
+    });
+
   function updateFileName(input) {
     var label = document.getElementById('inputGroupFileAddon04');
     if (input.files.length > 0) {
@@ -378,6 +436,18 @@
             label.textContent = 'No file chosen';
         }
     }
+
+    //document.querySelectorAll('.documentInput').forEach(function (input, index) {
+    //    input.addEventListener('change', function (event) {
+    //        const file = event.target.files[0];
+    //        if (file) {
+    //            const viewButton = document.querySelectorAll('.viewButton')[index];
+    //            viewButton.style.display = 'block';
+    //            viewButton.addEventListener('click', function () {
+    //                window.open(URL.createObjectURL(file), '_blank');
+    //            });
+    //        }
+    //    });
 
     function pedit(classname,save,cancel,edit) {
 
@@ -407,6 +477,7 @@
 
     function UpdateProvider(updateType,formId,physicianid) 
     {
+        event.preventDefault();
         var formdata = [];
         var formdata = new FormData($(formId)[0]);
         formdata.append("updateType", updateType);
@@ -425,10 +496,15 @@
                 formdata.append("selectedRegion", JSON.stringify(regionlist));
                 break;
             case "providerProfile":
-                formdata.append("photo", $('#photo')[0].files[0]);
-                var canvas = document.getElementById("sig-canvas");
-                var dataUrl = canvas.toDataURL();
-                formdata.append("SignaturePath", dataUrl);
+                formdata.append("photo", $('#imageInput')[0].files[0]);
+                if(signSelect == "canvas"){
+                    var canvas = document.getElementById("sig-canvas");
+                    var dataUrl = canvas.toDataURL();
+                    formdata.append("SignaturePath", dataUrl);
+                }else if(signSelect == "photo"){
+                    formdata.append("Signature", $('#imageInput1')[0].files[0]);
+                }
+                
                 break;
 
             case "onboarding":
@@ -442,21 +518,26 @@
                 break;
         }
 
-        console.log(formdata);
+       
 
-        $.ajax({
-            url: '/AdminProviders/UpdateProvider',
-            type: 'POST',
-            data: formdata,
-            processData: false,
-            contentType: false,
-            success: function (data) {
-                loadProviderView('edit_physician', physicianid)
-            },
-            error: function () {
-                console.error('Error loading partial view.');
-            }
-        });
+        if ($(formId).valid()) {
+             console.log(formdata); 
+
+            $.ajax({
+                url: '/AdminProviders/UpdateProvider',
+                type: 'POST',
+                data: formdata,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    loadProviderView('edit_physician', physicianid)
+                },
+                error: function () {
+                    console.error('Error loading partial view.');
+                }
+            });
+        }
+        
     }
 
     function DocSelectCheckbox(id) {

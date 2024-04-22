@@ -14,12 +14,14 @@ namespace hellodoc.Controllers
     {
         private readonly ILogger<AdminDashController> _logger;
         private readonly IAdminPartners _adminPartners;
+        private readonly IAdminDashRepository _adminDashRepository;
 
 
-        public AdminPartnersController(ILogger<AdminDashController> logger, IAdminPartners adminPartners)
+        public AdminPartnersController(ILogger<AdminDashController> logger, IAdminPartners adminPartners,IAdminDashRepository adminDashRepository)
         {
             _adminPartners = adminPartners;
             _logger = logger;
+            _adminDashRepository = adminDashRepository;
         }
 
         public IActionResult GetView(PartialViewModal partialView)
@@ -32,6 +34,7 @@ namespace hellodoc.Controllers
                 case "create_business":
                     AdminPartnersModal adminPartners = new AdminPartnersModal();
                     adminPartners.healthProfessionalTypes = _adminPartners.GetHealthProfessionalType();
+                    adminPartners.regions = _adminDashRepository.GetRegions(0);
                     return PartialView("_CreateBusiness", adminPartners);
 
                 case "edit_business":
@@ -47,7 +50,7 @@ namespace hellodoc.Controllers
             }
         }
 
-        public void DBOperations(AdminPartnersModal adminPartners)
+        public IActionResult DBOperations(AdminPartnersModal adminPartners)
         {
             switch (adminPartners.actionType)
             {
@@ -61,9 +64,13 @@ namespace hellodoc.Controllers
 
                 case "delete_business":
                     _adminPartners.DeleteBusiness(adminPartners.Vendorid);
-                    break;
+                    return RedirectToAction("admin_dash","AdminDash");
 
+                default:
+                    return PartialView("Dedault");
             }
+
+            return PartialView("Dedault");
         }
         
     }

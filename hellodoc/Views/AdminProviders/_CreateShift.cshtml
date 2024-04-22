@@ -3,7 +3,7 @@
 <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content" style="font-weight:600">
-            <form id="createshift" method="post">
+            <form id="createshift" asp-action="create_shift" method="post">
                 <div class="modal-header bg-info text-white">
                     <h5 class="modal-title" id="exampleModalLabel"> View Shift</h5>
                     <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -12,7 +12,7 @@
                 <div class="modal-body">
 
                     <select class="form-select mt-3" aria-label="Default select example" id="regionselect" onchange="regionchange()" asp-for="@Model.Regionid">
-                        <option selected>Select Region</option>
+                        <option selected disabled>Select Region</option>
                         @{
                             foreach (var a in Model.regions)
                             {
@@ -21,13 +21,14 @@
                         }
 
                     </select>
-
+                    <span asp-validation-for="Regionid" class="text-danger"></span>
                     @{
                         if (Model.Physicianid == 0)
                         {
                             <select class="form-select mt-3" aria-label="Default select example" asp-for="@Model.Physicianid" id="Physicianselect">
-                                <option selected>Select Physician</option>
+                                <option selected disabled>Select Physician</option>
                             </select>
+                            <span asp-validation-for="Physicianid" class="text-danger"></span>
                         }
                     }
 
@@ -41,12 +42,12 @@
 
                     <div class="row mt-3">
                         <div class="form-floating mt-3 col-sm-6">
-                            <input type="time" class="form-control vs" asp-for="Starttime" id="stime" onchange="checkShiftAvailability()" placeholder="Starttime" >
+                            <input type="time" class="form-control vs" asp-for="Starttime" id="startTimeInput" onchange="handleStartTimeChange()" placeholder="Starttime">
                             <label class="mx-2">Starttime</label>
-                            <span asp-validation-for="Starttime " class="text-danger"></span>
+                            <span id="startTimeError" class="text-danger"></span>
                         </div>
                         <div class="form-floating mt-3 col-sm-6">
-                            <input type="time" class="form-control vs" asp-for="Endtime" id="etime" onchange="checkShiftAvailability()" placeholder="Endtime" >
+                            <input type="time" class="form-control vs" asp-for="Endtime" id="endTimeInput" onchange="handleEndTimeChange()" placeholder="Endtime">
                             <label class="mx-2">Endtime</label>
                             <span asp-validation-for="Endtime " class="text-danger"></span>
                         </div>
@@ -66,7 +67,7 @@
                             foreach (var item in dayNames)
                             {
                                 <div class="form-check col mx-3">
-                                    <input class="form-check-input daycheck" type="checkbox" value="@i" id="@i" disabled>
+                                    <input class="form-check-input daycheck" type="checkbox" name="SelectedDays" value="@i" id="@i" disabled>
                                     <label class="form-check-label" for="@i">
                                         <span class="fs-6" style="font-weight:400;">Every @item</span>
                                     </label>
@@ -85,7 +86,7 @@
                     </select>
 
                     <div class="mt-4 mb-4 d-flex justify-content-end">
-                        <button type="button" class="btn btn-info text-white mx-1" id="shiftsave" onclick="shiftactions('create_shift','#createshift')">Save</button>
+                        <button type="submit" class="btn btn-info text-white mx-1" id="shiftsave" disabled>Save</button>
                         <button type="reset" class="btn btn-info text-white mx-1">Cancel</button>
                     </div>
                 </div>
@@ -94,11 +95,128 @@
     </div>
 </div>
 
+
 <script>
-    
+
+    // // Get references to the input elements
+    // const dateInput = document.getElementById('dateInput');
+    // const startTimeInput = document.getElementById('startTimeInput');
+    // const endTimeInput = document.getElementById('endTimeInput');
+
+    // // Add event listener to date input
+    // dateInput.addEventListener('change', function () {
+    //     validateDateTime();
+    // });
+
+    // // Add event listener to start time input
+    // startTimeInput.addEventListener('change', function () {
+    //     validateEndTime();
+    // });
+
+    // // Add event listener to end time input
+    // endTimeInput.addEventListener('change', function () {
+    //     validateEndTime();
+    // });
+
+    // function validateDateTime() {
+    //     const currentDate = new Date();
+    //     const selectedDate = new Date(dateInput.value);
+
+    //     // Disable start time and end time if the selected date is not the current date
+    //     if (selectedDate.getTime() !== currentDate.getTime()) {
+    //         startTimeInput.disabled = true;
+    //         endTimeInput.disabled = true;
+    //     } else {
+    //         startTimeInput.disabled = false;
+    //         endTimeInput.disabled = false;
+
+    //         // Enable only future times for the start time
+    //         const currentHours = currentDate.getHours();
+    //         const currentMinutes = currentDate.getMinutes();
+    //         startTimeInput.min = (currentHours < 10 ? '0' : '') + currentHours + ':' + (currentMinutes < 10 ? '0' : '') + currentMinutes;
+    //     }
+
+    //     validateEndTime();
+    // }
+
+    // function validateEndTime() {
+    //     const startTime = startTimeInput.value;
+    //     const endTime = endTimeInput.value;
+
+    //     if (!startTime || !endTime) return;
+
+    //     const startDateTime = new Date('2000-01-01 ' + startTime);
+    //     const endDateTime = new Date('2000-01-01 ' + endTime);
+    //     const timeDifference = endDateTime - startDateTime;
+
+    //     if (timeDifference < 30 * 60 * 1000) { // 30 minutes in milliseconds
+    //         alert('End time must be at least 30 minutes after the Start time.');
+    //         endTimeInput.value = '';
+    //     }
+    // }
+
+    var currentDate = new Date();
+    var currentTime = currentDate.getHours().toString().padStart(2, "0") + ":" + currentDate.getMinutes().toString().padStart(2, "0");
+    document.getElementById("startTimeInput").value = currentTime;
+
+    function handleStartTimeChange() {
+        var selectedDate = new Date(document.getElementById("dateInput").value);
+        var selectedTime = document.getElementById("startTimeInput").value;
+        var currentTime = new Date();
+        var currentHour = currentTime.getHours();
+        var currentMinute = currentTime.getMinutes();
+        var selectedHour = parseInt(selectedTime.split(":")[0]);
+        var selectedMinute = parseInt(selectedTime.split(":")[1]);
+
+        // Check if the selected date is the current date and the selected time is less than the current time
+        if (selectedDate.toDateString() === currentTime.toDateString() && (selectedHour < currentHour || (selectedHour === currentHour && selectedMinute < currentMinute))) {
+            // Set the start time to the current time
+            document.getElementById("startTimeInput").value = currentHour.toString().padStart(2, "0") + ":" + currentMinute.toString().padStart(2, "0");
+            // Display error message
+            document.getElementById("startTimeError").innerText = "Start time must be greater than the current time.";
+        } else {
+            // Clear error message
+            document.getElementById("startTimeError").innerText = "";
+        }
+
+        // Automatically set end time 30 minutes after the start time
+        var startTime = document.getElementById("startTimeInput").value;
+        var endTime = new Date("2000-01-01 " + startTime);
+        endTime.setMinutes(endTime.getMinutes() + 30);
+        document.getElementById("endTimeInput").value = endTime.getHours().toString().padStart(2, "0") + ":" + endTime.getMinutes().toString().padStart(2, "0");
+
+        checkShiftAvailability();
+    }
+
+    // Function to handle changes in the end time input
+    function handleEndTimeChange() {
+        var startTime = document.getElementById("startTimeInput").value;
+        var endTime = document.getElementById("endTimeInput").value;
+
+        var startTimeParts = startTime.split(":");
+        var endTimeParts = endTime.split(":");
+        var startHour = parseInt(startTimeParts[0]);
+        var startMinute = parseInt(startTimeParts[1]);
+        var endHour = parseInt(endTimeParts[0]);
+        var endMinute = parseInt(endTimeParts[1]);
+
+        var startTimeInMinutes = startHour * 60 + startMinute;
+        var endTimeInMinutes = endHour * 60 + endMinute;
+
+        // Check if end time is before start time
+        if (endTimeInMinutes <= startTimeInMinutes) {
+            var startTime = document.getElementById("startTimeInput").value;
+            var endTime = new Date("2000-01-01 " + startTime);
+            endTime.setMinutes(endTime.getMinutes() + 30);
+            document.getElementById("endTimeInput").value = endTime.getHours().toString().padStart(2, "0") + ":" + endTime.getMinutes().toString().padStart(2, "0");
+        }
+
+        checkShiftAvailability();
+    }
+
+
     function regionchange(){
         var select = document.getElementById('regionselect').value;
-
         getphysician(select);
     }
 
@@ -115,7 +233,7 @@
             success: function (data) {
 
                 physician.empty();
-                physician.append('<option selected>Select Physician</option>');
+                physician.append('<option selected disabled>Select Physician</option>');
 
                 for (var i = 0; i < data.length; i++) {
                     physician.append('<option value = ' + data[i].physicianid + '>' + data[i].firstname + '</option>');
@@ -143,17 +261,14 @@
         }
     }
 
-
-    var dateInput = document.getElementById('dateInput');
-    var currentDate = new Date();
     var currentDateFormatted = currentDate.toISOString().slice(0, 10);
     dateInput.setAttribute('min', currentDateFormatted);
 
     function checkShiftAvailability(){
 
         var physician = $('#Physicianselect').val();
-        var starttime = $('#stime').val();
-        var endtime = $('#etime').val();
+        var starttime = $('#startTimeInput').val();
+        var endtime = $('#endTimeInput').val();
         var shiftdate = $('#dateInput').val();
         var submit = document.getElementById('shiftsave');
 
@@ -178,3 +293,7 @@
     }
     
 </script>
+
+
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>

@@ -1,14 +1,12 @@
-﻿
-
-$("#vendorsearch").on("keyup change", function () {
-    partners({ actionType: 'partnerstable', pageNumber: '1'});
+﻿$("#vendorsearch").on("keyup change", function () {
+    partners({ actionType: 'partnerstable', pageNumber: '1' });
 });
 
 $("#proffesiontype").on("change", function () {
-    partners({ actionType: 'partnerstable', pageNumber: '1'});
+    partners({ actionType: 'partnerstable', pageNumber: '1' });
 });
 
-partners({ actionType: 'partnerstable', pageNumber: '1'});
+partners({ actionType: 'partnerstable', pageNumber: '1' });
 
 function partners(dataObject) {
 
@@ -18,7 +16,7 @@ function partners(dataObject) {
     }
 
     if (dataObject.back == true) {
-        partners({ actionType: 'Partners'});
+        partners({ actionType: 'Partners' });
     }
 
     $.ajax({
@@ -40,25 +38,28 @@ function partners(dataObject) {
 
 
 function bussinessActions(actionType, vendorid) {
-
+    event.preventDefault();
     var formdata = $('#business').serializeArray();
     formdata.push({ name: "Vendorid", value: vendorid });
     formdata.push({ name: "actionType", value: actionType });
     var form = $.param(formdata);
 
-    $.ajax({
-        url: '/AdminPartners/DBOperations',
-        type: 'POST',
-        data: form,
-        success: function (data) {
-            if (actionType == 'new_business' || actionType == 'delete_business' ) {
-                partners({ actionType: 'Partners' });
+    if ($('#business').valid()) {
+        $.ajax({
+            url: '/AdminPartners/DBOperations',
+            type: 'POST',
+            data: form,
+            success: function (data) {
+                if (actionType == 'new_business' || actionType == 'delete_business') {
+                    partners({ actionType: 'Partners' });
+                }
+            },
+            error: function () {
+                console.error('Error loading partial view.');
             }
-        },
-        error: function () {
-            console.error('Error loading partial view.');
-        }
-    });
+        });
+    }
+
 }
 
 function businessEdit(actionType, vendorid) {

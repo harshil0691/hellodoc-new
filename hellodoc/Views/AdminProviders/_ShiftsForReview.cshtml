@@ -130,7 +130,7 @@
             type: 'POST',
             data: { shiftdetailsid: shiftdetailsid, actionType: actionType },
             success: function (data) {
-                MDsXShiftReview('shiftreview', pageNumber);
+                GetProvidersView({ actionType: 'shiftreview', pageNumber: '1' });
             },
             error: function () {
                 console.error('Error loading partial view.');

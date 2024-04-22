@@ -32,10 +32,10 @@ namespace hellodoc.Repositories.Repository
                 Email = vendors.Email,
                 Phonenumber = vendors.Phonenumber,
                 Profession = vendors.Profession,
-                State = vendors.State,
+                State = vendors.State.ToString(),
                 City  = vendors.City,
                 Createddate = DateTime.Now,
-                //Zip = vendors.Zip,
+                Zip = vendors.Zip,
             };
 
             _context.HealthProfessionals.Add(professional); 
@@ -94,11 +94,11 @@ namespace hellodoc.Repositories.Repository
             vendor.Email = vendors.Email;
             vendor.Phonenumber = vendors.Phonenumber;
             vendor.Faxnumber = vendors.Faxnumber;
-            vendor.State = vendors.State;
+            vendor.State = vendors.State.ToString();
             vendor.City = vendors.City;
             vendor.Vendorname = vendors.Vendorname;
             vendor.Modifieddate = DateTime.Now;
-            //vendor.Zip = vendors.Zip;
+            vendor.Zip = vendors.Zip;
 
             _context.SaveChanges();
         }
@@ -115,7 +115,8 @@ namespace hellodoc.Repositories.Repository
             adminPartners.Phonenumber = vendor.Phonenumber;
             adminPartners.Address = vendor.Address;
             adminPartners.City = vendor.City;
-            adminPartners.State = vendor.State;
+            adminPartners.State = int.Parse(vendor.State);
+            adminPartners.Zip = vendor.Zip??0;
             adminPartners.Businesscontact = vendor.Businesscontact;
             adminPartners.healthProfessionalTypes = _context.HealthProfessionalTypes.ToList();
             adminPartners.Vendorname = vendor.Vendorname;

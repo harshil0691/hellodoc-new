@@ -46,7 +46,7 @@ namespace hellodoc.Controllers
 
         public IActionResult LoadPartialDashView(string tabId)
         {
-            var physicianid = HttpContext.Session.GetInt32("physicianid");
+            var physicianid = HttpContext.Session.GetInt32("physiciandashid");
             switch (tabId)
             {
                 case "dashboard":

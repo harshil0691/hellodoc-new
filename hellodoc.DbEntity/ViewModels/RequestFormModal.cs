@@ -26,7 +26,12 @@ namespace hellodoc.DbEntity.ViewModels
         [Required]
         public DateOnly? DateOfBirth { get; set; }
         public string Symptoms { get; set; }
+        [Required]
+        [EmailAddress(ErrorMessage = "email is required")]
         public string PatientEmail { get; set; }
+        [Required]
+        [EmailAddress(ErrorMessage = "email is required")]
+        public string UserEmail { get; set; }
         [Required]
         public long Phonenumber { get; set; }
         public string Street { get; set; } = null!;

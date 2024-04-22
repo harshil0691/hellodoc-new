@@ -2,7 +2,7 @@
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 
 
-<div class="table-responsive d-none d-sm-none d-md-block d-lg-block d-xl-block">
+<div class="table-responsive d-none d-sm-none d-md-block d-lg-block d-xl-block newtable">
     <table style="width:100%;z-index:5">
         <thead>
             <tr>
@@ -18,7 +18,7 @@
                 <th>Actions</th>
             </tr>
         </thead>
-        <tbody style="font-size:larger;font-weight:400;color:white;" id="newtable">
+        <tbody style="font-size:larger;font-weight:400;color:white;">
             @{
                 foreach (var a in Model.adminDashModels)
                 {
@@ -88,7 +88,7 @@
                                     @{
                                         if(Model.RequestStatus == "new")
                                         {
-                                            <li><button type="button" class="dropdown-item " onclick="adminDashload({controller: 'ProviderDashboard',actionType:'AcceptRequest',requestid :'@a.Requestid'})"><i class="bi bi-journal-check me-2"></i>Accept</button></li>
+                                            <li><button type="button" class="dropdown-item " onclick="adminDashload({controller: 'ProviderDashboard',actionType:'AcceptRequest',requestid :'@a.Requestid',id: 'dashboard'})"><i class="bi bi-journal-check me-2"></i>Accept</button></li>
                                             <li><button class="dropdown-item" onclick="loadActionView({ActionType:'ViewCase',requestid :@a.Requestid,bcolor:'@reqcolor',btext:'@text'})"><i class="bi bi-journal-text me-2"></i>View Case</button></li>
                                             <li><button class="dropdown-item" onclick="loadActionView({ActionType:'ViewNotes',requestid :@a.Requestid})"><i class="bi bi-journals me-2"></i>View Notes</button></li>
                                         }else if (Model.RequestStatus == "pending")
@@ -233,9 +233,9 @@
         }
     </div>
 </div>
-
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script >
-
 
     function adminDashload(dataObject) {
 
@@ -254,7 +254,6 @@
                 }else{
                     $('#mainDashContent').html(data);
                 }
-                
 
                 const dropdownParents = document.querySelectorAll('.nav-link');
                 dropdownParents.forEach(parent => {
@@ -262,11 +261,6 @@
                 });
                 var ele = document.getElementById(dataObject.id);
                 ele.classList.add('active');
-
-
-                if (dataObject.actionType == 'GetView') {
-                    searchrecords(dataObject.action, '1', dataObject.Back);
-                }
 
             },
             error: function () {

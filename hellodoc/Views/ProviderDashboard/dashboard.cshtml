@@ -10,7 +10,7 @@
 
 
     @* <div class="collapse navbar-collapse" id="navbarSupportedContent">*@
-    <ul class="nav nav-underline mt-2 mx-2 shadow-sm" id="mydashboard">
+    <ul class="nav nav-underline mt-2 mx-2 shadow-sm" id="mydashboard123">
         <li class="nav-item mx-2">
             <a class="nav-link" data-bs-toggle="pill" href="#dashboard">Dashboard</a>
         </li>
@@ -32,28 +32,27 @@
 
 
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    
-    <script>
-        $(document).ready(function () {
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
-            $('#mydashboard a').on('shown.bs.tab', function (e) {
-                var targetTab = $(e.target).attr('href').substring(1);
-                loadPartialDashView(targetTab);
+    <script src="/js/ProviderDashboard.js" asp-append-version="true"></script>
+
+    @*<script src="/js/AdminProviders.js" asp-append-version="true"></script>*@
+
+    @*<script>
+
+        $(document).ready(function () {
+            $('#mydashboard123 a').on('shown.bs.tab', function (e) {
+                //var targetTab = $(e.target).attr('href').substring(1);
+                console.log(1);
+                //loadPartialDashView(targetTab);
             });
-            //if (localStorage.getItem("DashTab") != null) {
-            //    loadPartialDashView(localStorage.getItem("DashTab"), true);
-            //} else {
-            //    
-            //}
+            console.log(1);
             loadPartialDashView("dashboard");
         });
 
 
         function loadPartialDashView(tabId, ptab) {
 
-            if (ptab == true) {
-                tabId = localStorage.getItem("DashTab");
-            }
             var element = document.querySelectorAll('[href="#' + tabId + '"]');
             element.forEach(a => {
                 a.classList.add('active');
@@ -70,7 +69,6 @@
                         ShiftCalender("month");
                     }
 
-                    localStorage.setItem("DashTab", tabId);
                 },
                 error: function () {
                     console.error('Error loading partial view.');
@@ -99,8 +97,8 @@
             });
 
         }
-    </script>
-    <script src="./js/AdminProviders.js" asp-append-version="true"></script>
+    </script>*@
+
     @section Scripts {
         @{
             <Partial name="_ValidationScriptsPartial" />

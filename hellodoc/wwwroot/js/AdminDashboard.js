@@ -38,7 +38,7 @@ function loadPartialDashView(tabId, ptab) {
             if (tabId == 'records') {
                 searchrecords('SearchRecords','1');
             }
-            ShowNotification();
+            //ShowNotification();
             localStorage.setItem("DashTab", tabId);
         },
         error: function () {
@@ -47,37 +47,38 @@ function loadPartialDashView(tabId, ptab) {
     });
 }
 
-function closeNotification() {
-    var notification = document.getElementById('notification');
-    notification.style.display = 'none';
-}
+//function closeNotification() {
+//    var notification = document.getElementById('notification');
+//    notification.style.display = 'none';
+//}
 
-function ShowNotification() {
+//function ShowNotification() {
 
-    setTimeout(function () {
-        notification.style.display = 'none';
-    }, 5000); // Hide after 30 seconds (30 * 1000 milliseconds)
+//    setTimeout(function () {
+//        notification.style.display = 'none';
+//    }, 5000); // Hide after 30 seconds (30 * 1000 milliseconds)
 
-    $.ajax({
-        url: '/AdminDash/GetNotification',
-        type: 'GET',
-        success: function (data) {
+//    $.ajax({
+//        url: '/AdminDash/GetNotification',
+//        type: 'GET',
+//        success: function (data) {
 
-            var notification = document.getElementById('notification');
-            notification.innerHTML = data[0].notification + '<span class="close-btn m-2" onclick="closeNotification()">&times;</span>';
-            notification.style.display = 'block';
-        },
-        error: function () {
-            console.error('Error loading partial view.');
-        }
-    });
-}
+//            var notification = document.getElementById('notification');
+//            notification.innerHTML = data[0].notification + '<span class="close-btn m-2" onclick="closeNotification()">&times;</span>';
+//            notification.style.display = 'block';
+//        },
+//        error: function () {
+//            console.error('Error loading partial view.');
+//        }
+//    });
+//}
 
 function loadPartialView(tabId, page, search, regionid, requesttype) {
 
     if (requesttype != 0 && requesttype != null) {
         tabId = localStorage.getItem("StatusTab");
     }
+
 
     var element = document.querySelectorAll('[href="#' + tabId + '"]');
     element.forEach(a => {

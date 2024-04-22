@@ -38,7 +38,7 @@ namespace hellodoc.Repositories.Repository
                 (((partialView.search != null )? r.RequestClients.FirstOrDefault().Firstname.Contains(partialView.search) :true) ||
                 ((partialView.search != null) ? r.RequestClients.FirstOrDefault().Lastname.Contains(partialView.search):true)) && 
                 ((partialView.regionid !=0 )? r.RequestClients.FirstOrDefault().Regionid == partialView.regionid : true) && 
-                ((partialView.physicianid != 0) ? r.Physicianid == partialView.physicianid : true) && 
+                ((partialView.accoutOpen == "provider") ? r.Physicianid == partialView.physicianid : true) && 
                 ((partialView.requesttype != 0)? r.Requesttypeid == partialView.requesttype:true)
             );
             int pagesize = 5;
@@ -112,23 +112,34 @@ namespace hellodoc.Repositories.Repository
 
         public async Task<RequestFormModal> Getpatientdata(int rid)
         {
-            var requestClient = _context.RequestClients.FirstOrDefault(u => u.Requestid == rid);
-            var request = _context.Requests.FirstOrDefault(u => u.Requestid == rid);
-
-            RequestFormModal model = new RequestFormModal
+            try
             {
-                Firstname = requestClient.Firstname,
-                Lastname = requestClient.Lastname,
-                Symptoms = requestClient.Notes,
-                City = requestClient.City,
-                Roomno = requestClient.Address,
-                Confirmationnumber = requestClient.Request.Confirmationnumber,
-                PatientEmail = requestClient.Email,
-                Phonenumber = requestClient.Phonenumber ?? 1,
-                Requestid = rid,
-                DOB = new DateTime(requestClient.Intyear??1, DateTime.ParseExact(requestClient.Strmonth, "MMMM", CultureInfo.InvariantCulture).Month, requestClient.Intdate??0),
-            };
-            return model;
+                var requestClient = _context.RequestClients.FirstOrDefault(u => u.Requestid == rid);
+                var request = _context.Requests.FirstOrDefault(u => u.Requestid == rid);
+
+                RequestFormModal model;
+                model = new RequestFormModal
+                {
+                    Firstname = requestClient.Firstname,
+                    Lastname = requestClient.Lastname,
+                    Symptoms = requestClient.Notes,
+                    City = requestClient.City,
+                    Roomno = requestClient.Address,
+                    Confirmationnumber = requestClient.Request.Confirmationnumber,
+                    PatientEmail = requestClient.Email,
+                    Phonenumber = requestClient.Phonenumber ?? 1,
+                    Requestid = rid,
+                    DOB = new DateTime(requestClient.Intyear ?? 1, DateTime.ParseExact(requestClient.Strmonth, "MMMM", CultureInfo.InvariantCulture).Month, requestClient.Intdate ?? 0),
+                };
+                return model;
+
+
+            }
+            catch
+            {
+                return new RequestFormModal();
+            }
+            
 
         }
 
@@ -399,7 +410,7 @@ namespace hellodoc.Repositories.Repository
 
         public List<Physician> GetPhysicianList2(int select)
         {
-            var physician = _context.Physicians.Where(r => r.Regionid == select).ToList();
+            var physician = _context.Physicians.Where(r => r.PhysicianRegions.Select(pr => pr.Regionid).Contains(select)).ToList();
 
             return physician;
         }
@@ -519,12 +530,14 @@ namespace hellodoc.Repositories.Repository
                     Firstname = admin.Firstname,
                     Lastname = admin.Lastname,
                     Email = admin.Email,
-                    Phone = admin.Mobile,
+                    Phone = admin.Mobile.ToString(),
 
                     Address1 = admin.Address1,
                     Address2 = admin.Address2,
                     City = admin.City,
                     Zipcode = admin.Zip,
+                    MailingNumber = admin.Altphone.ToString(),
+                    State = admin.Regionid,
                 };
 
                 adminProfile.regions = _context.Regions.ToList();
@@ -555,14 +568,13 @@ namespace hellodoc.Repositories.Repository
             admin.Firstname = adminProfile.Firstname;
             admin.Lastname = adminProfile.Lastname;
             admin.Email = adminProfile.Email;
-            admin.Mobile = adminProfile.Phone;
+            admin.Mobile = long.Parse(adminProfile.Phone);
 
             var adminregion = _context.AdminRegions.Where(p => p.Adminid == admin.Adminid);
             foreach (var i in adminregion)
             {
                 _context.AdminRegions.Remove(i);
             }
-            _context.SaveChanges();
 
             foreach (var region in adminProfile.selectedRegion)
             {
@@ -586,6 +598,8 @@ namespace hellodoc.Repositories.Repository
             admin.Address2 = adminProfile.Address2;
             admin.City = adminProfile.City;
             admin.Zip = adminProfile.Zipcode;
+            admin.Regionid = adminProfile.State;
+            admin.Altphone = long.Parse(adminProfile.MailingNumber);
 
             _context.SaveChanges();
 

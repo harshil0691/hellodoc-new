@@ -17,7 +17,6 @@
                 }
             }
 
-            <button class="btn btn-outline-info"><i class="bi bi-chevron-left"></i>Back</button>
         </div>
 
         <div class="d-grid gap-2 col-12 col-sm-12 col-md-10 col-lg-8 mx-auto d-flex flex-column rounded-3 bgcolor px-4 mt-4">
@@ -92,7 +91,14 @@
 
     </div>
 </div>
-    
+
+<script>
+    $("#region").change(function () {
+        regionid = this.value;
+        ShiftCalender(schedulingtype, regionid);
+    });
+</script>    
+
  @section Scripts{
     @{
         <Partial name="_ValidationScriptsPartial" />

@@ -16,9 +16,9 @@ namespace hellodoc.Repositories.Repository.Interface
         DashboardListsModal ProvidersTable(int pageNumber,int regionid);
         Task StopNotification(List<int> idlist,List<int> totallist);
         Task<ProviderProfileModal> ProviderProfileData(int physicianid);
-        List<ShiftDetailsmodal> ShiftDetailsmodal(DateTime date,DateTime sunday, DateTime saturday,string type,int physicianid);
+        List<ShiftDetailsmodal> ShiftDetailsmodal(DateTime date,DateTime sunday, DateTime saturday,string type,int physicianid,int regionid);
         ShiftDetailsmodal GetShift(int shiftdetailsid);
-        List<Physician> physicians();
+        List<Physician> physicians(int regionid);
         bool UpdateProvider(ProviderProfileModal providerProfile);
         void EditShift(int shiftdetailsid,ShiftDetailsmodal shiftDetailsmodal,int aspid);
         void DeleteShift(int shiftdetailsid,int aspid);

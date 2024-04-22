@@ -10,8 +10,8 @@ function GetAccessView(dataObject) {
             element.forEach(a => {
                 a.classList.remove('active');
             });
-            localStorage.setItem("DashTab", 'provider');
-            var element = document.querySelectorAll('[href="#provider"]');
+            localStorage.setItem("DashTab", 'access');
+            var element = document.querySelectorAll('[href="#access"]');
             element.forEach(a => {
                 a.classList.add('active');
             });

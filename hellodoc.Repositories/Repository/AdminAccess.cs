@@ -146,6 +146,7 @@ namespace hellodoc.Repositories.Repository
         {
             var aspuser = _context.AspNetUsers.FirstOrDefault(u => u.Id == aspid);
             var role = _context.Roles.FirstOrDefault(u=> u.Roleid ==  roleid);
+
             role.Name = name;
             role.Accounttype = accounttype;
             role.Modifiedby = aspid.ToString();
@@ -199,7 +200,7 @@ namespace hellodoc.Repositories.Repository
                     Username = adminProfile.username,
                     Passwordhash = adminProfile.password,
                     Email = adminProfile.Email,
-                    Phonenumber = adminProfile.Phone,
+                    Phonenumber = long.Parse(adminProfile.Phone),
                     Createddate = DateTime.Now,
                 };
                 Admin admin = new Admin
@@ -207,12 +208,12 @@ namespace hellodoc.Repositories.Repository
                     Firstname = adminProfile.Firstname,
                     Lastname = adminProfile.Lastname,
                     Email = adminProfile.Email,
-                    Mobile = adminProfile.Phone,
+                    Mobile =  long.Parse(adminProfile.Phone),
                     Address1 = adminProfile.Address1,
                     Address2 = adminProfile.Address2,
                     City = adminProfile.City,
                     Zip = adminProfile.Zipcode,
-                    Altphone = adminProfile.MailingNumber,
+                    Altphone = long.Parse(adminProfile.MailingNumber),
                     Status = 1,
                     //Createddate = DateTime.Now.ToString("yyyy-MM-dd"),
                     Createdby = adminProfile.aspid.ToString(),

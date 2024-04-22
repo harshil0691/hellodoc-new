@@ -68,7 +68,7 @@ namespace hellodoc.Repositories.Repository
                 dashboardListsModal.morePages = true;
             }
             dashboardListsModal.entries = ((pageNumber - 1) * pageSize + 1) + "-" + (((pageNumber - 1) * pageSize) + dashboardListsModal.providersTableModal.Count());
-
+            dashboardListsModal.regionselect = regionid;
             return dashboardListsModal;
         }
 
@@ -87,7 +87,7 @@ namespace hellodoc.Repositories.Repository
                 Firstname = physician.Firstname,
                 Lastname = physician.Lastname,
                 ProviderEmail = physician.Email,
-                Phone = physician.Mobile,
+                Phone = physician.Mobile.ToString(),
 
                 Address1 = physician.Address1,
                 Address2 = physician.Address2,
@@ -138,7 +138,7 @@ namespace hellodoc.Repositories.Repository
                     physician.Firstname = providerProfile.Firstname;
                     physician.Lastname = providerProfile.Lastname;
                     physician.Email = providerProfile.ProviderEmail;
-                    physician.Mobile = providerProfile.Phone;
+                    physician.Mobile = long.Parse(providerProfile.Phone);
                     physician.Medicallicense = providerProfile.MediacalLicense;
                     physician.Npinumber = providerProfile.NPI;
                     physician.Syncemailaddress = providerProfile.SynEmail;
@@ -182,6 +182,14 @@ namespace hellodoc.Repositories.Repository
                         photo = Guid.NewGuid().ToString() + "_" + providerProfile.photo.FileName;
                         var filepath = Path.Combine(Path.Combine(HostingEnviroment.WebRootPath, "PhysicianDoc"), photo);
                         providerProfile.photo.CopyTo(new FileStream(filepath, FileMode.Create));
+
+                    }
+                    if (providerProfile.Signature != null)
+                    {
+                        photo = Guid.NewGuid().ToString() + "_" + providerProfile.Signature.FileName;
+                        var filepath = Path.Combine(Path.Combine(HostingEnviroment.WebRootPath, "PhysicianDoc"), photo);
+                        providerProfile.Signature.CopyTo(new FileStream(filepath, FileMode.Create));
+                        physician.Signature = providerProfile.SignaturePath;
 
                     }
                     physician.Photo = photo;
@@ -257,7 +265,7 @@ namespace hellodoc.Repositories.Repository
                     Username = providerProfile.username,
                     Passwordhash = providerProfile.password,
                     Email = providerProfile.ProviderEmail,
-                    Phonenumber = providerProfile.Phone,
+                    Phonenumber = long.Parse(providerProfile.Phone),
                     Createddate = DateTime.Now,
                 };
                 _context.AspNetUsers.Add(aspNetUser);
@@ -309,7 +317,7 @@ namespace hellodoc.Repositories.Repository
                     Firstname = providerProfile.Firstname,
                     Lastname = providerProfile.Lastname,
                     Email = providerProfile.ProviderEmail,
-                    Mobile = providerProfile.Phone,
+                    Mobile = long.Parse(providerProfile.Phone),
                     Address1 = providerProfile.Address1,
                     Address2 = providerProfile.Address2,
                     Zip = providerProfile.Zipcode,
@@ -380,9 +388,12 @@ namespace hellodoc.Repositories.Repository
             _context.SaveChanges();
         }
 
-        public List<ShiftDetailsmodal> ShiftDetailsmodal(DateTime date, DateTime sunday, DateTime saturday,string type, int physicianid)
+        public List<ShiftDetailsmodal> ShiftDetailsmodal(DateTime date, DateTime sunday, DateTime saturday,string type, int physicianid,int regionid)
         {
-            var shiftdetails = _context.ShiftDetails.Where(u => u.Shiftdate.Month == date.Month && u.Shiftdate.Year == date.Year);
+            var shiftdetails = _context.ShiftDetails.Where(u => u.Shiftdate.Month == date.Month && 
+                                                                u.Shiftdate.Year == date.Year && 
+                                                                ((regionid != 0) ? u.Regionid == regionid :true)
+                                                                );
 
             switch (type)
             {
@@ -391,16 +402,19 @@ namespace hellodoc.Repositories.Repository
                         u => u.Shiftdate.Month == date.Month && 
                         u.Shiftdate.Year == date.Year 
                         && u.Isdeleted != 1 && 
-                        ((physicianid !=0 )? u.Shift.Physicianid == physicianid : true)
+                        ((physicianid !=0 )? u.Shift.Physicianid == physicianid : true) &&
+                        ((regionid != 0) ? u.Regionid == regionid : true)
                         );
                     break;
 
                 case "week":
-                    shiftdetails = _context.ShiftDetails.Where(u => u.Shiftdate >= sunday && u.Shiftdate <= saturday && u.Isdeleted != 1);
+                    shiftdetails = _context.ShiftDetails.Where(u => u.Shiftdate >= sunday && u.Shiftdate <= saturday && u.Isdeleted != 1 &&
+                                                                    ((regionid != 0) ? u.Regionid == regionid : true)
+                                                                    );
                     break;
 
                 case "day":
-                    shiftdetails = _context.ShiftDetails.Where(u => u.Shiftdate.Month == date.Month && u.Shiftdate.Year == date.Year && u.Shiftdate.Day == date.Day && u.Isdeleted != 1);
+                    shiftdetails = _context.ShiftDetails.Where(u => u.Shiftdate.Month == date.Month && u.Shiftdate.Year == date.Year && u.Shiftdate.Day == date.Day && u.Isdeleted != 1 && ((regionid != 0) ? u.Regionid == regionid : true));
                     break;
             }
 
@@ -422,9 +436,9 @@ namespace hellodoc.Repositories.Repository
             return list.ToList();
         }
 
-        public List<Physician> physicians()
+        public List<Physician> physicians(int regionid)
         {
-            return _context.Physicians.ToList();
+            return _context.Physicians.Where(p => ((regionid !=0 )?p.PhysicianRegions.Select(p => p.Regionid).Contains(regionid):true)).ToList();
         }
 
         public ShiftDetailsmodal GetShift(int shiftdetailsid)
@@ -493,7 +507,7 @@ namespace hellodoc.Repositories.Repository
 
         public void CreateShift(ShiftDetailsmodal shiftDetailsmodal, int aspid)
         {
-            List<int> daylist = JsonConvert.DeserializeObject<List<int>>(shiftDetailsmodal.Weekdays);
+            //List<int> daylist = JsonConvert.DeserializeObject<List<int>>(shiftDetailsmodal.Weekdays);
 
             Shift shift = new Shift 
             {
@@ -524,45 +538,48 @@ namespace hellodoc.Repositories.Repository
             
             var daynumber = (double)shiftDetailsmodal.Shiftdate.DayOfWeek;
             var d = 0.0;
-
-            foreach (var day in daylist)
+            if (shiftDetailsmodal.SelectedDays != null)
             {
-                DateTime date = shiftDetailsmodal.Shiftdate;
-                var repeat = shiftDetailsmodal.Repeatupto;
+                foreach (var day in shiftDetailsmodal.SelectedDays)
+                {
+                    DateTime date = shiftDetailsmodal.Shiftdate;
+                    var repeat = shiftDetailsmodal.Repeatupto;
 
-                if (daynumber < day)
-                {
-                    d = day - daynumber;
-                }
-                else
-                {
-                    d = 6 - daynumber + day + 1;
-                    if(daynumber == day)
+                    if (daynumber < day)
                     {
-                        repeat = repeat - 1;
+                        d = day - daynumber;
+                    }
+                    else
+                    {
+                        d = 6 - daynumber + day + 1;
+                        if (daynumber == day)
+                        {
+                            repeat = repeat - 1;
+                        }
+                    }
+
+                    date = date.AddDays(d);
+
+                    for (var i = 0; i < repeat; i++)
+                    {
+                        ShiftDetail shiftDetail1 = new ShiftDetail
+                        {
+                            Shiftdate = date,
+                            Starttime = shiftDetailsmodal.Starttime,
+                            Endtime = shiftDetailsmodal.Endtime,
+                            Status = 1,
+                            Isdeleted = 0,
+                            Regionid = shiftDetailsmodal.Regionid,
+
+                            Shift = shift
+                        };
+
+                        date = date.AddDays(7);
+                        _context.ShiftDetails.Add(shiftDetail1);
                     }
                 }
-
-                date = date.AddDays(d);
-
-                for (var i = 0; i < repeat; i++)
-                {
-                    ShiftDetail shiftDetail1 = new ShiftDetail
-                    {
-                        Shiftdate = date,
-                        Starttime = shiftDetailsmodal.Starttime,
-                        Endtime = shiftDetailsmodal.Endtime,
-                        Status = 1,
-                        Isdeleted = 0,
-                        Regionid = shiftDetailsmodal.Regionid,
-
-                        Shift = shift
-                    };
-
-                    date = date.AddDays(7);
-                    _context.ShiftDetails.Add(shiftDetail1);
-                }
             }
+            
 
 
             _context.SaveChanges();

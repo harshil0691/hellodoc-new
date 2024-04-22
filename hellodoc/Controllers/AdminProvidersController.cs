@@ -72,13 +72,11 @@ namespace hellodoc.Controllers
                     return PartialView("_default");
             }
         }
-
-        public void CreateProvider(ProviderProfileModal providerProfile)
+        [HttpPost]
+        public IActionResult CreateProvider(ProviderProfileModal providerProfile)
         {
             try
             {
-                List<int> list = JsonConvert.DeserializeObject<List<int>>(providerProfile.selectedRegion);
-                providerProfile.regionList = list;
                 _adminProviders.CreateProvider(providerProfile);
                 TempData["success"] = "Provider Is Created";
             }
@@ -86,6 +84,7 @@ namespace hellodoc.Controllers
             {
                 TempData["Error"] = "Internal Error Provider Is Not Created";
             }
+            return RedirectToAction("admin_dash", "AdminDash");
         }
 
         [HttpPost]
@@ -122,7 +121,7 @@ namespace hellodoc.Controllers
         }
 
         [HttpPost]
-        public IActionResult loadshift(string datestring,string sundaystring , string saturdaystring,string shifttype)
+        public IActionResult loadshift(string datestring,string sundaystring , string saturdaystring,string shifttype,int regionid)
         {
             DateTime date = DateTime.Parse(datestring);
             DateTime sunday = DateTime.Parse(sundaystring);
@@ -145,7 +144,7 @@ namespace hellodoc.Controllers
                     monthShift.daysInMonth = totalDays ;
                     monthShift.firstDayOfMonth = firstDayOfMonth;
                     monthShift.startDayIndex = startDayIndex;
-                    monthShift.shiftDetailsmodals = _adminProviders.ShiftDetailsmodal(date,sunday,saturday,"month",physicianid??0);
+                    monthShift.shiftDetailsmodals = _adminProviders.ShiftDetailsmodal(date,sunday,saturday,"month",physicianid??0,regionid);
 
                     return PartialView("_MonthWiseShift", monthShift);
 
@@ -153,8 +152,8 @@ namespace hellodoc.Controllers
 
                     WeekShiftModal weekShift = new WeekShiftModal();
 
-                    weekShift.Physicians = _adminProviders.physicians();
-                    weekShift.shiftDetailsmodals = _adminProviders.ShiftDetailsmodal(date, sunday, saturday, "week",physicianid??0);
+                    weekShift.Physicians = _adminProviders.physicians(regionid);
+                    weekShift.shiftDetailsmodals = _adminProviders.ShiftDetailsmodal(date, sunday, saturday, "week",physicianid??0,regionid);
 
                     List<int> dlist = new List<int>();
 
@@ -172,8 +171,8 @@ namespace hellodoc.Controllers
                 case "day":
 
                     DayShiftModal dayShift = new DayShiftModal();
-                    dayShift.Physicians = _adminProviders.physicians();
-                    dayShift.shiftDetailsmodals = _adminProviders.ShiftDetailsmodal(date, sunday, saturday, "day", physicianid ?? 0);
+                    dayShift.Physicians = _adminProviders.physicians(regionid);
+                    dayShift.shiftDetailsmodals = _adminProviders.ShiftDetailsmodal(date, sunday, saturday, "day", physicianid ?? 0, regionid);
 
                     return PartialView("_DayWiseShift",dayShift);
 
@@ -196,7 +195,7 @@ namespace hellodoc.Controllers
                     return PartialView("_ViewShift",shift);
 
                 case "moreshifts":
-                    var list = _adminProviders.ShiftDetailsmodal(partialView.shiftdate,DateTime.Now,DateTime.Now,"month",physicianid??0).Where(d => d.Shiftdate.Day == partialView.shiftdate.Day).ToList();
+                    var list = _adminProviders.ShiftDetailsmodal(partialView.shiftdate,DateTime.Now,DateTime.Now,"month",physicianid??0,partialView.regionid).Where(d => d.Shiftdate.Day == partialView.shiftdate.Day).ToList();
                     ViewBag.TotalShift = list.Count();
                     return PartialView("_MoreShifts",list);
 
@@ -235,7 +234,8 @@ namespace hellodoc.Controllers
             _adminProviders.DeleteShift(shiftdetailsid ?? 1, aspid ?? 1);
         }
 
-        public void create_shift(ShiftDetailsmodal shiftDetailsmodal)
+        [HttpPost]
+        public IActionResult create_shift(ShiftDetailsmodal shiftDetailsmodal)
         {
             var aspid = HttpContext.Session.GetInt32("userID");
             int physician = HttpContext.Session.GetInt32("physicianid")??0;
@@ -243,7 +243,9 @@ namespace hellodoc.Controllers
             {
                 shiftDetailsmodal.Physicianid = physician;
             }
-            _adminProviders.CreateShift(shiftDetailsmodal, aspid??1);
+            _adminProviders.CreateShift(shiftDetailsmodal, aspid ?? 1);
+
+            return RedirectToAction("admin_dash", "AdminDash");
         }
 
         public bool checkShiftAvailability(int physicianid, TimeOnly starttime, TimeOnly endtime, DateTime shiftdate)

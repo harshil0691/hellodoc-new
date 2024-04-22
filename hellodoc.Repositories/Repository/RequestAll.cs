@@ -626,5 +626,38 @@ public class RequestAll : IRequests
         
         _context.SaveChanges();
     }
+
+    public void CreateUser(RequestFormModal requestForm)
+    {
+        AspNetUser aspNetUser = new AspNetUser
+        {
+            Email = requestForm.UserEmail,
+            Passwordhash = requestForm.Password,
+            Createddate = DateTime.Now,
+        };
+        _context.AspNetUsers.Add(aspNetUser);
+
+        var requestClient = _context.RequestClients.FirstOrDefault(r => r.Email == requestForm.UserEmail);
+        if (requestClient != null)
+        {
+            User user = new User
+            {
+                Email = requestForm.UserEmail,
+                Firstname = requestClient.Firstname,
+                Lastname = requestClient.Lastname,
+                Createddate = DateTime.Now,
+                City = requestClient.City,
+                State = requestClient.State,
+                Intdate = requestClient.Intdate,
+                Intyear = requestClient.Intyear,
+                Strmonth = requestClient.Strmonth,
+
+                Aspnetuser = aspNetUser,
+            };
+
+            _context.Users.Add(user);
+        }
+        _context.SaveChanges();
+    }
 }
 

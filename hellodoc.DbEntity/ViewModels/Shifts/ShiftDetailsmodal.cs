@@ -14,6 +14,7 @@ namespace hellodoc.DbEntity.ViewModels.Shifts
     public partial class ShiftDetailsmodal
     {
         public int Shiftid { get; set; }
+        [Required]
         public int Physicianid { get; set; }
         public string PhysicianName { get; set; }
         public DateOnly Startdate { get; set; }
@@ -21,10 +22,15 @@ namespace hellodoc.DbEntity.ViewModels.Shifts
         public string? Weekdays { get; set; }
         public int? Repeatupto { get; set; }
         public int Shiftdetailid { get; set; }
+        [Required]
         public DateTime Shiftdate { get; set; }
+        [Required]
         public int? Regionid { get; set; }
         public string region { get; set; }
+        [Required(ErrorMessage = "Please specify a Start time.")]
         public TimeOnly Starttime { get; set; }
+
+        [Required(ErrorMessage = "Please specify an End time.")]
         public TimeOnly Endtime { get; set; }
         public short Status { get; set; }
         public BitArray Isdeleted { get; set; }
@@ -34,5 +40,6 @@ namespace hellodoc.DbEntity.ViewModels.Shifts
         public string regionname { get; set; }
         public string datename { get; set; }
         public string role { get; set; }
+        public List<int> SelectedDays { get; set; }
     }
 }

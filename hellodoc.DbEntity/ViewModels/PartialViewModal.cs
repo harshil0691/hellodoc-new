@@ -8,6 +8,7 @@ namespace hellodoc.DbEntity.ViewModels
 {
     public class PartialViewModal
     {
+        public string accoutOpen { get; set; }
         public int roleid { get; set; }
         public int accounttype { get; set; }
         public string actionType { get; set; }

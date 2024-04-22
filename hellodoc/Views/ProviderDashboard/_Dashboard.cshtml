@@ -1,7 +1,7 @@
 ﻿@model hellodoc.DbEntity.ViewModels.RequestCountByStatus
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 
-<ul class="nav  mx-5" id="myTabs">
+<ul class="nav  mx-5" id="myDashTabs">
     <li class="nav-item col-4 col-sm-4 col-md-2  admin-btn ad-btn ad-btn1 ">
         <a class="nav-link p-2 m-2 " data-bs-toggle="pill" href="#new" style="width:100%">
             <div class="d-flex"><i class="bi bi-person-plus pe-2 mt-1 d-none d-sm-block"></i><h5>NEW</h5></div>
@@ -68,19 +68,21 @@
 <div id="tabledata"></div>
 
 
-
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script>
     var tab = "new";
 
     $(document).ready(function () {
 
-        $('#myTabs a').on('shown.bs.tab', function (e) {
+        $('#myDashTabs a').on('shown.bs.tab', function (e) {
             var targetTab = $(e.target).attr('href').substring(1);
             tab = targetTab;
+            console.log(tab);
             loadPartialView(targetTab, 1);
         });
         if (localStorage.getItem("StatusTab") != null) {
-            loadPartialView(localStorage.getItem("StatusTab"), true);
+            loadPartialView(localStorage.getItem("StatusTab"));
         } else {
             loadPartialView("new");
         }

@@ -14,7 +14,7 @@
 
         <div class="d-grid gap-2 col-12 col-sm-12 col-md-10 col-lg-8 mx-auto d-flex content px-4 pt-4">
 
-            <form method="post" id="business">
+            <form method="post" id="business" onsubmit="bussinessActions('new_business')">
                 <h4 id="t1" class="pt-2 pb-4">Submit Information</h4>
 
                 <div class="row mt-1">
@@ -35,7 +35,7 @@
                             }
                         </select>
                     </div>
-                    
+
 
                     <div class="form-floating mt-2 col-md-6 col-lg-6">
                         <input type="number" class="form-control pt-3 pb-3" asp-for="Faxnumber" placeholder="fax number">
@@ -63,9 +63,17 @@
                         <input type="text" class="form-control" asp-for="Street" placeholder="Street">
                         <label class="mx-3">Street</label>
                     </div>
-                    <div class="form-floating mt-2 col-12 col-md-6">
-                        <input type="text" class="form-control" asp-for="State" placeholder="State">
-                        <label class="mx-3">State</label>
+                    <div class="form-floating mb-3  col-md-6 col-lg-6">
+                        <select class="form-select AdminProfile2" aria-label="Default select example" asp-for="State">
+                            <option selected disabled>State</option>
+                            @{
+                                foreach (var item in Model.regions)
+                                {
+                                    <option value="@item.Regionid">@item.Name</option>
+                                }
+                            }
+                        </select>
+                        <span asp-validation-for="State" class="text-danger"></span>
                     </div>
                     <div class="form-floating mt-2 col-12 col-md-6">
                         <input type="text" class="form-control" asp-for="City" placeholder="City">
@@ -79,8 +87,8 @@
 
 
                 <div class="d-flex justify-content-end mt-3">
-                    <button type="button" class="btn btn-info text-white mx-3 p-2 px-3 mb-2" onclick="bussinessActions('new_business')" >Save</button>
-                    <button type="reset" class="btn btn-outline-info mx-3 p-2 px-3 mb-2" >Cancel</button>
+                    <button type="submit" class="btn btn-info text-white mx-3 p-2 px-3 mb-2">Save</button>
+                    <button type="reset" class="btn btn-outline-info mx-3 p-2 px-3 mb-2">Cancel</button>
                 </div>
             </form>
 
@@ -91,28 +99,6 @@
     </div>
 
 </div>
-<footer style=" position:fixed;bottom:0; width:100%;">
-    <div style="padding-right: 40px;">
-        <a href="" style="color: white;">Terms Of Conditions</a> |
-        <a href="" style="color: white;">Privacy Policy</a>
-    </div>
-</footer>
 
-<script>
-
-    // const phoneInputField = document.querySelector("#phone");
-    // const phoneInput = window.intlTelInput(phoneInputField, {
-    //     utilsScript:
-    //         "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
-    // });
-
-    
-
-
-</script>
-
-@section Scripts{
-    @{
-        <Partial name="_ValidationScriptsPartial" />
-    }
-    }
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>

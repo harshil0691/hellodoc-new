@@ -249,6 +249,17 @@ namespace hellodoc.Controllers
 
         }
 
+        public IActionResult CreateUser()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CreateUser(RequestFormModal requestForm)
+        {
+            _requests.CreateUser(requestForm);
+            return RedirectToAction("patient_login","Patient");
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
