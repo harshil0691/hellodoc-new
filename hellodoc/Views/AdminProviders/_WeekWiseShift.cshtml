@@ -34,39 +34,37 @@
                         <td class="p-2"><img class="mx-2" height="50" width="50" src="./PhysicianDoc/@phy.Photo" /> @phy.Firstname @phy.Lastname</td>
 
                         @{
-                            var list = Model.shiftDetailsmodals.Where(u => u.Physicianid == phy.Physicianid).ToList();
+                            var list = Model.shiftDetailsmodals.Where(u => u.Physicianid == phy.Physicianid);
 
                             foreach (var date in Model.datelist)
                             {
 
-                                var shift = list.FirstOrDefault(u => u.Shiftdate.Day == date);
+                                var shifts = list.Where(u => u.Shiftdate.Day == date);
+                                <td>
+                                @{
+                                        foreach (var s in shifts)
+                                        {
+                                            if (s != null)
+                                            {
+                                                var bgcolor = "";
 
-                                if (shift != null)
-                                {
-                                    var bgcolor = "";
+                                                if (s.Status == 1)
+                                                {
+                                                    bgcolor = "lightpink";
+                                                }
+                                                else if (s.Status == 2)
+                                                {
+                                                    bgcolor = "lightgreen";
+                                                }
 
-                                    if (shift.Status == 1)
-                                    {
-                                        bgcolor = "lightpink";
-                                    }
-                                    else if (shift.Status == 2)
-                                    {
-                                        bgcolor = "lightgreen";
-                                    }
-                                    <td>
-                                        <div style="overflow-y:auto;">
-                                            <button class="w-100 h-100 border-0"  onclick="providersModal({actionType:'shiftdetails',shiftdetailsid : '@shift.Shiftdetailid'})">
-                                                <p style="background-color:@bgcolor;" class="w-100"> @shift.Starttime - @shift.Endtime Region : @shift.regionname </p>
-                                            </button>
-                                        </div>
-                                    </td>
-
+                                                <div class="border-bottom fs-6" onclick="providersModal({actionType:'shiftdetails',shiftdetailsid : '@s.Shiftdetailid'})">
+                                                    <button style="background-color:@bgcolor;" class="w-100 h-100 border-0"> @s.Starttime - @s.Endtime Region : @s.regionname </button>
+                                                </div>
+                                                
+                                            }
+                                        }
                                 }
-                                else
-                                {
-                                    <td></td>
-                                }
-
+                                </td>
                             }
                         }
 

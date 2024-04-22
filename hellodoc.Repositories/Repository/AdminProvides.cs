@@ -507,7 +507,7 @@ namespace hellodoc.Repositories.Repository
 
         public void CreateShift(ShiftDetailsmodal shiftDetailsmodal, int aspid)
         {
-            //List<int> daylist = JsonConvert.DeserializeObject<List<int>>(shiftDetailsmodal.Weekdays);
+            List<int> daylist = JsonConvert.DeserializeObject<List<int>>(shiftDetailsmodal.Weekdays);
 
             Shift shift = new Shift 
             {
@@ -538,9 +538,9 @@ namespace hellodoc.Repositories.Repository
             
             var daynumber = (double)shiftDetailsmodal.Shiftdate.DayOfWeek;
             var d = 0.0;
-            if (shiftDetailsmodal.SelectedDays != null)
+            if (shiftDetailsmodal.Isrepeat != false)
             {
-                foreach (var day in shiftDetailsmodal.SelectedDays)
+                foreach (var day in daylist)
                 {
                     DateTime date = shiftDetailsmodal.Shiftdate;
                     var repeat = shiftDetailsmodal.Repeatupto;
@@ -610,7 +610,7 @@ namespace hellodoc.Repositories.Repository
             DashboardListsModal listsModal = new DashboardListsModal();
             listsModal.regions = _context.Regions.ToList();
 
-            var oncallids = _context.ShiftDetails.Where(s => s.Shiftdate.Date == date.Date && s.Endtime > timeOnly && s.Starttime < timeOnly).Select(p => p.Shift.Physicianid).ToList();
+            var oncallids = _context.ShiftDetails.Where(s => s.Shiftdate.Date == date.Date && s.Endtime >= timeOnly && s.Starttime <= timeOnly && s.Isdeleted != 1).Select(p => p.Shift.Physicianid).ToList();
 
             var physicianlist = _context.Physicians.ToList();
 

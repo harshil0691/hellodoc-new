@@ -75,7 +75,7 @@ function loadProviderView(method, physicianid) {
     });
 }
 
-
+var physiciandid = 0;
 var date = new Date();
 var diff = 7 - date.getDay();
 if (diff === 0) {
@@ -207,7 +207,7 @@ function previousCalendar() {
 }
 
 function providersModal(DataObject) {
-
+    physiciandid = DataObject.physiciandid;
     $.ajax({
         url: '/AdminProviders/Openmodal',
         type: 'POST',
@@ -224,14 +224,8 @@ function providersModal(DataObject) {
 }
 
 function shiftactions(actionType, formid) {
-
-    if (actionType == 'create_shift') {
-        var shiftavailable = checkShiftAvailability1();
-        console.log(shiftavailable);
-    }
-
+    event.preventDefault();
     $('#myModal').modal('hide');
-
     var daylist = [];
     var inputs = document.getElementsByClassName('daycheck');
     for (var i = 0; i < inputs.length; i++) {
@@ -243,11 +237,30 @@ function shiftactions(actionType, formid) {
     formdata.push({ name: "Weekdays", value: JSON.stringify(daylist) });
     var form = $.param(formdata);
 
+    if ($(formid).valid()) {
+        console.log(0);
+        $.ajax({
+            url: '/AdminProviders/' + actionType,
+            type: 'POST',
+            data: form,
+            success: function (data) {
+                ShiftCalender(schedulingtype);
+            },
+            error: function () {
+                console.error('Error loading partial view.');
+            }
+        });
+    }
+
+}
+
+function rdShift(actionType) {
+    
     $.ajax({
         url: '/AdminProviders/' + actionType,
         type: 'POST',
-        data: form,
         success: function (data) {
+            $('#myModal').modal('hide');
             ShiftCalender(schedulingtype);
         },
         error: function () {
@@ -265,10 +278,12 @@ function checkShiftAvailability1() {
     var shiftdate = $('#dateInput').val();
     var submit = document.getElementById('shiftsave');
 
+
+
     $.ajax({
         url: '/AdminProviders/checkShiftAvailability',
         type: 'POST',
-        data: { physicianid: physician, starttime: starttime, endtime: endtime, shiftdate: shiftdate },
+        data: { physicianid: physiciandid, starttime: starttime, endtime: endtime, shiftdate: shiftdate },
         success: function (data) {
             return data;
             //if (data == true) {

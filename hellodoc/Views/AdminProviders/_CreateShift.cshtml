@@ -3,7 +3,7 @@
 <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content" style="font-weight:600">
-            <form id="createshift" asp-action="create_shift" method="post">
+            <form id="createshift" onsubmit="shiftactions('create_shift','#createshift')" method="post">
                 <div class="modal-header bg-info text-white">
                     <h5 class="modal-title" id="exampleModalLabel"> View Shift</h5>
                     <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -25,7 +25,7 @@
                     @{
                         if (Model.Physicianid == 0)
                         {
-                            <select class="form-select mt-3" aria-label="Default select example" asp-for="@Model.Physicianid" id="Physicianselect">
+                            <select class="form-select mt-3" aria-label="Default select example" asp-for="@Model.Physicianid" onchange="checkShiftAvailability()" id="Physicianselect">
                                 <option selected disabled>Select Physician</option>
                             </select>
                             <span asp-validation-for="Physicianid" class="text-danger"></span>
@@ -67,7 +67,7 @@
                             foreach (var item in dayNames)
                             {
                                 <div class="form-check col mx-3">
-                                    <input class="form-check-input daycheck" type="checkbox" name="SelectedDays" value="@i" id="@i" disabled>
+                                    <input class="form-check-input daycheck" type="checkbox"  value="@i" id="@i" disabled>
                                     <label class="form-check-label" for="@i">
                                         <span class="fs-6" style="font-weight:400;">Every @item</span>
                                     </label>
@@ -97,63 +97,6 @@
 
 
 <script>
-
-    // // Get references to the input elements
-    // const dateInput = document.getElementById('dateInput');
-    // const startTimeInput = document.getElementById('startTimeInput');
-    // const endTimeInput = document.getElementById('endTimeInput');
-
-    // // Add event listener to date input
-    // dateInput.addEventListener('change', function () {
-    //     validateDateTime();
-    // });
-
-    // // Add event listener to start time input
-    // startTimeInput.addEventListener('change', function () {
-    //     validateEndTime();
-    // });
-
-    // // Add event listener to end time input
-    // endTimeInput.addEventListener('change', function () {
-    //     validateEndTime();
-    // });
-
-    // function validateDateTime() {
-    //     const currentDate = new Date();
-    //     const selectedDate = new Date(dateInput.value);
-
-    //     // Disable start time and end time if the selected date is not the current date
-    //     if (selectedDate.getTime() !== currentDate.getTime()) {
-    //         startTimeInput.disabled = true;
-    //         endTimeInput.disabled = true;
-    //     } else {
-    //         startTimeInput.disabled = false;
-    //         endTimeInput.disabled = false;
-
-    //         // Enable only future times for the start time
-    //         const currentHours = currentDate.getHours();
-    //         const currentMinutes = currentDate.getMinutes();
-    //         startTimeInput.min = (currentHours < 10 ? '0' : '') + currentHours + ':' + (currentMinutes < 10 ? '0' : '') + currentMinutes;
-    //     }
-
-    //     validateEndTime();
-    // }
-
-    // function validateEndTime() {
-    //     const startTime = startTimeInput.value;
-    //     const endTime = endTimeInput.value;
-
-    //     if (!startTime || !endTime) return;
-
-    //     const startDateTime = new Date('2000-01-01 ' + startTime);
-    //     const endDateTime = new Date('2000-01-01 ' + endTime);
-    //     const timeDifference = endDateTime - startDateTime;
-
-    //     if (timeDifference < 30 * 60 * 1000) { // 30 minutes in milliseconds
-    //         alert('End time must be at least 30 minutes after the Start time.');
-    //         endTimeInput.value = '';
-    //     }
-    // }
 
     var currentDate = new Date();
     var currentTime = currentDate.getHours().toString().padStart(2, "0") + ":" + currentDate.getMinutes().toString().padStart(2, "0");
@@ -218,6 +161,7 @@
     function regionchange(){
         var select = document.getElementById('regionselect').value;
         getphysician(select);
+        checkShiftAvailability();
     }
 
 

@@ -235,7 +235,7 @@ namespace hellodoc.Controllers
         }
 
         [HttpPost]
-        public IActionResult create_shift(ShiftDetailsmodal shiftDetailsmodal)
+        public void create_shift(ShiftDetailsmodal shiftDetailsmodal)
         {
             var aspid = HttpContext.Session.GetInt32("userID");
             int physician = HttpContext.Session.GetInt32("physicianid")??0;
@@ -245,7 +245,7 @@ namespace hellodoc.Controllers
             }
             _adminProviders.CreateShift(shiftDetailsmodal, aspid ?? 1);
 
-            return RedirectToAction("admin_dash", "AdminDash");
+            //return RedirectToAction("admin_dash", "AdminDash");
         }
 
         public bool checkShiftAvailability(int physicianid, TimeOnly starttime, TimeOnly endtime, DateTime shiftdate)
