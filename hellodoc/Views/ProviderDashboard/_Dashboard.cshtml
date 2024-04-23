@@ -41,35 +41,35 @@
         <button class="btn btn-info text-white" onclick="loadActionView({ActionType:'CreateRequest'})"><i class="bi bi-pencil-square px-1 "></i><span class="d-none d-sm-none d-md-inline d-lg-inline d-xl-inline">create requests</span></button>
     </div>
 </div>
+<form>
+    <div class="d-flex justify-content-between p-3 mx-1 mt-2  bgcolor row">
 
-<div class="d-flex justify-content-between p-3 mt-2 bgcolor row">
-    <div class="d-flex  col-12 col-sm-12 col-md-4">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="customSearch">
-        <select class="form-select" aria-label="Default select example" id="region123">
-            <option value="0" selected>All Region</option>
-            @{
-                foreach (var a in Model.regions)
-                {
-                    <option value="@a.Regionid">@a.Name</option>
+        <div class="d-flex  col-12 col-sm-12 col-md-4">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="customSearch">
+            <select class="form-select" aria-label="Default select example" id="region123">
+                <option value="0" selected>All Region</option>
+                @{
+                    foreach (var a in Model.regions)
+                    {
+                        <option value="@a.Regionid">@a.Name</option>
+                    }
                 }
-            }
-        </select>
+            </select>
+        </div>
+        <div class="d-flex justify-content-md-end col-12 col-sm-12 col-md-6 mt-3 justify-content-start ">
+            <button type="reset" onclick="loadPartialView(localStorage.getItem('StatusTab'),'1')" class="btn btn-outline-dark d-none d-sm-inline"> All</button>
+            <div onclick="loadPartialView('','1',$('#customSearch').val(),$('#region123').val(),'2')" class="m-2 d-grid d-sm-grid d-sm-flex"><div class="colored-dot bg-success m-1"></div><div>Patients</div></div>
+            <div onclick="loadPartialView('','1',$('#customSearch').val(),$('#region123').val(),'3')" class="m-2 d-grid d-sm-grid d-sm-flex"><div class="colored-dot bg-warning m-1"></div><div>Family_friend</div></div>
+            <div onclick="loadPartialView('','1',$('#customSearch').val(),$('#region123').val(),'1')" class="m-2 d-grid d-sm-grid d-sm-flex"><div class="colored-dot bg-danger m-1 "></div><div>Business</div></div>
+            <div onclick="loadPartialView('','1',$('#customSearch').val(),$('#region123').val(),'4')" class="m-2 d-grid d-sm-grid d-sm-flex"><div class="colored-dot bg-primary m-1"></div><div>Concierge</div></div>
+            <div onclick="loadPartialView('','1',$('#customSearch').val(),$('#region123').val(),'5')" class="m-2 d-grid d-sm-grid d-sm-flex"><div class="colored-dot bg-success m-1"></div><div>Vip</div></div>
+        </div>
+
     </div>
-    <div class="d-flex justify-content-md-end col-12 col-sm-12 col-md-6 mt-3 justify-content-start ">
-        <button class="btn btn-outline-dark d-none d-sm-inline"> All</button>
-        <div onclick="reqtype(1)" class="m-2 d-grid d-sm-grid d-sm-flex"><div class="colored-dot bg-success m-1"></div><div>Patients</div></div>
-        <div onclick="reqtype(2)" class="m-2 d-grid d-sm-grid d-sm-flex"><div class="colored-dot bg-warning m-1"></div><div>Family_friend</div></div>
-        <div onclick="reqtype(3)" class="m-2 d-grid d-sm-grid d-sm-flex"><div class="colored-dot bg-danger m-1 "></div><div>Business</div></div>
-        <div onclick="reqtype(4)" class="m-2 d-grid d-sm-grid d-sm-flex"><div class="colored-dot bg-primary m-1"></div><div>Concierge</div></div>
-        <div onclick="reqtype(5)" class="m-2 d-grid d-sm-grid d-sm-flex"><div class="colored-dot bg-success m-1"></div><div>Vip</div></div>
-    </div>
-</div>
+</form>
 
 <div id="tabledata"></div>
 
-
-<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script>
     var tab = "new";
 
@@ -78,7 +78,6 @@
         $('#myDashTabs a').on('shown.bs.tab', function (e) {
             var targetTab = $(e.target).attr('href').substring(1);
             tab = targetTab;
-            console.log(tab);
             loadPartialView(targetTab, 1);
         });
         if (localStorage.getItem("StatusTab") != null) {

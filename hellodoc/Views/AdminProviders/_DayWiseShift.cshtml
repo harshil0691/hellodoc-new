@@ -44,8 +44,16 @@
                 foreach (var phy in Model.Physicians)
                 {
                     <tr>
-                        <td class="p-2 fs-6"> <img class="mx-2" height="50" width="50" src="./PhysicianDoc/@phy.Photo" /> @phy.Firstname @phy.Lastname</td>
-
+                        @{
+                            <td class="p-2 fs-6">
+                            @{
+                                    if (phy.Photo != "")
+                                    {
+                                        <img class="mx-2" height="50" width="50" src="./PhysicianDoc/@phy.Photo" />
+                                    }
+                            }
+                             @phy.Firstname @phy.Lastname</td>
+                         }
                         @{
                             var list = Model.shiftDetailsmodals.Where(u => u.Physicianid == phy.Physicianid).ToList();
                             var startlist = new List<int>();
@@ -64,20 +72,26 @@
                                 if (startlist.Contains(i))
                                 {
                                     var index = startlist.IndexOf(i);
-                                    var col = endlist[index] - startlist[index];
                                     var shift = list.FirstOrDefault(s => s.Shiftdetailid == idlist[index]);
+                                    var col =  shift.Endtime.Hour - shift.Starttime.Hour;
+
 
                                     var endmin = shift.Endtime.Minute;
                                     var startmin = shift.Starttime.Minute;
-                                    var duration = shift.Endtime - shift.Starttime;
                                     double usemin ;
 
-                                    if (endmin > 0 && startlist[index] != endlist[index])
+
+                                    if (col == 0)
                                     {
                                         col = col + 1;
+                                        usemin = endmin - startmin;
                                     }
-
-                                    if(startmin == 0 && endmin == 0)
+                                    else if (col == 1)
+                                    {
+                                        col = col + 1;
+                                        usemin = 60 - startmin + endmin;
+                                    }
+                                    else if (startmin == 0 && endmin == 0)
                                     {
                                         usemin = col * 60;
                                     }
@@ -89,16 +103,6 @@
                                     {
                                         usemin = 60 - startmin + endmin;
                                     }
-
-                                    //if (startlist.Contains(endlist[index]))
-                                    //{
-                                    //    var index1 = startlist.IndexOf(i);
-                                    //    var col1 = endlist[index] - startlist[index];
-                                    //    var shift1 = list.FirstOrDefault(s => s.Shiftdetailid == idlist[index]);
-
-                                    //    col = col + col1 - 1;
-                                    //}
-
 
                                     double percentage = usemin/(double)(col* 60) *100 ;
                                     double left = startmin / (double)(col* 60) *100;
@@ -115,7 +119,7 @@
 
                                     <td colspan="@col">
                                         <button class="h-100 border-0" style="background-color:@bgcolor;width:@percentage%;margin-left:@left%" onclick="providersModal({actionType:'shiftdetails',shiftdetailsid : '@shift.Shiftdetailid'})">
-                                            @shift.Starttime - @shift.Endtime <br /> Region : @shift.regionname 
+                                           @percentage @usemin @col  @shift.Starttime - @shift.Endtime <br /> Region : @shift.regionname 
                                         </button>
                                     </td>
 

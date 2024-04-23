@@ -120,6 +120,7 @@ namespace hellodoc.Repositories.Repository
             adminPartners.Businesscontact = vendor.Businesscontact;
             adminPartners.healthProfessionalTypes = _context.HealthProfessionalTypes.ToList();
             adminPartners.Vendorname = vendor.Vendorname;
+            adminPartners.regions = _context.Regions.ToList();
             return adminPartners;
         }
 

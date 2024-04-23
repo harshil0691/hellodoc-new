@@ -1,4 +1,5 @@
-﻿using System;
+﻿using hellodoc.DbEntity.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,5 +10,6 @@ namespace hellodoc.Repositories.Repository.Interface
     public interface IProviderRepo
     {
         string AcceptRequest(int requestid);
+        string RequestToAdmin(PartialViewModal partialView);
     }
 }

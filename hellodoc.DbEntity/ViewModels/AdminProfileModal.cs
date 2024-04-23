@@ -22,8 +22,9 @@ namespace hellodoc.DbEntity.ViewModels
         [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z]).+$", ErrorMessage = "Password must contain at least one lowercase letter and one uppercase letter")]
         public string? password { get; set; }
         public string username { get; set; }
-
+        [Required]
         public string? Firstname { get; set; }
+        [Required]
         public string? Lastname { get; set; }
         public string Location { get; set; }
         public DateOnly? DateOfBirth { get; set; }

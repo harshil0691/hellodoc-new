@@ -13,7 +13,7 @@
 
         </div>
         <div class="d-grid gap-2 col-11 mx-auto d-flex flex-column rounded-3 bgcolor px-4 mt-4" id="searchrecords">
-            <form id="recordsForm">
+            <form id="recordsForm" onsubmit="searchrecords('BlockedHistory','1')">
                 <div class="row mt-1">
 
                     <div class="form-floating m-1 col-12 col-md-3">
@@ -33,14 +33,14 @@
 
 
                     <div class="form-floating m-1 col-12 col-md-3">
-                        <input type="number" class="form-control" asp-for="PhoneNumber" placeholder="Phone number">
+                        <input type="text" class="form-control" asp-for="PhoneNumber" placeholder="Phone number">
                         <label class="mx-3">Phone Number</label>
                     </div>
 
                 </div>
                 <div class="mt-3 d-flex justify-content-end">
                     <button type="reset" class="btn btn-outline-info mx-1">Clear</button>
-                    <button type="button" class="btn btn-info text-white mx-1" onclick="searchrecords('BlockedHistory','1')">Search</button>
+                    <button type="submit" class="btn btn-info text-white mx-1">Search</button>
                 </div>
 
             </form>
@@ -54,8 +54,5 @@
 </div>
 
 
-@section Scripts{
-    @{
-        <Partial name="_ValidationScriptsPartial" />
-    }
- }
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>

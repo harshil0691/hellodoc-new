@@ -2464,6 +2464,38 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\PhysicianDoc\0db1ffb9-5e43-4dcc-9505-d20622e4adb0_Fig26. Edit Physician Account.png))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\PhysicianDoc\23b5662a-340e-401a-8c01-1f6e2e22436c_5.d.png))">
+      <SourceType>Package</SourceType>
+      <SourceId>hellodoc</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/hellodoc</BasePath>
+      <RelativePath>PhysicianDoc/23b5662a-340e-401a-8c01-1f6e2e22436c_5.d.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\PhysicianDoc\23b5662a-340e-401a-8c01-1f6e2e22436c_5.d.png))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\PhysicianDoc\23c34a4e-68b8-46b9-aba8-c267ea66facb_Fig26. Edit Physician Account.png))">
+      <SourceType>Package</SourceType>
+      <SourceId>hellodoc</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/hellodoc</BasePath>
+      <RelativePath>PhysicianDoc/23c34a4e-68b8-46b9-aba8-c267ea66facb_Fig26. Edit Physician Account.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\PhysicianDoc\23c34a4e-68b8-46b9-aba8-c267ea66facb_Fig26. Edit Physician Account.png))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\PhysicianDoc\340da8b3-d980-4627-a118-3d7145dd5bc4_Fig2. Forgot Password.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>hellodoc</SourceId>
@@ -2512,6 +2544,22 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\PhysicianDoc\43477ad8-efc9-40bd-af83-4492a773ca6c_Fig23.Request Support.png))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\PhysicianDoc\448002e7-5013-4ee2-baf7-6320880a8b8c_3.d.png))">
+      <SourceType>Package</SourceType>
+      <SourceId>hellodoc</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/hellodoc</BasePath>
+      <RelativePath>PhysicianDoc/448002e7-5013-4ee2-baf7-6320880a8b8c_3.d.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\PhysicianDoc\448002e7-5013-4ee2-baf7-6320880a8b8c_3.d.png))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\PhysicianDoc\44d1822e-f105-427e-9d39-e97dcdcf678f_Fig26. Edit Physician Account.png))">
       <SourceType>Package</SourceType>
       <SourceId>hellodoc</SourceId>
@@ -2559,6 +2607,22 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\PhysicianDoc\53ae8d49-56db-446c-add5-09df38320d2d_Fig24. Provider Menu.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\PhysicianDoc\5ee5db7c-43bb-423d-88c1-dff13a0e5e3d_bser 1.png))">
+      <SourceType>Package</SourceType>
+      <SourceId>hellodoc</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/hellodoc</BasePath>
+      <RelativePath>PhysicianDoc/5ee5db7c-43bb-423d-88c1-dff13a0e5e3d_bser 1.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\PhysicianDoc\5ee5db7c-43bb-423d-88c1-dff13a0e5e3d_bser 1.png))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\PhysicianDoc\632a39a8-2603-4a2f-b46f-579bf05b5a34_Fig24. Provider Menu.jpg))">
       <SourceType>Package</SourceType>
@@ -2656,6 +2720,22 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\PhysicianDoc\b691d94e-2e82-4e23-b928-fe60fcd15d2a_41de8d61-d682-473f-a9aa-3e92513332fa_Fig3. Admin Dashboard.jpg))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\PhysicianDoc\c361680f-2dff-4ec1-8dcf-37d136c42cde_bser 1.png))">
+      <SourceType>Package</SourceType>
+      <SourceId>hellodoc</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/hellodoc</BasePath>
+      <RelativePath>PhysicianDoc/c361680f-2dff-4ec1-8dcf-37d136c42cde_bser 1.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\PhysicianDoc\c361680f-2dff-4ec1-8dcf-37d136c42cde_bser 1.png))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\PhysicianDoc\c49585b7-a8eb-4662-a520-de1e1a8d8a2c_Fig24. Provider Menu.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>hellodoc</SourceId>
@@ -2671,6 +2751,22 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\PhysicianDoc\c49585b7-a8eb-4662-a520-de1e1a8d8a2c_Fig24. Provider Menu.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\PhysicianDoc\d771223f-d7e2-405d-97ee-2ebd21ea45fc_Fig22 Regions menu.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>hellodoc</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/hellodoc</BasePath>
+      <RelativePath>PhysicianDoc/d771223f-d7e2-405d-97ee-2ebd21ea45fc_Fig22 Regions menu.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\PhysicianDoc\d771223f-d7e2-405d-97ee-2ebd21ea45fc_Fig22 Regions menu.jpg))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\PhysicianDoc\d910e1de-94ff-4c73-80da-b7cf2d0b8733_Fig25. Contact your Provider.jpg))">
       <SourceType>Package</SourceType>
@@ -2720,6 +2816,22 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\PhysicianDoc\ebdd8ceb-3588-4916-a178-7e2b71b4b5bc_Fig2. Forgot Password.jpg))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\PhysicianDoc\ed2a488b-ee1b-4a46-b433-23ec74be9a17_5.d.png))">
+      <SourceType>Package</SourceType>
+      <SourceId>hellodoc</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/hellodoc</BasePath>
+      <RelativePath>PhysicianDoc/ed2a488b-ee1b-4a46-b433-23ec74be9a17_5.d.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\PhysicianDoc\ed2a488b-ee1b-4a46-b433-23ec74be9a17_5.d.png))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\PhysicianDoc\eedd5b44-9de5-4473-9303-681130dea8a2_Fig24. Provider Menu.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>hellodoc</SourceId>
@@ -2735,6 +2847,54 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\PhysicianDoc\eedd5b44-9de5-4473-9303-681130dea8a2_Fig24. Provider Menu.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\PhysicianDoc\f7c54ca4-ffdb-4bc1-9208-603fa8aa785b_Fig25. Contact your Provider.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>hellodoc</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/hellodoc</BasePath>
+      <RelativePath>PhysicianDoc/f7c54ca4-ffdb-4bc1-9208-603fa8aa785b_Fig25. Contact your Provider.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\PhysicianDoc\f7c54ca4-ffdb-4bc1-9208-603fa8aa785b_Fig25. Contact your Provider.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\PhysicianDoc\f820024e-96ff-4054-a13e-4599a8835aa5_Fig24. Provider Menu.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>hellodoc</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/hellodoc</BasePath>
+      <RelativePath>PhysicianDoc/f820024e-96ff-4054-a13e-4599a8835aa5_Fig24. Provider Menu.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\PhysicianDoc\f820024e-96ff-4054-a13e-4599a8835aa5_Fig24. Provider Menu.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\PhysicianDoc\fb3daf80-8737-4786-ba3e-402d2966cd52_Fig25. Contact your Provider.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>hellodoc</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/hellodoc</BasePath>
+      <RelativePath>PhysicianDoc/fb3daf80-8737-4786-ba3e-402d2966cd52_Fig25. Contact your Provider.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\PhysicianDoc\fb3daf80-8737-4786-ba3e-402d2966cd52_Fig25. Contact your Provider.jpg))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\023ac158-54f9-4106-afb1-2ad23b7500cf_Session 2 (1) (1).txt))">
       <SourceType>Package</SourceType>

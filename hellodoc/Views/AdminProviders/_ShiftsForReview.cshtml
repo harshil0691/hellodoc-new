@@ -24,7 +24,7 @@
                     </select>
                 </div>
                 <div class="d-flex">
-                    <button class="btn btn-success text-white mx-1" onclick="adminDashload({actionType : 'scheduling',tab: '#provider',id : 'provideractive',controller : 'AdminDash'})">View Current Month Shift</button>
+                    <button class="btn btn-success text-white mx-1" onclick="GetProvidersView({actionType : 'scheduling'})">View Current Month Shift</button>
                     <button class="btn btn-success text-white mx-1" onclick="SelectedShiftOperation('approved','@Model.pageNumber')">Approved Selected</button>
                     <button class="btn btn-danger text-white mx-1" onclick="SelectedShiftOperation('delete','@Model.pageNumber')"> Delete Selected</button>
                 </div>
@@ -70,7 +70,7 @@
                         if (Model.pageNumber > 1)
                         {
                             var previousPage = Model.pageNumber - 1;
-                            <button class="btn btn-outline-secondary" onclick="MDsXShiftReview('shiftreview','@previousPage')"><i class="bi bi-chevron-left"></i></button>
+                            <button class="btn btn-outline-secondary" onclick="GetProvidersView({actionType : 'shiftreview',pageNumber : '@previousPage'})"><i class="bi bi-chevron-left"></i></button>
                         }
                         else
                         {
@@ -83,7 +83,7 @@
                         if(Model.morePages == true)
                         {
                             var nextpage = Model.pageNumber + 1;
-                            <button class="btn btn-outline-secondary" onclick="MDsXShiftReview('shiftreview','@nextpage')"><i class="bi bi-chevron-right"></i></button>
+                            <button class="btn btn-outline-secondary" onclick="GetProvidersView({actionType : 'shiftreview',pageNumber : '@nextpage'})"><i class="bi bi-chevron-right"></i></button>
                         }
                         else
                         {

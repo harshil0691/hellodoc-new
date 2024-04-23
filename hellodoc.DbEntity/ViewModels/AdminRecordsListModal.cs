@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using hellodoc.DbEntity.ViewModels.AdminAccess;
 using hellodoc.DbEntity;
 using hellodoc.DbEntity.ViewModels.AdminRecords;
+using System.ComponentModel.DataAnnotations;
 
 namespace hellodoc.DbEntity.ViewModels
 {
@@ -13,6 +14,7 @@ namespace hellodoc.DbEntity.ViewModels
     {
         public int RequestStatus { get; set; }
         public string Email { get; set; }
+        [RegularExpression("^[0-9]*$", ErrorMessage = "Phone number must contain only numbers")]
         public long PhoneNumber { get; set; }
         public string PatientName { get; set; }
         public int RequestType { get; set; }

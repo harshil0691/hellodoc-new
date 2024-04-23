@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Patient dashboard";
+    ViewData["Title"] = "Provider dashboard";
 }
 @model hellodoc.DbEntity.ViewModels.RequestCountByStatus
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
@@ -9,8 +9,10 @@
 <Partial name="_header">
 
 
-    @* <div class="collapse navbar-collapse" id="navbarSupportedContent">*@
-    <ul class="nav nav-underline mt-2 mx-2 shadow-sm" id="mydashboard123">
+    <div class="collapse navbar-collapse d-md-block" id="navbarSupportedContent">
+        <p class="m-2 pt-2 d-block d-md-none">Welcome <strong>@HttpContextAccessor.HttpContext.Session.GetString("username")</strong></p>
+        <div class="d-md-flex justify-content-between">
+        <ul class="nav nav-underline mt-2 mx-2 d-grid d-md-flex shadow-sm" id="mydashboard123">
         <li class="nav-item mx-2">
             <a class="nav-link" data-bs-toggle="pill" href="#dashboard">Dashboard</a>
         </li>
@@ -25,28 +27,29 @@
         </li>
     </ul>
 
-
+    </div>
+    </div>
     <div id="mainDashContent" class="bgcolor1"></div>
 
     <div id="partialContainer"></div>
 
 
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
-    <script src="/js/ProviderDashboard.js" asp-append-version="true"></script>
-
-    @*<script src="/js/AdminProviders.js" asp-append-version="true"></script>*@
-
-    @*<script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <script src="~/js/ProviderDashboard.js" asp-append-version="true"></script>
+    <script src="/js/AdminProviders.js" asp-append-version="true"></script>
+    
+    <script>
+        
         $(document).ready(function () {
+            localStorage.setItem("loginAccount","Provider");
+            // Bind event handler to tab switch event
             $('#mydashboard123 a').on('shown.bs.tab', function (e) {
-                //var targetTab = $(e.target).attr('href').substring(1);
-                console.log(1);
-                //loadPartialDashView(targetTab);
+                var targetTab = $(e.target).attr('href').substring(1);
+                loadPartialDashView(targetTab);
             });
-            console.log(1);
+
+            // Load default tab content on page load
             loadPartialDashView("dashboard");
         });
 
@@ -76,7 +79,11 @@
             });
         }
 
-        function loadPartialView(tabId, page, search, regionid) {
+        function loadPartialView(tabId, page, search, regionid, requesttype ){
+
+            if (requesttype != 0 && requesttype != null) {
+                tabId = localStorage.getItem("StatusTab");
+            }
 
             var element = document.querySelectorAll('[href="#' + tabId + '"]');
             element.forEach(a => {
@@ -86,7 +93,7 @@
             $.ajax({
                 url: '/LoadDashState/LoadPartialView',
                 type: 'GET',
-                data: { tabId: tabId, pageNumber: page, search: search, regionid: regionid,provider : true },
+                data: { tabId: tabId, pageNumber: page, search: search, regionid: regionid, provider: true, requesttype: requesttype },
                 success: function (data) {
                     $('#tabledata').html(data);
                     localStorage.setItem("StatusTab", tabId);
@@ -97,8 +104,25 @@
             });
 
         }
-    </script>*@
 
+        function DBActions(dataObject){
+
+            $.ajax({
+                url: '/ProviderDashboard/'+dataObject.actionType,
+                type: 'GET',
+                data: dataObject,
+                success: function (data) {
+                    $('#myModal').modal('hide');
+                    toastr.success("Mail Sent To Admin Successfully");
+                },
+                error: function () {
+                    console.error('Error loading partial view.');
+                }
+            });
+        }
+
+    </script>
+    
     @section Scripts {
         @{
             <Partial name="_ValidationScriptsPartial" />

@@ -57,15 +57,14 @@ namespace hellodoc.Controllers
 
             if (loginType == "provider" && aspnetuser != null)
             {
-                TempData["success"] = "User LogIn Successfully";
                 HttpContext.Session.SetInt32("PhysicianAspid", aspnetuser.Id);
                 try
                 {
                     var physicianid = _authManger.GetPhysician(aspnetuser.Id);
                     if (physicianid != 0)
                     {
+                        TempData["success"] = "User LogIn Successfully";
                         HttpContext.Session.SetInt32("physiciandashid", physicianid);
-
                     }
                 }
                 catch

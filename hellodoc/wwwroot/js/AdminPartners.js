@@ -43,8 +43,9 @@ function bussinessActions(actionType, vendorid) {
     formdata.push({ name: "Vendorid", value: vendorid });
     formdata.push({ name: "actionType", value: actionType });
     var form = $.param(formdata);
-
+    console.log(1);
     if ($('#business').valid()) {
+        console.log(2);
         $.ajax({
             url: '/AdminPartners/DBOperations',
             type: 'POST',
@@ -52,6 +53,8 @@ function bussinessActions(actionType, vendorid) {
             success: function (data) {
                 if (actionType == 'new_business' || actionType == 'delete_business') {
                     partners({ actionType: 'Partners' });
+                } else {
+                    partners({ actionType: 'edit_business', venorid: vendorid })
                 }
             },
             error: function () {
@@ -72,18 +75,5 @@ function businessEdit(actionType, vendorid) {
         document.getElementById('businessedit').style.display = 'none';
         document.getElementById('businesssave').style.display = 'block';
     }
-    else {
-        bussinessActions('update_business', vendorid);
-
-        var inputs = document.getElementsByClassName('form-control');
-        for (var i = 0; i < inputs.length; i++) {
-            inputs[i].disabled = true;
-        }
-
-        document.getElementById('businessedit').style.display = 'block';
-        document.getElementById('businesssave').style.display = 'none';
-
-    }
-
 
 }

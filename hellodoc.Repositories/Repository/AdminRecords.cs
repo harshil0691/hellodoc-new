@@ -46,7 +46,6 @@ namespace hellodoc.Repositories.Repository
                 PatientName = b.Request.Firstname + ' ' + b.Request.Lastname,
                 PhoneNumber = b.Request.Phonenumber??0,
                 Email = b.Email,
-                //CreatedDate = b.Createddate,
             });
 
             adminRecords.blokedHistory = list.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
@@ -67,7 +66,8 @@ namespace hellodoc.Repositories.Repository
             var emails = _context.EmailLogs.Where(
                 e => 
                 ((adminRecords.SearchByRole != 0) ? e.Roleid == adminRecords.SearchByRole : true) &&
-                ((adminRecords.Email != null) ? e.Emailid.Contains(adminRecords.Email): true)
+                ((adminRecords.Email != null) ? e.Emailid.Contains(adminRecords.Email): true) &&
+                ((adminRecords.CreatedDate > new DateTime(1,1,1))? e.Createdate.Date == adminRecords.CreatedDate.Date : true)
             );
             var pageSize = 2;
             var pageNumber = 1;
@@ -75,13 +75,20 @@ namespace hellodoc.Repositories.Repository
             {
                 pageNumber = adminRecords.pageNumber;
             }
+            EmailLogs emailLogs = new EmailLogs();
+            foreach(var email in emails)
+            {
+
+            }
             var list = emails.Select(e => new EmailLogs
             {
                 EmailId = e.Emailid,
                 Sent = (e.Isemailsent==1)? "yes":"no",
                 EmaillogsId = e.Emaillogid,
                 RoleName = e.Role.Name,
-
+                ConfirmationNumber = e.Confirmationnumber,
+                CreateDate = e.Createdate.ToString("MMM") + e.Createdate.ToString("dd") + ", " + e.Createdate.ToString("yyyy"),
+                Recipient = (e.Requestid != null) ? e.Request.Firstname + "" + e.Request.Lastname: "",
             });
 
             adminRecords.emailLogs = list.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
@@ -110,7 +117,7 @@ namespace hellodoc.Repositories.Repository
             var list = request.Select(r => new PatientRecords
             {
                 PatientName = r.Firstname + " " + r.Lastname,
-                CreatedDate = (r.Request.Createddate).ToString(),
+                CreatedDate = r.Request.Createddate.ToString("MMM") + r.Request.Createddate.ToString("dd") + ", " + r.Request.Createddate.ToString("yyyy"),
                 ProviderName = r.Request.Physician.Firstname + " " + r.Request.Lastname,
                 Status = r.Request.Status.ToString(),
                 RequestId = r.Requestid??1,
@@ -152,6 +159,7 @@ namespace hellodoc.Repositories.Repository
                 Email = r.Email,
                 PhoneNumber = r.Mobile??0,
                 UserId = r.Userid,
+                
             });
 
             adminRecords.patientHistories = list.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
@@ -178,7 +186,7 @@ namespace hellodoc.Repositories.Repository
                 ((adminRecords.RequestType != 0) ? r.Request.Requesttypeid == adminRecords.RequestType: true )&&
                 ((adminRecords.ProviderName != null) ? r.Request.Physician.Firstname.Contains(adminRecords.ProviderName) : true )&&
                 ((adminRecords.Email != null) ? r.Email.Contains(adminRecords.Email): true )&&
-                ((adminRecords.PhoneNumber != 0) ? r.Phonenumber == adminRecords.PhoneNumber: true) &&
+                ((adminRecords.PhoneNumber !=0 )?r.Phonenumber.ToString().Contains(adminRecords.PhoneNumber.ToString()): true) &&
                 ((adminRecords.FromDateOfService > date)? r.Request.Createddate>= adminRecords.CreatedDate :true)
                 );
             var pageSize = 10;
@@ -204,7 +212,7 @@ namespace hellodoc.Repositories.Repository
                 PhysicianNote = _context.RequestNotes.FirstOrDefault(rn => rn.Requestid == r.Requestid).Physiciannotes,
                 AdminNote = _context.RequestNotes.FirstOrDefault(rn => rn.Requestid == r.Requestid).Adminnotes,
                 PatientNote = r.Notes,
-                DateOfService = r.Request.Createddate.ToString()
+                DateOfService = r.Request.Createddate.ToString("MMM") + r.Request.Createddate.ToString("dd") + ", " + r.Request.Createddate.ToString("yyyy"),
             }) ;
 
             if (export == true)
@@ -231,7 +239,8 @@ namespace hellodoc.Repositories.Repository
             var sms = _context.Smslogs.Where(
                 e =>
                 ((adminRecords.SearchByRole != 0) ? e.Roleid == adminRecords.SearchByRole : true) &&
-                ((adminRecords.PhoneNumber != null) ? e.Mobilenumber == adminRecords.PhoneNumber: true)
+                (e.Mobilenumber.ToString().Contains(adminRecords.PhoneNumber.ToString())) && 
+                ((adminRecords.ReceiverName != null)? e.Request.Firstname.Contains(adminRecords.ReceiverName):true)
             );
             var pageSize = 2;
             var pageNumber = 1;
@@ -245,7 +254,9 @@ namespace hellodoc.Repositories.Repository
                 Sent = (e.Issmssent == 1)?"yes":"no",
                 MobileNumber = e.Mobilenumber,
                 RoleName = e.Role.Name,
-
+                ConfirmationNumber = e.Confirmationnumber ?? "",
+                Recipient = (e.Requestid != null) ? e.Request.Firstname + "" + e.Request.Lastname : "",
+                CreatedDate = e.Createdate.ToString("MMM") + e.Createdate.ToString("dd") + ", " + e.Createdate.ToString("yyyy"),
             });
 
             adminRecords.smsLogs = list.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
@@ -265,6 +276,13 @@ namespace hellodoc.Repositories.Repository
         {
             var request = _context.Requests.FirstOrDefault(r => r.Requestid == requstid);
             _context.Requests.Remove(request);
+            _context.SaveChanges();
+        }
+
+        public void UnBlock(int requestid)
+        {
+            var request = _context.BlockRequests.FirstOrDefault(r => r.Requestid == requestid);
+            _context.BlockRequests.Remove(request);
             _context.SaveChanges();
         }
     }

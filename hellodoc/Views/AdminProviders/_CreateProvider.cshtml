@@ -133,6 +133,13 @@
                     <label for="floatingInput" class="mx-3">Phone Number</label>
                     <span asp-validation-for="MailingNumber" class="text-danger"> </span>
                 </div>
+                    <div class="form-floating mb-3 col-md-6 col-lg-6">
+                        <button type="button" class="btn btn-outline-info" onclick="ShowModal({actionType : 'SelectMap'})">Map</button>
+                        <input type="text" class="form-control" id="Lat" asp-for="Lat" hidden>
+                        <input type="text" class="form-control" id="Lang" asp-for="Lang" hidden>
+                        <span asp-validation-for="Lat" class="text-danger"> </span>
+                        <span asp-validation-for="Lang" class="text-danger"> </span>
+                    </div>
             </div>
 
             <h4 class="mt-3">Provider Profile</h4>
@@ -217,9 +224,6 @@
 
 </div>
 
-@*
-<script src="https://cdn.jsdelivr.net/gh/somanchiu/Keyless-Google-Maps-API@v6.6/mapsJavaScriptAPI.js"
-        async defer></script>*@
 <script>
     function DocSelectCheckbox(id){
         document.getElementById(id).checked = true;
@@ -252,28 +256,7 @@
         }
     });
 
-        //document.getElementById('City').addEventListener('focusout', initMap);
-        //function initMap() {
-        //    console.log("in");
-        //    var address = document.getElementById('Address1').value + " " + document.getElementById('Address2').value + " " + document.getElementById('City').value;
-        //    var geocoder = new google.maps.Geocoder();
-        //    geocoder.geocode({ address: address }, function (results, status) {
-        //        if (status == "OK") {
-        //            var latitude = results[0].geometry.location.lat();
-        //            var longitude = results[0].geometry.location.lng();
-        //            document.getElementById('lat').value = latitude;
-        //            document.getElementById('long').value = longitude;
-        //            console.log(latitude);
-        //            console.log(longitude);
-
-        //            return true;
-        //        } else {
-        //            console.log("Geocoding failed: " + status);
-        //            return false;
-        //        }
-        //    });
-        //    return true;
-        //};
+        
 });
 
 </script>

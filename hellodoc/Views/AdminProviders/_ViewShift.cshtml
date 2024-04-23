@@ -40,7 +40,12 @@
                     <div id="shiftresult" class="fs-6 text-danger"></div>
 
                     <div class="mt-4 mb-4 d-flex justify-content-end">
-                        <button type="button" class="mx-1 btn btn-info text-white" onclick="rdShift('return_shift')"> Return</button>
+                        @{
+                            if(ViewBag.loginType != "provider")
+                            {
+                                <button type="button" class="mx-1 btn btn-info text-white" onclick="rdShift('return_shift')"> Return</button>
+                            }
+                        }
                         <button type="button" class="btn btn-info text-white mx-1" onclick="pedit('vs','shiftsave','cancel','edit')" id="edit">Edit</button>
                         <button type="button" class="btn btn-info text-white mx-1" id="shiftsave" style="display:none;" onclick="shiftactions('edit_shift','#editshiftform')" disabled>Save</button>
                         <button type="reset" class="btn btn-info text-white mx-1" id="cancel" style="display:none;" onclick="pcancel('vs','shiftsave','cancel','edit')">Cancel</button>

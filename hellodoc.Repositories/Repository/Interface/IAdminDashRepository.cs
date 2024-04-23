@@ -17,7 +17,7 @@ namespace hellodoc.Repositories.Repository.Interface
         Task<RequestFormModal> Getpatientdata(int rid);
         Task<RequestCountByStatus> GetCount(string accountType,int physicianid);
 
-        Task SetNotes(NotesModel note, int? reqid, string? username);
+        Task SetNotes(NotesModel note, int? reqid, string? username,string logintype);
 
         Task<NotesModel> GetNotes(int reqid,int aspid);
 

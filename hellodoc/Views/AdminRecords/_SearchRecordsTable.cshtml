@@ -13,7 +13,7 @@
                 <th>Phone Number</th>
                 <th>Address</th>
                 <th>Zip</th>
-                <th>Request Status</th>
+                <th>Request Status</th> 
                 <th>Physician</th>
                 <th>Physician Note</th>
                 <th>Cancelled By Provider Note</th>
@@ -52,6 +52,67 @@
 
 </div>
 
+<div class="d-block d-sm-block d-md-none d-lg-none d-xl-none">
+    <div class="accordion" id="accordionExample">
+
+        @{
+            foreach (var a in Model.searchRecords)
+            {
+                <div class="accordion-item">
+                    <h4 class="accordion-header">
+                        <button class="accordion-button collapsed  d-grid" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_@a.RequestClientId" aria-expanded="true" aria-controls="collapse_@a.RequestClientId">
+                            <div class="m-2">
+                                <div>@a.Patientname</div>
+                            </div>
+                            <div class="m-2">
+                                <div>@a.Address</div>
+                            </div>
+
+                        </button>
+                       
+                    </h4>
+
+                    <div id="collapse_@a.RequestClientId" class="accordion-collapse collapse" data-bs-parent="#accordionExample" style="background-color:#d7ffffde;">
+                        <div class="accordion-body">
+
+                            <div class="mb-2"><i class="bi rounded-pill btn btn-outline-info text-black-50 bi-calendar3  px-2"></i> Requestor :<b> @a.Requestor </b></div>
+                            <div class="mb-2"><i class="bi rounded-pill btn btn-outline-info text-black-50 bi-calendar3  px-2"></i> Date Of Birth :<b> </b></div>
+                            <div class="mb-2"><i class="bi rounded-pill btn btn-outline-info text-black-50 bi-calendar3  px-2"></i>  Case Closed Date :<b> @a.ClosedCaseDate </b></div>
+                            <div class="mb-2"><i class="bi rounded-pill btn btn-outline-info text-black-50 bi-calendar3  px-2"></i> Email :<b> @a.Email </b></div>
+                            <div class="mb-2"><i class="bi rounded-pill btn btn-outline-info text-black-50 bi-calendar3  px-2"></i> Phone:<b> @a.PhoneNumber </b></div>
+                            <div class="mb-2"><i class="bi rounded-pill btn btn-outline-info text-black-50 bi-calendar3  px-2"></i> Address :<b> @a.Address </b></div>
+                            <div class="mb-2"><i class="bi bi-envelope-at rounded-pill btn btn-outline-info text-black-50 px-2"></i> Zip :<b> @a.Zip </b></div>
+                            <div class="mb-2"><i class="bi bi-telephone rounded-pill btn btn-outline-info text-black-50 px-2"></i> Request Status  :<b> @a.RequestStatus </b></div>
+                            <div class="mb-2"><i class="bi bi-telephone rounded-pill btn btn-outline-info text-black-50 px-2"></i> Provider :<b> @a.Physician </b></div>
+                            <div class="mb-2"><i class="bi bi-telephone rounded-pill btn btn-outline-info text-black-50 px-2"></i> Provider Note :<b> @a.PhysicianNote </b></div>
+                            <div class="mb-2"><i class="bi bi-telephone rounded-pill btn btn-outline-info text-black-50 px-2"></i> Cancelled By Provider Note :<b> @a.CancelledByProviderNote </b></div>
+                            <div class="mb-2"><i class="bi bi-telephone rounded-pill btn btn-outline-info text-black-50 px-2"></i> Admin Note :<b> @a.AdminNote </b></div>
+                            <div class="mb-2"><i class="bi bi-person-circle rounded-pill btn btn-outline-info text-black-50 px-2"></i> Cancellation Reasons :<b>  </b></div>
+                            <div class="mb-2"><i class="bi bi-person-circle rounded-pill btn btn-outline-info text-black-50 px-2"></i> Patient Note :<b> @a.PatientNote </b></div>
+                            <div class="row">
+                                <button class="btn btn-outline-info" onclick="recordsoperation({actionType:'DeletePermanantly',requestid : '@a.RequestId'})">Delete</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            }
+        }
+    </div>
+</div>
+
+@{
+    if(Model.searchRecords.Count == 0)
+    {
+        <div class="d-flex justify-content-center mb-2">
+            <p class="fs-5">No Records Found</p>
+        </div>
+    }
+    else
+    {
+        
+
 <div class="d-flex justify-content-between m-2">
     <div>
         @Model.entries
@@ -83,6 +144,11 @@
         }
     </div>
 </div>
+
+    }
+}
+
+
 
 
 @section Scripts{

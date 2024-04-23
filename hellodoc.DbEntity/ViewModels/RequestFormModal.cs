@@ -9,6 +9,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Security;
 
 namespace hellodoc.DbEntity.ViewModels
 {
@@ -105,6 +106,7 @@ namespace hellodoc.DbEntity.ViewModels
         public long F_Phonenumber { get; set; }
 
         public string F_RelationType { get; set; }
+        public string BackActionName { get; set; }
 
     }
 }

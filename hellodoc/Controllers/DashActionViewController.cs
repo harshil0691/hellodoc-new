@@ -102,10 +102,13 @@ namespace hellodoc.Controllers
                     return PartialView("_Encounter");
                 case "transfertoadmin":
                     ViewBag.requestid = partialView.requestid;
-                    ViewBag.physicianid = HttpContext.Session.GetInt32("physicianid");
+                    ViewBag.physicianid = HttpContext.Session.GetInt32("physiciandashid");
                     return PartialView("_TransferRequest");
                 case "SelectMap":
                     return PartialView("_MapModal");
+                case "RequestToAdmin":
+                    ViewBag.physicianid = HttpContext.Session.GetInt32("physiciandashid");
+                    return PartialView("_RequestToAdmin");
 
                 default:
                     return PartialView("_default");
@@ -114,7 +117,7 @@ namespace hellodoc.Controllers
 
         public IActionResult LoadActionViews(PartialViewModal partialView)
         {
-
+            ViewBag.loginType = HttpContext.Session.GetString("loginType");
             switch (partialView.actionType)
             {
                 case "dashboard":
@@ -500,7 +503,7 @@ namespace hellodoc.Controllers
                 var req = HttpContext.Session.GetInt32("requestid");
                 var user = HttpContext.Session.GetString("username");
                 var aspnetuser = HttpContext.Session.GetInt32("Aspid");
-                _adminDashRepository.SetNotes(note, req, user);
+                _adminDashRepository.SetNotes(note, req, user,HttpContext.Session.GetString("loginType")??"admin");
 
                 NotesModel notesModel = new NotesModel();
                 notesModel = _adminDashRepository.GetNotes(req ?? 1, aspnetuser ?? 1).Result;

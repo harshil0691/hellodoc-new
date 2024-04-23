@@ -209,30 +209,57 @@ namespace hellodoc.Repositories.Repository
             return requestCount;
         }
 
-        public async Task SetNotes(NotesModel note,int? reqid,string? username)
+        public async Task SetNotes(NotesModel note,int? reqid,string? username,string loginType)
         {
             
             RequestNote rnote = _context.RequestNotes.FirstOrDefaultAsync(u => u.Requestid == reqid).Result;
-
-            if (rnote == null)
+            
+            if(loginType == "provider")
             {
-                RequestNote rnote1 = new RequestNote();
-                rnote1.Adminnotes = note.Adminnotes;
-                rnote1.Requestid = reqid ??0;
-                rnote1.Createddate = DateTime.Now;
-                rnote1.Createdby = username;
+                if (rnote == null)
+                {
+                    RequestNote rnote1 = new RequestNote();
+                    rnote1.Physiciannotes = note.Physiciannotes;
+                    rnote1.Requestid = reqid ?? 0;
+                    rnote1.Createddate = DateTime.Now;
+                    rnote1.Createdby = username;
 
 
-                _context.RequestNotes.Add(rnote1);
-                _context.SaveChanges();
+                    _context.RequestNotes.Add(rnote1);
+                    _context.SaveChanges();
+                }
+                else
+                {
+                    rnote.Physiciannotes = note.Adminnotes;
+                    rnote.Modifieddate = DateTime.Now;
+                    rnote.Modifiedby = username;
+                    _context.SaveChanges();
+                }
             }
             else
             {
-                rnote.Adminnotes = note.Adminnotes;
-                rnote.Modifieddate = DateTime.Now;
-                rnote.Modifiedby = username;
-                _context.SaveChanges();
+                if (rnote == null)
+                {
+                    RequestNote rnote1 = new RequestNote();
+                    rnote1.Adminnotes = note.Adminnotes;
+                    rnote1.Requestid = reqid ?? 0;
+                    rnote1.Createddate = DateTime.Now;
+                    rnote1.Createdby = username;
+
+
+                    _context.RequestNotes.Add(rnote1);
+                    _context.SaveChanges();
+                }
+                else
+                {
+                    rnote.Adminnotes = note.Adminnotes;
+                    rnote.Modifieddate = DateTime.Now;
+                    rnote.Modifiedby = username;
+                    _context.SaveChanges();
+                }
             }
+
+            
 
         }
 
@@ -357,7 +384,7 @@ namespace hellodoc.Repositories.Repository
                     requestStatusLog.Status = 3;
                     requestStatusLog.Notes = blockCase.Blocknotes;
                     requestStatusLog.Requestid = request.Requestid;
-                    requestStatusLog.Adminid = admin.Adminid;
+                    requestStatusLog.Adminid = admin?.Adminid;
                     requestStatusLog.Createddate = DateTime.Now;
 
                     _context.RequestStatusLogs.Add(requestStatusLog);
@@ -365,8 +392,8 @@ namespace hellodoc.Repositories.Repository
                     BlockRequest blockRequest = new BlockRequest
                     {
                         Requestid = request.Requestid,
-                        Phonenumber = requestClient.Phonenumber,
-                        Email = requestClient.Email,
+                        Phonenumber = requestClient?.Phonenumber,
+                        Email = requestClient?.Email,
                         Createddate = DateTime.Now,
                         Reason = blockCase.Blocknotes
                     };

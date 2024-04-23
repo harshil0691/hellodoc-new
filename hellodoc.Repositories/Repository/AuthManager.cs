@@ -43,9 +43,13 @@ namespace hellodoc.Repositories.Repository
         {
             try
             {
-                var physician = _context.Physicians.FirstOrDefault(p => p.Aspnetuserid == aspid && p.Role.Accounttype == 4).Physicianid == null ? 0 : _context.Physicians.FirstOrDefault(p => p.Aspnetuserid == aspid).Physicianid;
+                var pid = _context.Physicians.FirstOrDefault(p => p.Aspnetuserid == aspid);
+                if(pid != null)
+                {
+                    return pid.Physicianid;
+                }
 
-                return physician;
+                return 0;
             }
             catch
             {

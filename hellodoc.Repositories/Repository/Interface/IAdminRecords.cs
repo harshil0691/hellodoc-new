@@ -18,5 +18,6 @@ namespace hellodoc.Repositories.Repository.Interface
         AdminRecordsListModal BlokedHistory(AdminRecordsListModal adminRecords);
         AdminRecordsListModal PatientHistory(AdminRecordsListModal adminRecords);
         void DeletePermenantly(int requstid);
+        void UnBlock(int requestid);
     }
 }

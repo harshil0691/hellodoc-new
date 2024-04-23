@@ -1,6 +1,6 @@
 ﻿
 function searchrecords(actionType, pageNumber, back, userid) {
-
+    event.preventDefault();
     var formdata = [];
     if (actionType != "PatientRecords") {
         formdata = $('#recordsForm').serializeArray();
@@ -11,23 +11,25 @@ function searchrecords(actionType, pageNumber, back, userid) {
     formdata.push({ name: "UserId", value : userid})
     var form = $.param(formdata);
 
-    $.ajax({
-        url: '/AdminRecords/GetTable',
-        type: 'POST',
-        data: form,
-        success: function (data) {
-            if (actionType == "PatientRecords") {
-                $('#mainDashContent').html(data);
+    if ($('#recordsForm').valid()) {
+        $.ajax({
+            url: '/AdminRecords/GetTable',
+            type: 'POST',
+            data: form,
+            success: function (data) {
+                if (actionType == "PatientRecords") {
+                    $('#mainDashContent').html(data);
+                }
+                else {
+                    $('#recordsTable').html(data);
+                }
+            },
+            error: function () {
+                console.error('Error loading partial view.');
             }
-            else {
-                $('#recordsTable').html(data);
-            }
-        },
-        error: function () {
-            console.error('Error loading partial view.');
-        }
-    });
-
+        });
+    }
+    
 }
 
 function GetRecordsView(dataObject) {
@@ -59,7 +61,6 @@ function GetRecordsView(dataObject) {
             if (dataObject.actionType == 'GetView') {
                 searchrecords(dataObject.action, '1', dataObject.Back);
             }
-
         },
         error: function () {
             console.error('Error loading partial view.');
@@ -69,15 +70,15 @@ function GetRecordsView(dataObject) {
 
 
 function recordsoperation(dataObeject) {
-
     $.ajax({
         url: '/AdminRecords/DBOperations',
         type: 'POST',
         data: dataObeject,
         success: function (data) {
-            $('#recordsTable').html(data);
-            if (dataObeject.actionType == 'DeletePermanantly') {
+            if (dataObeject.actionType == 'DeletePermanantly' ) {
                 searchrecords('SearchRecords', '1');
+            } else if (dataObeject.actionType == 'BlockedUnBlockHistory') {
+                searchrecords('BlockedHistory', '1');
             }
         },
         error: function () {

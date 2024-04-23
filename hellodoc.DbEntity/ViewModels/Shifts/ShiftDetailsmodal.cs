@@ -41,5 +41,6 @@ namespace hellodoc.DbEntity.ViewModels.Shifts
         public string datename { get; set; }
         public string role { get; set; }
         public List<int> SelectedDays { get; set; }
+        public string LoginType { get; set; }
     }
 }

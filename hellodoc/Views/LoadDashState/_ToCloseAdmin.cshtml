@@ -83,6 +83,7 @@
 
 </div>
 
+
 <div class="d-block d-sm-block d-md-none d-lg-none d-xl-none">
     <div class="accordion" id="accordionExample">
 
@@ -164,34 +165,46 @@
 
 </div>
 
-<div class="d-flex justify-content-between m-2">
-    <div>
-        @Model.entries
-    </div>
-    <div>
-        @{
-            if (Model.pageNumber > 1)
-            {
-                var previousPage = Model.pageNumber - 1;
-                <button class="btn btn-outline-secondary" onclick="loadPartialView('toclose', '@previousPage' ,'@Model.search' , '@Model.regionid')"><i class="bi bi-chevron-left"></i></button>
-            }
-            else
-            {
-                <button class="btn btn-outline-secondary"><i class="bi bi-chevron-left"></i></button>
-            }
-        }
+@{
+    if (Model.adminDashModels.Count == 0)
+    {
+        <div class="d-flex justify-content-center mb-2">
+            <p class="fs-5">No Records Found</p>
+        </div>
+    }
+    else
+    {
+        <div class="d-flex justify-content-between m-2">
+            <div>
+                @Model.entries
+            </div>
+            <div>
+                @{
+                    if (Model.pageNumber > 1)
+                    {
+                        var previousPage = Model.pageNumber - 1;
+                        <button class="btn btn-outline-secondary" onclick="loadPartialView('toclose', '@previousPage' ,'@Model.search' , '@Model.regionid')"><i class="bi bi-chevron-left"></i></button>
+                    }
+                    else
+                    {
+                        <button class="btn btn-outline-secondary"><i class="bi bi-chevron-left"></i></button>
+                    }
+                }
 
-        <button class="btn btn-outline-info">@Model.pageNumber</button>
-        @{
-            if (Model.morePages == true)
-            {
-                var nextpage = Model.pageNumber + 1;
-                <button class="btn btn-outline-secondary" onclick="loadPartialView('toclose', '@nextpage' ,'@Model.search' , '@Model.regionid')"><i class="bi bi-chevron-right"></i></button>
-            }
-            else
-            {
-                <button class="btn btn-outline-secondary"><i class="bi bi-chevron-right"></i></button>
-            }
-        }
-    </div>
-</div>
+                <button class="btn btn-outline-info">@Model.pageNumber</button>
+                @{
+                    if (Model.morePages == true)
+                    {
+                        var nextpage = Model.pageNumber + 1;
+                        <button class="btn btn-outline-secondary" onclick="loadPartialView('toclose', '@nextpage' ,'@Model.search' , '@Model.regionid')"><i class="bi bi-chevron-right"></i></button>
+                    }
+                    else
+                    {
+                        <button class="btn btn-outline-secondary"><i class="bi bi-chevron-right"></i></button>
+                    }
+                }
+            </div>
+        </div>
+    }
+}
+

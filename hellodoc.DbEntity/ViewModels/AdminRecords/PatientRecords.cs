@@ -17,6 +17,7 @@ namespace hellodoc.DbEntity.ViewModels.AdminRecords
         public string ConfirmationNumber { get; set; }
         public string ProviderName { get; set; }
         public string Status { get; set; } = "-";
+        public int requestTypeId { get; set; }
         public string Concludeddate { get; set; } = "-";
         public bool FinalReport { get; set; }
     }

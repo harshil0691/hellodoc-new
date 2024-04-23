@@ -1,0 +1,25 @@
+﻿
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="font-weight:600">
+                <div class="modal-header bg-info text-white">
+                    <h5 class="modal-title" id="exampleModalLabel"> Confirm Block</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <p class="mb-2 mt-3">Need To Send Message To Edit </p>
+                    <textarea rows="5" class="col-12 form-control mt-3 p-1" placeholder="Message" style="font-size:medium" id="Message"></textarea>
+
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-info text-white" onclick="DBActions({actionType : 'RequestToAdmin',physicianNotes : $('#Message').val()})">Continue</button>
+                    <button type="button" class="btn btn-outline-info" data-bs-dismiss="modal">Cancel</button>
+                </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>

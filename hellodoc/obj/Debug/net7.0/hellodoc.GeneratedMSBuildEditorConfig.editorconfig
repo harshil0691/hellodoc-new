@@ -228,6 +228,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaEFjdGlvblZpZXdcX1JlcXVlc3REVFlTdXBwb3J0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/DashActionView/_RequestToAdmin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaEFjdGlvblZpZXdcX1JlcXVlc3RUb0FkbWluLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/DashActionView/_SendAgreement.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaEFjdGlvblZpZXdcX1NlbmRBZ3JlZW1lbnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

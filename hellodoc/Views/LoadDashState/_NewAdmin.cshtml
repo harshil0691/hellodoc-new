@@ -164,35 +164,49 @@
      </div>
  </div>
 
-<div class="d-flex justify-content-between m-2 mb-5">
-    <div>
-        @Model.entries
-    </div>
-    <div>
-        @{
-            if (Model.pageNumber > 1)
-            {
-                var previousPage = Model.pageNumber - 1;
-                <button class="btn btn-outline-secondary" onclick="loadPartialView('new', '@previousPage' ,'@Model.search' , '@Model.regionid')"><i class="bi bi-chevron-left"></i></button>
-            }
-            else
-            {
-                <button class="btn btn-outline-secondary"><i class="bi bi-chevron-left"></i></button>
-            }
-        }
+@{
+    if (Model.adminDashModels.Count == 0)
+    {
+        <div class="d-flex justify-content-center mb-2">
+            <p class="fs-5">No Records Found</p>
+        </div>
+    }
+    else
+    {
 
-        <button class="btn btn-outline-info">@Model.pageNumber</button>
-        @{
-            if (Model.morePages == true)
-            {
-                var nextpage = Model.pageNumber + 1;
-                <button class="btn btn-outline-secondary" onclick="loadPartialView('new', '@nextpage' ,'@Model.search' , '@Model.regionid')"><i class="bi bi-chevron-right"></i></button>
-            }
-            else
-            {
-                <button class="btn btn-outline-secondary"><i class="bi bi-chevron-right"></i></button>
-            }
-        }
-    </div>
-</div>
+        <div class="d-flex justify-content-between m-2 mb-5">
+            <div>
+                @Model.entries
+            </div>
+            <div>
+                @{
+                    if (Model.pageNumber > 1)
+                    {
+                        var previousPage = Model.pageNumber - 1;
+                        <button class="btn btn-outline-secondary" onclick="loadPartialView('new', '@previousPage' ,'@Model.search' , '@Model.regionid')"><i class="bi bi-chevron-left"></i></button>
+                    }
+                    else
+                    {
+                        <button class="btn btn-outline-secondary"><i class="bi bi-chevron-left"></i></button>
+                    }
+                }
+
+                <button class="btn btn-outline-info">@Model.pageNumber</button>
+                @{
+                    if (Model.morePages == true)
+                    {
+                        var nextpage = Model.pageNumber + 1;
+                        <button class="btn btn-outline-secondary" onclick="loadPartialView('new', '@nextpage' ,'@Model.search' , '@Model.regionid')"><i class="bi bi-chevron-right"></i></button>
+                    }
+                    else
+                    {
+                        <button class="btn btn-outline-secondary"><i class="bi bi-chevron-right"></i></button>
+                    }
+                }
+            </div>
+        </div>
+    }
+}
+
+
 

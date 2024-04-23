@@ -72,9 +72,9 @@
                     @{
                         if (Model.role == "admin")
                         {
-                            <button class="btn btn-outline-info mx-1" onclick="ShiftCalender('day');">Day</button>
-                            <button class="btn btn-outline-info mx-1" onclick="ShiftCalender('week');">Week</button>
-                            <button class="btn btn-outline-info mx-1" onclick="ShiftCalender('month');">Month</button>
+                            <button class="btn btn-outline-info mx-1" id="day" onclick="ShiftCalender('day');">Day</button>
+                            <button class="btn btn-outline-info mx-1" id="week" onclick="ShiftCalender('week');">Week</button>
+                            <button class="btn btn-outline-info mx-1" id="month" onclick="ShiftCalender('month');">Month</button>
                         }
                         else{
                             <button class="btn btn-success text-white mx-1" onclick="providersModal({actionType:'createshift'})">Add New Shift</button>

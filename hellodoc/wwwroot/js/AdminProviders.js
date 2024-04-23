@@ -97,6 +97,7 @@ function ShiftCalender(shifttype,regionid) {
     var calendar = document.getElementById("cal");
     calendar.innerHTML = '';
 
+
     switch (schedulingtype) {
         case 'month':
             datehere = date.toLocaleDateString('en-US', { month: 'long' }) + ',' + date.getFullYear();
@@ -111,12 +112,19 @@ function ShiftCalender(shifttype,regionid) {
             calendar.innerHTML = '<input type="week" id="month-input" onchange="monthchange()"/>';
 
     }
+    if (localStorage.getItem("loginAccount") != "Provider") {
+        document.getElementById('day').classList.remove('btn-info', 'text-white');
+        document.getElementById('week').classList.remove('btn-info', 'text-white');
+        document.getElementById('month').classList.remove('btn-info', 'text-white');
+        document.getElementById(schedulingtype).classList.add('btn-info', 'text-white');
+    }
 
     $.ajax({
         url: '/AdminProviders/loadshift',
         type: 'POST',
         data: { datestring: date.toISOString(), sundaystring: sunday.toISOString(), saturdaystring: saturday.toISOString(), shifttype: shifttype,regionid:regionid },
         success: function (data) {
+            
             $('#shiftTable').html(data);
             $('#datediv').text(datehere);
         },
@@ -238,7 +246,6 @@ function shiftactions(actionType, formid) {
     var form = $.param(formdata);
 
     if ($(formid).valid()) {
-        console.log(0);
         $.ajax({
             url: '/AdminProviders/' + actionType,
             type: 'POST',

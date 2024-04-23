@@ -50,7 +50,8 @@ namespace hellodoc.Controllers
             }
         }
 
-        public IActionResult DBOperations(AdminPartnersModal adminPartners)
+        [HttpPost]
+        public void DBOperations(AdminPartnersModal adminPartners)
         {
             switch (adminPartners.actionType)
             {
@@ -64,13 +65,8 @@ namespace hellodoc.Controllers
 
                 case "delete_business":
                     _adminPartners.DeleteBusiness(adminPartners.Vendorid);
-                    return RedirectToAction("admin_dash","AdminDash");
-
-                default:
-                    return PartialView("Dedault");
+                    break;
             }
-
-            return PartialView("Dedault");
         }
         
     }

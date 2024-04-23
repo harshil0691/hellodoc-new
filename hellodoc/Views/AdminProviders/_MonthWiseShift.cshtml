@@ -51,12 +51,13 @@
                                                 </button>
                                             </div>
                                             count = count + 1;
+                                            
                                         }
-                                        if (count > 5)
+                                        if (count > 4 && moreshift > 0)
                                         {
                                             <div style="overflow-y:auto;">
                                                 <button class="w-100 h-100 border-0" style="background-color:mediumpurple;" onclick="providersModal({actionType:'moreshifts',shiftdate:'@item.Shiftdate'})">
-                                                    More Shifts(@moreshift)...
+                                                    All Shifts(@moreshift)...
                                                 </button>
                                             </div>
                                             count = count + 1;

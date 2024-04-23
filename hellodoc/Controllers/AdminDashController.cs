@@ -15,6 +15,7 @@ using hellodoc.DbEntity.DataModels;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Newtonsoft.Json;
+using NUnit.Framework.Internal.Execution;
 
 namespace hellodoc.Controllers
 {
@@ -113,22 +114,6 @@ namespace hellodoc.Controllers
 
         }
 
-        //public void SaveFile(IFormFile uploadfile, int rid)
-        //{
-        //    string uniqueFilename = null;
-
-        //    if (uploadfile != null)
-        //    {
-        //        string uploadfolder = Path.Combine(HostingEnviroment.WebRootPath, "uploads");
-        //        uniqueFilename = Guid.NewGuid().ToString() + "_" + uploadfile.FileName;
-        //        string filename = Path.Combine(uploadfolder, uniqueFilename);
-        //        uploadfile.CopyTo(new FileStream(filename, FileMode.Create));
-
-        //        _requests.SetRequestWiseFile(uniqueFilename, rid);
-        //    }
-
-        //}
-
         public IActionResult LoadPartialDashView(string tabId)
         {
 
@@ -214,29 +199,36 @@ namespace hellodoc.Controllers
         [HttpPost]
         public IActionResult exportToExcel(PartialViewModal partialView , AdminRecordsListModal adminRecords)
         {
-            var stream = new MemoryStream();
+            // Set the LicenseContext before creating the ExcelPackage instance
             ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+
+            var stream = new MemoryStream();
 
             switch (partialView.exportType)
             {
                 case "DashboardAll":
                     var status1 = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-
                     var dashModel1 = _adminDashRepository.GetRequests(partialView);
 
                     using (var package = new ExcelPackage(stream))
                     {
                         var workSheet = package.Workbook.Worksheets.Add("Sheet1");
-                        workSheet.Cells.LoadFromCollection(dashModel1.adminDashModels, true);
+                        //workSheet.Cells.LoadFromCollection(dashModel1.adminDashModels, true);
+                        workSheet.Cells[1, 1].Value = "data1";
+                        workSheet.Cells[1, 2].Value = "data2";
+
+                        for (int i = 0; i < dashModel1.adminDashModels.Count; i++)
+                        {
+                            workSheet.Cells[i + 2, 1].Value = dashModel1.adminDashModels[i].Requestid;
+                            workSheet.Cells[i + 2, 2].Value = dashModel1.adminDashModels[i].PatientName;
+                            // Populate more properties as needed
+                        }
                         package.Save();
                     }
-
                     break;
 
-                case "DashboardFilterd":
-
+                case "DashboardFiltered":
                     var status = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-
                     var dashModel = _adminDashRepository.GetRequests(partialView);
 
                     using (var package = new ExcelPackage(stream))
@@ -245,26 +237,37 @@ namespace hellodoc.Controllers
                         workSheet.Cells.LoadFromCollection(dashModel.adminDashModels, true);
                         package.Save();
                     }
-
                     break;
 
                 case "SearchRecords":
-
                     using (var package = new ExcelPackage(stream))
                     {
                         var workSheet = package.Workbook.Worksheets.Add("Sheet1");
-                        workSheet.Cells.LoadFromCollection(_adminRecords.SearchRecords(adminRecords,true).searchRecords, true);
+                        //workSheet.Cells.LoadFromCollection(_adminRecords.SearchRecords(adminRecords, true).searchRecords, true);
+                        var list = _adminRecords.SearchRecords(adminRecords, true).searchRecords;
+                        workSheet.Cells[1, 1].Value = "data1";
+                        workSheet.Cells[1, 2].Value = "data2";
+
+                        for (int i = 0; i < list.Count; i++)
+                        {
+                            workSheet.Cells[i + 2, 1].Value = list[i].RequestClientId;
+                            workSheet.Cells[i + 2, 2].Value = list[i].PhoneNumber;
+                            // Populate more properties as needed
+                        }
                         package.Save();
                     }
-
                     break;
             }
 
-            
+            // Reset the position of the MemoryStream
             stream.Position = 0;
+
+            // Generate a unique file name for the Excel file
             string excelName = $"UserList-{DateTime.Now.ToString("yyyyMMddHHmmssfff")}.xlsx";
 
+            // Return the Excel file as a FileResult
             return File(stream, "application/octet-stream", excelName);
+
         }
 
     }

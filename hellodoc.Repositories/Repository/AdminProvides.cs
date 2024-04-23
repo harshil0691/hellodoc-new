@@ -7,6 +7,7 @@ using hellodoc.Repositories.Repository.Interface;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using System;
@@ -16,6 +17,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Twilio.TwiML;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace hellodoc.Repositories.Repository
@@ -75,7 +77,7 @@ namespace hellodoc.Repositories.Repository
         public async Task<ProviderProfileModal> ProviderProfileData(int physicianid)
         {
             var physician = _context.Physicians.FirstOrDefault(u=>u.Physicianid == physicianid);
-            var aspuser = _context.AspNetUsers.FirstOrDefault(u => u.Id == physician.Aspnetuserid);
+            var aspuser = _context.AspNetUsers.Include(u => u.AspNetUserRole.Role.RoleMenus).FirstOrDefault(a => a.Id == physician.Aspnetuserid);
 
             ProviderProfileModal providerProfile = new ProviderProfileModal
             {
@@ -105,6 +107,17 @@ namespace hellodoc.Repositories.Repository
                 SignaturePath = physician.Signature,
                 LicensePath = physician.Islicensedoc,
             };
+
+            var menu = aspuser.AspNetUserRole?.Role.RoleMenus.Select(r => r.Menuid).ToList();
+            var menunames = _context.Menus.Where(m => menu.Contains(m.Menuid)).Select(m => m.Name).ToList();
+            if(menunames != null)
+            {
+                if (menunames.Contains("EditProfile"))
+                {
+                    providerProfile.IsAccessToEdit = true;
+                }
+            }
+            
 
             providerProfile.roles = _context.Roles.ToList();
             providerProfile.regions = _context.Regions.ToList();
@@ -352,7 +365,15 @@ namespace hellodoc.Repositories.Repository
                     Roleid = providerProfile.selectrole,
                 };
 
+                PhysicianLocation physicianLocation = new PhysicianLocation
+                {
+                    Physician = physician,
+                    Physicianname = physician.Firstname + physician.Lastname,
+                    Latitude = providerProfile.Lat,
+                    Longitude = providerProfile.Lang,
+                };
                 _context.AspNetUserRoles.Add(aspNetUserRole);
+                _context.PhysicianLocations.Add(physicianLocation);
                 _context.SaveChanges();
             }
         }
@@ -388,11 +409,12 @@ namespace hellodoc.Repositories.Repository
             _context.SaveChanges();
         }
 
-        public List<ShiftDetailsmodal> ShiftDetailsmodal(DateTime date, DateTime sunday, DateTime saturday,string type, int physicianid,int regionid)
+        public List<ShiftDetailsmodal> ShiftDetailsmodal(DateTime date, DateTime sunday, DateTime saturday,string type, int physicianid,int regionid,string schedulingFor)
         {
             var shiftdetails = _context.ShiftDetails.Where(u => u.Shiftdate.Month == date.Month && 
                                                                 u.Shiftdate.Year == date.Year && 
-                                                                ((regionid != 0) ? u.Regionid == regionid :true)
+                                                                ((regionid != 0) ? u.Regionid == regionid :true)&&
+                                                                ((schedulingFor == "provider") && (physicianid !=0)? u.Shift.Physicianid == physicianid:true)
                                                                 );
 
             switch (type)

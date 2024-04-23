@@ -11,7 +11,7 @@
         </div>
          
         <div class="d-grid gap-2 col-12 col-sm-12 col-md-10 col-lg-8 mx-auto d-flex flex-column rounded-3 bgcolor px-4 mt-3 shadow-lg">
-            <form id="adminProfile">
+            <form id="adminProfile" onsubmit="CRUDAccess('createAdmin')" method="post">
             <h5 class="mt-4">Account Information</h5>
             <div class="row mt-3">
                 <div class="form-floating mb-3  col-md-4">
@@ -115,7 +115,7 @@
             </div>
             
             <div class="d-flex justify-content-end mt-4">
-                <button type="button" class="btn btn-success text-white mx-3 p-2 px-3 mb-2" onclick="CRUDAccess('createAdmin')">Create Account</button>
+                <button type="submit" class="btn btn-success text-white mx-3 p-2 px-3 mb-2" >Create Account</button>
             </div>
                     
             </form>
@@ -127,8 +127,6 @@
 </div>
 
 
-@section Scripts{
-    @{
-        <Partial name="_ValidationScriptsPartial" />
-    }
-    }
+
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>

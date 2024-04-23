@@ -19,25 +19,22 @@
     </div>
 </div>
 
-<footer style=" position:fixed;bottom:0; width:100%;">
-    <div style="padding-right: 40px;">
-        <a href="" style="color: white;">Terms Of Conditions</a> |
-        <a href="" style="color: white;">Privacy Policy</a>
-    </div>
-</footer>
-
 
 <script>
 
     $(document).ready(function () {
-
         var map = L.map('map').setView([23.046099, 72.536492], 13);
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
         function onMapClick(e) {
-            console.log(e);
+            var coord = e.latlng;
+            var lat = coord.lat;
+            var lng = coord.lng;
+            console.log(lat);
+            document.getElementById('Lat').value = lat;
+            document.getElementById('Lang').value = lng;
         }
 
         map.on('click', onMapClick);

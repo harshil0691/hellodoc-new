@@ -33,6 +33,10 @@ namespace hellodoc.DbEntity.ViewModels
         [RegularExpression("^[0-9]*$", ErrorMessage = "Only numbers are allowed")]
         public long? NPI { get; set; }
         public string Location { get; set; }
+        [Required]
+        public double Lat { get; set; }
+        [Required]
+        public double Lang { get; set; }
         public DateOnly? DateOfBirth { get; set; }
         public DateOnly? DateOfService { get; set; }
         [Required(ErrorMessage = "Phone number is required")]
@@ -68,26 +72,27 @@ namespace hellodoc.DbEntity.ViewModels
         [Required(ErrorMessage = "Email is required")]
         [EmailAddress(ErrorMessage = "Invalid email address")]
         public string BusinessWebsite { get; set; }
-        public IFormFile photo { get; set; }
-        public IFormFile IndependentContractorManagement { get; set; }
-        public IFormFile BackgroungCheck { get; set; }
-        public IFormFile HIPAA { get; set; }
-        public IFormFile NondisclosureAggrement { get; set; }
-        public IFormFile Signature { get; set; }
-        public IFormFile License { get; set; }
+        public IFormFile? photo { get; set; }
+        public IFormFile? IndependentContractorManagement { get; set; }
+        public IFormFile? BackgroungCheck { get; set; }
+        public IFormFile? HIPAA { get; set; }
+        public IFormFile? NondisclosureAggrement { get; set; }
+        public IFormFile? Signature { get; set; }
+        public IFormFile? License { get; set; }
 
         public string? photoPath { get; set; }
-        public string SignaturePath { get; set; }
-        public string IndependentContractorManagementPath { get; set; }
-        public string BackgroungCheckPath { get; set; }
-        public string HIPAAPath { get; set; }
-        public string NondisclosureAggrementPath { get; set; }
-        public string LicensePath { get; set; }
+        public string? SignaturePath { get; set; }
+        public string? IndependentContractorManagementPath { get; set; }
+        public string? BackgroungCheckPath { get; set; }
+        public string? HIPAAPath { get; set; }
+        public string? NondisclosureAggrementPath { get; set; }
+        public string? LicensePath { get; set; }
 
         public string AdminNotes { get; set; }
         public string selectedRegion {  get; set; }
         [Required(ErrorMessage = "Role Selection Is Required")]
         public int selectrole { get; set; }
+        public bool IsAccessToEdit { get; set; }
         public List<Role> roles { get; set; }
         public List<Region> regions { get; set; }
         public List<int> regionList { get; set; }

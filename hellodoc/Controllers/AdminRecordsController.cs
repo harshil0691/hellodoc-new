@@ -78,6 +78,9 @@ namespace hellodoc.Controllers
                 case "DeletePermanantly":
                     _adminRecords.DeletePermenantly(partialView.requestid);
                     break;
+                case "Unblock":
+                    _adminRecords.UnBlock(partialView.requestid);
+                    break;
             }
         }
 

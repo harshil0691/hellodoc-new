@@ -100,10 +100,11 @@ namespace hellodoc.Controllers
             
         }
 
-        [HttpPost]
+        
         public IActionResult edit_physician(int physicianid)
         {
             var userid1 = HttpContext.Session.GetInt32("Aspid");
+            ViewBag.loginType = HttpContext.Session.GetString("loginType");
             ProviderProfileModal providerProfile = _adminProviders.ProviderProfileData(physicianid).Result;
             return PartialView("_ProviderProfile", providerProfile);
         }
@@ -127,7 +128,7 @@ namespace hellodoc.Controllers
             DateTime sunday = DateTime.Parse(sundaystring);
             DateTime saturday = DateTime.Parse(saturdaystring);
 
-            var physicianid = HttpContext.Session.GetInt32("physicianid");
+            var physicianid = HttpContext.Session.GetInt32("physiciandashid");
 
             switch (shifttype)
             {
@@ -144,7 +145,7 @@ namespace hellodoc.Controllers
                     monthShift.daysInMonth = totalDays ;
                     monthShift.firstDayOfMonth = firstDayOfMonth;
                     monthShift.startDayIndex = startDayIndex;
-                    monthShift.shiftDetailsmodals = _adminProviders.ShiftDetailsmodal(date,sunday,saturday,"month",physicianid??0,regionid);
+                    monthShift.shiftDetailsmodals = _adminProviders.ShiftDetailsmodal(date,sunday,saturday,"month",physicianid??0,regionid, HttpContext.Session.GetString("loginType") ?? "admin");
 
                     return PartialView("_MonthWiseShift", monthShift);
 
@@ -153,7 +154,7 @@ namespace hellodoc.Controllers
                     WeekShiftModal weekShift = new WeekShiftModal();
 
                     weekShift.Physicians = _adminProviders.physicians(regionid);
-                    weekShift.shiftDetailsmodals = _adminProviders.ShiftDetailsmodal(date, sunday, saturday, "week",physicianid??0,regionid);
+                    weekShift.shiftDetailsmodals = _adminProviders.ShiftDetailsmodal(date, sunday, saturday, "week",physicianid??0,regionid, HttpContext.Session.GetString("loginType") ?? "admin");
 
                     List<int> dlist = new List<int>();
 
@@ -172,7 +173,7 @@ namespace hellodoc.Controllers
 
                     DayShiftModal dayShift = new DayShiftModal();
                     dayShift.Physicians = _adminProviders.physicians(regionid);
-                    dayShift.shiftDetailsmodals = _adminProviders.ShiftDetailsmodal(date, sunday, saturday, "day", physicianid ?? 0, regionid);
+                    dayShift.shiftDetailsmodals = _adminProviders.ShiftDetailsmodal(date, sunday, saturday, "day", physicianid ?? 0, regionid, HttpContext.Session.GetString("loginType") ?? "admin");
 
                     return PartialView("_DayWiseShift",dayShift);
 
@@ -186,7 +187,7 @@ namespace hellodoc.Controllers
         public IActionResult OpenModal(PartialViewModal partialView)
         {
             HttpContext.Session.SetInt32("shiftdetailsid", partialView.shiftdetailsid);
-
+            ViewBag.loginType = HttpContext.Session.GetString("loginType");
             var physicianid = HttpContext.Session.GetInt32("physicianid");
             switch(partialView.actionType)
             {
@@ -195,14 +196,16 @@ namespace hellodoc.Controllers
                     return PartialView("_ViewShift",shift);
 
                 case "moreshifts":
-                    var list = _adminProviders.ShiftDetailsmodal(partialView.shiftdate,DateTime.Now,DateTime.Now,"month",physicianid??0,partialView.regionid).Where(d => d.Shiftdate.Day == partialView.shiftdate.Day).ToList();
+                    var list = _adminProviders.ShiftDetailsmodal(partialView.shiftdate,DateTime.Now,DateTime.Now,"month",physicianid??0,partialView.regionid, HttpContext.Session.GetString("loginType") ?? "admin").Where(d => d.Shiftdate.Day == partialView.shiftdate.Day).ToList();
                     ViewBag.TotalShift = list.Count();
                     return PartialView("_MoreShifts",list);
 
                 case "createshift":
                     ShiftDetailsmodal shiftDetailsmodal = new ShiftDetailsmodal();
-                    shiftDetailsmodal.regions = _adminDashRepository.GetRegions(HttpContext.Session.GetInt32("physicianid") ?? 0);
-                    shiftDetailsmodal.Physicianid = HttpContext.Session.GetInt32("physicianid")??0;
+                    shiftDetailsmodal.regions = _adminDashRepository.GetRegions(HttpContext.Session.GetInt32("physiciandashid") ?? 0);
+                    shiftDetailsmodal.physics = _adminDashRepository.GetPhysicianList();
+                    shiftDetailsmodal.Physicianid = HttpContext.Session.GetInt32("physiciandashid")??0;
+                    shiftDetailsmodal.LoginType = HttpContext.Session.GetString("loginType") ?? "admin";
                     shiftDetailsmodal.Shiftdate = DateTime.Now;
                     return PartialView("_CreateShift", shiftDetailsmodal);
 
@@ -238,7 +241,8 @@ namespace hellodoc.Controllers
         public void create_shift(ShiftDetailsmodal shiftDetailsmodal)
         {
             var aspid = HttpContext.Session.GetInt32("userID");
-            int physician = HttpContext.Session.GetInt32("physicianid")??0;
+            int physician = HttpContext.Session.GetInt32("physiciandashid") ??0;
+            
             if(physician != 0)
             {
                 shiftDetailsmodal.Physicianid = physician;

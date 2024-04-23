@@ -1,4 +1,5 @@
 ﻿
+
 function GetAccessView(dataObject) {
     dataObject.datestring = date.toISOString();
     $.ajax({
@@ -28,7 +29,7 @@ function GetAccessView(dataObject) {
 }
 
 function CRUDAccess(actionType) {
-
+    event.preventDefault();
     var regionlist = [];
     var checkboxes = document.querySelectorAll(".regioncheck");
 
@@ -45,18 +46,21 @@ function CRUDAccess(actionType) {
     formdata.push({ name: "selectedRegion", value: regionlist });
     var form = $.param(formdata);
 
-    $.ajax({
-        url: '/AdminAccess/CRUDAccess',
-        type: 'POST',
-        data: form,
-        success: function (data) {
-            if (data.type != 'error') {
-                toastr.success(data.message);
+    if ($('#adminProfile').valid()) {
+        $.ajax({
+            url: '/AdminAccess/CRUDAccess',
+            type: 'POST',
+            data: form,
+            success: function (data) {
+                if (data.type != 'error') {
+                    toastr.success(data.message);
+                }
+                GetAccessView({ actionType: "accountAccess" });
+            },
+            error: function () {
+                console.error('Error loading partial view.');
             }
-            GetAccessView({ actionType : "accountAccess" });
-        },
-        error: function () {
-            console.error('Error loading partial view.');
-        }
-    });
+        });
+    }
+
 }

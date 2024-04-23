@@ -60,9 +60,7 @@ namespace hellodoc.Controllers
                     return RedirectToAction("GetProvidersView", "AdminProviders", new { actionType = "invoicing" });
 
                 case "myprofile":
-                    var userid = HttpContext.Session.GetInt32("Aspid");
-                    AdminProfileModal profileModal = _adminDashRepository.GetAdminProfileData(userid ?? 1);
-                    return PartialView("_MyProfile", profileModal);
+                    return RedirectToAction("edit_physician", "AdminProviders", new { physicianid = HttpContext.Session.GetInt32("physiciandashid") ?? 1 });
 
                 case "scheduling":
                     return RedirectToAction("GetProvidersView", "AdminProviders", new { actionType = "scheduling" });
@@ -84,6 +82,16 @@ namespace hellodoc.Controllers
             }
             return "internal error";
             
+        }
+
+        public string RequestToAdmin(PartialViewModal partialView)
+        {
+            partialView.physicianid = HttpContext.Session.GetInt32("physiciandashid")??0;
+            if (_providerRepo.RequestToAdmin(partialView) == "ok")
+            {
+                return "ok";
+            }
+            return "internal error";
         }
     }
 }
