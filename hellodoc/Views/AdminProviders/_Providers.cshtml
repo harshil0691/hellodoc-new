@@ -23,7 +23,7 @@
                     }
                 </select>
             </div>
-            <div class="d-flex justify-content-center justify-content-md-end m-2">
+            <div class="d-flex justify-content-center justify-content-md-end mx-2">
                     <button class="btn btn-info text-white mx-2" style="display:none" id="ProvidersSave" onclick="saveStopNotification()">Save</button>
                     <button class="btn btn-info text-white" onclick="GetProvidersView({actionType : 'createProvider'})">Create Provider Account</button>
             </div>
@@ -46,15 +46,15 @@
                             foreach (var a in Model.providersTableModal)
                             {
                                 
-                                <tr class=" m-2">
+                                <tr class="m-2">
                                     <td class="text-black"><input type="checkbox" class="custom-check providerscheck bg-info" value="@a.physicianid" checked="@a.stopnotification" /> </td>
                                     <td class="text-black">@a.name</td>
                                     <td class="text-black">@a.role</td>
                                     <td class="text-black">@a.status</td>
                                     <td class="text-black">@a.status</td>
                                     <td>
-                                        <button class="btn btn-outline-info" onclick="ShowModal({ActionType:'ContactProvider',physicianid:@a.physicianid})">Contact</button>
-                                        <button class="btn btn-outline-info" onclick="loadProviderView('edit_physician','@a.physicianid')">Edit</button>
+                                        <button class="btn btn-outline-info m-1" onclick="ShowModal({ActionType:'ContactProvider',physicianid:@a.physicianid})">Contact</button>
+                                        <button class="btn btn-outline-info m-1" onclick="loadProviderView('edit_physician','@a.physicianid')">Edit</button>
                                     </td>
                                 </tr>
                             }
@@ -65,7 +65,7 @@
 
             </div>
 
-            <div class="d-block d-md-none">
+            <div class="d-block d-md-none mt-4">
                 <div class="accordion" id="accordionExample">
 
                     @{
@@ -75,8 +75,8 @@
                                 <h2 class="accordion-header">
                                     <button class="accordion-button collapsed  d-grid" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_@a.physicianid" aria-expanded="true" aria-controls="collapse_@a.physicianid">
                                         <div class="d-grid w-100 m-2">
-                                            <div><input type="checkbox" class="custom-check providerscheck mx-2 bg-info" value="@a.physicianid" checked="@a.stopnotification" /> <div>@a.name</div></div>
-                                            <div class="d-flex">On Call Status : <div class="fs-6 px-2"> @a.status </div> </div>
+                                            <div class="m-2"><input type="checkbox" class="custom-check providerscheck mx-2 bg-info" value="@a.physicianid" checked="@a.stopnotification" /> <div class="m-1 fs-6 text-black">@a.name</div></div>
+                                            <div class="d-flex m-1">On Call Status : <div class="fs-6 px-2"> @a.status </div> </div>
                                         </div>
                                     </button>
 
@@ -90,8 +90,8 @@
                                             <div class="d-flex"> <i class="bi bi-check2-circle text-info pe-2 mt-1"></i> Status : <div class="fs-6 px-2"> @a.status </div> </div>
                                         </div>
                                         <div class="d-flex justify-content-end w-100 m-2">
-                                            <button class="btn btn-outline-info" onclick="ShowModal({ActionType:'ContactProvider',physicianid:@a.physicianid})">Contact</button>
-                                            <button class="btn btn-outline-info" onclick="loadProviderView('edit_physician','@a.physicianid')">Edit</button>
+                                            <button class="btn btn-outline-info mx-2" onclick="ShowModal({ActionType:'ContactProvider',physicianid:@a.physicianid})">Contact</button>
+                                            <button class="btn btn-outline-info mx-2" onclick="loadProviderView('edit_physician','@a.physicianid')">Edit</button>
                                         </div>
                                         
                                     </div>
@@ -103,38 +103,50 @@
                 </div>
             </div>
 
+            @{
+                if(Model.providersTableModal.Count() <= 0)
+                {
+                    <div class="d-flex justify-content-center mb-2">
+                        <p class="fs-5">No Records Found</p>
+                    </div>
+                }
+                else
+                {
+                    <div class="d-flex justify-content-between m-2">
+                        <div>
+                            @Model.entries
+                        </div>
+                        <div>
+                            @{
+                                if (Model.pageNumber > 1)
+                                {
+                                    var previousPage = Model.pageNumber - 1;
+                                    <button class="btn btn-outline-secondary" onclick="GetProvidersView({actionType:'provider',pageNumber:'@previousPage'})"><i class="bi bi-chevron-left"></i></button>
+                                }
+                                else
+                                {
+                                    <button class="btn btn-outline-secondary"><i class="bi bi-chevron-left"></i></button>
+                                }
+                            }
 
-            <div class="d-flex justify-content-between m-2">
-                <div>
-                    @Model.entries
-                </div>
-                <div>
-                    @{
-                        if (Model.pageNumber > 1)
-                        {
-                            var previousPage = Model.pageNumber - 1;
-                            <button class="btn btn-outline-secondary" onclick="GetProvidersView({actionType:'provider',pageNumber:'@previousPage'})"><i class="bi bi-chevron-left"></i></button>
-                        }
-                        else
-                        {
-                            <button class="btn btn-outline-secondary"><i class="bi bi-chevron-left"></i></button>
-                        }
-                    }
+                            <button class="btn btn-outline-info">@Model.pageNumber</button>
+                            @{
+                                if (Model.morePages == true)
+                                {
+                                    var nextpage = Model.pageNumber + 1;
+                                    <button class="btn btn-outline-secondary" onclick="GetProvidersView({actionType:'provider',pageNumber:'@nextpage'})"><i class="bi bi-chevron-right"></i></button>
+                                }
+                                else
+                                {
+                                    <button class="btn btn-outline-secondary"><i class="bi bi-chevron-right"></i></button>
+                                }
+                            }
+                        </div>
+                    </div>
+                }
+            }
 
-                    <button class="btn btn-outline-info">@Model.pageNumber</button>
-                    @{
-                        if (Model.morePages == true)
-                        {
-                            var nextpage = Model.pageNumber + 1;
-                            <button class="btn btn-outline-secondary" onclick="GetProvidersView({actionType:'provider',pageNumber:'@nextpage'})"><i class="bi bi-chevron-right"></i></button>
-                        }
-                        else
-                        {
-                            <button class="btn btn-outline-secondary"><i class="bi bi-chevron-right"></i></button>
-                        }
-                    }
-                </div>
-            </div>
+            
 
         </div>
         

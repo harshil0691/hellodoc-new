@@ -90,14 +90,7 @@ namespace hellodoc.Controllers
         [HttpPost]
         public void stopnotification(List<int> idlist,List<int> totallist)
         {
-            try
-            {
-                _adminProviders.StopNotification(idlist, totallist);
-            }
-            catch
-            {
-            }
-            
+            _adminProviders.StopNotification(idlist.Distinct().ToList(), totallist.Distinct().ToList());
         }
 
         

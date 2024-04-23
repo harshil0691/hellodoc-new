@@ -25,6 +25,7 @@ function saveStopNotification() {
         success: function (data) {
             document.getElementById("ProvidersSave").style.display = "none";
             selectedCheck = idlist;
+            loadPartialDashView('provider');
             toastr.success("Notification Changes Saved Successfully");
         },
         error: function () {
