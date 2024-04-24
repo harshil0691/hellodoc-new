@@ -3,19 +3,9 @@ using hellodoc.Repositories.Repository.Interface;
 using hellodoc.DbEntity.ViewModels;
 using hellodoc.Repositories.Repository;
 using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
-using hellodoc.DbEntity.ViewModels.DashboardLists;
-using Google.Apis.Auth.OAuth2;
-using Google.Apis.Calendar.v3;
-using Google.Apis.Calendar.v3.Data;
-using Google.Apis.Services;
-using System;
 using OfficeOpenXml;
-using static Org.BouncyCastle.Bcpg.Attr.ImageAttrib;
 using hellodoc.DbEntity.DataModels;
 using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using Newtonsoft.Json;
-using NUnit.Framework.Internal.Execution;
 
 namespace hellodoc.Controllers
 {

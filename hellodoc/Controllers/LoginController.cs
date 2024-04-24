@@ -73,7 +73,7 @@ namespace hellodoc.Controllers
                 }
 
 
-                SessionUtils.SetLoggedInUser(HttpContext.Session, aspnetuser);
+                //SessionUtils.SetLoggedInUser(HttpContext.Session, aspnetuser);
 
                 var jwttoken = _jwtServices.GenarateJwtToken(aspnetuser);
                 Response.Cookies.Append("jwt", jwttoken);
@@ -87,7 +87,7 @@ namespace hellodoc.Controllers
                 TempData["success"] = "User LogIn Successfully";
                 HttpContext.Session.SetInt32("Aspid", aspnetuser.Id);
 
-                SessionUtils.SetLoggedInUser(HttpContext.Session, aspnetuser);
+                //SessionUtils.SetLoggedInUser(HttpContext.Session, aspnetuser);
                 var jwttoken = _jwtServices.GenarateJwtToken(aspnetuser);
                 Response.Cookies.Append("jwt", jwttoken);
 
@@ -113,7 +113,7 @@ namespace hellodoc.Controllers
                 TempData["success"] = "User LogIn Successfully";
                 HttpContext.Session.SetInt32("Aspid", aspnetuser.Id);
 
-                SessionUtils.SetLoggedInUser(HttpContext.Session, aspnetuser);
+                //SessionUtils.SetLoggedInUser(HttpContext.Session, aspnetuser);
 
                 var jwttoken = _jwtServices.GenarateJwtToken(aspnetuser);
                 Response.Cookies.Append("jwt", jwttoken);
@@ -171,7 +171,7 @@ namespace hellodoc.Controllers
                 HttpContext.Session.SetInt32("userId", userId);
                 HttpContext.Session.SetString("username", aspnetuser.Username);
 
-                SessionUtils.SetLoggedInUser(HttpContext.Session, aspnetuser);
+                //SessionUtils.SetLoggedInUser(HttpContext.Session, aspnetuser);
 
                 var jwttoken = _jwtServices.GenarateJwtToken(aspnetuser);
                 Response.Cookies.Append("jwt", jwttoken);

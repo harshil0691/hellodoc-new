@@ -18,6 +18,8 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 using Microsoft.DotNet.Scaffolding.Shared.Project;
 using System;
 using Org.BouncyCastle.Ocsp;
+using iTextSharp.text.pdf;
+using iTextSharp.text;
 
 namespace hellodoc.Controllers
 {
@@ -163,14 +165,14 @@ namespace hellodoc.Controllers
                     
 
                 case "ViewCase":
-                    try
+                    var reqform = _adminDashRepository.Getpatientdata(partialView.requestid).Result;
+                    if(reqform != null)
                     {
-                        RequestFormModal reqform = _adminDashRepository.Getpatientdata(partialView.requestid).Result;
                         reqform.bgcolor = partialView.bcolor;
                         reqform.btext = partialView.btext;
                         return PartialView("_ViewCase", reqform);
                     }
-                    catch
+                    else
                     {
                         TempData["error"] = "Internal Error Case Is Not Assigned";
                         return RedirectToAction("admin_dash", "AdminDash");
@@ -300,6 +302,67 @@ namespace hellodoc.Controllers
         //    return File(pdfBytes, "application/pdf", "GeneratedPDF.pdf");
 
         //}
+
+        public ActionResult download_encounter(int reqid)
+        {
+            var requestId = HttpContext.Session.GetInt32("requestId") ?? 1;
+            var rowData = _adminDashRepository.GetEncounter(requestId);
+
+            if (rowData != null)
+            {
+                // Create a new PDF document
+                Document document = new Document();
+                MemoryStream ms = new MemoryStream();
+                PdfWriter.GetInstance(document, ms);
+                document.Open();
+
+                // Add table for header and data
+                PdfPTable mainTable = new PdfPTable(1);
+                mainTable.WidthPercentage = 100; // Set table width to 100%
+
+                // Add header row
+                PdfPCell headerCell = new PdfPCell(new Phrase("Table Data"));
+                headerCell.HorizontalAlignment = Element.ALIGN_CENTER; // Center alignment
+                headerCell.Border = PdfPCell.NO_BORDER; // Remove border
+                mainTable.AddCell(headerCell);
+
+                // Add data row
+                PdfPTable dataTable = new PdfPTable(2); // Assuming 15 columns
+                                                        // Add column headers
+                foreach (var property in rowData.GetType().GetProperties())
+                {
+                    PdfPCell cell = new PdfPCell(new Phrase(property.Name));
+                    cell.BackgroundColor = BaseColor.LIGHT_GRAY; // Background color for header
+                    dataTable.AddCell(cell);
+                    dataTable.AddCell(new Phrase(property.GetValue(rowData)?.ToString()));
+                    dataTable.CompleteRow();
+
+                }
+
+
+                // Add data table to main table
+                mainTable.AddCell(dataTable);
+
+                // Add the main table to the document
+                document.Add(mainTable);
+
+                // Close the document
+                document.Close();
+
+                // Convert MemoryStream to byte array
+                byte[] bytes = ms.ToArray();
+                ms.Close();
+
+                // Return the PDF as a FileResult
+                return File(bytes, "application/pdf", "table_data.pdf");
+            }
+            else
+            {
+                // Handle the case where no data is found
+                return Content("No data found.");
+            }
+        }
+
 
         [HttpPost]
         public IActionResult request_support(RequestSupportModal supportModal)
@@ -640,6 +703,15 @@ namespace hellodoc.Controllers
             Encounter encounter1 = _adminDashRepository.SetEncounter(reqid??0, encounter);
             return PartialView("_EncounterForm", encounter1);
         }
+
+        [HttpPost]
+        public IActionResult Encounter(PartialViewModal partialView)
+        {
+            _adminDashRepository.Encouter(partialView.requestid, partialView.callType);
+            return Json(new { data = "Request is Encounter To " + partialView.callType });
+        }
+
+        [HttpPost]
         public IActionResult finalize_encounter(Encounter encounter)
         {
             var reqid = HttpContext.Session.GetInt32("requestId");

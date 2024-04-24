@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "758mc/ww8g/JyXWLWSrq2QIBABYb/dkzlUBmGng6JPU=",
+  "Hash": "E9xJgCJqRDhZCu+5jYQBLGNgs2k7FEKvJ6KKrt8zjlM=",
   "Source": "hellodoc",
   "BasePath": "_content/hellodoc",
   "Mode": "Default",
@@ -168,6 +168,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\7774236_3736765.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\avatar.png",
+      "SourceId": "hellodoc",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\",
+      "BasePath": "_content/hellodoc",
+      "RelativePath": "images/avatar.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\avatar.png"
     },
     {
       "Identity": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\cloud-upload-icon.svg",
@@ -3468,6 +3485,23 @@
       "OriginalItemSpec": "wwwroot\\uploads\\3510f8e3-f418-4343-a029-532b6b76e00b_7768657_3763028 - Copy.jpg"
     },
     {
+      "Identity": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\35385cf3-1ff2-4451-88f8-a53ca167180e_Fig20.Close case.png",
+      "SourceId": "hellodoc",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\",
+      "BasePath": "_content/hellodoc",
+      "RelativePath": "uploads/35385cf3-1ff2-4451-88f8-a53ca167180e_Fig20.Close case.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\35385cf3-1ff2-4451-88f8-a53ca167180e_Fig20.Close case.png"
+    },
+    {
       "Identity": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\355b6e95-2360-43f6-b495-41767a895d45_Fig24. Provider Menu.jpg",
       "SourceId": "hellodoc",
       "SourceType": "Discovered",
@@ -3653,6 +3687,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\64bc9683-fa4d-4154-be1b-0388a513b280_7774236_3736765.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\670a7b30-5ba0-4fcf-82d4-eafa8d9beb76_a4 1.png",
+      "SourceId": "hellodoc",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\",
+      "BasePath": "_content/hellodoc",
+      "RelativePath": "uploads/670a7b30-5ba0-4fcf-82d4-eafa8d9beb76_a4 1.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\670a7b30-5ba0-4fcf-82d4-eafa8d9beb76_a4 1.png"
     },
     {
       "Identity": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\6718ea32-b0da-4867-af82-56f04e738275_Fig24. Provider Menu.jpg",

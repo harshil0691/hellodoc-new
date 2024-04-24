@@ -1739,3 +1739,7 @@ C:\Users\Asus\Desktop\hellodoc\hellodoc\bin\Debug\net7.0\runtimes\win\lib\net7.0
 C:\Users\Asus\Desktop\hellodoc\hellodoc\bin\Debug\net7.0\runtimes\win\lib\net7.0\System.Management.dll
 C:\Users\Asus\Desktop\hellodoc\hellodoc\obj\Debug\net7.0\hellodoc.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Asus\Desktop\hellodoc\hellodoc\obj\Debug\net7.0\hellodoc.csproj.Up2Date
+C:\Users\Asus\Desktop\hellodoc\hellodoc\bin\Debug\net7.0\BouncyCastle.Crypto.dll
+C:\Users\Asus\Desktop\hellodoc\hellodoc\bin\Debug\net7.0\itextsharp.dll
+C:\Users\pci235\source\repos\hellodoc\hellodoc\bin\Debug\net7.0\BouncyCastle.Crypto.dll
+C:\Users\pci235\source\repos\hellodoc\hellodoc\bin\Debug\net7.0\itextsharp.dll

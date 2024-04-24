@@ -18,7 +18,7 @@
                     @{
                         foreach (var a in Model.regions)
                         {
-                            <option value="@a.Regionid">@a.Name</option>
+                                <option value="@a.Regionid">@a.Name</option>
                         }
                     }
                 </select>
@@ -46,17 +46,17 @@
                             foreach (var a in Model.providersTableModal)
                             {
                                 
-                                <tr class="m-2">
-                                    <td class="text-black"><input type="checkbox" class="custom-check providerscheck bg-info" value="@a.physicianid" checked="@a.stopnotification" /> </td>
-                                    <td class="text-black">@a.name</td>
-                                    <td class="text-black">@a.role</td>
-                                    <td class="text-black">@a.status</td>
-                                    <td class="text-black">@a.status</td>
-                                    <td>
-                                        <button class="btn btn-outline-info m-1" onclick="ShowModal({ActionType:'ContactProvider',physicianid:@a.physicianid})">Contact</button>
-                                        <button class="btn btn-outline-info m-1" onclick="loadProviderView('edit_physician','@a.physicianid')">Edit</button>
-                                    </td>
-                                </tr>
+                                    <tr class="m-2">
+                                    <td class="text-black"><input type="checkbox" class="custom-check d-check providerscheck bg-info" value="@a.physicianid" checked="@a.stopnotification" data-physicianid="@a.physicianid" /> </td>
+                                        <td class="text-black">@a.name</td>
+                                        <td class="text-black">@a.role</td>
+                                        <td class="text-black">@a.status</td>
+                                        <td class="text-black">@a.status</td>
+                                        <td>
+                                            <button class="btn btn-outline-info m-1" onclick="ShowModal({ActionType:'ContactProvider',physicianid:@a.physicianid})">Contact</button>
+                                            <button class="btn btn-outline-info m-1" onclick="loadProviderView('edit_physician','@a.physicianid')">Edit</button>
+                                        </td>
+                                    </tr>
                             }
                         }
 
@@ -71,32 +71,32 @@
                     @{
                         foreach (var a in Model.providersTableModal)
                         {
-                            <div class="accordion-item">
-                                <h2 class="accordion-header">
-                                    <button class="accordion-button collapsed  d-grid" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_@a.physicianid" aria-expanded="true" aria-controls="collapse_@a.physicianid">
-                                        <div class="d-grid w-100 m-2">
-                                            <div class="m-2"><input type="checkbox" class="custom-check providerscheck mx-2 bg-info" value="@a.physicianid" checked="@a.stopnotification" /> <div class="m-1 fs-6 text-black">@a.name</div></div>
-                                            <div class="d-flex m-1">On Call Status : <div class="fs-6 px-2"> @a.status </div> </div>
-                                        </div>
-                                    </button>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed  d-grid" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_@a.physicianid" aria-expanded="true" aria-controls="collapse_@a.physicianid">
+                                            <div class="d-grid w-100 m-2">
+                                            <div class="m-2"><input type="checkbox" class="custom-check m-check providerscheck mx-2 bg-info" value="@a.physicianid" checked="@a.stopnotification" data-physicianid="@a.physicianid" /> <div class="m-1 fs-6 text-black">@a.name</div></div>
+                                                <div class="d-flex m-1">On Call Status : <div class="fs-6 px-2"> @a.status </div> </div>
+                                            </div>
+                                        </button>
 
-                                </h2>
+                                    </h2>
 
-                                <div id="collapse_@a.physicianid" class="accordion-collapse collapse" data-bs-parent="#accordionExample" style="background-color:#d7ffffde;">
-                                    <div class="accordion-body">
+                                    <div id="collapse_@a.physicianid" class="accordion-collapse collapse" data-bs-parent="#accordionExample" style="background-color:#d7ffffde;">
+                                        <div class="accordion-body">
 
-                                        <div class="d-grid w-100 m-2">
-                                            <div class="d-flex"> <i class="bi bi-person-circle text-info"></i>  Role : <div class="fs-6 px-2"> @a.role </div> </div>
-                                            <div class="d-flex"> <i class="bi bi-check2-circle text-info pe-2 mt-1"></i> Status : <div class="fs-6 px-2"> @a.status </div> </div>
+                                            <div class="d-grid w-100 m-2">
+                                                <div class="d-flex"> <i class="bi bi-person-circle text-info"></i>  Role : <div class="fs-6 px-2"> @a.role </div> </div>
+                                                <div class="d-flex"> <i class="bi bi-check2-circle text-info pe-2 mt-1"></i> Status : <div class="fs-6 px-2"> @a.status </div> </div>
+                                            </div>
+                                            <div class="d-flex justify-content-end w-100 m-2">
+                                                <button class="btn btn-outline-info mx-2" onclick="ShowModal({ActionType:'ContactProvider',physicianid:@a.physicianid})">Contact</button>
+                                                <button class="btn btn-outline-info mx-2" onclick="loadProviderView('edit_physician','@a.physicianid')">Edit</button>
+                                            </div>
+                                            
                                         </div>
-                                        <div class="d-flex justify-content-end w-100 m-2">
-                                            <button class="btn btn-outline-info mx-2" onclick="ShowModal({ActionType:'ContactProvider',physicianid:@a.physicianid})">Contact</button>
-                                            <button class="btn btn-outline-info mx-2" onclick="loadProviderView('edit_physician','@a.physicianid')">Edit</button>
-                                        </div>
-                                        
                                     </div>
                                 </div>
-                            </div>
 
                         }
                     }
@@ -106,43 +106,43 @@
             @{
                 if(Model.providersTableModal.Count() <= 0)
                 {
-                    <div class="d-flex justify-content-center mb-2">
-                        <p class="fs-5">No Records Found</p>
-                    </div>
+                        <div class="d-flex justify-content-center mb-2">
+                            <p class="fs-5">No Records Found</p>
+                        </div>
                 }
                 else
                 {
-                    <div class="d-flex justify-content-between m-2">
-                        <div>
-                            @Model.entries
-                        </div>
-                        <div>
-                            @{
+                        <div class="d-flex justify-content-between m-2">
+                            <div>
+                                @Model.entries
+                            </div>
+                            <div>
+                                @{
                                 if (Model.pageNumber > 1)
                                 {
                                     var previousPage = Model.pageNumber - 1;
-                                    <button class="btn btn-outline-secondary" onclick="GetProvidersView({actionType:'provider',pageNumber:'@previousPage'})"><i class="bi bi-chevron-left"></i></button>
+                                            <button class="btn btn-outline-secondary" onclick="GetProvidersView({actionType:'provider',pageNumber:'@previousPage'})"><i class="bi bi-chevron-left"></i></button>
                                 }
                                 else
                                 {
-                                    <button class="btn btn-outline-secondary"><i class="bi bi-chevron-left"></i></button>
+                                            <button class="btn btn-outline-secondary"><i class="bi bi-chevron-left"></i></button>
                                 }
-                            }
+                                }
 
-                            <button class="btn btn-outline-info">@Model.pageNumber</button>
-                            @{
+                                <button class="btn btn-outline-info">@Model.pageNumber</button>
+                                @{
                                 if (Model.morePages == true)
                                 {
                                     var nextpage = Model.pageNumber + 1;
-                                    <button class="btn btn-outline-secondary" onclick="GetProvidersView({actionType:'provider',pageNumber:'@nextpage'})"><i class="bi bi-chevron-right"></i></button>
+                                            <button class="btn btn-outline-secondary" onclick="GetProvidersView({actionType:'provider',pageNumber:'@nextpage'})"><i class="bi bi-chevron-right"></i></button>
                                 }
                                 else
                                 {
-                                    <button class="btn btn-outline-secondary"><i class="bi bi-chevron-right"></i></button>
+                                            <button class="btn btn-outline-secondary"><i class="bi bi-chevron-right"></i></button>
                                 }
-                            }
+                                }
+                            </div>
                         </div>
-                    </div>
                 }
             }
 
@@ -171,6 +171,39 @@
         }
     });
 
+    function handleCheckboxChange(event) {
+        var checkboxes = document.querySelectorAll('.' + event.target.className);
+        checkboxes.forEach(function (checkbox) {
+            if (checkbox !== event.target && checkbox.value === event.target.value) {
+                checkbox.checked = event.target.checked;
+            }
+        });
+
+    }
+
+    $(".providerscheck").change(function () {
+
+        var physicianId = $(this).data("physicianid");
+
+        // Update all checkboxes with the same physician ID value
+        $(".providerscheck[data-physicianid='" + physicianId + "']").prop("checked", $(this).prop("checked"));
+
+        var selectedCheck1 = [];
+        var checkboxes11 = document.querySelectorAll(".providerscheck");
+
+        checkboxes11.forEach(function (checkbox) {
+            if (checkbox.checked) {
+                selectedCheck1.push(checkbox.value);
+            }
+        });
+
+        if (selectedCheck1.toString() != selectedCheck.toString()) {
+            document.getElementById("ProvidersSave").style.display = "block";
+        } else {
+            document.getElementById("ProvidersSave").style.display = "none";
+        }
+    });
+
     $(".providerscheck").change(function () {
         var selectedCheck1 = [];
         var checkboxes11 = document.querySelectorAll(".providerscheck");
@@ -191,6 +224,6 @@
 
 @section Scripts{
     @{
-        <Partial name="_ValidationScriptsPartial" />
+            <Partial name="_ValidationScriptsPartial" />
     }
     }

@@ -8,6 +8,7 @@ $(document).ready(function () {
         loadPartialDashView(localStorage.getItem("DashTab"), true);
     } else {
         loadPartialDashView("dashboard");
+        localStorage.setItem("loginAccount", "admin");
     }
 });
 

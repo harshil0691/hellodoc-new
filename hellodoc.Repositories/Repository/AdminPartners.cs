@@ -106,29 +106,34 @@ namespace hellodoc.Repositories.Repository
         public AdminPartnersModal updateBusinessView(int vendorid)
         {
             var vendor = _context.HealthProfessionals.FirstOrDefault(h => h.Vendorid == vendorid);
-
-            AdminPartnersModal adminPartners = new AdminPartnersModal();    
-            adminPartners.Vendorid = vendorid;
-            adminPartners.Profession = vendor.Profession??1;
-            adminPartners.Faxnumber = vendor.Faxnumber;
-            adminPartners.Email = vendor.Email;
-            adminPartners.Phonenumber = vendor.Phonenumber;
-            adminPartners.Address = vendor.Address;
-            adminPartners.City = vendor.City;
-            adminPartners.State = int.Parse(vendor.State);
-            adminPartners.Zip = vendor.Zip??0;
-            adminPartners.Businesscontact = vendor.Businesscontact;
-            adminPartners.healthProfessionalTypes = _context.HealthProfessionalTypes.ToList();
-            adminPartners.Vendorname = vendor.Vendorname;
-            adminPartners.regions = _context.Regions.ToList();
+            AdminPartnersModal adminPartners = new AdminPartnersModal();
+            if (vendor != null)
+            {
+                adminPartners.Vendorid = vendorid;
+                adminPartners.Profession = vendor.Profession ?? 1;
+                adminPartners.Faxnumber = vendor.Faxnumber;
+                adminPartners.Email = vendor.Email;
+                adminPartners.Phonenumber = vendor.Phonenumber;
+                adminPartners.Address = vendor.Address;
+                adminPartners.City = vendor.City;
+                adminPartners.State = int.Parse(vendor.State??"0");
+                adminPartners.Zip = vendor.Zip ?? 0;
+                adminPartners.Businesscontact = vendor.Businesscontact;
+                adminPartners.healthProfessionalTypes = _context.HealthProfessionalTypes.ToList();
+                adminPartners.Vendorname = vendor.Vendorname;
+                adminPartners.regions = _context.Regions.ToList();
+            }
             return adminPartners;
         }
 
         public void DeleteBusiness(int vendorid)
         {
             var vendor = _context.HealthProfessionals.FirstOrDefault(h => h.Vendorid == vendorid);
-
-            vendor.Isdeleted = new System.Collections.BitArray(1,true);
+            if (vendor != null)
+            {
+                vendor.Isdeleted = new System.Collections.BitArray(1, true);
+            }
+            
             _context.SaveChanges();
         }
 

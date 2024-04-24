@@ -61,6 +61,7 @@ namespace hellodoc.Repositories.Repository
                     regionid = r.RequestClients.Select(rc => rc.Regionid).FirstOrDefault() ?? 0,
                     region = _context.Regions.FirstOrDefault(rg => rg.Regionid == r.RequestClients.FirstOrDefault().Regionid).Name,
                     Notes = _context.RequestStatusLogs.Where(rs => rs.Requestid == r.Requestid).Select(rc => rc.Notes).ToString(),
+                    CallType = r.Calltype ?? 0,
                 }).ToList();
             }
             else
@@ -112,33 +113,35 @@ namespace hellodoc.Repositories.Repository
 
         public async Task<RequestFormModal> Getpatientdata(int rid)
         {
-            try
-            {
                 var requestClient = _context.RequestClients.FirstOrDefault(u => u.Requestid == rid);
                 var request = _context.Requests.FirstOrDefault(u => u.Requestid == rid);
 
-                RequestFormModal model;
-                model = new RequestFormModal
+                if(requestClient != null)
                 {
-                    Firstname = requestClient.Firstname,
-                    Lastname = requestClient.Lastname,
-                    Symptoms = requestClient.Notes,
-                    City = requestClient.City,
-                    Roomno = requestClient.Address,
-                    Confirmationnumber = requestClient.Request.Confirmationnumber,
-                    PatientEmail = requestClient.Email,
-                    Phonenumber = requestClient.Phonenumber ?? 1,
-                    Requestid = rid,
-                    DOB = new DateTime(requestClient.Intyear ?? 1, DateTime.ParseExact(requestClient.Strmonth, "MMMM", CultureInfo.InvariantCulture).Month, requestClient.Intdate ?? 0),
-                };
-                return model;
+                    RequestFormModal model;
+                    model = new RequestFormModal
+                    {
+                        Firstname = requestClient.Firstname,
+                        Lastname = requestClient.Lastname,
+                        Symptoms = requestClient.Notes,
+                        City = requestClient.City,
+                        Roomno = requestClient.Address,
+                        Confirmationnumber = requestClient.Request.Confirmationnumber,
+                        PatientEmail = requestClient.Email,
+                        Phonenumber = requestClient.Phonenumber ?? 1,
+                        Requestid = rid,
+                        DOB = new DateTime(requestClient.Intyear ?? 1, DateTime.ParseExact(requestClient.Strmonth, "MMMM", CultureInfo.InvariantCulture).Month, requestClient.Intdate ?? 0),
+                    };
+                    return model;
+                }
+                else
+                {
+                    return new RequestFormModal();
+                }
+                
 
 
-            }
-            catch
-            {
-                return new RequestFormModal();
-            }
+           
             
 
         }
@@ -635,14 +638,15 @@ namespace hellodoc.Repositories.Repository
         public Encounter GetEncounter(int requestid)
         {
             var encounter = _context.Encounters.FirstOrDefault(u=> u.Requestid == requestid);
-            if(encounter == null)
+            var requestclient = _context.RequestClients.FirstOrDefault(u => u.Requestid == requestid);
+            if (encounter == null)
             {
                 encounter = new Encounter();
-                var requestclient = _context.RequestClients.FirstOrDefault(u => u.Requestid == requestid);
-                encounter.Firstname = requestclient.Firstname;
-                encounter.Lastname = requestclient.Lastname;
-                encounter.Email = requestclient.Email;
-                encounter.Phone = requestclient.Phonenumber;
+                
+                encounter.Firstname = requestclient?.Firstname;
+                encounter.Lastname = requestclient?.Lastname;
+                encounter.Email = requestclient?.Email;
+                encounter.Phone = requestclient?.Phonenumber;
                 //encounter.DateOfBirth = requestclient.DateOfBirth;
                 encounter.Requestid = requestid;
             }
@@ -653,29 +657,26 @@ namespace hellodoc.Repositories.Repository
         public Encounter SetEncounter(int requestid, Encounter encounter1)
         {
             var encounter = _context.Encounters.FirstOrDefault(u => u.Requestid == requestid);
-            if(encounter == null)
+            Encounter encounterreturn = new Encounter();
+            if (encounter == null)
             {
                 Encounter encounter2 = new Encounter();
                 encounter2 = encounter1 as Encounter;
                 encounter2.Createdby = "admin";
                 encounter2.Createddate = DateTime.Now;
                 encounter2.Requestid = requestid;
-                
-                _context.Encounters.Add(encounter2);
-                _context.SaveChanges();
+                encounterreturn = encounter2;
 
-                return encounter2;
+                _context.Encounters.Add(encounter2);
             }
             else
             {
-                encounter = encounter1 as Encounter;
                 encounter.Modifiedby = "admin2";
                 encounter.Modifieddate = DateTime.Now;
-
-                _context.Encounters.Add(encounter);
-                _context.SaveChanges();
-                return encounter;
+                encounterreturn = encounter;
             }
+            _context.SaveChanges();
+            return encounterreturn;
         }
 
         public async Task FinalizeEncounter(int requestid, Encounter encounter1)
@@ -712,7 +713,8 @@ namespace hellodoc.Repositories.Repository
                 encounter3.Encounterid = encounterdata.Encounterid;
                 encounter3.Requestid = encounterdata.Requestid;
 
-                _context.Encounters.Update(encounter3);
+                encounterdata.Isfinalized = 1;
+
                 _context.SaveChanges();
             }
         }
@@ -720,13 +722,15 @@ namespace hellodoc.Repositories.Repository
         public string Encouter(int requestid,string callType)
         {
             var request = _context.Requests.FirstOrDefault(r => r.Requestid == requestid);
-            if(callType == "HouseCall")
+            if(callType == "HouseCall" && request!=null)
             {
                 request.Calltype = 1;
+                request.Status = 5;
             }
-            else if(callType == "Consult")
+            else if(callType == "Consult" && request != null)
             {
                 request.Calltype = 2;
+                request.Status = 6;
             }
             _context.SaveChanges();
             return "ok";

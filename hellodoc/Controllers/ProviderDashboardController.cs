@@ -22,9 +22,10 @@ namespace hellodoc.Controllers
         private readonly IAdminProviderLocation _providerLocation;
         private readonly IAdminRecords _adminRecords;
         private readonly IProviderRepo _providerRepo;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        
-        public ProviderDashboardController(ILogger<AdminDashController> logger, IAdminDashRepository adminDashRepository, IPatientLogin patientLogin, IRequests requests, IHostingEnvironment hostingEnvironment, IAuthManager authManager, IAdminProviders adminProviders, IAdminAccess adminAccess, IAdminProviderLocation providerLocation, IAdminRecords adminRecords,IProviderRepo providerRepo)
+
+        public ProviderDashboardController(ILogger<AdminDashController> logger, IAdminDashRepository adminDashRepository, IPatientLogin patientLogin, IRequests requests, IHostingEnvironment hostingEnvironment, IAuthManager authManager, IAdminProviders adminProviders, IAdminAccess adminAccess, IAdminProviderLocation providerLocation, IAdminRecords adminRecords,IProviderRepo providerRepo, IHttpContextAccessor httpContextAccessor)
         {
             _logger = logger;
             _adminDashRepository = adminDashRepository;
@@ -37,10 +38,32 @@ namespace hellodoc.Controllers
             _providerLocation = providerLocation;
             _adminRecords = adminRecords;
             _providerRepo = providerRepo;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public IActionResult dashboard()
         {
+            var claims = JwtHelper.GetClaimsFromCookie(_httpContextAccessor.HttpContext, "jwt");
+
+            if (claims != null)
+            {
+                if (claims.ContainsKey("username"))
+                {
+                    string userName = claims["username"];
+
+                    HttpContext.Session.SetString("username", userName);
+                }
+                if (claims.ContainsKey("Aspid"))
+                {
+                    string userId = claims["Aspid"];
+                    HttpContext.Session.SetInt32("Aspid", int.Parse(userId));
+                }
+                if (claims.ContainsKey("physicianId"))
+                {
+                    string userId = claims["physicianId"];
+                }
+            }
+
             return View();
         }
 

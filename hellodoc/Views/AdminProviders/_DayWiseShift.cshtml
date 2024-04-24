@@ -46,10 +46,17 @@
                     <tr>
                         @{
                             <td class="p-2 fs-6">
-                            @{
+                                @{
                                     if (phy.Photo != "")
                                     {
-                                        <img class="mx-2" height="50" width="50" src="./PhysicianDoc/@phy.Photo" />
+                                        @try{
+                                            <img class="mx-2" height="50" width="50" src="./PhysicianDoc/@phy.Photo" />
+                                        }
+                                        catch
+                                        {
+                                            <img class="mx-2" height="50" width="50" src="./images/avatar.png"/>
+                                        }
+                                        
                                     }
                             }
                              @phy.Firstname @phy.Lastname</td>
@@ -74,7 +81,10 @@
                                     var index = startlist.IndexOf(i);
                                     var shift = list.FirstOrDefault(s => s.Shiftdetailid == idlist[index]);
                                     var col =  shift.Endtime.Hour - shift.Starttime.Hour;
-
+                                    if (col < 0)
+                                    {
+                                        col = col + 24;
+                                    }
 
                                     var endmin = shift.Endtime.Minute;
                                     var startmin = shift.Starttime.Minute;

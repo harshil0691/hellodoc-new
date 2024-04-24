@@ -453,6 +453,10 @@
       "PackagePath": "staticwebassets\\images\\LesfImage.png"
     },
     {
+      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\avatar.png",
+      "PackagePath": "staticwebassets\\images\\avatar.png"
+    },
+    {
       "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\cloud-upload-icon.svg",
       "PackagePath": "staticwebassets\\images\\cloud-upload-icon.svg"
     },
@@ -809,6 +813,10 @@
       "PackagePath": "staticwebassets\\uploads\\3510f8e3-f418-4343-a029-532b6b76e00b_7768657_3763028 - Copy.jpg"
     },
     {
+      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\35385cf3-1ff2-4451-88f8-a53ca167180e_Fig20.Close case.png",
+      "PackagePath": "staticwebassets\\uploads\\35385cf3-1ff2-4451-88f8-a53ca167180e_Fig20.Close case.png"
+    },
+    {
       "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\355b6e95-2360-43f6-b495-41767a895d45_Fig24. Provider Menu.jpg",
       "PackagePath": "staticwebassets\\uploads\\355b6e95-2360-43f6-b495-41767a895d45_Fig24. Provider Menu.jpg"
     },
@@ -851,6 +859,10 @@
     {
       "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\64bc9683-fa4d-4154-be1b-0388a513b280_7774236_3736765.jpg",
       "PackagePath": "staticwebassets\\uploads\\64bc9683-fa4d-4154-be1b-0388a513b280_7774236_3736765.jpg"
+    },
+    {
+      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\670a7b30-5ba0-4fcf-82d4-eafa8d9beb76_a4 1.png",
+      "PackagePath": "staticwebassets\\uploads\\670a7b30-5ba0-4fcf-82d4-eafa8d9beb76_a4 1.png"
     },
     {
       "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\6718ea32-b0da-4867-af82-56f04e738275_Fig24. Provider Menu.jpg",

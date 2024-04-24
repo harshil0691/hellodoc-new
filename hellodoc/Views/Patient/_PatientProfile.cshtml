@@ -60,24 +60,23 @@
                 </div>
             </div>
 
-
             <h3 class="pt-2 pb-4" id="t1">
                 Patient Location
             </h3>
 
             <div class="row">
                 <div class="form-floating mb-3  col-md-6 col-lg-6">
-                    <input type="text" class="form-control" id="floatingInput" asp-for="@Model.Street" placeholder="Street" disabled>
+                    <input type="text" class="form-control" id="street" asp-for="@Model.Street" placeholder="Street" disabled>
                     <label for="floatingInput" class="mx-3">Street</label>
                     <span asp-validation-for="Street" class="text-danger"></span>
                 </div>
                 <div class="form-floating mb-3 col-md-6 col-lg-6">
-                    <input type="text" class="form-control" id="floatingInput" asp-for="@Model.City" placeholder="City" disabled>
+                    <input type="text" class="form-control" id="city" asp-for="@Model.City" placeholder="City" disabled>
                     <label for="floatingInput" class="mx-3">City</label>
                     <span asp-validation-for="City" class="text-danger"></span>
                 </div>
                 <div class="form-floating mb-3  col-md-6 col-lg-6">
-                    <input type="text" class="form-control" id="floatingInput" asp-for="@Model.State" placeholder="State" disabled>
+                    <input type="text" class="form-control" id="state" asp-for="@Model.State" placeholder="State" disabled>
                     <label for="floatingInput" class="mx-3">State</label>
                     <span asp-validation-for="State" class="text-danger"></span>
                 </div>

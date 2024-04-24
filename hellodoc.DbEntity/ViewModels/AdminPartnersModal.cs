@@ -16,11 +16,11 @@ namespace hellodoc.DbEntity.ViewModels
         public int Vendorid { get; set; }
         [StringLength(16, ErrorMessage = "The field must be no more than 16 characters.")]
         [Required]
-        public string Vendorname { get; set; }
+        public string? Vendorname { get; set; }
         [Required]
         public string? ProfessionName { get; set; }
         [Required]
-        public string Faxnumber { get; set; } 
+        public string? Faxnumber { get; set; } 
         public string? Address { get; set; }
         [Required]
         public string? Phonenumber { get; set; }
@@ -38,13 +38,13 @@ namespace hellodoc.DbEntity.ViewModels
         [Required]
         public int State { get; set; }
         [Required]
-        public string City { get; set; }   
-        public string Street { get; set; }
+        public string? City { get; set; }   
+        public string? Street { get; set; }
         [Range(100000, 999999, ErrorMessage = "Zip code must be a 6-digit number")]
         [Required]
         public int Zip { get; set; }
-        public string actionType { get; set; }
-        public List<HealthProfessionalType> healthProfessionalTypes;
-        public List<Region> regions;
+        public string? actionType { get; set; }
+        public List<HealthProfessionalType>? healthProfessionalTypes;
+        public List<Region>? regions;
     }
 }

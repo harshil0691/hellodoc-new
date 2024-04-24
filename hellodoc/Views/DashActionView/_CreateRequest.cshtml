@@ -77,8 +77,11 @@
                     <span asp-validation-for="Roomno" class="text-danger"></span>
                 </div>
                 <div class="form-floating mb-3  col-md-6 col-lg-6">
-                    <button type="button" class="btn btn-outline-info">Verify</button>
-                        <button type="button" class="btn btn-outline-info" onclick="ShowModal({actionType : 'SelectMap'})"><i class="bi bi-geo-alt mx-1"></i>Map</button>
+                        @{
+                            string address = Model.Street + "," + Model.City + "," + Model.State;
+                        }
+
+                        <a class="btn btn-white text-info border-1 border-info rounded bg-transparent px-3 py-2" id="openBtn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=@Uri.EscapeDataString(address)"><i class="bi bi-geo-alt"></i>Map</a>
                 </div>
                 </div>
 

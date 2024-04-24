@@ -5,9 +5,9 @@ VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "hellodoc", "hellodoc\hellodoc.csproj", "{E3EFD4F5-E837-4132-87E3-1C3AFB2D5AE9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "hellodoc.DbEntity", "hellodoc.DbEntity\hellodoc.DbEntity.csproj", "{9EEBEA30-E85A-4540-9DA4-D7D4AFDAB9BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "hellodoc.DbEntity", "hellodoc.DbEntity\hellodoc.DbEntity.csproj", "{9EEBEA30-E85A-4540-9DA4-D7D4AFDAB9BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "hellodoc.Repositories", "hellodoc.Repositories\hellodoc.Repositories.csproj", "{6BC4F7D3-C51C-4408-B495-1226262A23FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "hellodoc.Repositories", "hellodoc.Repositories\hellodoc.Repositories.csproj", "{6BC4F7D3-C51C-4408-B495-1226262A23FA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

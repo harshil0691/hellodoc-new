@@ -78,7 +78,7 @@ function loadActionView(DataObject) {
                 ShowModal({ ActionType: 'finalizedencounter' })
             }
             else if (DataObject.ActionType == "Encounter") {
-                $('#myModal').hide();
+                $('#myModal').modal('hide');
                 toastr.success(data.data);
             }
             else {
