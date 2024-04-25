@@ -29,7 +29,7 @@ namespace hellodoc.Repositories.Repository
                 Businesscontact = vendors.Businesscontact,
                 Vendorname = vendors.Vendorname,
                 Faxnumber = vendors.Faxnumber,
-                Email = vendors.Email,
+                Email = vendors.BusinessEmail,
                 Phonenumber = vendors.Phonenumber,
                 Profession = vendors.Profession,
                 State = vendors.State.ToString(),
@@ -68,7 +68,7 @@ namespace hellodoc.Repositories.Repository
                 ProfessionName = _context.HealthProfessionalTypes.FirstOrDefault(p => p.Healthprofessionalid == v.Profession)?.Professionname,
                 Businesscontact = v.Businesscontact,
                 Faxnumber = v.Faxnumber,
-                Email = v.Email,
+                BusinessEmail = v.Email,
                 Phonenumber = v.Phonenumber,
                 Vendorname = v.Vendorname,
             });
@@ -91,7 +91,7 @@ namespace hellodoc.Repositories.Repository
             var vendor = _context.HealthProfessionals.FirstOrDefault(h => h.Vendorid == vendors.Vendorid);
             vendor.Profession = vendors.Profession;
             vendor.Businesscontact = vendors.Businesscontact;
-            vendor.Email = vendors.Email;
+            vendor.Email = vendors.BusinessEmail;
             vendor.Phonenumber = vendors.Phonenumber;
             vendor.Faxnumber = vendors.Faxnumber;
             vendor.State = vendors.State.ToString();
@@ -112,7 +112,7 @@ namespace hellodoc.Repositories.Repository
                 adminPartners.Vendorid = vendorid;
                 adminPartners.Profession = vendor.Profession ?? 1;
                 adminPartners.Faxnumber = vendor.Faxnumber;
-                adminPartners.Email = vendor.Email;
+                adminPartners.BusinessEmail = vendor.Email;
                 adminPartners.Phonenumber = vendor.Phonenumber;
                 adminPartners.Address = vendor.Address;
                 adminPartners.City = vendor.City;

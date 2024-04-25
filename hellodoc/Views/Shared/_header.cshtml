@@ -3,9 +3,8 @@
 
 <nav class="navbar navbar-expand-lg d-flex justify-content-between bgcolor rounded shadow-sm">
     <div class="container-fluid">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+
+        <button class="btn btn-secondary d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"><span class="navbar-toggler-icon"></span></button>
 
         <a class="navbar-brand me-auto" href="#">
             <img src="/images/Fig56._Patient_site_1-removebg-preview.png" alt="" class="req-logo">
@@ -15,13 +14,11 @@
         <div class="d-flex">
             <p class="m-2 pt-2 d-none d-md-block">Welcome <strong>@HttpContextAccessor.HttpContext.Session.GetString("username") </strong></p>
 
-            <a asp-action="Logout" asp-controller="Login"
+            <a asp-action="Logout" asp-controller="Login" asp-route-loginType="@HttpContextAccessor.HttpContext.Session.GetString("loginType")"
                class="m-2 btn btn-outline-info text-decoration-none fs-5">
                 <i class="bi bi-box-arrow-right d-block d-sm-none "></i>
                 <span class="d-none d-sm-block"> Logout </span>
             </a>
-
-
 
             <button class="m-2 text-info bg-transparent btn btn-outline-info rounded-2" onclick="darkmode()">
                 <i class="bi bi-moon"></i>

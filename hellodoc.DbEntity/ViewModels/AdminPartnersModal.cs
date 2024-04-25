@@ -28,7 +28,7 @@ namespace hellodoc.DbEntity.ViewModels
         public string? Ip { get; set; }
         [EmailAddress(ErrorMessage = "Invalid email address")]
         [Required]
-        public string? Email { get; set; }
+        public string BusinessEmail { get; set; }
         [Required]
         [StringLength(10, MinimumLength = 10, ErrorMessage = "Business Contact must be 10 digits long")]
         [RegularExpression("^[0-9]*$", ErrorMessage = "Business Contact must contain only numbers")]

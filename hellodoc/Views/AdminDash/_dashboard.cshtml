@@ -56,7 +56,7 @@
         <button class="btn btn-info text-white" onclick="ShowModal({ActionType:'SendLink'})"><i class="bi bi-send px-1"></i><span class="d-none d-sm-none d-md-inline d-lg-inline d-xl-inline">send link</span></button>
         <button class="btn btn-info text-white" onclick="loadActionView({ActionType:'CreateRequest'})"><i class="bi bi-pencil-square px-1 "></i><span class="d-none d-sm-none d-md-inline d-lg-inline d-xl-inline">create requests</span></button>
         <button class="btn btn-info text-white" onclick="exportToExcel('DashboardFilterd')"><i class="bi bi-share-fill px-1"></i><span class="d-none d-sm-none d-md-inline d-lg-inline d-xl-inline">export</span></button>
-        <button class="btn btn-info text-white" onclick="exportToExcel('DashboardAll')"><i class="bi bi-share-fill px-1"></i><span class="d-none d-sm-none d-md-inline d-lg-inline d-xl-inline">export all</span></button>
+        <a asp-action="export" asp-controller="AdminDash" class="btn btn-info text-white"><i class="bi bi-share-fill px-1"></i><span class="d-none d-sm-none d-md-inline d-lg-inline d-xl-inline">export all</span></a>
         <button class="btn btn-info text-white" onclick="ShowModal({ActionType:'RequestDTYSupport'})"><i class="bi bi-file-person px-1"></i><span class="d-none d-sm-none d-md-inline d-lg-inline d-xl-inline">Request DTY support</span></button>
     </div>
 </div>

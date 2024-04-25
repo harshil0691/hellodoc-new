@@ -74,7 +74,7 @@ namespace hellodoc.Controllers
             {
                 case "dashboard":
                     RequestCountByStatus request = _adminDashRepository.GetCount("provider",physicianid??0).Result;
-                    request.regions = _adminDashRepository.GetRegions(0);
+                    request.regions = _adminDashRepository.GetRegions("", 0);
                     request.activeid = HttpContext.Session.GetInt32("activeid") ?? 1;
 
                     return PartialView("_dashboard", request);

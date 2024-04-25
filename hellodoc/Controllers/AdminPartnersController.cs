@@ -34,7 +34,7 @@ namespace hellodoc.Controllers
                 case "create_business":
                     AdminPartnersModal adminPartners = new AdminPartnersModal();
                     adminPartners.healthProfessionalTypes = _adminPartners.GetHealthProfessionalType();
-                    adminPartners.regions = _adminDashRepository.GetRegions(0);
+                    adminPartners.regions = _adminDashRepository.GetRegions("",0);
                     return PartialView("_CreateBusiness", adminPartners);
 
                 case "edit_business":

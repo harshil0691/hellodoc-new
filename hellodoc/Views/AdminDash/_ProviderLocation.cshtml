@@ -5,22 +5,11 @@
 
         <div class=" col-12 col-sm-12 col-md-10 col-lg-8 mx-auto d-flex justify-content-between mt-4 mb-2">
             <h2> Provider Location </h2>
-            <button onclick="loadActionView({ActionType: 'dashboard',activeid: @HttpContextAccessor.HttpContext.Session.GetInt32("activeid")})" class="d-flex btn btn-outline-info bg-transparent  text-end text-info fs-5 text-decoration-none">
-                <span class="material-icons pt-2">
-                    chevron_left
-                </span>
-                <span class="p-1">Back</span>
-            </button>
-            
         </div>
-
         <div class="d-grid gap-2 col-12 col-sm-12 col-md-10 col-lg-8 mx-auto d-flex flex-column rounded-3 bgcolor mt-4">
-
         <div id="map" class="w-100 m-2" style="height: 500px;"></div>
-        
         </div>
            
-
     </div>
 
 <script>

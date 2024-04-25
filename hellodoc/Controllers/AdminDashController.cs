@@ -32,6 +32,7 @@ namespace hellodoc.Controllers
         }
     }
 
+
     [CustomUserAuthorize("admin")]
     [ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
     public class AdminDashController : Controller
@@ -48,7 +49,7 @@ namespace hellodoc.Controllers
         private readonly IAdminRecords _adminRecords;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public AdminDashController(ILogger<AdminDashController> logger,IAdminDashRepository adminDashRepository, IPatientLogin patientLogin, IRequests requests,IHostingEnvironment hostingEnvironment,IAuthManager authManager,IAdminProviders adminProviders,IAdminAccess adminAccess,IAdminProviderLocation providerLocation,IAdminRecords adminRecords,IHttpContextAccessor httpContextAccessor)
+        public AdminDashController(ILogger<AdminDashController> logger, IAdminDashRepository adminDashRepository, IPatientLogin patientLogin, IRequests requests, IHostingEnvironment hostingEnvironment, IAuthManager authManager, IAdminProviders adminProviders, IAdminAccess adminAccess, IAdminProviderLocation providerLocation, IAdminRecords adminRecords, IHttpContextAccessor httpContextAccessor)
         {
             _logger = logger;
             _adminDashRepository = adminDashRepository;
@@ -78,17 +79,16 @@ namespace hellodoc.Controllers
                 if (claims.ContainsKey("Aspid"))
                 {
                     string userId = claims["Aspid"];
-                    HttpContext.Session.SetInt32("Aspid",int.Parse(userId));
+                    HttpContext.Session.SetInt32("Aspid", int.Parse(userId));
                 }
                 if (claims.ContainsKey("physicianId"))
                 {
                     string userId = claims["physicianId"];
                 }
             }
-
-            var request = _adminDashRepository.GetCount("admin",0).Result;
+            var request = _adminDashRepository.GetCount("admin", 0).Result;
             return View(request);
-            
+
         }
         public List<NotificationMessage> GetNotification()
         {
@@ -110,8 +110,8 @@ namespace hellodoc.Controllers
             switch (tabId)
             {
                 case "dashboard":
-                    RequestCountByStatus request = _adminDashRepository.GetCount("admin",0).Result;
-                    request.regions = _adminDashRepository.GetRegions(0);
+                    RequestCountByStatus request = _adminDashRepository.GetCount("admin", 0).Result;
+                    request.regions = _adminDashRepository.GetRegions("", 0);
                     request.activeid = HttpContext.Session.GetInt32("activeid") ?? 1;
 
                     return PartialView("_dashboard", request);
@@ -122,7 +122,7 @@ namespace hellodoc.Controllers
                 case "myprofile":
                     var userid = HttpContext.Session.GetInt32("Aspid");
                     AdminProfileModal adminProfile = _adminDashRepository.GetAdminProfileData(userid ?? 1);
-                    if ( adminProfile != null)
+                    if (adminProfile != null)
                     {
                         return PartialView("_MyProfile", adminProfile);
                     }
@@ -131,19 +131,19 @@ namespace hellodoc.Controllers
                         TempData["error"] = "Internal Error To Load View";
                         return RedirectToAction("admin_dash", "AdminDash");
                     }
-                    
+
 
                 case "provider":
-                    return RedirectToAction("GetProvidersView","AdminProviders", new {actionType = "provider"});
+                    return RedirectToAction("GetProvidersView", "AdminProviders", new { actionType = "provider" });
 
                 case "partner":
-                    return RedirectToAction("GetView", "AdminPartners",new { actionType = "Partners" });
+                    return RedirectToAction("GetView", "AdminPartners", new { actionType = "Partners" });
 
                 case "access":
-                    return RedirectToAction("GetAccessView","AdminAccess",new { actionType = "accountAccess"});
+                    return RedirectToAction("GetAccessView", "AdminAccess", new { actionType = "accountAccess" });
 
                 case "records":
-                    return RedirectToAction("GetView", "AdminRecords",new {actionType = "SearchRecords"});
+                    return RedirectToAction("GetView", "AdminRecords", new { actionType = "SearchRecords" });
 
 
                 default:
@@ -157,25 +157,42 @@ namespace hellodoc.Controllers
         public IActionResult UpdatePassword(AdminProfileModal admin)
         {
             var aspid = HttpContext.Session.GetInt32("Aspid");
-            _adminDashRepository.UpdatePassword(aspid??1, admin.password);
 
-            return RedirectToAction("admin_dash", "AdminDash");
+            if (admin.password != null)
+            {
+                _adminDashRepository.UpdatePassword(aspid ?? 1, admin.password);
+                TempData["success"] = "Password Updated Successfully";
+                return RedirectToAction("admin_dash", "AdminDash");
+            }
+            else
+            {
+                TempData["error"] = "Please Provide Password to Update it";
+                return RedirectToAction("admin_dash", "AdminDash");
+            }
+
         }
 
         [HttpPost]
         public IActionResult UpdateAdmin(AdminProfileModal profile)
         {
             var aspid = HttpContext.Session.GetInt32("Aspid");
-            _adminDashRepository.UpdateAdmin(profile, aspid??1);
-
-            return RedirectToAction("admin_dash","AdminDash");
+            if (profile != null)
+            {
+                TempData["success"] = "Profile Updated Successfully";
+                _adminDashRepository.UpdateAdmin(profile, aspid ?? 1);
+            }
+            return RedirectToAction("admin_dash", "AdminDash");
         }
 
         [HttpPost]
         public IActionResult UpdateAdminAddress(AdminProfileModal profile)
         {
             var aspid = HttpContext.Session.GetInt32("Aspid");
-            _adminDashRepository.UpdateAdminAddress(profile, aspid??1);
+            if (profile != null)
+            {
+                TempData["success"] = "Profile Updated Successfully";
+                _adminDashRepository.UpdateAdminAddress(profile, aspid ?? 1);
+            }
             return RedirectToAction("admin_dash", "AdminDash");
         }
 
@@ -186,8 +203,45 @@ namespace hellodoc.Controllers
             return _providerLocation.GetProviderLocations();
         }
 
+
+        public IActionResult export()
+        {
+            // Set the LicenseContext before creating the ExcelPackage instance
+            ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+
+            var stream = new MemoryStream();
+
+            var status1 = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            var dashModel1 = _adminDashRepository.GetRequests(new PartialViewModal());
+
+            using (var package = new ExcelPackage(stream))
+            {
+                var workSheet = package.Workbook.Worksheets.Add("Sheet1");
+                //workSheet.Cells.LoadFromCollection(dashModel1.adminDashModels, true);
+                workSheet.Cells[1, 1].Value = "data1";
+                workSheet.Cells[1, 2].Value = "data2";
+
+                for (int i = 0; i < dashModel1.adminDashModels.Count; i++)
+                {
+                    workSheet.Cells[i + 2, 1].Value = dashModel1.adminDashModels[i].Requestid;
+                    workSheet.Cells[i + 2, 2].Value = dashModel1.adminDashModels[i].PatientName;
+                    // Populate more properties as needed
+                }
+                package.Save();
+            }
+            // Reset the position of the MemoryStream
+            stream.Position = 0;
+
+            // Generate a unique file name for the Excel file
+            string excelName = $"UserList-{DateTime.Now.ToString("yyyyMMddHHmmssfff")}.xlsx";
+
+            // Return the Excel file as a FileResult
+            return File(stream, "application/octet-stream", excelName);
+
+        }
+
         [HttpPost]
-        public IActionResult exportToExcel(PartialViewModal partialView , AdminRecordsListModal adminRecords)
+        public IActionResult exportToExcel(PartialViewModal partialView, AdminRecordsListModal adminRecords, string exportType)
         {
             // Set the LicenseContext before creating the ExcelPackage instance
             ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
@@ -259,7 +313,6 @@ namespace hellodoc.Controllers
             return File(stream, "application/octet-stream", excelName);
 
         }
-
     }
 }
 

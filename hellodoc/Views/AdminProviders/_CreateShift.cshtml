@@ -24,27 +24,20 @@
                     </select>
                     <span asp-validation-for="Regionid" class="text-danger"></span>
                     @{
-                        <select class="form-select mt-3" aria-label="Default select example" asp-for="@Model.Physicianid" onchange="checkShiftAvailability()" id="Physicianselect">
-                           
-                            <option selected disabled>Select Physician</option>
-                            
-                        </select>
-                         <span asp-validation-for="Physicianid" class="text-danger"></span>
-
-                        // if (Model.LoginType == "admin")
-                        // {
-                        //     <select class="form-select mt-3" aria-label="Default select example" asp-for="@Model.Physicianid" onchange="checkShiftAvailability()" id="Physicianselect">
-                        //         <option selected disabled>Select Physician</option>
-                        //     </select>
-                        //     <span asp-validation-for="Physicianid" class="text-danger"></span>
-                        // }
-                        // else
-                        // {
-                        //     <select class="form-select mt-3" aria-label="Default select example" asp-for="@Model.Physicianid" onchange="checkShiftAvailability()" id="Physicianselect" disabled>
-                        //         <option selected value="@Model.Physicianid"> Dr. @Model.physics.FirstOrDefault(p => p.Physicianid == Model.Physicianid).Firstname @Model.physics.FirstOrDefault(p => p.Physicianid == Model.Physicianid).Lastname </option>
-                        //     </select>
-                        //     <span asp-validation-for="Physicianid" class="text-danger"></span>
-                        // }
+                         if (Model.LoginType == "admin")
+                         {
+                             <select class="form-select mt-3" aria-label="Default select example" asp-for="@Model.Physicianid" onchange="checkShiftAvailability()" id="Physicianselect">
+                                 <option selected disabled>Select Physician</option>
+                             </select>
+                             <span asp-validation-for="Physicianid" class="text-danger"></span>
+                         }
+                         else
+                         {
+                             <select class="form-select mt-3" aria-label="Default select example" asp-for="@Model.Physicianid" onchange="checkShiftAvailability()" id="Physicianselect" disabled>
+                                 <option selected value="@Model.Physicianid" disabled> Dr. @Model.physics.FirstOrDefault(p => p.Physicianid == Model.Physicianid).Firstname @Model.physics.FirstOrDefault(p => p.Physicianid == Model.Physicianid).Lastname </option>
+                             </select>
+                             <span asp-validation-for="Physicianid" class="text-danger"></span>
+                         }
                             
                         }
 
@@ -128,7 +121,7 @@
         var selectedMinute = parseInt(selectedTime.split(":")[1]);
 
         // Check if the selected date is the current date and the selected time is less than the current time
-        if (selectedDate.toDateString() === currentTime.toDateString() && (selectedHour < currentHour || (selectedHour === currentHour && selectedMinute < currentMinute))) {
+        if ((selectedDate.toDateString() === currentTime.toDateString() && (selectedHour < currentHour || (selectedHour === currentHour && selectedMinute < currentMinute))) || (selectedHour === 23 && selectedMinute>=30 ) )  {
             // Set the start time to the current time
             document.getElementById("startTimeInput").value = currentHour.toString().padStart(2, "0") + ":" + currentMinute.toString().padStart(2, "0");
             // Display error message
@@ -179,8 +172,8 @@
         checkShiftAvailability();
     }
 
-    function regionchange(loginType){
-        if(loginType != "provider"){
+    function regionchange(){
+        if (localStorage.getItem("loginAccount") != "Provider") {
             var select = document.getElementById('regionselect').value;
             getphysician(select);
             checkShiftAvailability();

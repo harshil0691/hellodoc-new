@@ -20,6 +20,7 @@ namespace hellodoc.Repositories.Repository.Interface
         ShiftDetailsmodal GetShift(int shiftdetailsid);
         List<Physician> physicians(int regionid);
         bool UpdateProvider(ProviderProfileModal providerProfile);
+        bool DeleteProvider(int providerid);
         void EditShift(int shiftdetailsid,ShiftDetailsmodal shiftDetailsmodal,int aspid);
         void DeleteShift(int shiftdetailsid,int aspid);
         void StatusChangeShift(int shiftdetailsid, int aspid);

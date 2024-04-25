@@ -59,7 +59,7 @@ namespace hellodoc.Controllers
                 case "AssignCase":
                     return PartialView("_AssignCase", new AssignCaseModal
                     {
-                        Regions = _adminDashRepository.GetRegions(0),
+                        Regions = _adminDashRepository.GetRegions("", 0),
                         Physicians = _adminDashRepository.GetPhysicianList(),
                         Requestid = partialView.requestid,
                         Modaltype = partialView.patientName,
@@ -367,6 +367,17 @@ namespace hellodoc.Controllers
         [HttpPost]
         public IActionResult request_support(RequestSupportModal supportModal)
         {
+            var physician = _adminDashRepository.GetUnAssignedPhysician();
+            if (physician != null)
+            {
+                foreach (var p in physician)
+                {
+                    var subject = "U Note Have Any Shift For Today";
+
+                    SendMail(subject, supportModal.Message,p.Email);
+                }
+            }
+            TempData["success"] = "Mail Sent to All UnAssigned Physician Successfully";
             return RedirectToAction("admin_dash", "AdminDash");
         }
 
@@ -650,8 +661,8 @@ namespace hellodoc.Controllers
 
             SendMail(subject, message,sendLink.Email);
 
-            SendSMS(message, sendLink.Phone);
-
+            var Message = SendSMS(message, sendLink.Phone);
+            TempData["success"] = Message;
             return RedirectToAction("admin_dash", "AdminDash");
         }
 
@@ -738,7 +749,7 @@ namespace hellodoc.Controllers
             client.SendMailAsync(mailMessage);
         }
 
-        public void SendSMS(string message,long? phone)
+        public string SendSMS(string message,long? phone)
         {
             const string accountSid = "ACbab82685c56693b60c76b5f7e372f1fc";
             const string authToken = "d1fc25823b60dfa35f7278ccb354ac04";
@@ -747,11 +758,20 @@ namespace hellodoc.Controllers
             TwilioClient.Init(accountSid, authToken);
 
             // Send an SMS
-            var message1 = MessageResource.Create(
-                body: message,
-                from: new Twilio.Types.PhoneNumber(twilioPhoneNumber),
-                to: new Twilio.Types.PhoneNumber("+917984752378")
-            );
+            try
+            {
+                var message1 = MessageResource.Create(
+               body: message,
+               from: new Twilio.Types.PhoneNumber(twilioPhoneNumber),
+               to: new Twilio.Types.PhoneNumber("+917984752378")
+               );
+                return "Message Sent SuccessFully";
+            }
+            catch(Exception ex)
+            {
+                return "Message Not Sent" + ex.Message;
+            }
+           
         }
 
        

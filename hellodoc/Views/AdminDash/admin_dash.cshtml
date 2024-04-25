@@ -8,6 +8,56 @@
 <Partial name="_Notification" />
 <Partial name="_header">
 
+    <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel"><p class="m-2 pt-2 d-block d-md-none">Welcome <strong>@HttpContextAccessor.HttpContext.Session.GetString("username")</strong></p></h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            
+            <ul class="nav nav-underline mt-2 mx-2 d-grid d-md-none shadow-sm" id="mydashboard">
+                <li class="nav-item mx-2">
+                    <a class="nav-link" data-bs-toggle="pill" href="#dashboard">Dashboard</a>
+                </li>
+                <li class="nav-item mx-2">
+                    <a class="nav-link " data-bs-toggle="pill" href="#providerlocation">Provider Location</a>
+                </li>
+                <li class="nav-item mx-2">
+                    <a class="nav-link " data-bs-toggle="pill" href="#myprofile">My Profile</a>
+                </li>
+                <li class="nav-item mx-2 dropdown1">
+                    <a class="nav-link" data-bs-toggle="pill" href="#provider" id="provideractive">Providers</a>
+                    <div class="dropdown-content1">
+                        <a onclick="GetProvidersView({actionType : 'provider'})">Provider</a>
+                        <a onclick="GetProvidersView({actionType : 'scheduling'})">Scheduling</a>
+                        <a onclick="GetProvidersView({actionType : 'invoicing'})">Invoicing</a>
+                    </div>
+                </li>
+                <li class="nav-item mx-2">
+                    <a class="nav-link " data-bs-toggle="pill" href="#partner">Partners</a>
+                </li>
+                <li class="nav-item mx-2 dropdown1">
+                    <a class="nav-link " data-bs-toggle="pill" href="#access">Access</a>
+                    <div class="dropdown-content1">
+                        <a onclick="GetAccessView({actionType : 'accountAccess'})">Account Access</a>
+                        <a onclick="GetAccessView({actionType : 'userAccess'})">User Access</a>
+                        <a onclick="GetAccessView({actionType : 'createAdmin'})">Create Admin</a>
+                    </div>
+                </li>
+                <li class="nav-item mx-2 dropdown1">
+                    <a class="nav-link " data-bs-toggle="pill" id="recordsactive" href="#records">Records</a>
+                    <div class="dropdown-content1">
+                        <a onclick="adminDashload({action : 'SearchRecords',actionType : 'GetView',id : 'recordsactive',controller : 'AdminRecords'})">Search Records</a>
+                        <a onclick="adminDashload({action : 'EmailLogs',actionType : 'GetView', id :  'recordsactive',controller : 'AdminRecords'})">Email Logs</a>
+                        <a onclick="adminDashload({action: 'SMSLogs',actionType : 'GetView', id :'recordsactive',controller : 'AdminRecords'})">SMS Logs</a>
+                        <a onclick="adminDashload({action : 'PatientHistory',actionType : 'GetView', id :'recordsactive',controller : 'AdminRecords'})">Patient Records</a>
+                        <a onclick="adminDashload({action : 'BlockedHistory',actionType : 'GetView', id :'recordsactive',controller : 'AdminRecords'})">Blocked History</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
 
     <div class="collapse navbar-collapse d-md-block" id="navbarSupportedContent">
     <p class="m-2 pt-2 d-block d-md-none">Welcome <strong>@HttpContextAccessor.HttpContext.Session.GetString("username")</strong></p>

@@ -38,7 +38,8 @@ namespace hellodoc.DbEntity.ViewModels
         public string Street { get; set; } = null!;
         public string City { get; set; } = null!;
         public string State { get; set; } = null!;
-        [Required]
+        [Required(ErrorMessage = "ZIP code is required")]
+        [RegularExpression(@"^\d{5}(?:-\d{4})?$", ErrorMessage = "Invalid ZIP code format")]
         public long Zipcode { get; set; }
         public string? Roomno { get; set; }
         [Required]

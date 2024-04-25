@@ -415,9 +415,9 @@ namespace hellodoc.Repositories.Repository
             }
         }
 
-        public  List<Region> GetRegions(int physicianid)
+        public  List<Region> GetRegions(string loginType,int physicianid)
         {
-            if (physicianid !=0 )
+            if (loginType == "provider" )
             {
                 var regionidlist = _context.PhysicianRegions.Where(p => p.Physicianid == physicianid).Select(p => p.Regionid).ToList();
                 var regions = _context.Regions.Where(r  => regionidlist.Contains(r.Regionid)).ToList();
@@ -550,30 +550,35 @@ namespace hellodoc.Repositories.Repository
                 var admin = _context.Admins.FirstOrDefault(u => u.Aspnetuserid == aspnetuserid);
                 var aspuser = _context.AspNetUsers.FirstOrDefault(u => u.Id == aspnetuserid);
 
-                AdminProfileModal adminProfile = new AdminProfileModal
+                if(admin != null &&  aspuser != null)
                 {
-                    username = aspuser.Username,
-                    status = admin.Status.Value,
-                    role = _context.Roles.FirstOrDefault(u => u.Roleid == admin.Roleid).Name,
-                    aspid = aspnetuserid,
+                    AdminProfileModal adminProfile = new AdminProfileModal
+                    {
+                        username = aspuser.Username,
+                        status = admin.Status.Value,
+                        role = _context.Roles.FirstOrDefault(u => u.Roleid == admin.Roleid).Name,
+                        aspid = aspnetuserid,
 
-                    Firstname = admin.Firstname,
-                    Lastname = admin.Lastname,
-                    Email = admin.Email,
-                    Phone = admin.Mobile.ToString(),
+                        Firstname = admin.Firstname,
+                        Lastname = admin.Lastname,
+                        Email = admin.Email,
+                        Phone = admin.Mobile.ToString(),
 
-                    Address1 = admin.Address1,
-                    Address2 = admin.Address2,
-                    City = admin.City,
-                    Zipcode = admin.Zip,
-                    MailingNumber = admin.Altphone.ToString(),
-                    State = admin.Regionid,
-                };
+                        Address1 = admin.Address1,
+                        Address2 = admin.Address2,
+                        City = admin.City,
+                        Zipcode = admin.Zip ?? 0,
+                        MailingNumber = admin.Altphone.ToString(),
+                        State = admin.Regionid ?? 0,
+                    };
 
-                adminProfile.regions = _context.Regions.ToList();
-                adminProfile.roles = _context.Roles.ToList();
-                adminProfile.selectedRegion = _context.AdminRegions.Where(a => a.Adminid == admin.Adminid).Select(s => s.Regionid).ToList();
-                return adminProfile;
+                    adminProfile.regions = _context.Regions.ToList();
+                    adminProfile.roles = _context.Roles.ToList();
+                    adminProfile.selectedRegion = _context.AdminRegions.Where(a => a.Adminid == admin.Adminid).Select(s => s.Regionid).ToList();
+                    return adminProfile;
+                }
+
+                return new AdminProfileModal();
             }
             catch
             {
@@ -584,10 +589,13 @@ namespace hellodoc.Repositories.Repository
            
         }
 
-        public async Task UpdatePassword(int aspid, string password)
+        public void UpdatePassword(int aspid, string password)
         {
             var user = _context.AspNetUsers.FirstOrDefault(u => u.Id == aspid);
-            user.Passwordhash = password;
+            if(user != null)
+            {
+                user.Passwordhash = password;
+            }
             _context.SaveChanges();
         }
 
@@ -595,42 +603,48 @@ namespace hellodoc.Repositories.Repository
         {
             var admin = _context.Admins.FirstOrDefault(u => u.Aspnetuserid == aspid);
 
-            admin.Firstname = adminProfile.Firstname;
-            admin.Lastname = adminProfile.Lastname;
-            admin.Email = adminProfile.Email;
-            admin.Mobile = long.Parse(adminProfile.Phone);
-
-            var adminregion = _context.AdminRegions.Where(p => p.Adminid == admin.Adminid);
-            foreach (var i in adminregion)
+            if(admin != null && adminProfile != null)
             {
-                _context.AdminRegions.Remove(i);
-            }
+                admin.Firstname = adminProfile.Firstname;
+                admin.Lastname = adminProfile.Lastname;
+                admin.Email = adminProfile.Email;
+                admin.Mobile = long.Parse(adminProfile.Phone);
 
-            foreach (var region in adminProfile.selectedRegion)
-            {
-                AdminRegion adminRegion = new AdminRegion
+                var adminregion = _context.AdminRegions.Where(p => p.Adminid == admin.Adminid);
+                foreach (var i in adminregion)
                 {
-                    Adminid = admin.Adminid,
-                    Regionid = region,
-                };
-                _context.AdminRegions.Add(adminRegion);
+                    _context.AdminRegions.Remove(i);
+                }
+
+                foreach (var region in adminProfile.selectedRegion)
+                {
+                    AdminRegion adminRegion = new AdminRegion
+                    {
+                        Adminid = admin.Adminid,
+                        Regionid = region,
+                    };
+                    _context.AdminRegions.Add(adminRegion);
+                }
+                _context.Admins.Update(admin);
+                _context.SaveChanges();
             }
-            _context.SaveChanges();
 
             return true;
         }
 
-        public async Task UpdateAdminAddress(AdminProfileModal adminProfile, int aspid)
+        public void UpdateAdminAddress(AdminProfileModal adminProfile, int aspid)
         {
             var admin = _context.Admins.FirstOrDefault(u => u.Aspnetuserid == aspid);
 
-            admin.Address1 = adminProfile.Address1;
-            admin.Address2 = adminProfile.Address2;
-            admin.City = adminProfile.City;
-            admin.Zip = adminProfile.Zipcode;
-            admin.Regionid = adminProfile.State;
-            admin.Altphone = long.Parse(adminProfile.MailingNumber);
-
+            if (admin!= null && adminProfile != null)
+            {
+                admin.Address1 = adminProfile.Address1;
+                admin.Address2 = adminProfile.Address2;
+                admin.City = adminProfile.City;
+                admin.Zip = adminProfile.Zipcode;
+                admin.Regionid = adminProfile.State;
+                admin.Altphone = long.Parse(adminProfile.MailingNumber??"1");
+            }
             _context.SaveChanges();
 
         }
@@ -785,6 +799,15 @@ namespace hellodoc.Repositories.Repository
             _context.SaveChanges();
 
             return "ok";
+        }
+
+        public List<Physician> GetUnAssignedPhysician()
+        {
+            DateTime dateTime = DateTime.Now;
+            var physicanidlist = _context.ShiftDetails.Where(s => s.Shiftdate.Date == dateTime.Date).Select(p => p.Shift.Physicianid).ToList();
+            var physician = _context.Physicians.Where(p => !physicanidlist.Contains(p.Physicianid)).ToList();
+
+            return physician;
         }
 
         public List<NotificationMessage> GetNotification()

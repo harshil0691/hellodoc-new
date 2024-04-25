@@ -38,7 +38,7 @@
             }
 
             <h4 class="mt-2">Account Information</h4>
-            <form id="AspDetails" method="post" onsubmit="UpdateProvider('AspDetails','#AspDetails','@Model.physicianId')">
+            <form id="AspDetails" method="post" onsubmit="UpdateProvider('AspDetails','#AspDetails','@Model.physicianId','pedit1','pe1','pe2','pee1')">
                 <div class="row mt-3">
 
                     <div class="form-floating mb-3  col-md-6 col-lg-6">
@@ -151,7 +151,7 @@
 
                 <div class="d-flex justify-content-end">
                     <button type="button" class="btn btn-info text-white px-2" onclick="pedit('pedit2','pb1','pb2','pee2')" id="pee2">Edit</button>
-                    <button type="button" class="btn btn-info mx-3 p-2 px-3 mb-2" id="pb1" onclick="UpdateProvider('physician','#physician','@Model.physicianId')" style="display:none;">Save</button>
+                    <button type="button" class="btn btn-info mx-3 p-2 px-3 mb-2" id="pb1" onclick="UpdateProvider('physician','#physician','@Model.physicianId','pedit2','pb1','pb2','pee2')" style="display:none;">Save</button>
                     <button type="reset" class="btn btn-outline-info mx-3 p-2 px-3 mb-2" id="pb2" style="display:none;" onclick="pcancel('pedit2','pb1','pb2','pee2')">Cancel</button>
                 </div>
             </form>
@@ -176,8 +176,15 @@
                         <span asp-validation-for="City" class="text-danger"></span>
                     </div>
                     <div class="form-floating mb-3  col-md-6 col-lg-6">
-                        <input type="text" class="form-control pedit3" id="floatingInput" asp-for="State" placeholder="State" disabled>
-                        <label for="floatingInput" class="mx-3">State</label>
+                        <select class="form-select AdminProfile2 pedit3" aria-label="Default select example" asp-for="State" disabled>
+                            <option selected disabled>State</option>
+                            @{
+                                foreach (var item in Model.regions)
+                                {
+                                    <option value="@item.Regionid">@item.Name</option>
+                                }
+                            }
+                        </select>
                         <span asp-validation-for="State" class="text-danger"></span>
                     </div>
                     <div class="form-floating mb-3 col-md-6 col-lg-6">
@@ -194,7 +201,7 @@
 
                 <div class="d-flex justify-content-end">
                     <button type="button" class="btn btn-info text-white px-2" onclick="pedit('pedit3','pc1','pc2','pee3')" id="pee3">Edit</button>
-                    <button type="button" class="btn btn-info mx-3 p-2 px-3 mb-2" id="pc1" onclick="UpdateProvider('mailing','#mailing','@Model.physicianId')" style="display:none;">Save</button>
+                    <button type="button" class="btn btn-info mx-3 p-2 px-3 mb-2" id="pc1" onclick="UpdateProvider('mailing','#mailing','@Model.physicianId','pedit3','pc1','pc2','pee3')" style="display:none;">Save</button>
                     <button type="reset" class="btn btn-outline-info mx-3 p-2 px-3 mb-2" id="pc2" style="display:none;" onclick="pcancel('pedit3','pc1','pc2','pee3')">Cancel</button>
                 </div>
             </form>
@@ -265,7 +272,7 @@
 
                 <div class="d-flex justify-content-end mt-3">
                     <button type="button" class="btn btn-info text-white px-2" onclick="pedit('pedit4','pd1','pd2','pee4')" id="pee4">Edit</button>
-                    <button type="button" class="btn btn-info mx-3 p-2 px-3 mb-2" id="pd1" onclick="UpdateProvider('providerProfile','#provider','@Model.physicianId')" style="display:none;">Save</button>
+                    <button type="button" class="btn btn-info mx-3 p-2 px-3 mb-2" id="pd1" onclick="UpdateProvider('providerProfile','#provider','@Model.physicianId','pedit4','pd1','pd2','pee4')" style="display:none;">Save</button>
                     <button type="reset" class="btn btn-outline-info mx-3 p-2 px-3 mb-2" id="pd2" style="display:none;" onclick="pcancel('pedit4','pd1','pd2','pee4')">Cancel</button>
                 </div>
             </form>
@@ -406,7 +413,7 @@
             <hr />
             <div class="d-flex justify-content-end m-1">
                 <button type="button" class="btn btn-info text-white mx-2" onclick="UpdateProvider('onboarding','#onboarding','@Model.physicianId')">Save</button>
-                <button type="button" class="btn btn-danger text-white mx-2">Delete Account</button>
+                <a class="btn btn-danger text-white mx-2" asp-action="delete_physician" asp-route-physicianid="@Model.physicianId" >Delete Account</a>
             </div>
 
         </div>
@@ -500,8 +507,8 @@
     }
 
 
-    function UpdateProvider(updateType,formId,physicianid) 
-    {
+    function UpdateProvider(updateType, formId, physicianid, classname, save, cancel, edit) {
+
         event.preventDefault();
         var formdata = [];
         var formdata = new FormData($(formId)[0]);
@@ -555,7 +562,9 @@
                 processData: false,
                 contentType: false,
                 success: function (data) {
-                    loadProviderView('edit_physician', physicianid)
+                    pcancel(classname, save, cancel, edit);
+                    toastr.success(updateType + " saveChanges Successfully");
+                   // loadProviderView('edit_physician', physicianid)
                 },
                 error: function () {
                     console.error('Error loading partial view.');

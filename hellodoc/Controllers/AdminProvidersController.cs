@@ -46,13 +46,14 @@ namespace hellodoc.Controllers
                 date = DateTime.Parse(partialView.datestring);
             }
             var physicianid = HttpContext.Session.GetInt32("physicianid");
+
             switch (partialView.actionType)
             {
                 case "provider":
                     return PartialView("_Providers", _adminProviders.ProvidersTable(partialView.pageNumber,partialView.regionid));
                 case "scheduling":
                     DashboardListsModal listsModal = new DashboardListsModal();
-                    listsModal.regions = _adminDashRepository.GetRegions(0);
+                    listsModal.regions = _adminDashRepository.GetRegions("",0);
                     listsModal.role = HttpContext.Session.GetString("loginType") ?? "admin";
                     listsModal.physicianId = physicianid??0;
                     return PartialView("_Scheduling",listsModal);
@@ -63,6 +64,7 @@ namespace hellodoc.Controllers
                     return PartialView("_ProvidersOnCall", modal);
 
                 case "shiftreview":
+                    ViewBag.back = partialView.back;
                     var list = _adminProviders.ShiftsDetailsList(partialView.regionid, partialView.pageNumber);
                     return PartialView("_ShiftsForReview", list);
                 case "createProvider":
@@ -100,6 +102,21 @@ namespace hellodoc.Controllers
             ViewBag.loginType = HttpContext.Session.GetString("loginType");
             ProviderProfileModal providerProfile = _adminProviders.ProviderProfileData(physicianid).Result;
             return PartialView("_ProviderProfile", providerProfile);
+        }
+
+        public IActionResult delete_physician(int physicianid)
+        {
+            var delete = _adminProviders.DeleteProvider(physicianid);
+            if (delete)
+            {
+                TempData["success"] = "Physican Deleted Successfully";
+                return RedirectToAction("admin_dash","AdminDash");
+            }
+            else
+            {
+                TempData["error"] = "Internal Error Physician Not Deleted";
+                return RedirectToAction("admin_dash", "AdminDash");
+            }
         }
 
         public void UpdateProvider(ProviderProfileModal providerProfile)
@@ -195,7 +212,7 @@ namespace hellodoc.Controllers
 
                 case "createshift":
                     ShiftDetailsmodal shiftDetailsmodal = new ShiftDetailsmodal();
-                    shiftDetailsmodal.regions = _adminDashRepository.GetRegions(HttpContext.Session.GetInt32("physiciandashid") ?? 0);
+                    shiftDetailsmodal.regions = _adminDashRepository.GetRegions(HttpContext.Session.GetString("loginType")??"admin",HttpContext.Session.GetInt32("physiciandashid")??0);
                     shiftDetailsmodal.physics = _adminDashRepository.GetPhysicianList();
                     shiftDetailsmodal.Physicianid = HttpContext.Session.GetInt32("physiciandashid")??0;
                     shiftDetailsmodal.LoginType = HttpContext.Session.GetString("loginType") ?? "admin";

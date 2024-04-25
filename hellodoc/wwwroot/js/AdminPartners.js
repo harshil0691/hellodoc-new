@@ -43,7 +43,7 @@ function bussinessActions(actionType, vendorid) {
     formdata.push({ name: "Vendorid", value: vendorid });
     formdata.push({ name: "actionType", value: actionType });
     var form = $.param(formdata);
-    console.log(1);
+
     if ($('#business').valid()) {
         console.log(2);
         $.ajax({

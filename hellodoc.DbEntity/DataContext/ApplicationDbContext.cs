@@ -293,8 +293,6 @@ public partial class ApplicationDbContext : DbContext
         {
             entity.HasKey(e => e.Locationid).HasName("PhysicianLocation_pkey");
 
-            entity.Property(e => e.Locationid).ValueGeneratedNever();
-
             entity.HasOne(d => d.Physician).WithMany(p => p.PhysicianLocations)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fk_physicianlocation_physician");

@@ -113,13 +113,13 @@ function ShiftCalender(shifttype,regionid) {
             calendar.innerHTML = '<input type="week" id="month-input" onchange="monthchange()"/>';
 
     }
-    //console.log(localStorage.getItem("loginAccount"));
-    //if (localStorage.getItem("loginAccount") != "Provider") {
+
+    if (localStorage.getItem("loginAccount") != "Provider") {
         document.getElementById('day').classList.remove('btn-info', 'text-white');
         document.getElementById('week').classList.remove('btn-info', 'text-white');
         document.getElementById('month').classList.remove('btn-info', 'text-white');
         document.getElementById(schedulingtype).classList.add('btn-info', 'text-white');
-   /* }*/
+    }
 
     $.ajax({
         url: '/AdminProviders/loadshift',

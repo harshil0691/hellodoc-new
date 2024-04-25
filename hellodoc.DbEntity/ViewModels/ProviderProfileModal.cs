@@ -54,13 +54,13 @@ namespace hellodoc.DbEntity.ViewModels
         [Compare("ProviderEmail",ErrorMessage = "Email And Confirm Email is Not Equal")]
         public string? SynEmail { get; set; }
 
-        public string? Address1 { get; set; }
+        public string Address1 { get; set; }
         public string? Address2 { get; set; }
         [Required]
         [Range(100000, 999999, ErrorMessage = "Zip code must be a 6-digit number")]
-        public long? Zipcode { get; set; }
+        public long Zipcode { get; set; }
         [Required]
-        public int? State { get; set; }
+        public int State { get; set; }
         [Required]
         public string? City { get; set; }
         [Required(ErrorMessage = "Phone number is required")]
@@ -88,7 +88,7 @@ namespace hellodoc.DbEntity.ViewModels
         public string? NondisclosureAggrementPath { get; set; }
         public string? LicensePath { get; set; }
 
-        public string AdminNotes { get; set; }
+        public string? AdminNotes { get; set; }
         public string selectedRegion {  get; set; }
         [Required(ErrorMessage = "Role Selection Is Required")]
         public int selectrole { get; set; }

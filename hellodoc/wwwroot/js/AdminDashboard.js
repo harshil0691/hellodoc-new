@@ -8,8 +8,8 @@ $(document).ready(function () {
         loadPartialDashView(localStorage.getItem("DashTab"), true);
     } else {
         loadPartialDashView("dashboard");
-        localStorage.setItem("loginAccount", "admin");
     }
+    localStorage.setItem("loginAccount", "admin");
 });
 
 
@@ -132,16 +132,21 @@ function exportToExcel(type) {
         data: form,
         responseType: 'blob',
         success: function (data) {
-            var blob = new Blob([data], { type: 'application/octet-stream' });
+            var blob = new Blob([data]);
 
+            // Create a temporary URL to the blob
             var url = window.URL.createObjectURL(blob);
+
+            // Create a link element and set its attributes
             var link = document.createElement('a');
             link.href = url;
             link.download = 'downloaded_excel_file.xlsx';
 
+            // Append the link to the document body and click it programmatically
             document.body.appendChild(link);
             link.click();
 
+            // Clean up by removing the link and revoking the URL
             document.body.removeChild(link);
             window.URL.revokeObjectURL(url);
         },

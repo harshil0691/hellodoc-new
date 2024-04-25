@@ -20,12 +20,12 @@ namespace hellodoc.DbEntity.ViewModels
         [Required(ErrorMessage = "Password is required")]
         [MinLength(8, ErrorMessage = "Password must be at least 8 characters long")]
         [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z]).+$", ErrorMessage = "Password must contain at least one lowercase letter and one uppercase letter")]
-        public string? password { get; set; }
+        public string password { get; set; }
         public string username { get; set; }
         [Required]
-        public string? Firstname { get; set; }
+        public string Firstname { get; set; }
         [Required]
-        public string? Lastname { get; set; }
+        public string Lastname { get; set; }
         public string Location { get; set; }
         public DateOnly? DateOfBirth { get; set; }
         public DateOnly? DateOfService { get; set; }
@@ -37,18 +37,18 @@ namespace hellodoc.DbEntity.ViewModels
 
         [Required(ErrorMessage = "Email is required")]
         [EmailAddress(ErrorMessage = "Email is Invalid")]
-        public string? Email { get; set; }
+        public string Email { get; set; }
 
         [Required(ErrorMessage = "Confirm Email is Required")]
         [Compare("Email", ErrorMessage = "Confirm Email Address do not Match Email")]
-        public string? ConfirmEmail { get; set; }
+        public string ConfirmEmail { get; set; }
        
         public string? Address1 { get; set; }
         public string? Address2 { get; set; }
         [Range(100000, 999999, ErrorMessage = "Zip code must be a 6-digit number")]
         [Required]
-        public long? Zipcode { get; set; }
-        public int? State { get; set; }
+        public long Zipcode { get; set; }
+        public int State { get; set; }
         public string? City { get; set; }
         [Required(ErrorMessage = "Phone number is required")]
         [StringLength(10, MinimumLength = 10, ErrorMessage = "Phone number must be 10 digits long")]

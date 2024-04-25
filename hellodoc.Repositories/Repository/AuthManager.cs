@@ -70,6 +70,7 @@ namespace hellodoc.Repositories.Repository
         }
         private static void RedirectToAccessDenied(HttpContext httpContext)
         {
+            
             httpContext.Response.Redirect("/Login/AccessDenied");
         }
     }
