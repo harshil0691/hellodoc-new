@@ -282,8 +282,12 @@ namespace hellodoc.Repositories.Repository
         public void UnBlock(int requestid)
         {
             var request = _context.BlockRequests.FirstOrDefault(r => r.Requestid == requestid);
-            _context.BlockRequests.Remove(request);
-            _context.SaveChanges();
+            if(request != null)
+            {
+                _context.BlockRequests.Remove(request);
+                _context.SaveChanges();
+            }
+           
         }
     }
 }

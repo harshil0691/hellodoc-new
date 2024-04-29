@@ -65,8 +65,16 @@
                     <label for="floatingInput" class="mx-3">City</label>
                 </div>
                 <div class="form-floating mb-3  col-md-6 col-lg-6">
-                    <input type="text" class="form-control" id="floatingInput" asp-for="State" placeholder="State">
-                    <label for="floatingInput" class="mx-3">State</label>
+                    <select class="form-select form-control" aria-label="Default select example" asp-for="State">
+                        <option selected disabled>State</option>
+                        @{
+                            foreach (var item in Model.regions)
+                            {
+                                <option value="@item.Regionid">@item.Name</option>
+                            }
+                        }
+                    </select>
+                    <span asp-validation-for="State" class="text-danger"></span>
                 </div>
                 <div class="form-floating mb-3 col-md-6 col-lg-6">
                     <input type="number" class="form-control" id="floatingInput" asp-for="Zipcode" placeholder="Zip Code">

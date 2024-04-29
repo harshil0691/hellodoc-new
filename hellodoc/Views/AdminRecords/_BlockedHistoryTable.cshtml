@@ -36,7 +36,7 @@
 
 </div>
 
-<div class="d-block d-sm-block d-md-none d-lg-none d-xl-none">
+<div class="d-block d-sm-block d-md-none d-lg-none d-xl-none mt-3">
     <div class="accordion" id="accordionExample">
 
         @{
@@ -46,10 +46,10 @@
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed  d-grid" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_@a.Requestid" aria-expanded="true" aria-controls="collapse_@a.Requestid">
                             <div class="m-2">
-                                <div>@a.PatientName</div>
+                                <div > <b>@a.PatientName </b></div>
                             </div>
                             <div class="m-2">
-                                <div>@a.Email</div>
+                                <div> <b> @a.Email </b></div>
                             </div>
 
                         </button>
@@ -60,10 +60,10 @@
                     <div id="collapse_@a.Requestid" class="accordion-collapse collapse" data-bs-parent="#accordionExample" style="background-color:#d7ffffde;">
                         <div class="accordion-body">
 
-                            <div class="mb-2"><i class="bi bi-telephone rounded-pill btn btn-outline-info text-black-50 px-2"></i> Phone :<b> @a.PhoneNumber </b></div>
-                            <div class="mb-2"><i class="bi rounded-pill btn btn-outline-info text-black-50 bi-calendar3  px-2"></i> Created Date :<b> @a.CreatedDate </b></div>
-                            <div class="mb-2"><i class="bi bi-envelope-at rounded-pill btn btn-outline-info text-black-50 px-2"></i> Notes :<b> @a.Note </b></div>
-                            <div class="mb-2"><i class="bi bi-telephone rounded-pill btn btn-outline-info text-black-50 px-2"></i> IsActive :<b> @a.IsActive </b></div>
+                            <div class="mb-2"><i class="bi bi-telephone rounded-pill btn btn-outline-info text-black-50 px-2"></i> <span class="text-black-50 mx-2"> Phone :</span><b> @a.PhoneNumber </b></div>
+                            <div class="mb-2"><i class="bi rounded-pill btn btn-outline-info text-black-50 bi-calendar3  px-2"></i><span class="text-black-50 mx-2">  Created Date :</span><b> @a.CreatedDate </b></div>
+                            <div class="mb-2"><i class="bi bi-envelope-at rounded-pill btn btn-outline-info text-black-50 px-2"></i><span class="text-black-50 mx-2">  Notes :</span><b> @a.Note </b></div>
+                            <div class="mb-2"><i class="bi bi-telephone rounded-pill btn btn-outline-info text-black-50 px-2"></i><span class="text-black-50 mx-2">  IsActive :</span><b> @a.IsActive </b></div>
                             <div class="row">
                                 <button type="button" class="btn btn-outline-info" onclick="recordsoperation({actionType:'Unblock',requestid : '@a.Requestid'})">UnBlock</button>
                             </div>

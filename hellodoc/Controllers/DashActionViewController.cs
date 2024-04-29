@@ -12,7 +12,6 @@ using Twilio.Rest.Api.V2010.Account;
 using System.ComponentModel;
 using OfficeOpenXml;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-//using IronPdf;
 using System.IO;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using Microsoft.DotNet.Scaffolding.Shared.Project;
@@ -20,6 +19,7 @@ using System;
 using Org.BouncyCastle.Ocsp;
 using iTextSharp.text.pdf;
 using iTextSharp.text;
+using Microsoft.AspNetCore;
 
 namespace hellodoc.Controllers
 {
@@ -81,7 +81,7 @@ namespace hellodoc.Controllers
                         reqtype = partialView.btext,
                         bcolor = partialView.bcolor,
                         email = partialView.email,
-                        phonenumber = partialView.phonenumber,
+                        phonenumber = partialView.phonenumber.ToString(),
                         patientName = partialView.patientName,
                     };
 
@@ -130,7 +130,7 @@ namespace hellodoc.Controllers
                     {
                         HttpContext.Session.SetInt32("requestid", partialView.requestid);
                         var document = _requests.GetDocuments(partialView.requestid);
-
+                        ViewBag.back = partialView.back;
                         return PartialView("_ViewUploads", document);
                     }
                     catch
@@ -170,11 +170,13 @@ namespace hellodoc.Controllers
                     {
                         reqform.bgcolor = partialView.bcolor;
                         reqform.btext = partialView.btext;
+                        reqform.regions = _adminDashRepository.GetRegions("",0);
+                        ViewBag.back = partialView.back;
                         return PartialView("_ViewCase", reqform);
                     }
                     else
                     {
-                        TempData["error"] = "Internal Error Case Is Not Assigned";
+                        TempData["error"] = "Internal Error";
                         return RedirectToAction("admin_dash", "AdminDash");
                     }
 
@@ -214,14 +216,18 @@ namespace hellodoc.Controllers
                     HttpContext.Session.SetInt32("requestId", partialView.requestid);
 
                     Encounter encounter = _adminDashRepository.GetEncounter(partialView.requestid);
-                    if (encounter.Isfinalized == 1)
+                    if (encounter.Isfinalized == 1 && HttpContext.Session.GetString("loginType") == "provider")
                     {
                         return Json(new { isfinalized = 1 });
                     }
                     return PartialView("_EncounterForm", encounter);
 
                 case "CreateRequest":
-                    return PartialView("_CreateRequest");
+                    RequestFormModal requestForm = new RequestFormModal
+                    {
+                        regions = _adminDashRepository.GetRegions("", 0)
+                    };
+                    return PartialView("_CreateRequest",requestForm);
                 case "ConcludeCare":
                     Encounter encounter1 = _adminDashRepository.GetEncounter(partialView.requestid);
                     ConcludCare concludCare = new ConcludCare();
@@ -231,6 +237,8 @@ namespace hellodoc.Controllers
                     }
                     concludCare.patientDocuments = _requests.GetDocuments(partialView.requestid).patientDocuments;
                     concludCare.PatientName = _requests.GetDocuments(partialView.requestid).Firstname;
+                    concludCare.Requestid = partialView.requestid;
+                    HttpContext.Session.SetInt32("requestid",partialView.requestid);
                     return PartialView("_ConcludeCare", concludCare);
 
                 case "Encounter":
@@ -263,45 +271,6 @@ namespace hellodoc.Controllers
             }
             return RedirectToAction("admin_dash", "AdminDash");
         }
-
-        //public IActionResult download_encounter()
-        //{
-        //    var requestId = HttpContext.Session.GetInt32("requestId") ?? 1;
-        //    Encounter encounter = _adminDashRepository.GetEncounter(requestId);
-
-        //    //IronPdf.License.LicenseKey = "IRONSUITE.HARSHIL.DHADUK.ETATVASOFT.COM.32452-E664BA0484-NJCBR-TEJYAREUGQB5-YEJM6R5HNOOW-5RCB4X6GDSFM-5ZQASR62CVDP-CYLR67INDBE5-274LGFHY7VCP-NTJQG7-TNAKXTGBBQWMEA-DEPLOYMENT.TRIAL-D2ALM2.TRIAL.EXPIRES.18.APR.2024";
-
-        //    //IronPdf.HtmlToPdf Renderer = new IronPdf.HtmlToPdf();
-
-        //    var htmlContent = "<html><body>";
-
-        //    var logoPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "Fig56._Patient_site_1-removebg-preview.png");
-        //    htmlContent += $"<img src='{logoPath}' alt='Company Logo' style='height: 50px; width: auto;' />";
-
-        //    htmlContent += "<div>";
-        //    htmlContent += "<h1>Encounter Form</h1>";
-        //    htmlContent += "<p>Your finalized data in encounterform is given below: </p>";
-        //    htmlContent += $"<h5>Firstname : {encounter.Firstname}</h5>";
-        //    htmlContent += $"<h5>Lastname : {encounter.Lastname}</h5>";
-        //    htmlContent += $"<h5>Email : {encounter.Email}</h5>";
-        //    htmlContent += $"<h5>Phone : {encounter.Phone}</h5>";
-        //    htmlContent += $"<h5>Temperature : {encounter.Temperature}</h5>";
-        //    htmlContent += $"<h5>Hr : {encounter.Hr}</h5>";
-        //    htmlContent += $"<h5>Rr : {encounter.Rr}</h5>";
-        //    htmlContent += $"<h5>Bloodpressure1 : {encounter.Bloodpressure1}</h5>";
-        //    htmlContent += $"<h5>DateOfBirth : {encounter.DateOfBirth}</h5>";
-        //    htmlContent += $"<h5>Allergies : {encounter.Allergies}</h5>";
-        //    htmlContent += $"<h5>MedicalHistory : {encounter.MedicalHistory}</h5>";
-        //    htmlContent += $"<h5>Medications : {encounter.Medications}</h5>";
-        //    htmlContent += $"<h5>Heent : {encounter.Heent}</h5>";
-        //    htmlContent += "</div>";
-        //    htmlContent += "</body></html>";
-
-        //   // var pdfBytes = Renderer.RenderHtmlAsPdf(htmlContent).BinaryData;
-
-        //    return File(pdfBytes, "application/pdf", "GeneratedPDF.pdf");
-
-        //}
 
         public ActionResult download_encounter(int reqid)
         {
@@ -387,7 +356,15 @@ namespace hellodoc.Controllers
             requestForm.RequestCreatedBy = HttpContext.Session.GetString("loginType");
             if (requestForm.RequestCreatedBy == "provider")
             {
-                requestForm.PhysicianId = HttpContext.Session.GetInt32("physicianid")??0;
+                requestForm.PhysicianId = HttpContext.Session.GetInt32("physiciandashid")??0;
+                if (_requests.PatientRequest(requestForm) == "ok")
+                {
+                    return RedirectToAction("dashboard", "ProviderDashboard", new { type = "error", tempdata = "Request Is Created" });
+                }
+                else
+                {
+                    return RedirectToAction("dashboard", "ProviderDashboard", new { type = "error", tempdata = "Request Is Not Created Internal Error" });
+                }
             }
             if (_requests.PatientRequest(requestForm) == "ok")
             {
@@ -602,7 +579,6 @@ namespace hellodoc.Controllers
         public IActionResult view_uploads(IFormFile file1)
         {
             var req = HttpContext.Session.GetInt32("requestid");
-            var doc1 = HttpContext.Session.GetInt32("userid");
 
             _requests.SaveFile(file1,req??0);
 
@@ -645,21 +621,24 @@ namespace hellodoc.Controllers
 
             SendMail(subject, message,sendAgreement.email);
 
-            SendSMS(message, sendAgreement.phonenumber);
+            SendSMS(message, long.Parse(sendAgreement.phonenumber));
             var role = HttpContext.Session.GetString("loginType");
             if (role == "provider")
             {
+                TempData["success"] = "Aggrement Sent Successfully ";
                 return RedirectToAction("dashboard", "ProviderDashboard");
             }
+            TempData["success"] = "Aggrement Sent Successfully ";
             return RedirectToAction("admin_dash", "AdminDash");
         }
 
+        [HttpPost]
         public IActionResult send_link(SendLinkModal sendLink)
         {
             var subject = "Agreement for patiet request";
             var message = "hii" + sendLink.Firstname + " " + sendLink.Lastname + " \n please submit your request";
 
-            SendMail(subject, message,sendLink.Email);
+            SendMail(subject, message,sendLink.MailEmail);
 
             var Message = SendSMS(message, sendLink.Phone);
             TempData["success"] = Message;
@@ -704,7 +683,7 @@ namespace hellodoc.Controllers
             var aspnetuserid = HttpContext.Session.GetInt32("Aspid");
 
             _adminDashRepository.CloseCase(requestid,aspnetuserid??0);
-
+            TempData["success"] = "Request Case is Closed";
             return RedirectToAction("admin_dash", "AdminDash");
         }
         [HttpPost]
@@ -727,10 +706,26 @@ namespace hellodoc.Controllers
         {
             var reqid = HttpContext.Session.GetInt32("requestId");
             _adminDashRepository.FinalizeEncounter(reqid??1, encounter);
+            if (HttpContext.Session.GetString("loginType") == "provider")
+            {
+                return RedirectToAction("dashboard", "ProviderDashboard");
+            }
+            else
+            {
+                return RedirectToAction("admin_dash", "AdminDash");
+            }
 
+           
+        }
+
+        public IActionResult ConcludeCare()
+        {
+            var requestid = HttpContext.Session.GetInt32("requestid");
+            _adminDashRepository.ConcludeCase(requestid??0,HttpContext.Session.GetInt32("physiciandashid")??0);
+            TempData["success"] = "Case Transfer To Closed Successfully";
             return RedirectToAction("dashboard", "ProviderDashboard");
         }
-        
+
 
         public void SendMail(string subject,string message,string mailto)
         {

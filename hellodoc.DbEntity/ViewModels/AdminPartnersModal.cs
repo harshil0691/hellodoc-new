@@ -23,11 +23,13 @@ namespace hellodoc.DbEntity.ViewModels
         public string? Faxnumber { get; set; } 
         public string? Address { get; set; }
         [Required]
+        [StringLength(10, MinimumLength = 10, ErrorMessage = "Business Contact must be 10 digits long")]
+        [RegularExpression("^[0-9]*$", ErrorMessage = "Business Contact must contain only numbers")]
         public string? Phonenumber { get; set; }
         public BitArray? Isdeleted { get; set; }
         public string? Ip { get; set; }
-        [EmailAddress(ErrorMessage = "Invalid email address")]
         [Required]
+        [EmailAddress(ErrorMessage = "Invalid email address")]
         public string BusinessEmail { get; set; }
         [Required]
         [StringLength(10, MinimumLength = 10, ErrorMessage = "Business Contact must be 10 digits long")]

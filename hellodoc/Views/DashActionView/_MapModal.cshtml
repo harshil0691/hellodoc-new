@@ -38,6 +38,7 @@
             console.log(lat);
             document.getElementById('Lat').value = lat;
             document.getElementById('Lang').value = lng;
+            $('#myModal').modal('hide');
         }
 
         map.on('click', onMapClick);

@@ -2425,6 +2425,22 @@
           "build/netcoreapp2.1/_._": {}
         }
       },
+      "SixLabors.ImageSharp/3.1.4": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/SixLabors.ImageSharp.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/SixLabors.ImageSharp.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "build/_._": {}
+        }
+      },
       "System.Buffers/4.5.0": {
         "type": "package",
         "compile": {
@@ -3064,6 +3080,8 @@
           "Microsoft.AspNetCore.Authentication.JwtBearer": "7.0.0",
           "Microsoft.AspNetCore.Mvc.Abstractions": "2.2.0",
           "Newtonsoft.Json": "13.0.3",
+          "SixLabors.ImageSharp": "3.1.4",
+          "System.Drawing.Common": "7.0.0",
           "Twilio": "7.0.0",
           "hellodoc.DbEntity": "1.0.0"
         },
@@ -6777,6 +6795,22 @@
         "nunit3testadapter.nuspec"
       ]
     },
+    "SixLabors.ImageSharp/3.1.4": {
+      "sha512": "lFIdxgGDA5iYkUMRFOze7BGLcdpoLFbR+a20kc1W7NepvzU7ejtxtWOg9RvgG7kb9tBoJ3ONYOK6kLil/dgF1w==",
+      "type": "package",
+      "path": "sixlabors.imagesharp/3.1.4",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "build/SixLabors.ImageSharp.props",
+        "lib/net6.0/SixLabors.ImageSharp.dll",
+        "lib/net6.0/SixLabors.ImageSharp.xml",
+        "sixlabors.imagesharp.128.png",
+        "sixlabors.imagesharp.3.1.4.nupkg.sha512",
+        "sixlabors.imagesharp.nuspec"
+      ]
+    },
     "System.Buffers/4.5.0": {
       "sha512": "pL2ChpaRRWI/p4LXyy4RgeWlYF2sgfj/pnVMvBqwNFr5cXg7CXNnWZWxrOONLg8VGdFB8oB+EG2Qw4MLgTOe+A==",
       "type": "package",
@@ -7887,19 +7921,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\pci235\\.nuget\\packages\\": {}
+    "C:\\Users\\Asus\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\hellodoc.csproj",
+      "projectUniqueName": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\hellodoc.csproj",
       "projectName": "hellodoc",
-      "projectPath": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\hellodoc.csproj",
-      "packagesPath": "C:\\Users\\pci235\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\obj\\",
+      "projectPath": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\hellodoc.csproj",
+      "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\pci235\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7907,18 +7941,17 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\sdk\\7.0.302\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc.DbEntity\\hellodoc.DbEntity.csproj": {
-              "projectPath": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc.DbEntity\\hellodoc.DbEntity.csproj"
+            "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc.DbEntity\\hellodoc.DbEntity.csproj": {
+              "projectPath": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc.DbEntity\\hellodoc.DbEntity.csproj"
             },
-            "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc.Repositories\\hellodoc.Repositories.csproj": {
-              "projectPath": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc.Repositories\\hellodoc.Repositories.csproj"
+            "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc.Repositories\\hellodoc.Repositories.csproj": {
+              "projectPath": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc.Repositories\\hellodoc.Repositories.csproj"
             }
           }
         }
@@ -7927,6 +7960,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -8021,7 +8059,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204\\RuntimeIdentifierGraph.json"
       }
     }
   },

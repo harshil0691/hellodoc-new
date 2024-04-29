@@ -8,10 +8,7 @@
         <div class=" col-12 col-sm-12 col-md-10 col-lg-8 mx-auto d-flex justify-content-between mt-4 mb-2">
             <h2> Conclude Care </h2>
             <button onclick="loadPartialDashView('dashboard','1')" class="d-flex btn btn-outline-info bg-transparent  text-end text-info fs-5 text-decoration-none">
-                <span class="material-icons pt-2">
-                    chevron_left
-                </span>
-                <span class="p-1">Back</span>
+                <i class="bi bi-chevron-left"></i>Back
             </button>
 
         </div>
@@ -24,7 +21,7 @@
                 <h4> EncounterForms </h4>
                 <div class="upload-btn-wrapper">
                     <button class="btn btn-outline-info"> <i class="bi bi-cloud-arrow-up me-2"></i> Upload </button>
-                    <input type="file" />
+                    <input type="file" onchange="savedoc(@Model.Requestid)" id="file1" />
                 </div>
             </div>
 
@@ -40,34 +37,34 @@
                         @{
                             foreach (var a in Model.patientDocuments)
                             {
-                                <tr>
-                                    <td>
-                                        @{
+                                    <tr>
+                                        <td>
+                                            @{
                                             if (a.Doctype == ".pdf")
                                             {
-                                                <i class="bi bi-file-earmark-pdf-fill text-danger fs-5"></i>
+                                                        <i class="bi bi-file-earmark-pdf-fill text-danger fs-5"></i>
                                             }
                                             else if (a.Doctype == ".jpg")
                                             {
-                                                <i class="bi bi-filetype-jpg text-info fs-5"></i>
+                                                        <i class="bi bi-filetype-jpg text-info fs-5"></i>
                                             }
                                             else if (a.Doctype == ".xlsx")
                                             {
-                                                <i class="bi bi-file-earmark-excel-fill fs-5 text-success"></i>
+                                                        <i class="bi bi-file-earmark-excel-fill fs-5 text-success"></i>
                                             }
                                             else if (a.Doctype == ".txt")
                                             {
-                                                <i class="bi bi-card-text fs-5"></i>
+                                                        <i class="bi bi-card-text fs-5"></i>
                                             }
-                                        }
-                                        @a.Filename
-                                    </td>
-                                    <td>
-                                        <a asp-route-download=@a.Requestwisefileid asp-action="download" asp-controller="AdminDash" class="btn btn-outline-info"><i class="bi bi-cloud-download"></i></a>
-                                        <button onclick="loadActionView({ActionType:'deleteDoc',requestid :@a.Requestid,requestwisefileid : @a.Requestwisefileid})" class="btn btn-outline-info"><i class="bi bi-trash3"></i></button>
+                                            }
+                                            @a.Filename
+                                        </td>
+                                        <td>
+                                            <a asp-route-download=@a.Requestwisefileid asp-action="download" asp-controller="AdminDash" class="btn btn-outline-info"><i class="bi bi-cloud-download"></i></a>
+                                            <button onclick="loadActionView({ActionType:'deleteDoc',requestid :@a.Requestid,requestwisefileid : @a.Requestwisefileid})" class="btn btn-outline-info"><i class="bi bi-trash3"></i></button>
 
-                                    </td>
-                                </tr>
+                                        </td>
+                                    </tr>
                             }
                         }
                     </tbody>
@@ -84,11 +81,11 @@
                 @{
                     if(Model.isfinalized == 1)
                     {
-                        <button class="btn btn-info text-white m-2">Conclude Care</button>
+                            <a class="btn btn-info text-white m-2" asp-action="ConcludeCare">Conclude Care</a>
                     }
                     else
                     {
-                        <button class="btn btn-info text-white m-2" disabled>Conclude Care</button>
+                            <button class="btn btn-info text-white m-2" disabled>Conclude Care</button>
                     }
                  }
                 
@@ -99,39 +96,39 @@
                 @{
                     foreach (var a in Model.patientDocuments)
                     {
-                        <div>
-                            <div class="d-flex">
-                                <input type="checkbox" class="custom-check m-2" value="@a.Requestwisefileid" />
-                                <div class="fs-6">
-                                    @{
+                            <div>
+                                <div class="d-flex">
+                                    <input type="checkbox" class="custom-check m-2" value="@a.Requestwisefileid" />
+                                    <div class="fs-6">
+                                        @{
                                         if (a.Doctype == ".pdf")
                                         {
-                                            <i class="bi bi-file-earmark-pdf-fill text-danger fs-3 m-2"></i>
+                                                    <i class="bi bi-file-earmark-pdf-fill text-danger fs-3 m-2"></i>
                                         }
                                         else if (a.Doctype == ".jpg")
                                         {
-                                            <i class="bi bi-filetype-jpg text-info fs-3 m-2"></i>
+                                                    <i class="bi bi-filetype-jpg text-info fs-3 m-2"></i>
                                         }
                                         else if (a.Doctype == ".xlsx")
                                         {
-                                            <i class="bi bi-file-earmark-excel-fill fs-3 m-2 text-success"></i>
+                                                    <i class="bi bi-file-earmark-excel-fill fs-3 m-2 text-success"></i>
                                         }
                                         else if (a.Doctype == ".txt")
                                         {
-                                            <i class="bi bi-card-text fs-3 m-2"></i>
+                                                    <i class="bi bi-card-text fs-3 m-2"></i>
                                         }
-                                    }
-                                    @a.Filename
+                                        }
+                                        @a.Filename
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="m-2 fs-6">@a.Createddate</div>
-                            <div>
-                                <a asp-route-download=@a.Requestwisefileid asp-action="download" class="btn btn-outline-info m-2"><i class="bi bi-cloud-download"></i></a>
-                                <button onclick="loadActionView('deleteDoc','@a.Requestid','@a.Requestwisefileid')" class="btn btn-outline-info m-2"><i class="bi bi-trash3"></i></button>
+                                <div class="m-2 fs-6">@a.Createddate</div>
+                                <div>
+                                    <a asp-route-download=@a.Requestwisefileid asp-action="download" class="btn btn-outline-info m-2"><i class="bi bi-cloud-download"></i></a>
+                                    <button onclick="loadActionView('deleteDoc','@a.Requestid','@a.Requestwisefileid')" class="btn btn-outline-info m-2"><i class="bi bi-trash3"></i></button>
 
+                                </div>
+                                <hr>
                             </div>
-                            <hr>
-                        </div>
                     }
                 }
 
@@ -145,8 +142,38 @@
 </div>
 
 
+<script>
+    function savedoc(requestid) {
+
+        var formdata = new FormData();
+        var fileupload = document.getElementById('file1');
+        var f = fileupload.files[0];
+        formdata.append('Doc', f);
+        formdata.append('actionType', 'upload_doc');
+        if (f != null) {
+            $.ajax({
+                url: '/Patient/PatientUpdateData',
+                type: 'POST',
+                data: formdata,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    console.log(requestid);
+                    toastr.success(data);
+                    loadActionView({ ActionType: 'ConcludeCare', requestid: requestid});
+                },
+                error: function () {
+                    console.error('Error loading partial view.');
+                }
+            });
+        }
+    }
+</script>
+
+
+
 @section Scripts{
     @{
-        <Partial name="_ValidationScriptsPartial" />
+            <Partial name="_ValidationScriptsPartial" />
     }
     }

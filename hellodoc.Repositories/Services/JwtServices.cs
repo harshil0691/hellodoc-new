@@ -29,7 +29,11 @@ namespace hellodoc.Repositories.Services
 
         public string GenarateJwtToken(AspNetUser aspNetUser)
         {
-            var role = _context.AspNetRoles.FirstOrDefault(u=> u.Id == aspNetUser.AspNetUserRole.Role.Accounttype).Name;
+            var role = "";
+            if(aspNetUser != null)
+            {
+                role = _context.AspNetRoles.FirstOrDefault(u => u.Id == aspNetUser.AspNetUserRole.Role.Accounttype).Name;
+            }
 
             var claims = new List<Claim>
             {

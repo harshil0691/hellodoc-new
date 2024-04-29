@@ -80,16 +80,24 @@ namespace hellodoc.Controllers
         }
 
         [HttpPost]
-        public void NewRole(List<int> menulist,string  name ,short accounttype)
+        public IActionResult NewRole(List<int> menulist,string  name ,short accounttype)
         {
             _adminAccess.NewRole(menulist , HttpContext.Session.GetInt32("Aspid")??1,name,accounttype);
-            //return RedirectToAction("admin_dash","AdminDash");
+            TempData["success"] = "New Role Is Created";
+            return RedirectToAction("admin_dash","AdminDash");
         }
         [HttpPost]
         public void EditRole(List<int> menulist, string name, short accounttype,int roleid)
         {
             _adminAccess.EditRole(menulist,accounttype,roleid, HttpContext.Session.GetInt32("Aspid") ?? 1, name);
             //return RedirectToAction("admin_dash","AdminDash");
+        }
+
+        public IActionResult DeleteRole(int roleid)
+        {
+            _adminAccess.DeleteRole(roleid,HttpContext.Session.GetInt32("Aspid")??0);
+            TempData["success"] = "Role Deleted Successfully";
+            return RedirectToAction("admin_dash", "AdminDash");
         }
     }
 }

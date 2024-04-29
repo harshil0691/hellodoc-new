@@ -9,7 +9,17 @@
 
         <div class=" col-12 col-sm-12 col-md-10 col-lg-8 mx-auto d-flex justify-content-between mt-4 mb-2">
             <h2> New Request <button class="mx-2 text-white rounded-5 p-2 fs-4 border-0" style="background-color:@Model.bgcolor;"> @Model.btext </button> </h2>
-            <div><button class="btn btn-outline-info bg-transparent text-info" onclick="loadPartialDashView('dashboard')"><i class="bi bi-chevron-left"></i>Back</button></div>
+            @{
+                if(ViewBag.back == "patientrecords")
+                {
+                    <div><button class="btn btn-outline-info bg-transparent text-info" onclick="adminDashload({action : 'PatientRecords',UserId : '@Model.userid',actionType : 'GetTable', id :'recordsactive',controller : 'AdminRecords'})"><i class="bi bi-chevron-left"></i>Back</button></div>
+                }
+                else
+                {
+                    <div><button class="btn btn-outline-info bg-transparent text-info" onclick="loadPartialDashView('dashboard')"><i class="bi bi-chevron-left"></i>Back</button></div>
+                }
+                }
+            
 
         </div>
         <div class="d-grid gap-2 col-12 col-sm-12 col-md-10 col-lg-8 mx-auto d-flex content px-4 pt-4">
@@ -65,23 +75,23 @@
 
                 <div class="row">
                     <div class="form-floating mb-3  col-md-6 col-lg-6">
-                        <input type="text" class="form-control" id="floatingInput" asp-for="@Model.Street" placeholder="Region" disabled>
-                        <label for="floatingInput" class="mx-3">Region</label>
+                        <input type="text" class="form-control" id="floatingInput" asp-for="@Model.Street" placeholder="Street" disabled>
+                        <label for="floatingInput" class="mx-3">Street</label>
                         <span asp-validation-for="Street" class="text-danger"></span>
                     </div>
-                    <div class="form-floating mb-3  col-md-6 col-lg-6">
-                        <input type="text" class="form-control" id="floatingInput" asp-for="@Model.State" placeholder="State" disabled>
-                        <label for="floatingInput" class="mx-3">State</label>
-                        <span asp-validation-for="State" class="text-danger"></span>
-                    </div>
-                    <div class="form-floating mb-3 col-md-6 col-lg-6">
-                        <input type="text" class="form-control" id="floatingInput" asp-for="@Model.Roomno" placeholder="RoomNo" disabled>
-                        <label for="floatingInput" class="mx-3">RoomNo</label>
-                        <span asp-validation-for="Roomno" class="text-danger"></span>
-                    </div>
-
+                <div class="form-floating mb-3  col-md-6 col-lg-6">
+                    <select class="form-select AdminProfile2" aria-label="Default select example" asp-for="State" disabled>
+                        <option selected disabled>State</option>
+                        @{
+                            foreach (var item in Model.regions)
+                            {
+                                <option value="@item.Regionid">@item.Name</option>
+                            }
+                        }
+                    </select>
+                    <span asp-validation-for="State" class="text-danger"></span>
                 </div>
-
+                    
 
 
                 <div class="d-flex justify-content-end">

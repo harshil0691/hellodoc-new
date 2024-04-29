@@ -67,6 +67,9 @@ public partial class HealthProfessional
     [StringLength(100)]
     public string? Businesscontact { get; set; }
 
+    [Column("street", TypeName = "character varying")]
+    public string? Street { get; set; }
+
     [InverseProperty("Vendor")]
     public virtual ICollection<OrderDetail> OrderDetails { get; } = new List<OrderDetail>();
 

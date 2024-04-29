@@ -26,7 +26,9 @@ namespace hellodoc.Repositories.Repository.Interface
         PatientReqModel GetDocuments(int rid);
         Task<string> GetFilename(int reqcliid);
 
-        void CreateUser(RequestFormModal requestForm);
+        string CreateUser(RequestFormModal requestForm);
+
+        string ResetPassword(RequestFormModal requestForm);
 
         Task UpdateCloseCase(int requestid,CloseCaseModal closeCase);
     }

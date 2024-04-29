@@ -217,25 +217,14 @@ namespace hellodoc.Controllers
             using (var package = new ExcelPackage(stream))
             {
                 var workSheet = package.Workbook.Worksheets.Add("Sheet1");
-                //workSheet.Cells.LoadFromCollection(dashModel1.adminDashModels, true);
-                workSheet.Cells[1, 1].Value = "data1";
-                workSheet.Cells[1, 2].Value = "data2";
+                workSheet.Cells.LoadFromCollection(dashModel1.adminDashModels, true);
 
-                for (int i = 0; i < dashModel1.adminDashModels.Count; i++)
-                {
-                    workSheet.Cells[i + 2, 1].Value = dashModel1.adminDashModels[i].Requestid;
-                    workSheet.Cells[i + 2, 2].Value = dashModel1.adminDashModels[i].PatientName;
-                    // Populate more properties as needed
-                }
                 package.Save();
             }
-            // Reset the position of the MemoryStream
             stream.Position = 0;
 
-            // Generate a unique file name for the Excel file
             string excelName = $"UserList-{DateTime.Now.ToString("yyyyMMddHHmmssfff")}.xlsx";
 
-            // Return the Excel file as a FileResult
             return File(stream, "application/octet-stream", excelName);
 
         }

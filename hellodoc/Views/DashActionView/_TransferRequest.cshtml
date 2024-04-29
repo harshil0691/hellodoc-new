@@ -3,26 +3,63 @@
 <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content" style="font-weight:600">
-                <div class="modal-header bg-info text-white">
-                    <h5 class="modal-title" id="exampleModalLabel">  Request</h5>
-                    <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-
-                <div class="modal-body">
-                    <p class="mt-1 text-black-50 fs-6" > This request is transfer to admin.</p>
-
-                <textarea rows="5" class="col-12 form-control p-1 fs-6" id="transfernotes" placeholder="Discription"></textarea>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-info text-white" onclick="loadActionView({ActionType : 'TransferToAdmin' , transferNotes : $('#transfernotes').val(), requestid : @ViewBag.requestid, physicianid : @ViewBag.physicianid})">Continue</button>
-                    <button type="button" class="btn btn-outline-info" data-bs-dismiss="modal">Cancel</button>
-                </div>
+            <div class="modal-header bg-info text-white">
+                <h5 class="modal-title" id="exampleModalLabel">Request</h5>
+                <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p class="mt-1 text-black-50 fs-6">This request is transfer to admin.</p>
+                <textarea rows="5" class="col-12 form-control p-1 fs-6" id="transfernotes" placeholder="Description"></textarea>
+                <span id="transferNotesError" class="text-danger"></span> <!-- Display error message here -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info text-white" onclick="validateAndContinue()">Continue</button>
+                <button type="button" class="btn btn-outline-info" data-bs-dismiss="modal">Cancel</button>
+            </div>
         </div>
     </div>
 </div>
 
 <script>
-   
+    function validateAndContinue() {
+        var transferNotes = $('#transfernotes').val();
 
+        // Check if transferNotes is null or empty
+        if (!transferNotes || transferNotes.trim() === '') {
+            $('#transferNotesError').text('Please enter a description.');
+            return;
+        }
+
+        // Check if transferNotes has minimum 5 characters
+        if (transferNotes.length < 5) {
+            $('#transferNotesError').text('Description must have at least 5 characters.');
+            return;
+        }
+
+
+
+        // If validation passes, proceed with the action
+        transferRequest({
+            ActionType: 'TransferToAdmin',
+            transferNotes: transferNotes,
+            requestid: @ViewBag.requestid,
+            physicianid: @ViewBag.physicianid
+            });
+    }
+
+    function transferRequest(dataObject){
+        $.ajax({
+            url: '/DashActionView/TransferToAdmin',
+            type: 'POST',
+            data: dataObject,
+            success: function (data) {
+                $('#myModal').modal('hide');
+                loadPartialDashView('dashboard');
+                toastr.success("Request Is Transfer To Admin Wait For Admin Action");
+            },
+            error: function () {
+                console.error('Error loading partial view.');
+            }
+        });
+    }
 </script>

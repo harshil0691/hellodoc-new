@@ -58,7 +58,7 @@
         @{
             foreach (var a in Model.searchRecords)
             {
-                <div class="accordion-item">
+                <div class="accordion-item m-1">
                     <h4 class="accordion-header">
                         <button class="accordion-button collapsed  d-grid" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_@a.RequestClientId" aria-expanded="true" aria-controls="collapse_@a.RequestClientId">
                             <div class="m-2">
@@ -75,20 +75,20 @@
                     <div id="collapse_@a.RequestClientId" class="accordion-collapse collapse" data-bs-parent="#accordionExample" style="background-color:#d7ffffde;">
                         <div class="accordion-body">
 
-                            <div class="mb-2"><i class="bi rounded-pill btn btn-outline-info text-black-50 bi-calendar3  px-2"></i> Requestor :<b> @a.Requestor </b></div>
-                            <div class="mb-2"><i class="bi rounded-pill btn btn-outline-info text-black-50 bi-calendar3  px-2"></i> Date Of Birth :<b> </b></div>
-                            <div class="mb-2"><i class="bi rounded-pill btn btn-outline-info text-black-50 bi-calendar3  px-2"></i>  Case Closed Date :<b> @a.ClosedCaseDate </b></div>
-                            <div class="mb-2"><i class="bi rounded-pill btn btn-outline-info text-black-50 bi-calendar3  px-2"></i> Email :<b> @a.Email </b></div>
-                            <div class="mb-2"><i class="bi rounded-pill btn btn-outline-info text-black-50 bi-calendar3  px-2"></i> Phone:<b> @a.PhoneNumber </b></div>
-                            <div class="mb-2"><i class="bi rounded-pill btn btn-outline-info text-black-50 bi-calendar3  px-2"></i> Address :<b> @a.Address </b></div>
-                            <div class="mb-2"><i class="bi bi-envelope-at rounded-pill btn btn-outline-info text-black-50 px-2"></i> Zip :<b> @a.Zip </b></div>
-                            <div class="mb-2"><i class="bi bi-telephone rounded-pill btn btn-outline-info text-black-50 px-2"></i> Request Status  :<b> @a.RequestStatus </b></div>
-                            <div class="mb-2"><i class="bi bi-telephone rounded-pill btn btn-outline-info text-black-50 px-2"></i> Provider :<b> @a.Physician </b></div>
-                            <div class="mb-2"><i class="bi bi-telephone rounded-pill btn btn-outline-info text-black-50 px-2"></i> Provider Note :<b> @a.PhysicianNote </b></div>
-                            <div class="mb-2"><i class="bi bi-telephone rounded-pill btn btn-outline-info text-black-50 px-2"></i> Cancelled By Provider Note :<b> @a.CancelledByProviderNote </b></div>
-                            <div class="mb-2"><i class="bi bi-telephone rounded-pill btn btn-outline-info text-black-50 px-2"></i> Admin Note :<b> @a.AdminNote </b></div>
-                            <div class="mb-2"><i class="bi bi-person-circle rounded-pill btn btn-outline-info text-black-50 px-2"></i> Cancellation Reasons :<b>  </b></div>
-                            <div class="mb-2"><i class="bi bi-person-circle rounded-pill btn btn-outline-info text-black-50 px-2"></i> Patient Note :<b> @a.PatientNote </b></div>
+                            <div class="mb-2"><i class="bi bi-person-circle rounded-pill btn btn-outline-info text-black-50 px-2"></i><span class="text-black-50 mx-2">  Requestor : </span><b> @a.Requestor </b></div>
+                            <div class="mb-2"><i class="bi rounded-pill btn btn-outline-info text-black-50 bi-calendar3  px-2"></i><span class="text-black-50 mx-2">  Date Of Birth :</span><b> </b></div>
+                            <div class="mb-2"><i class="bi rounded-pill btn btn-outline-info text-black-50 bi-calendar3  px-2"></i><span class="text-black-50 mx-2">   Case Closed Date :</span><b> @a.ClosedCaseDate </b></div>
+                            <div class="mb-2"><i class="bi rounded-pill btn btn-outline-info text-black-50 bi-envelope-at  px-2"></i> <span class="text-black-50 mx-2"> Email :</span><b> @a.Email </b></div>
+                            <div class="mb-2"><i class="bi rounded-pill btn btn-outline-info text-black-50 bi-telephone  px-2"></i> <span class="text-black-50 mx-2"> Phone:</span><b> @a.PhoneNumber </b></div>
+                            <div class="mb-2"><i class="bi rounded-pill btn btn-outline-info text-black-50 bi-geo-alt px-2"></i> <span class="text-black-50 mx-2"> Address :</span><b> @a.Address </b></div>
+                            <div class="mb-2"><i class="bi bi-geo-alt rounded-pill btn btn-outline-info text-black-50 px-2"></i> <span class="text-black-50 mx-2"> Zip :</span><b> @a.Zip </b></div>
+                            <div class="mb-2"><i class="bi bi-card-text rounded-pill btn btn-outline-info text-black-50 px-2"></i> <span class="text-black-50 mx-2"> Request Status  :</span><b> @a.RequestStatus </b></div>
+                            <div class="mb-2"><i class="bi bi-person-circle rounded-pill btn btn-outline-info text-black-50 px-2"></i> <span class="text-black-50 mx-2"> Provider :</span><b> @a.Physician </b></div>
+                            <div class="mb-2"><i class="bi bi-card-text rounded-pill btn btn-outline-info text-black-50 px-2"></i><span class="text-black-50 mx-2">  Provider Note :</span><b> @a.PhysicianNote </b></div>
+                            <div class="mb-2"><i class="bi bi-card-text rounded-pill btn btn-outline-info text-black-50 px-2"></i> <span class="text-black-50 mx-2"> Cancelled By Provider Note :</span><b> @a.CancelledByProviderNote </b></div>
+                            <div class="mb-2"><i class="bi bi-card-text rounded-pill btn btn-outline-info text-black-50 px-2"></i><span class="text-black-50 mx-2">  Admin Note :</span><b> @a.AdminNote </b></div>
+                            <div class="mb-2"><i class="bi bi-card-text rounded-pill btn btn-outline-info text-black-50 px-2"></i><span class="text-black-50 mx-2">  Cancellation Reasons :</span><b>  </b></div>
+                            <div class="mb-2"><i class="bi bi-card-text rounded-pill btn btn-outline-info text-black-50 px-2"></i><span class="text-black-50 mx-2">  Patient Note :</span><b> @a.PatientNote </b></div>
                             <div class="row">
                                 <button class="btn btn-outline-info" onclick="recordsoperation({actionType:'DeletePermanantly',requestid : '@a.RequestId'})">Delete</button>
                             </div>

@@ -68,6 +68,14 @@ namespace hellodoc.Controllers
                     break;
             }
         }
-        
+
+        [HttpPost]
+        public IActionResult DeleteBusiness(int Vendorid)
+        {
+            _adminPartners.DeleteBusiness(Vendorid);
+            TempData["success"] = "Business Deleted Successfully";
+            return RedirectToAction("admin_dash","AdminDash");
+        }
+
     }
 }

@@ -1,4 +1,4 @@
-﻿function adminDashload(dataObject) {
+﻿function adminDashload1(dataObject) {
 
     $.ajax({
         url: '/' + dataObject.controller + '/' + dataObject.actionType,
@@ -16,12 +16,7 @@
                 $('#mainDashContent').html(data);
             }
 
-            const dropdownParents = document.querySelectorAll('.nav-link');
-            dropdownParents.forEach(parent => {
-                parent.classList.remove('active');
-            });
-            var ele = document.getElementById(dataObject.id);
-            ele.classList.add('active');
+           
 
         },
         error: function () {
@@ -30,13 +25,12 @@
     });
 }
 
-function ShowModal(DataObject) {
+function ShowModal1(DataObject) {
     $.ajax({
         url: '/DashActionView/Openmodal',
         type: 'Post',
         data: DataObject,
         success: function (data) {
-            console.log(1)
             $('#partialContainer').html(data);
             $('#myModal').modal('show');
         },
@@ -115,11 +109,6 @@ function loadActionView1(DataObject) {
             else if (DataObject.ActionType == "Encounter" || DataObject.ActionType == "TransferToAdmin") {
                 $('#myModal').modal('hide');
                 toastr.success(data);
-                //if (DataObject.ActionType == "TransferToAdmin"){
-                //    loadPartialView('pending', '1');
-                //}else{
-                //    loadPartialView('active', '1');
-                //}
                 window.location.reload();
             }
             else {

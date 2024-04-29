@@ -8,12 +8,16 @@
 
         <div class=" col-12 col-sm-12 col-md-10 col-lg-8 mx-auto d-flex justify-content-between mt-4 mb-2">
             <h3> Documnets </h3>
-            <button onclick="loadPartialDashView('dashboard')" class="d-flex btn btn-outline-info bg-transparent  text-end text-info fs-5 text-decoration-none">
-                <span class="material-icons pt-2">
-                    chevron_left
-                </span>
-                <span class="p-1">Back</span>
-            </button>
+            @{
+                if (ViewBag.back == "patientrecords")
+                {
+                    <div><button class="btn btn-outline-info bg-transparent text-info" onclick="adminDashload({action : 'PatientRecords',UserId : '@Model.userid',actionType : 'GetTable', id :'recordsactive',controller : 'AdminRecords'})"><i class="bi bi-chevron-left"></i>Back</button></div>
+                }
+                else
+                {
+                    <div><button class="btn btn-outline-info bg-transparent text-info" onclick="loadPartialDashView('dashboard')"><i class="bi bi-chevron-left"></i>Back</button></div>
+                }
+            }
 
         </div>
         <div class="d-grid gap-2 col-12 col-sm-12 col-md-10 col-lg-8 mx-auto d-flex flex-column rounded-4 bgcolor px-4 mt-4">

@@ -47,11 +47,11 @@
                 <li class="nav-item mx-2 dropdown1">
                     <a class="nav-link " data-bs-toggle="pill" id="recordsactive" href="#records">Records</a>
                     <div class="dropdown-content1">
-                        <a onclick="adminDashload({action : 'SearchRecords',actionType : 'GetView',id : 'recordsactive',controller : 'AdminRecords'})">Search Records</a>
-                        <a onclick="adminDashload({action : 'EmailLogs',actionType : 'GetView', id :  'recordsactive',controller : 'AdminRecords'})">Email Logs</a>
-                        <a onclick="adminDashload({action: 'SMSLogs',actionType : 'GetView', id :'recordsactive',controller : 'AdminRecords'})">SMS Logs</a>
-                        <a onclick="adminDashload({action : 'PatientHistory',actionType : 'GetView', id :'recordsactive',controller : 'AdminRecords'})">Patient Records</a>
-                        <a onclick="adminDashload({action : 'BlockedHistory',actionType : 'GetView', id :'recordsactive',controller : 'AdminRecords'})">Blocked History</a>
+                        <a onclick="GetRecordsView({action : 'SearchRecords'})">Search Records</a>
+                        <a onclick="GetRecordsView({action : 'EmailLogs'})">Email Logs</a>
+                        <a onclick="GetRecordsView({action: 'SMSLogs'})">SMS Logs</a>
+                        <a onclick="GetRecordsView({action : 'PatientHistory'})">Patient Records</a>
+                        <a onclick="GetRecordsView({action : 'BlockedHistory'})">Blocked History</a>
                     </div>
                 </li>
             </ul>
@@ -94,11 +94,11 @@
         <li class="nav-item mx-2 dropdown1">
             <a class="nav-link " data-bs-toggle="pill" id="recordsactive" href="#records">Records</a>
             <div class="dropdown-content1">
-                <a onclick="adminDashload({action : 'SearchRecords',actionType : 'GetView',id : 'recordsactive',controller : 'AdminRecords'})">Search Records</a>
-                <a onclick="adminDashload({action : 'EmailLogs',actionType : 'GetView', id :  'recordsactive',controller : 'AdminRecords'})">Email Logs</a>
-                <a onclick="adminDashload({action: 'SMSLogs',actionType : 'GetView', id :'recordsactive',controller : 'AdminRecords'})">SMS Logs</a>
-                <a onclick="adminDashload({action : 'PatientHistory',actionType : 'GetView', id :'recordsactive',controller : 'AdminRecords'})">Patient Records</a>
-                <a onclick="adminDashload({action : 'BlockedHistory',actionType : 'GetView', id :'recordsactive',controller : 'AdminRecords'})">Blocked History</a>
+                        <a onclick="GetRecordsView({action : 'SearchRecords'})">Search Records</a>
+                        <a onclick="GetRecordsView({action : 'EmailLogs'})">Email Logs</a>
+                        <a onclick="GetRecordsView({action: 'SMSLogs'})">SMS Logs</a>
+                        <a onclick="GetRecordsView({action : 'PatientHistory'})">Patient Records</a>
+                        <a onclick="GetRecordsView({action : 'BlockedHistory'})">Blocked History</a>
             </div>
         </li>
     </ul>

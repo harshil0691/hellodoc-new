@@ -1,1191 +1,1331 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\hellodoc.bundle.scp.css",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\hellodoc.bundle.scp.css",
       "PackagePath": "staticwebassets\\hellodoc.bundle.scp.css"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\036ee174-8c21-4d81-a09e-ffffaf66dc73_Fig23.Request Support.png",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\036ee174-8c21-4d81-a09e-ffffaf66dc73_Fig23.Request Support.png",
       "PackagePath": "staticwebassets\\PhysicianDoc\\036ee174-8c21-4d81-a09e-ffffaf66dc73_Fig23.Request Support.png"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\0b05365f-177e-4e01-9ef3-668cb2056ab9_Fig2. Forgot Password.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\07633f4c-e8a2-484c-afbd-695def196862_cp3.3.png",
+      "PackagePath": "staticwebassets\\PhysicianDoc\\07633f4c-e8a2-484c-afbd-695def196862_cp3.3.png"
+    },
+    {
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\0b05365f-177e-4e01-9ef3-668cb2056ab9_Fig2. Forgot Password.jpg",
       "PackagePath": "staticwebassets\\PhysicianDoc\\0b05365f-177e-4e01-9ef3-668cb2056ab9_Fig2. Forgot Password.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\0b24bcba-b5eb-4117-b593-42ce63269df2_Fig3. Admin Dashboard.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\0b24bcba-b5eb-4117-b593-42ce63269df2_Fig3. Admin Dashboard.jpg",
       "PackagePath": "staticwebassets\\PhysicianDoc\\0b24bcba-b5eb-4117-b593-42ce63269df2_Fig3. Admin Dashboard.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\0db1ffb9-5e43-4dcc-9505-d20622e4adb0_Fig26. Edit Physician Account.png",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\0db1ffb9-5e43-4dcc-9505-d20622e4adb0_Fig26. Edit Physician Account.png",
       "PackagePath": "staticwebassets\\PhysicianDoc\\0db1ffb9-5e43-4dcc-9505-d20622e4adb0_Fig26. Edit Physician Account.png"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\20ae61af-db29-4e43-80d4-a7218a1d67da_Fig24. Provider Menu.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\150f5f3b-88c9-4337-828c-4d4f14c983e0_cp3.4.png",
+      "PackagePath": "staticwebassets\\PhysicianDoc\\150f5f3b-88c9-4337-828c-4d4f14c983e0_cp3.4.png"
+    },
+    {
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\20ae61af-db29-4e43-80d4-a7218a1d67da_Fig24. Provider Menu.jpg",
       "PackagePath": "staticwebassets\\PhysicianDoc\\20ae61af-db29-4e43-80d4-a7218a1d67da_Fig24. Provider Menu.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\20dd996a-9eb1-4f0d-9ce3-dcf81be42fe9_Fig26. Edit Physician Account.png",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\20dd996a-9eb1-4f0d-9ce3-dcf81be42fe9_Fig26. Edit Physician Account.png",
       "PackagePath": "staticwebassets\\PhysicianDoc\\20dd996a-9eb1-4f0d-9ce3-dcf81be42fe9_Fig26. Edit Physician Account.png"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\23a9d4be-fa43-44b0-bda7-9a097ac02a19_Fig23.Request Support.png",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\23a9d4be-fa43-44b0-bda7-9a097ac02a19_Fig23.Request Support.png",
       "PackagePath": "staticwebassets\\PhysicianDoc\\23a9d4be-fa43-44b0-bda7-9a097ac02a19_Fig23.Request Support.png"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\23b5662a-340e-401a-8c01-1f6e2e22436c_5.d.png",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\23b5662a-340e-401a-8c01-1f6e2e22436c_5.d.png",
       "PackagePath": "staticwebassets\\PhysicianDoc\\23b5662a-340e-401a-8c01-1f6e2e22436c_5.d.png"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\23c34a4e-68b8-46b9-aba8-c267ea66facb_Fig26. Edit Physician Account.png",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\23c34a4e-68b8-46b9-aba8-c267ea66facb_Fig26. Edit Physician Account.png",
       "PackagePath": "staticwebassets\\PhysicianDoc\\23c34a4e-68b8-46b9-aba8-c267ea66facb_Fig26. Edit Physician Account.png"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\31798c48-0f0a-47fb-8671-e0984435e69b_Fig25. Contact your Provider.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\31798c48-0f0a-47fb-8671-e0984435e69b_Fig25. Contact your Provider.jpg",
       "PackagePath": "staticwebassets\\PhysicianDoc\\31798c48-0f0a-47fb-8671-e0984435e69b_Fig25. Contact your Provider.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\340da8b3-d980-4627-a118-3d7145dd5bc4_Fig2. Forgot Password.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\340da8b3-d980-4627-a118-3d7145dd5bc4_Fig2. Forgot Password.jpg",
       "PackagePath": "staticwebassets\\PhysicianDoc\\340da8b3-d980-4627-a118-3d7145dd5bc4_Fig2. Forgot Password.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\3725d15a-fa2c-4484-a467-90496845450f_Fig24. Provider Menu.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\353aa785-e8ab-4fb9-b665-172ac890a18d_cp3.4.png",
+      "PackagePath": "staticwebassets\\PhysicianDoc\\353aa785-e8ab-4fb9-b665-172ac890a18d_cp3.4.png"
+    },
+    {
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\3725d15a-fa2c-4484-a467-90496845450f_Fig24. Provider Menu.jpg",
       "PackagePath": "staticwebassets\\PhysicianDoc\\3725d15a-fa2c-4484-a467-90496845450f_Fig24. Provider Menu.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\43477ad8-efc9-40bd-af83-4492a773ca6c_Fig23.Request Support.png",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\3bfd84c0-ed2a-4065-bb5c-577656ceb507_bser 1.png",
+      "PackagePath": "staticwebassets\\PhysicianDoc\\3bfd84c0-ed2a-4065-bb5c-577656ceb507_bser 1.png"
+    },
+    {
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\43477ad8-efc9-40bd-af83-4492a773ca6c_Fig23.Request Support.png",
       "PackagePath": "staticwebassets\\PhysicianDoc\\43477ad8-efc9-40bd-af83-4492a773ca6c_Fig23.Request Support.png"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\448002e7-5013-4ee2-baf7-6320880a8b8c_3.d.png",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\448002e7-5013-4ee2-baf7-6320880a8b8c_3.d.png",
       "PackagePath": "staticwebassets\\PhysicianDoc\\448002e7-5013-4ee2-baf7-6320880a8b8c_3.d.png"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\44d1822e-f105-427e-9d39-e97dcdcf678f_Fig26. Edit Physician Account.png",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\44d1822e-f105-427e-9d39-e97dcdcf678f_Fig26. Edit Physician Account.png",
       "PackagePath": "staticwebassets\\PhysicianDoc\\44d1822e-f105-427e-9d39-e97dcdcf678f_Fig26. Edit Physician Account.png"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\4562b983-4c87-4fda-8d87-ebddf6a2caad_Fig22 Regions menu.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\4562b983-4c87-4fda-8d87-ebddf6a2caad_Fig22 Regions menu.jpg",
       "PackagePath": "staticwebassets\\PhysicianDoc\\4562b983-4c87-4fda-8d87-ebddf6a2caad_Fig22 Regions menu.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\4fd04019-1bfe-4759-9be5-d93f19f0b8a5_Fig24. Provider Menu.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\4fd04019-1bfe-4759-9be5-d93f19f0b8a5_Fig24. Provider Menu.jpg",
       "PackagePath": "staticwebassets\\PhysicianDoc\\4fd04019-1bfe-4759-9be5-d93f19f0b8a5_Fig24. Provider Menu.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\50355362-c6c5-421e-9284-f6dc39fb9dd8_Fig25. Contact your Provider.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\50355362-c6c5-421e-9284-f6dc39fb9dd8_Fig25. Contact your Provider.jpg",
       "PackagePath": "staticwebassets\\PhysicianDoc\\50355362-c6c5-421e-9284-f6dc39fb9dd8_Fig25. Contact your Provider.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\53ae8d49-56db-446c-add5-09df38320d2d_Fig24. Provider Menu.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\53ae8d49-56db-446c-add5-09df38320d2d_Fig24. Provider Menu.jpg",
       "PackagePath": "staticwebassets\\PhysicianDoc\\53ae8d49-56db-446c-add5-09df38320d2d_Fig24. Provider Menu.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\5ee5db7c-43bb-423d-88c1-dff13a0e5e3d_bser 1.png",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\5ee5db7c-43bb-423d-88c1-dff13a0e5e3d_bser 1.png",
       "PackagePath": "staticwebassets\\PhysicianDoc\\5ee5db7c-43bb-423d-88c1-dff13a0e5e3d_bser 1.png"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\5fed91b0-eb19-4e58-8fa0-792927ffe103_Fig25. Contact your Provider.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\5fed91b0-eb19-4e58-8fa0-792927ffe103_Fig25. Contact your Provider.jpg",
       "PackagePath": "staticwebassets\\PhysicianDoc\\5fed91b0-eb19-4e58-8fa0-792927ffe103_Fig25. Contact your Provider.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\632a39a8-2603-4a2f-b46f-579bf05b5a34_Fig24. Provider Menu.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\632a39a8-2603-4a2f-b46f-579bf05b5a34_Fig24. Provider Menu.jpg",
       "PackagePath": "staticwebassets\\PhysicianDoc\\632a39a8-2603-4a2f-b46f-579bf05b5a34_Fig24. Provider Menu.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\63fc511e-fc39-43cb-91e2-007a11d97398_Fig23.Request Support.png",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\63fc511e-fc39-43cb-91e2-007a11d97398_Fig23.Request Support.png",
       "PackagePath": "staticwebassets\\PhysicianDoc\\63fc511e-fc39-43cb-91e2-007a11d97398_Fig23.Request Support.png"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\647f4c17-a7e1-4697-88ca-f62f0936510b_Fig23.Request Support.png",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\647f4c17-a7e1-4697-88ca-f62f0936510b_Fig23.Request Support.png",
       "PackagePath": "staticwebassets\\PhysicianDoc\\647f4c17-a7e1-4697-88ca-f62f0936510b_Fig23.Request Support.png"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\6637e0ad-f305-4746-929a-0df5188defa0_Fig22 Regions menu.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\6637e0ad-f305-4746-929a-0df5188defa0_Fig22 Regions menu.jpg",
       "PackagePath": "staticwebassets\\PhysicianDoc\\6637e0ad-f305-4746-929a-0df5188defa0_Fig22 Regions menu.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\807c1ca7-0d9c-43b9-9218-9a5ba25cb069_Manuscript_200103042234.docx",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\66aeb2c6-8b26-4e99-a967-a76b3ce2b7fe_cp3.4.png",
+      "PackagePath": "staticwebassets\\PhysicianDoc\\66aeb2c6-8b26-4e99-a967-a76b3ce2b7fe_cp3.4.png"
+    },
+    {
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\807c1ca7-0d9c-43b9-9218-9a5ba25cb069_Manuscript_200103042234.docx",
       "PackagePath": "staticwebassets\\PhysicianDoc\\807c1ca7-0d9c-43b9-9218-9a5ba25cb069_Manuscript_200103042234.docx"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\89b383d8-246b-4d9c-8b24-bc91d1813d06_Fig26. Edit Physician Account.png",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\89b383d8-246b-4d9c-8b24-bc91d1813d06_Fig26. Edit Physician Account.png",
       "PackagePath": "staticwebassets\\PhysicianDoc\\89b383d8-246b-4d9c-8b24-bc91d1813d06_Fig26. Edit Physician Account.png"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\a3655984-ccbb-4b56-805e-69b94b973c74_Fig25. Contact your Provider.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\925d8554-9acb-43b4-9079-63b71e047c17_a4 2.png",
+      "PackagePath": "staticwebassets\\PhysicianDoc\\925d8554-9acb-43b4-9079-63b71e047c17_a4 2.png"
+    },
+    {
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\a3655984-ccbb-4b56-805e-69b94b973c74_Fig25. Contact your Provider.jpg",
       "PackagePath": "staticwebassets\\PhysicianDoc\\a3655984-ccbb-4b56-805e-69b94b973c74_Fig25. Contact your Provider.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\b691d94e-2e82-4e23-b928-fe60fcd15d2a_41de8d61-d682-473f-a9aa-3e92513332fa_Fig3. Admin Dashboard.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\b233d40d-4072-4a76-90b1-d5b4537a793c_cp3.3.png",
+      "PackagePath": "staticwebassets\\PhysicianDoc\\b233d40d-4072-4a76-90b1-d5b4537a793c_cp3.3.png"
+    },
+    {
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\b691d94e-2e82-4e23-b928-fe60fcd15d2a_41de8d61-d682-473f-a9aa-3e92513332fa_Fig3. Admin Dashboard.jpg",
       "PackagePath": "staticwebassets\\PhysicianDoc\\b691d94e-2e82-4e23-b928-fe60fcd15d2a_41de8d61-d682-473f-a9aa-3e92513332fa_Fig3. Admin Dashboard.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\c361680f-2dff-4ec1-8dcf-37d136c42cde_bser 1.png",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\c361680f-2dff-4ec1-8dcf-37d136c42cde_bser 1.png",
       "PackagePath": "staticwebassets\\PhysicianDoc\\c361680f-2dff-4ec1-8dcf-37d136c42cde_bser 1.png"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\c49585b7-a8eb-4662-a520-de1e1a8d8a2c_Fig24. Provider Menu.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\c49585b7-a8eb-4662-a520-de1e1a8d8a2c_Fig24. Provider Menu.jpg",
       "PackagePath": "staticwebassets\\PhysicianDoc\\c49585b7-a8eb-4662-a520-de1e1a8d8a2c_Fig24. Provider Menu.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\ce679277-72a4-4051-a54c-420f5228944b_Fig25. Contact your Provider.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\ce679277-72a4-4051-a54c-420f5228944b_Fig25. Contact your Provider.jpg",
       "PackagePath": "staticwebassets\\PhysicianDoc\\ce679277-72a4-4051-a54c-420f5228944b_Fig25. Contact your Provider.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\d771223f-d7e2-405d-97ee-2ebd21ea45fc_Fig22 Regions menu.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\d771223f-d7e2-405d-97ee-2ebd21ea45fc_Fig22 Regions menu.jpg",
       "PackagePath": "staticwebassets\\PhysicianDoc\\d771223f-d7e2-405d-97ee-2ebd21ea45fc_Fig22 Regions menu.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\d891f0cd-32ab-4ecb-bcd7-468404406cb0_Fig25. Contact your Provider.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\d891f0cd-32ab-4ecb-bcd7-468404406cb0_Fig25. Contact your Provider.jpg",
       "PackagePath": "staticwebassets\\PhysicianDoc\\d891f0cd-32ab-4ecb-bcd7-468404406cb0_Fig25. Contact your Provider.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\d910e1de-94ff-4c73-80da-b7cf2d0b8733_Fig25. Contact your Provider.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\d910e1de-94ff-4c73-80da-b7cf2d0b8733_Fig25. Contact your Provider.jpg",
       "PackagePath": "staticwebassets\\PhysicianDoc\\d910e1de-94ff-4c73-80da-b7cf2d0b8733_Fig25. Contact your Provider.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\de953f91-aa96-4598-9497-bc7ba5dd6178_Fig21. Admin My profile..jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\de953f91-aa96-4598-9497-bc7ba5dd6178_Fig21. Admin My profile..jpg",
       "PackagePath": "staticwebassets\\PhysicianDoc\\de953f91-aa96-4598-9497-bc7ba5dd6178_Fig21. Admin My profile..jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\e3b758b3-bc4b-400a-ade0-f4bcfa91ab41_Fig24. Provider Menu.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\e3b758b3-bc4b-400a-ade0-f4bcfa91ab41_Fig24. Provider Menu.jpg",
       "PackagePath": "staticwebassets\\PhysicianDoc\\e3b758b3-bc4b-400a-ade0-f4bcfa91ab41_Fig24. Provider Menu.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\e84a914b-a3aa-470d-bf29-8f311df2c873_Fig26. Edit Physician Account.png",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\e84a914b-a3aa-470d-bf29-8f311df2c873_Fig26. Edit Physician Account.png",
       "PackagePath": "staticwebassets\\PhysicianDoc\\e84a914b-a3aa-470d-bf29-8f311df2c873_Fig26. Edit Physician Account.png"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\e8bab744-66ef-4947-8f28-6320dab4f3a7_Fig25. Contact your Provider.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\e8bab744-66ef-4947-8f28-6320dab4f3a7_Fig25. Contact your Provider.jpg",
       "PackagePath": "staticwebassets\\PhysicianDoc\\e8bab744-66ef-4947-8f28-6320dab4f3a7_Fig25. Contact your Provider.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\ebdd8ceb-3588-4916-a178-7e2b71b4b5bc_Fig2. Forgot Password.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\ebdd8ceb-3588-4916-a178-7e2b71b4b5bc_Fig2. Forgot Password.jpg",
       "PackagePath": "staticwebassets\\PhysicianDoc\\ebdd8ceb-3588-4916-a178-7e2b71b4b5bc_Fig2. Forgot Password.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\ed2a488b-ee1b-4a46-b433-23ec74be9a17_5.d.png",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\ed2a488b-ee1b-4a46-b433-23ec74be9a17_5.d.png",
       "PackagePath": "staticwebassets\\PhysicianDoc\\ed2a488b-ee1b-4a46-b433-23ec74be9a17_5.d.png"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\eedd5b44-9de5-4473-9303-681130dea8a2_Fig24. Provider Menu.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\eedd5b44-9de5-4473-9303-681130dea8a2_Fig24. Provider Menu.jpg",
       "PackagePath": "staticwebassets\\PhysicianDoc\\eedd5b44-9de5-4473-9303-681130dea8a2_Fig24. Provider Menu.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\f71108a7-2bb9-44af-93a7-d0aba0ecec3e_Fig25. Contact your Provider.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\f71108a7-2bb9-44af-93a7-d0aba0ecec3e_Fig25. Contact your Provider.jpg",
       "PackagePath": "staticwebassets\\PhysicianDoc\\f71108a7-2bb9-44af-93a7-d0aba0ecec3e_Fig25. Contact your Provider.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\f7c54ca4-ffdb-4bc1-9208-603fa8aa785b_Fig25. Contact your Provider.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\f7c54ca4-ffdb-4bc1-9208-603fa8aa785b_Fig25. Contact your Provider.jpg",
       "PackagePath": "staticwebassets\\PhysicianDoc\\f7c54ca4-ffdb-4bc1-9208-603fa8aa785b_Fig25. Contact your Provider.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\f820024e-96ff-4054-a13e-4599a8835aa5_Fig24. Provider Menu.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\f820024e-96ff-4054-a13e-4599a8835aa5_Fig24. Provider Menu.jpg",
       "PackagePath": "staticwebassets\\PhysicianDoc\\f820024e-96ff-4054-a13e-4599a8835aa5_Fig24. Provider Menu.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\fb3daf80-8737-4786-ba3e-402d2966cd52_Fig25. Contact your Provider.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\PhysicianDoc\\fb3daf80-8737-4786-ba3e-402d2966cd52_Fig25. Contact your Provider.jpg",
       "PackagePath": "staticwebassets\\PhysicianDoc\\fb3daf80-8737-4786-ba3e-402d2966cd52_Fig25. Contact your Provider.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\css\\Style.css",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\css\\Style.css",
       "PackagePath": "staticwebassets\\css\\Style.css"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\css\\site.css",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\favicon.ico",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\11116016_415-removebg-preview.png",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\11116016_415-removebg-preview.png",
       "PackagePath": "staticwebassets\\images\\11116016_415-removebg-preview.png"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\11116016_415.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\11116016_415.jpg",
       "PackagePath": "staticwebassets\\images\\11116016_415.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\7768657_3763028 - Copy.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\7768657_3763028 - Copy.jpg",
       "PackagePath": "staticwebassets\\images\\7768657_3763028 - Copy.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\7774236_3736765.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\7774236_3736765.jpg",
       "PackagePath": "staticwebassets\\images\\7774236_3736765.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig Contact your Provider.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig Contact your Provider.jpg",
       "PackagePath": "staticwebassets\\images\\Fig Contact your Provider.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig1. Platform login page.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig1. Platform login page.jpg",
       "PackagePath": "staticwebassets\\images\\Fig1. Platform login page.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig10. View case.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig10. View case.jpg",
       "PackagePath": "staticwebassets\\images\\Fig10. View case.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig11. View Notes.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig11. View Notes.jpg",
       "PackagePath": "staticwebassets\\images\\Fig11. View Notes.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig12. Cancel Case pop-up.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig12. Cancel Case pop-up.jpg",
       "PackagePath": "staticwebassets\\images\\Fig12. Cancel Case pop-up.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig13. Assign case.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig13. Assign case.jpg",
       "PackagePath": "staticwebassets\\images\\Fig13. Assign case.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig14. Block case.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig14. Block case.jpg",
       "PackagePath": "staticwebassets\\images\\Fig14. Block case.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig15.View Uploads-PatientsConclude.png",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig15.View Uploads-PatientsConclude.png",
       "PackagePath": "staticwebassets\\images\\Fig15.View Uploads-PatientsConclude.png"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig16. Orders.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig16. Orders.jpg",
       "PackagePath": "staticwebassets\\images\\Fig16. Orders.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig17.Transfer.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig17.Transfer.jpg",
       "PackagePath": "staticwebassets\\images\\Fig17.Transfer.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig18.Clear Case.png",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig18.Clear Case.png",
       "PackagePath": "staticwebassets\\images\\Fig18.Clear Case.png"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig19.Send Agreement pop-up.png",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig19.Send Agreement pop-up.png",
       "PackagePath": "staticwebassets\\images\\Fig19.Send Agreement pop-up.png"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig2. Forgot Password.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig2. Forgot Password.jpg",
       "PackagePath": "staticwebassets\\images\\Fig2. Forgot Password.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig20.Close case.png",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig20.Close case.png",
       "PackagePath": "staticwebassets\\images\\Fig20.Close case.png"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig21. Admin My profile..jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig21. Admin My profile..jpg",
       "PackagePath": "staticwebassets\\images\\Fig21. Admin My profile..jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig22 Regions menu.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig22 Regions menu.jpg",
       "PackagePath": "staticwebassets\\images\\Fig22 Regions menu.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig23.Request Support.png",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig23.Request Support.png",
       "PackagePath": "staticwebassets\\images\\Fig23.Request Support.png"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig24. Provider Menu.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig24. Provider Menu.jpg",
       "PackagePath": "staticwebassets\\images\\Fig24. Provider Menu.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig25. Contact your Provider.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig25. Contact your Provider.jpg",
       "PackagePath": "staticwebassets\\images\\Fig25. Contact your Provider.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig26. Edit Physician Account.png",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig26. Edit Physician Account.png",
       "PackagePath": "staticwebassets\\images\\Fig26. Edit Physician Account.png"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig27. Roles.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig27. Roles.jpg",
       "PackagePath": "staticwebassets\\images\\Fig27. Roles.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig28. Create Role All.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig28. Create Role All.jpg",
       "PackagePath": "staticwebassets\\images\\Fig28. Create Role All.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig29. Create Role Admin.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig29. Create Role Admin.jpg",
       "PackagePath": "staticwebassets\\images\\Fig29. Create Role Admin.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig3. Admin Dashboard.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig3. Admin Dashboard.jpg",
       "PackagePath": "staticwebassets\\images\\Fig3. Admin Dashboard.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig30. Create Role Physician.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig30. Create Role Physician.jpg",
       "PackagePath": "staticwebassets\\images\\Fig30. Create Role Physician.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig31. 1 Create Role Patient.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig31. 1 Create Role Patient.jpg",
       "PackagePath": "staticwebassets\\images\\Fig31. 1 Create Role Patient.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig31.2 Create Role Patient UserAccess.png",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig31.2 Create Role Patient UserAccess.png",
       "PackagePath": "staticwebassets\\images\\Fig31.2 Create Role Patient UserAccess.png"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig32. Day wise Scheduling.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig32. Day wise Scheduling.jpg",
       "PackagePath": "staticwebassets\\images\\Fig32. Day wise Scheduling.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig33. Month wise Scheduling.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig33. Month wise Scheduling.jpg",
       "PackagePath": "staticwebassets\\images\\Fig33. Month wise Scheduling.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig34. Week wise Scheduling.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig34. Week wise Scheduling.jpg",
       "PackagePath": "staticwebassets\\images\\Fig34. Week wise Scheduling.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig35. Provider on call (MDs On Call).jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig35. Provider on call (MDs On Call).jpg",
       "PackagePath": "staticwebassets\\images\\Fig35. Provider on call (MDs On Call).jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig36. Requested Shift.png",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig36. Requested Shift.png",
       "PackagePath": "staticwebassets\\images\\Fig36. Requested Shift.png"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig37. Create Shift.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig37. Create Shift.jpg",
       "PackagePath": "staticwebassets\\images\\Fig37. Create Shift.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig38. View Shift.png",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig38. View Shift.png",
       "PackagePath": "staticwebassets\\images\\Fig38. View Shift.png"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig39. Provider Location.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig39. Provider Location.jpg",
       "PackagePath": "staticwebassets\\images\\Fig39. Provider Location.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig4. Admin dashboard in New state.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig4. Admin dashboard in New state.jpg",
       "PackagePath": "staticwebassets\\images\\Fig4. Admin dashboard in New state.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig40. Profession menu Vendors.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig40. Profession menu Vendors.jpg",
       "PackagePath": "staticwebassets\\images\\Fig40. Profession menu Vendors.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig41.Add business page.png",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig41.Add business page.png",
       "PackagePath": "staticwebassets\\images\\Fig41.Add business page.png"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig42.Edit business page.png",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig42.Edit business page.png",
       "PackagePath": "staticwebassets\\images\\Fig42.Edit business page.png"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig43. Patient history.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig43. Patient history.jpg",
       "PackagePath": "staticwebassets\\images\\Fig43. Patient history.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig44. Patient Record Explore.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig44. Patient Record Explore.jpg",
       "PackagePath": "staticwebassets\\images\\Fig44. Patient Record Explore.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig45. Search Records.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig45. Search Records.jpg",
       "PackagePath": "staticwebassets\\images\\Fig45. Search Records.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig45.Email Logs.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig45.Email Logs.jpg",
       "PackagePath": "staticwebassets\\images\\Fig45.Email Logs.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig46. SMS Logs.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig46. SMS Logs.jpg",
       "PackagePath": "staticwebassets\\images\\Fig46. SMS Logs.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig47. Block History.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig47. Block History.jpg",
       "PackagePath": "staticwebassets\\images\\Fig47. Block History.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig48. Create Requests.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig48. Create Requests.jpg",
       "PackagePath": "staticwebassets\\images\\Fig48. Create Requests.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig49. Provider dashboard.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig49. Provider dashboard.jpg",
       "PackagePath": "staticwebassets\\images\\Fig49. Provider dashboard.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig5. Admin dashboard in pending state.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig5. Admin dashboard in pending state.jpg",
       "PackagePath": "staticwebassets\\images\\Fig5. Admin dashboard in pending state.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig50.Encounter (Type Of care).png",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig50.Encounter (Type Of care).png",
       "PackagePath": "staticwebassets\\images\\Fig50.Encounter (Type Of care).png"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig51.Conclude State  Action  Encounter Form.png",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig51.Conclude State  Action  Encounter Form.png",
       "PackagePath": "staticwebassets\\images\\Fig51.Conclude State  Action  Encounter Form.png"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig52. Encounter Finalize popup.png",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig52. Encounter Finalize popup.png",
       "PackagePath": "staticwebassets\\images\\Fig52. Encounter Finalize popup.png"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig53. Provider transfer request pop-up.png",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig53. Provider transfer request pop-up.png",
       "PackagePath": "staticwebassets\\images\\Fig53. Provider transfer request pop-up.png"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig54. Provider My Profile.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig54. Provider My Profile.jpg",
       "PackagePath": "staticwebassets\\images\\Fig54. Provider My Profile.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig55. Provider My Profile Request to Admin.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig55. Provider My Profile Request to Admin.jpg",
       "PackagePath": "staticwebassets\\images\\Fig55. Provider My Profile Request to Admin.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig56. Patient site 1.png",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig56. Patient site 1.png",
       "PackagePath": "staticwebassets\\images\\Fig56. Patient site 1.png"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig56. Patient site.png",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig56. Patient site.png",
       "PackagePath": "staticwebassets\\images\\Fig56. Patient site.png"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig56._Patient_site_1-removebg-preview.png",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig56._Patient_site_1-removebg-preview.png",
       "PackagePath": "staticwebassets\\images\\Fig56._Patient_site_1-removebg-preview.png"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig57.Submit request screen.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig57.Submit request screen.jpg",
       "PackagePath": "staticwebassets\\images\\Fig57.Submit request screen.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig58. Create Patient request.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig58. Create Patient request.jpg",
       "PackagePath": "staticwebassets\\images\\Fig58. Create Patient request.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig59.1.FamilyFriend Information1.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig59.1.FamilyFriend Information1.jpg",
       "PackagePath": "staticwebassets\\images\\Fig59.1.FamilyFriend Information1.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig59.FamilyFriend Information2.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig59.FamilyFriend Information2.jpg",
       "PackagePath": "staticwebassets\\images\\Fig59.FamilyFriend Information2.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig6. Admin dashboard in Active state.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig6. Admin dashboard in Active state.jpg",
       "PackagePath": "staticwebassets\\images\\Fig6. Admin dashboard in Active state.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig60.Concierge Information.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig60.Concierge Information.jpg",
       "PackagePath": "staticwebassets\\images\\Fig60.Concierge Information.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig61.Business Information.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig61.Business Information.jpg",
       "PackagePath": "staticwebassets\\images\\Fig61.Business Information.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig62.Login Patient Account Registered Patient.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig62.Login Patient Account Registered Patient.jpg",
       "PackagePath": "staticwebassets\\images\\Fig62.Login Patient Account Registered Patient.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig63.Reset Your Password Patient.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig63.Reset Your Password Patient.jpg",
       "PackagePath": "staticwebassets\\images\\Fig63.Reset Your Password Patient.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig64. Patient Dashboard ,Patient Medical History.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig64. Patient Dashboard ,Patient Medical History.jpg",
       "PackagePath": "staticwebassets\\images\\Fig64. Patient Dashboard ,Patient Medical History.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig65.Patient Create New Request.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig65.Patient Create New Request.jpg",
       "PackagePath": "staticwebassets\\images\\Fig65.Patient Create New Request.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig66.Submit Information me.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig66.Submit Information me.jpg",
       "PackagePath": "staticwebassets\\images\\Fig66.Submit Information me.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig67.Submit Information Some one else.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig67.Submit Information Some one else.jpg",
       "PackagePath": "staticwebassets\\images\\Fig67.Submit Information Some one else.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig68. View Documents.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig68. View Documents.jpg",
       "PackagePath": "staticwebassets\\images\\Fig68. View Documents.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig7. Admin dashboard in Conclude state.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig7. Admin dashboard in Conclude state.jpg",
       "PackagePath": "staticwebassets\\images\\Fig7. Admin dashboard in Conclude state.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig8. Admin dashboard in To Close state.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig8. Admin dashboard in To Close state.jpg",
       "PackagePath": "staticwebassets\\images\\Fig8. Admin dashboard in To Close state.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\Fig9. Admin dashboard in Unpaid state.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\Fig9. Admin dashboard in Unpaid state.jpg",
       "PackagePath": "staticwebassets\\images\\Fig9. Admin dashboard in Unpaid state.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\LesfImage.png",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\LesfImage.png",
       "PackagePath": "staticwebassets\\images\\LesfImage.png"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\avatar.png",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\avatar.png",
       "PackagePath": "staticwebassets\\images\\avatar.png"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\cloud-upload-icon.svg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\cloud-upload-icon.svg",
       "PackagePath": "staticwebassets\\images\\cloud-upload-icon.svg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\images\\frontpage image.png",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\images\\frontpage image.png",
       "PackagePath": "staticwebassets\\images\\frontpage image.png"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\js\\AdminAccess.js",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\js\\AdminAccess.js",
       "PackagePath": "staticwebassets\\js\\AdminAccess.js"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\js\\AdminDashboard.js",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\js\\AdminDashboard.js",
       "PackagePath": "staticwebassets\\js\\AdminDashboard.js"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\js\\AdminPartners.js",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\js\\AdminPartners.js",
       "PackagePath": "staticwebassets\\js\\AdminPartners.js"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\js\\AdminProviders.js",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\js\\AdminProviders.js",
       "PackagePath": "staticwebassets\\js\\AdminProviders.js"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\js\\AdminRecords.js",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\js\\AdminRecords.js",
       "PackagePath": "staticwebassets\\js\\AdminRecords.js"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\js\\ProviderDashboard.js",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\js\\ProviderDashboard.js",
       "PackagePath": "staticwebassets\\js\\ProviderDashboard.js"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\js\\adminDashActions.js",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\js\\adminDashActions.js",
       "PackagePath": "staticwebassets\\js\\adminDashActions.js"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\js\\scripts.js",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\js\\scripts.js",
       "PackagePath": "staticwebassets\\js\\scripts.js"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\js\\site.js",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\LICENSE",
       "PackagePath": "staticwebassets\\lib\\bootstrap"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\lib\\jquery\\LICENSE.txt",
       "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\lib\\jquery\\dist\\jquery.js",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\023ac158-54f9-4106-afb1-2ad23b7500cf_Session 2 (1) (1).txt",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\physician21\\Signature.png",
+      "PackagePath": "staticwebassets\\physician21\\Signature.png"
+    },
+    {
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\physician\\21\\Signature.png",
+      "PackagePath": "staticwebassets\\physician\\21\\Signature.png"
+    },
+    {
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\physician\\aa84681d-8e03-4869-b240-d3c56c963dd3.png",
+      "PackagePath": "staticwebassets\\physician\\aa84681d-8e03-4869-b240-d3c56c963dd3.png"
+    },
+    {
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\023ac158-54f9-4106-afb1-2ad23b7500cf_Session 2 (1) (1).txt",
       "PackagePath": "staticwebassets\\uploads\\023ac158-54f9-4106-afb1-2ad23b7500cf_Session 2 (1) (1).txt"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\0b3634dc-10d6-48e7-b045-293a81803e61_Fig2. Forgot Password.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\05e3a1ef-7855-4239-be2c-05b48107adb5_cp3.1a.png",
+      "PackagePath": "staticwebassets\\uploads\\05e3a1ef-7855-4239-be2c-05b48107adb5_cp3.1a.png"
+    },
+    {
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\095ac48f-7eb7-4d37-8741-015cbe82c7e1_a4 1.png",
+      "PackagePath": "staticwebassets\\uploads\\095ac48f-7eb7-4d37-8741-015cbe82c7e1_a4 1.png"
+    },
+    {
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\0b3634dc-10d6-48e7-b045-293a81803e61_Fig2. Forgot Password.jpg",
       "PackagePath": "staticwebassets\\uploads\\0b3634dc-10d6-48e7-b045-293a81803e61_Fig2. Forgot Password.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\0cee2441-df6e-40b7-8a51-6c7a5d6b34df_7768657_3763028 - Copy.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\0cee2441-df6e-40b7-8a51-6c7a5d6b34df_7768657_3763028 - Copy.jpg",
       "PackagePath": "staticwebassets\\uploads\\0cee2441-df6e-40b7-8a51-6c7a5d6b34df_7768657_3763028 - Copy.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\0e4f5360-efc9-4f14-a062-1beeb2223546_Fig2. Forgot Password.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\0e4f5360-efc9-4f14-a062-1beeb2223546_Fig2. Forgot Password.jpg",
       "PackagePath": "staticwebassets\\uploads\\0e4f5360-efc9-4f14-a062-1beeb2223546_Fig2. Forgot Password.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\0eb54597-50bb-475c-933e-f42fd56e1ea0_SRS-23-24-Trainees_12Feb24.pdf",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\0eb54597-50bb-475c-933e-f42fd56e1ea0_SRS-23-24-Trainees_12Feb24.pdf",
       "PackagePath": "staticwebassets\\uploads\\0eb54597-50bb-475c-933e-f42fd56e1ea0_SRS-23-24-Trainees_12Feb24.pdf"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\1067bff1-c2f2-4491-9244-afa7a84a45f7_7768657_3763028 - Copy.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\1067bff1-c2f2-4491-9244-afa7a84a45f7_7768657_3763028 - Copy.jpg",
       "PackagePath": "staticwebassets\\uploads\\1067bff1-c2f2-4491-9244-afa7a84a45f7_7768657_3763028 - Copy.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\11e4c400-c3d9-4c07-9237-87475c376926_Fig20.Close case.png",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\11e4c400-c3d9-4c07-9237-87475c376926_Fig20.Close case.png",
       "PackagePath": "staticwebassets\\uploads\\11e4c400-c3d9-4c07-9237-87475c376926_Fig20.Close case.png"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\16087468-0370-4ae1-b928-5e0e1dabfcaf_Fig24. Provider Menu.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\12b03b2d-b193-4a7b-82fe-c1369bfb5fa7_5.d.png",
+      "PackagePath": "staticwebassets\\uploads\\12b03b2d-b193-4a7b-82fe-c1369bfb5fa7_5.d.png"
+    },
+    {
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\16087468-0370-4ae1-b928-5e0e1dabfcaf_Fig24. Provider Menu.jpg",
       "PackagePath": "staticwebassets\\uploads\\16087468-0370-4ae1-b928-5e0e1dabfcaf_Fig24. Provider Menu.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\1a7a8330-9ab6-4bfa-8fd7-ae87482fd5c9_Fig25. Contact your Provider.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\1a7a8330-9ab6-4bfa-8fd7-ae87482fd5c9_Fig25. Contact your Provider.jpg",
       "PackagePath": "staticwebassets\\uploads\\1a7a8330-9ab6-4bfa-8fd7-ae87482fd5c9_Fig25. Contact your Provider.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\1b9250ab-8810-4874-8908-14f1cb11ce93_7768657_3763028 - Copy.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\1b9250ab-8810-4874-8908-14f1cb11ce93_7768657_3763028 - Copy.jpg",
       "PackagePath": "staticwebassets\\uploads\\1b9250ab-8810-4874-8908-14f1cb11ce93_7768657_3763028 - Copy.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\1c8f0403-3a5f-49e9-8a5f-baec26720904_SRS-23-24-Trainees-21Feb24.pdf",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\1c8f0403-3a5f-49e9-8a5f-baec26720904_SRS-23-24-Trainees-21Feb24.pdf",
       "PackagePath": "staticwebassets\\uploads\\1c8f0403-3a5f-49e9-8a5f-baec26720904_SRS-23-24-Trainees-21Feb24.pdf"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\1d734c5a-3a51-4cdd-9619-61dc6f872345_Fig23.Request Support.png",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\1d734c5a-3a51-4cdd-9619-61dc6f872345_Fig23.Request Support.png",
       "PackagePath": "staticwebassets\\uploads\\1d734c5a-3a51-4cdd-9619-61dc6f872345_Fig23.Request Support.png"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\1f271f8c-fadf-48b2-9d08-1d708241da8d_Fig21. Admin My profile..jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\1f271f8c-fadf-48b2-9d08-1d708241da8d_Fig21. Admin My profile..jpg",
       "PackagePath": "staticwebassets\\uploads\\1f271f8c-fadf-48b2-9d08-1d708241da8d_Fig21. Admin My profile..jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\235f8bd6-6a62-4ea1-9660-54642c1b937e_Fig20.Close case.png",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\1fa9a7ea-5ee4-4304-94ad-025b184c96b9_5.d.png",
+      "PackagePath": "staticwebassets\\uploads\\1fa9a7ea-5ee4-4304-94ad-025b184c96b9_5.d.png"
+    },
+    {
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\235f8bd6-6a62-4ea1-9660-54642c1b937e_Fig20.Close case.png",
       "PackagePath": "staticwebassets\\uploads\\235f8bd6-6a62-4ea1-9660-54642c1b937e_Fig20.Close case.png"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\248c2523-dfd8-464d-bbdf-15ea967414d1_7768657_3763028 - Copy.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\248c2523-dfd8-464d-bbdf-15ea967414d1_7768657_3763028 - Copy.jpg",
       "PackagePath": "staticwebassets\\uploads\\248c2523-dfd8-464d-bbdf-15ea967414d1_7768657_3763028 - Copy.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\28b0ead8-4a22-4429-a4f5-27c8a940e4f8_Fig23.Request Support.png",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\26a8eb17-c698-4c38-8b3d-de6269db68bd_cp3.3.png",
+      "PackagePath": "staticwebassets\\uploads\\26a8eb17-c698-4c38-8b3d-de6269db68bd_cp3.3.png"
+    },
+    {
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\28b0ead8-4a22-4429-a4f5-27c8a940e4f8_Fig23.Request Support.png",
       "PackagePath": "staticwebassets\\uploads\\28b0ead8-4a22-4429-a4f5-27c8a940e4f8_Fig23.Request Support.png"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\2afb1b50-d4b4-4023-a873-826585645ef3_Fig2. Forgot Password.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\2afb1b50-d4b4-4023-a873-826585645ef3_Fig2. Forgot Password.jpg",
       "PackagePath": "staticwebassets\\uploads\\2afb1b50-d4b4-4023-a873-826585645ef3_Fig2. Forgot Password.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\2da8b00f-1c16-441b-9ddc-3cd92d6f622c_SRS-23-24-Trainees-14Feb24.pdf",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\2da8b00f-1c16-441b-9ddc-3cd92d6f622c_SRS-23-24-Trainees-14Feb24.pdf",
       "PackagePath": "staticwebassets\\uploads\\2da8b00f-1c16-441b-9ddc-3cd92d6f622c_SRS-23-24-Trainees-14Feb24.pdf"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\3073fa3e-dbcc-42d8-ad6a-1e3e7df22773_Session 2 (1).txt",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\3073fa3e-dbcc-42d8-ad6a-1e3e7df22773_Session 2 (1).txt",
       "PackagePath": "staticwebassets\\uploads\\3073fa3e-dbcc-42d8-ad6a-1e3e7df22773_Session 2 (1).txt"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\33f49ef2-5c03-4317-9eb0-bb55c0f30196_Fig1. Platform login page.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\33f49ef2-5c03-4317-9eb0-bb55c0f30196_Fig1. Platform login page.jpg",
       "PackagePath": "staticwebassets\\uploads\\33f49ef2-5c03-4317-9eb0-bb55c0f30196_Fig1. Platform login page.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\3510f8e3-f418-4343-a029-532b6b76e00b_7768657_3763028 - Copy.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\3510f8e3-f418-4343-a029-532b6b76e00b_7768657_3763028 - Copy.jpg",
       "PackagePath": "staticwebassets\\uploads\\3510f8e3-f418-4343-a029-532b6b76e00b_7768657_3763028 - Copy.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\35385cf3-1ff2-4451-88f8-a53ca167180e_Fig20.Close case.png",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\35385cf3-1ff2-4451-88f8-a53ca167180e_Fig20.Close case.png",
       "PackagePath": "staticwebassets\\uploads\\35385cf3-1ff2-4451-88f8-a53ca167180e_Fig20.Close case.png"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\355b6e95-2360-43f6-b495-41767a895d45_Fig24. Provider Menu.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\355b6e95-2360-43f6-b495-41767a895d45_Fig24. Provider Menu.jpg",
       "PackagePath": "staticwebassets\\uploads\\355b6e95-2360-43f6-b495-41767a895d45_Fig24. Provider Menu.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\3db9e067-651a-4ecd-88b2-eeb9b79222f1_Fig25. Contact your Provider.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\39c70306-2518-4bb0-adc9-51adfb22d381_2.d.png",
+      "PackagePath": "staticwebassets\\uploads\\39c70306-2518-4bb0-adc9-51adfb22d381_2.d.png"
+    },
+    {
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\3db9e067-651a-4ecd-88b2-eeb9b79222f1_Fig25. Contact your Provider.jpg",
       "PackagePath": "staticwebassets\\uploads\\3db9e067-651a-4ecd-88b2-eeb9b79222f1_Fig25. Contact your Provider.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\41de8d61-d682-473f-a9aa-3e92513332fa_Fig3. Admin Dashboard.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\41de8d61-d682-473f-a9aa-3e92513332fa_Fig3. Admin Dashboard.jpg",
       "PackagePath": "staticwebassets\\uploads\\41de8d61-d682-473f-a9aa-3e92513332fa_Fig3. Admin Dashboard.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\48d10ab6-3e80-4aa7-8d26-0704b0a3c154_Fig2. Forgot Password.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\45a6b855-5480-4c28-9ae7-962b5e5bd1cc_Dhaduk harshil Pareshbhai _ LD .pdf",
+      "PackagePath": "staticwebassets\\uploads\\45a6b855-5480-4c28-9ae7-962b5e5bd1cc_Dhaduk harshil Pareshbhai _ LD .pdf"
+    },
+    {
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\48d10ab6-3e80-4aa7-8d26-0704b0a3c154_Fig2. Forgot Password.jpg",
       "PackagePath": "staticwebassets\\uploads\\48d10ab6-3e80-4aa7-8d26-0704b0a3c154_Fig2. Forgot Password.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\49ba5532-b094-4e7a-a3fe-d49a078ed365_Fig6. Admin dashboard in Active state.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\49ba5532-b094-4e7a-a3fe-d49a078ed365_Fig6. Admin dashboard in Active state.jpg",
       "PackagePath": "staticwebassets\\uploads\\49ba5532-b094-4e7a-a3fe-d49a078ed365_Fig6. Admin dashboard in Active state.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\49d77fa6-0ce4-401b-b680-1aab09efd9b3_SRS-23-24-Trainees-14Feb24.pdf",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\49d77fa6-0ce4-401b-b680-1aab09efd9b3_SRS-23-24-Trainees-14Feb24.pdf",
       "PackagePath": "staticwebassets\\uploads\\49d77fa6-0ce4-401b-b680-1aab09efd9b3_SRS-23-24-Trainees-14Feb24.pdf"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\4bc6da6e-119f-45e2-abbd-f76fdcf78073_1b9250ab-8810-4874-8908-14f1cb11ce93_7768657_3763028 - Copy.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\4b69f44f-4d69-4559-828a-45bb8368e102_bubble d.png",
+      "PackagePath": "staticwebassets\\uploads\\4b69f44f-4d69-4559-828a-45bb8368e102_bubble d.png"
+    },
+    {
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\4bc6da6e-119f-45e2-abbd-f76fdcf78073_1b9250ab-8810-4874-8908-14f1cb11ce93_7768657_3763028 - Copy.jpg",
       "PackagePath": "staticwebassets\\uploads\\4bc6da6e-119f-45e2-abbd-f76fdcf78073_1b9250ab-8810-4874-8908-14f1cb11ce93_7768657_3763028 - Copy.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\50d699b6-b13b-4952-9729-ec4aacaf68f8_Fig2. Forgot Password.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\50d699b6-b13b-4952-9729-ec4aacaf68f8_Fig2. Forgot Password.jpg",
       "PackagePath": "staticwebassets\\uploads\\50d699b6-b13b-4952-9729-ec4aacaf68f8_Fig2. Forgot Password.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\5c0240b4-2151-4e90-bd99-852e31e471c9_IMG_20240223_191339.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\5abfa26a-a17f-4cd1-8b85-9fcb46bef1a3_cp3.4.png",
+      "PackagePath": "staticwebassets\\uploads\\5abfa26a-a17f-4cd1-8b85-9fcb46bef1a3_cp3.4.png"
+    },
+    {
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\5c0240b4-2151-4e90-bd99-852e31e471c9_IMG_20240223_191339.jpg",
       "PackagePath": "staticwebassets\\uploads\\5c0240b4-2151-4e90-bd99-852e31e471c9_IMG_20240223_191339.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\61a9408c-6ef4-4158-8779-df255aad621a_Fig25. Contact your Provider.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\61a9408c-6ef4-4158-8779-df255aad621a_Fig25. Contact your Provider.jpg",
       "PackagePath": "staticwebassets\\uploads\\61a9408c-6ef4-4158-8779-df255aad621a_Fig25. Contact your Provider.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\64bc9683-fa4d-4154-be1b-0388a513b280_7774236_3736765.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\64bc9683-fa4d-4154-be1b-0388a513b280_7774236_3736765.jpg",
       "PackagePath": "staticwebassets\\uploads\\64bc9683-fa4d-4154-be1b-0388a513b280_7774236_3736765.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\670a7b30-5ba0-4fcf-82d4-eafa8d9beb76_a4 1.png",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\670a7b30-5ba0-4fcf-82d4-eafa8d9beb76_a4 1.png",
       "PackagePath": "staticwebassets\\uploads\\670a7b30-5ba0-4fcf-82d4-eafa8d9beb76_a4 1.png"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\6718ea32-b0da-4867-af82-56f04e738275_Fig24. Provider Menu.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\6718ea32-b0da-4867-af82-56f04e738275_Fig24. Provider Menu.jpg",
       "PackagePath": "staticwebassets\\uploads\\6718ea32-b0da-4867-af82-56f04e738275_Fig24. Provider Menu.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\699b42d0-8d02-4c7a-9b91-62f8623729dd_Fig7. Admin dashboard in Conclude state.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\699b42d0-8d02-4c7a-9b91-62f8623729dd_Fig7. Admin dashboard in Conclude state.jpg",
       "PackagePath": "staticwebassets\\uploads\\699b42d0-8d02-4c7a-9b91-62f8623729dd_Fig7. Admin dashboard in Conclude state.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\6cc130ae-ebe1-45f4-855b-7c5609109ab7_Fig23.Request Support.png",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\6b9f6ae8-a565-4736-8916-dae5b79203de_bubble d.png",
+      "PackagePath": "staticwebassets\\uploads\\6b9f6ae8-a565-4736-8916-dae5b79203de_bubble d.png"
+    },
+    {
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\6cc130ae-ebe1-45f4-855b-7c5609109ab7_Fig23.Request Support.png",
       "PackagePath": "staticwebassets\\uploads\\6cc130ae-ebe1-45f4-855b-7c5609109ab7_Fig23.Request Support.png"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\6d461b67-9983-412a-8459-b5dfc0dffb7d_Fig25. Contact your Provider.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\6d461b67-9983-412a-8459-b5dfc0dffb7d_Fig25. Contact your Provider.jpg",
       "PackagePath": "staticwebassets\\uploads\\6d461b67-9983-412a-8459-b5dfc0dffb7d_Fig25. Contact your Provider.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\706206fb-7981-482a-9ec4-b50af76085e3_Fig3. Admin Dashboard.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\706206fb-7981-482a-9ec4-b50af76085e3_Fig3. Admin Dashboard.jpg",
       "PackagePath": "staticwebassets\\uploads\\706206fb-7981-482a-9ec4-b50af76085e3_Fig3. Admin Dashboard.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\71b26792-b681-47e0-b534-db00d1fa2b74_Fig2. Forgot Password.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\71b26792-b681-47e0-b534-db00d1fa2b74_Fig2. Forgot Password.jpg",
       "PackagePath": "staticwebassets\\uploads\\71b26792-b681-47e0-b534-db00d1fa2b74_Fig2. Forgot Password.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\75abc080-f1a0-41f8-b0d1-7eb3aa31cf4f_Fig20.Close case.png",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\727c7166-8ed0-456a-afb1-f23bf6ae8d50_cp3.1a.png",
+      "PackagePath": "staticwebassets\\uploads\\727c7166-8ed0-456a-afb1-f23bf6ae8d50_cp3.1a.png"
+    },
+    {
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\75abc080-f1a0-41f8-b0d1-7eb3aa31cf4f_Fig20.Close case.png",
       "PackagePath": "staticwebassets\\uploads\\75abc080-f1a0-41f8-b0d1-7eb3aa31cf4f_Fig20.Close case.png"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\7755ef80-dd90-4043-9766-37ec4ff83a27_7768657_3763028 - Copy.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\7755ef80-dd90-4043-9766-37ec4ff83a27_7768657_3763028 - Copy.jpg",
       "PackagePath": "staticwebassets\\uploads\\7755ef80-dd90-4043-9766-37ec4ff83a27_7768657_3763028 - Copy.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\787b46e5-0e0d-4f4a-9644-f6e27852eca1_Fig23.Request Support.png",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\787b46e5-0e0d-4f4a-9644-f6e27852eca1_Fig23.Request Support.png",
       "PackagePath": "staticwebassets\\uploads\\787b46e5-0e0d-4f4a-9644-f6e27852eca1_Fig23.Request Support.png"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\790ad7bd-c880-4984-a62d-63731053b05d_Fig2. Forgot Password.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\790ad7bd-c880-4984-a62d-63731053b05d_Fig2. Forgot Password.jpg",
       "PackagePath": "staticwebassets\\uploads\\790ad7bd-c880-4984-a62d-63731053b05d_Fig2. Forgot Password.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\8052c8ed-eee2-401c-bdfd-5d4838bdfa7f_Fig24. Provider Menu.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\7bc5a871-4da9-4a03-94d6-649695fd0d13_3.d.png",
+      "PackagePath": "staticwebassets\\uploads\\7bc5a871-4da9-4a03-94d6-649695fd0d13_3.d.png"
+    },
+    {
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\7bec2923-aa50-4332-8c6f-b9d2cbc53fc8_5.d.png",
+      "PackagePath": "staticwebassets\\uploads\\7bec2923-aa50-4332-8c6f-b9d2cbc53fc8_5.d.png"
+    },
+    {
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\8052c8ed-eee2-401c-bdfd-5d4838bdfa7f_Fig24. Provider Menu.jpg",
       "PackagePath": "staticwebassets\\uploads\\8052c8ed-eee2-401c-bdfd-5d4838bdfa7f_Fig24. Provider Menu.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\843d6b14-1290-4897-948f-772ec0e64a3e_7768657_3763028 - Copy.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\827ad1d5-6d6f-475b-b4a8-d95cf3543d09_cs4 2.png",
+      "PackagePath": "staticwebassets\\uploads\\827ad1d5-6d6f-475b-b4a8-d95cf3543d09_cs4 2.png"
+    },
+    {
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\843d6b14-1290-4897-948f-772ec0e64a3e_7768657_3763028 - Copy.jpg",
       "PackagePath": "staticwebassets\\uploads\\843d6b14-1290-4897-948f-772ec0e64a3e_7768657_3763028 - Copy.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\84e2271e-10e4-4a6d-a2c5-882ca4b846a6_Fig24. Provider Menu.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\84e2271e-10e4-4a6d-a2c5-882ca4b846a6_Fig24. Provider Menu.jpg",
       "PackagePath": "staticwebassets\\uploads\\84e2271e-10e4-4a6d-a2c5-882ca4b846a6_Fig24. Provider Menu.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\8507baab-3ca1-4bae-b9c8-51c696df1afd_7768657_3763028 - Copy.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\8507baab-3ca1-4bae-b9c8-51c696df1afd_7768657_3763028 - Copy.jpg",
       "PackagePath": "staticwebassets\\uploads\\8507baab-3ca1-4bae-b9c8-51c696df1afd_7768657_3763028 - Copy.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\8651a709-f00c-4f37-b567-c63e5c93904d_Fig3. Admin Dashboard.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\8651a709-f00c-4f37-b567-c63e5c93904d_Fig3. Admin Dashboard.jpg",
       "PackagePath": "staticwebassets\\uploads\\8651a709-f00c-4f37-b567-c63e5c93904d_Fig3. Admin Dashboard.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\8f8adbaa-01c0-4a2c-b8ad-5b37d800baf3_SRS-23-24-Trainees-14Feb24.pdf",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\8f8adbaa-01c0-4a2c-b8ad-5b37d800baf3_SRS-23-24-Trainees-14Feb24.pdf",
       "PackagePath": "staticwebassets\\uploads\\8f8adbaa-01c0-4a2c-b8ad-5b37d800baf3_SRS-23-24-Trainees-14Feb24.pdf"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\92029dba-dbec-4c25-9fca-709c0877f135_Fig4. Admin dashboard in New state.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\92029dba-dbec-4c25-9fca-709c0877f135_Fig4. Admin dashboard in New state.jpg",
       "PackagePath": "staticwebassets\\uploads\\92029dba-dbec-4c25-9fca-709c0877f135_Fig4. Admin dashboard in New state.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\92b11aa5-0184-4e50-91ed-d9efbe5f3fa6_c40db08a-80f8-4de9-96b8-b821d1182258_7774236_3736765.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\92b11aa5-0184-4e50-91ed-d9efbe5f3fa6_c40db08a-80f8-4de9-96b8-b821d1182258_7774236_3736765.jpg",
       "PackagePath": "staticwebassets\\uploads\\92b11aa5-0184-4e50-91ed-d9efbe5f3fa6_c40db08a-80f8-4de9-96b8-b821d1182258_7774236_3736765.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\96467f58-f624-4849-a7c4-c0211df585a3_Fig23.Request Support.png",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\94d8cfd2-dd4a-4916-a86a-2e2d98dfa157_a4 2.png",
+      "PackagePath": "staticwebassets\\uploads\\94d8cfd2-dd4a-4916-a86a-2e2d98dfa157_a4 2.png"
+    },
+    {
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\96467f58-f624-4849-a7c4-c0211df585a3_Fig23.Request Support.png",
       "PackagePath": "staticwebassets\\uploads\\96467f58-f624-4849-a7c4-c0211df585a3_Fig23.Request Support.png"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\96636d90-790e-4773-8e6e-e948a65f771e_Fig22 Regions menu.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\96636d90-790e-4773-8e6e-e948a65f771e_Fig22 Regions menu.jpg",
       "PackagePath": "staticwebassets\\uploads\\96636d90-790e-4773-8e6e-e948a65f771e_Fig22 Regions menu.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\9695b41f-b74d-43da-8a23-ac154531478e_Fig23.Request Support.png",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\9695b41f-b74d-43da-8a23-ac154531478e_Fig23.Request Support.png",
       "PackagePath": "staticwebassets\\uploads\\9695b41f-b74d-43da-8a23-ac154531478e_Fig23.Request Support.png"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\97d16b99-66b5-4eed-93fa-1c1890ee84c2_7768657_3763028 - Copy.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\97d16b99-66b5-4eed-93fa-1c1890ee84c2_7768657_3763028 - Copy.jpg",
       "PackagePath": "staticwebassets\\uploads\\97d16b99-66b5-4eed-93fa-1c1890ee84c2_7768657_3763028 - Copy.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\a203a919-851f-4be2-85cd-2b02bbcdb9a5_7774236_3736765.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\985f29c8-d29b-4bf0-a584-67e9db8a9514_4.d.png",
+      "PackagePath": "staticwebassets\\uploads\\985f29c8-d29b-4bf0-a584-67e9db8a9514_4.d.png"
+    },
+    {
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\9a5f6aaa-7668-474b-bb6c-537e47c90e5d_bubble d.png",
+      "PackagePath": "staticwebassets\\uploads\\9a5f6aaa-7668-474b-bb6c-537e47c90e5d_bubble d.png"
+    },
+    {
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\9af68e2d-71e2-434a-a7af-650373a0d8a7_cs4 1.png",
+      "PackagePath": "staticwebassets\\uploads\\9af68e2d-71e2-434a-a7af-650373a0d8a7_cs4 1.png"
+    },
+    {
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\a08ab5bb-053c-4480-b995-ac893530c209_cp3.1a.png",
+      "PackagePath": "staticwebassets\\uploads\\a08ab5bb-053c-4480-b995-ac893530c209_cp3.1a.png"
+    },
+    {
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\a203a919-851f-4be2-85cd-2b02bbcdb9a5_7774236_3736765.jpg",
       "PackagePath": "staticwebassets\\uploads\\a203a919-851f-4be2-85cd-2b02bbcdb9a5_7774236_3736765.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\a9d171b6-db25-4584-bf6d-93be846af567_SRS-23-24-Trainees-2Feb24.pdf",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\a9d171b6-db25-4584-bf6d-93be846af567_SRS-23-24-Trainees-2Feb24.pdf",
       "PackagePath": "staticwebassets\\uploads\\a9d171b6-db25-4584-bf6d-93be846af567_SRS-23-24-Trainees-2Feb24.pdf"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\aa96230d-75f2-4061-875d-cdf2e2e4e620_Abstract_200103042234.docx",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\aa96230d-75f2-4061-875d-cdf2e2e4e620_Abstract_200103042234.docx",
       "PackagePath": "staticwebassets\\uploads\\aa96230d-75f2-4061-875d-cdf2e2e4e620_Abstract_200103042234.docx"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\ad24f51a-11f5-4e6b-8337-ebbacddb027f_Fig2. Forgot Password.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\ad24f51a-11f5-4e6b-8337-ebbacddb027f_Fig2. Forgot Password.jpg",
       "PackagePath": "staticwebassets\\uploads\\ad24f51a-11f5-4e6b-8337-ebbacddb027f_Fig2. Forgot Password.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\b10ada45-0b6d-4db7-b361-e872213f8f0a_Fig4. Admin dashboard in New state.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\b10ada45-0b6d-4db7-b361-e872213f8f0a_Fig4. Admin dashboard in New state.jpg",
       "PackagePath": "staticwebassets\\uploads\\b10ada45-0b6d-4db7-b361-e872213f8f0a_Fig4. Admin dashboard in New state.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\b11a6bcc-61f3-451d-b63d-9c1d53943a1e_Fig22 Regions menu.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\b11a6bcc-61f3-451d-b63d-9c1d53943a1e_Fig22 Regions menu.jpg",
       "PackagePath": "staticwebassets\\uploads\\b11a6bcc-61f3-451d-b63d-9c1d53943a1e_Fig22 Regions menu.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\b124042f-de5d-4c92-a492-f31990ba40f0_Fig24. Provider Menu.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\b124042f-de5d-4c92-a492-f31990ba40f0_Fig24. Provider Menu.jpg",
       "PackagePath": "staticwebassets\\uploads\\b124042f-de5d-4c92-a492-f31990ba40f0_Fig24. Provider Menu.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\b3354527-e50f-436d-b93f-61e2c76318bf_7768657_3763028 - Copy.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\b3354527-e50f-436d-b93f-61e2c76318bf_7768657_3763028 - Copy.jpg",
       "PackagePath": "staticwebassets\\uploads\\b3354527-e50f-436d-b93f-61e2c76318bf_7768657_3763028 - Copy.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\b3673dcd-10d0-4e53-8bda-a92b4279fab4_Fig23.Request Support.png",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\b3673dcd-10d0-4e53-8bda-a92b4279fab4_Fig23.Request Support.png",
       "PackagePath": "staticwebassets\\uploads\\b3673dcd-10d0-4e53-8bda-a92b4279fab4_Fig23.Request Support.png"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\b5246287-230a-429b-bd7d-2bbda6540a5d_Fig5. Admin dashboard in pending state.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\b5246287-230a-429b-bd7d-2bbda6540a5d_Fig5. Admin dashboard in pending state.jpg",
       "PackagePath": "staticwebassets\\uploads\\b5246287-230a-429b-bd7d-2bbda6540a5d_Fig5. Admin dashboard in pending state.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\b69e7f2b-9700-44b2-b260-e28d911d744f_Fig22 Regions menu.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\b56518a6-deae-46b7-aa5d-73be287b4e86_a9 2.png",
+      "PackagePath": "staticwebassets\\uploads\\b56518a6-deae-46b7-aa5d-73be287b4e86_a9 2.png"
+    },
+    {
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\b69e7f2b-9700-44b2-b260-e28d911d744f_Fig22 Regions menu.jpg",
       "PackagePath": "staticwebassets\\uploads\\b69e7f2b-9700-44b2-b260-e28d911d744f_Fig22 Regions menu.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\b7076281-d4cb-4e3a-b195-d2244a31ce1f_Fig4. Admin dashboard in New state.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\b7076281-d4cb-4e3a-b195-d2244a31ce1f_Fig4. Admin dashboard in New state.jpg",
       "PackagePath": "staticwebassets\\uploads\\b7076281-d4cb-4e3a-b195-d2244a31ce1f_Fig4. Admin dashboard in New state.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\bca20f04-6d04-4bbb-a697-a6840eea62d7_Fig9. Admin dashboard in Unpaid state.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\bbd9caa5-4395-45a0-8891-a2f6f99c229e_4.d.png",
+      "PackagePath": "staticwebassets\\uploads\\bbd9caa5-4395-45a0-8891-a2f6f99c229e_4.d.png"
+    },
+    {
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\bca20f04-6d04-4bbb-a697-a6840eea62d7_Fig9. Admin dashboard in Unpaid state.jpg",
       "PackagePath": "staticwebassets\\uploads\\bca20f04-6d04-4bbb-a697-a6840eea62d7_Fig9. Admin dashboard in Unpaid state.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\bcc87473-f070-4953-9e63-803e500d598e_Fig26. Edit Physician Account.png",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\bcc87473-f070-4953-9e63-803e500d598e_Fig26. Edit Physician Account.png",
       "PackagePath": "staticwebassets\\uploads\\bcc87473-f070-4953-9e63-803e500d598e_Fig26. Edit Physician Account.png"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\c045e681-3e25-4464-a314-d583a833bb9d_Fig22 Regions menu.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\c045e681-3e25-4464-a314-d583a833bb9d_Fig22 Regions menu.jpg",
       "PackagePath": "staticwebassets\\uploads\\c045e681-3e25-4464-a314-d583a833bb9d_Fig22 Regions menu.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\c0a6ce59-d9e4-4a46-b70b-50df71045030_Fig2. Forgot Password.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\c0a6ce59-d9e4-4a46-b70b-50df71045030_Fig2. Forgot Password.jpg",
       "PackagePath": "staticwebassets\\uploads\\c0a6ce59-d9e4-4a46-b70b-50df71045030_Fig2. Forgot Password.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\c1167a6b-20df-40df-aeec-bdc0e2bda49e_7768657_3763028 - Copy.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\c1167a6b-20df-40df-aeec-bdc0e2bda49e_7768657_3763028 - Copy.jpg",
       "PackagePath": "staticwebassets\\uploads\\c1167a6b-20df-40df-aeec-bdc0e2bda49e_7768657_3763028 - Copy.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\c13f13f3-d527-43aa-89e8-660e1e5966f5_7774236_3736765.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\c1334169-b39b-48df-9dfe-c0f5fc4e5cb9_cp3.1.png",
+      "PackagePath": "staticwebassets\\uploads\\c1334169-b39b-48df-9dfe-c0f5fc4e5cb9_cp3.1.png"
+    },
+    {
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\c13f13f3-d527-43aa-89e8-660e1e5966f5_7774236_3736765.jpg",
       "PackagePath": "staticwebassets\\uploads\\c13f13f3-d527-43aa-89e8-660e1e5966f5_7774236_3736765.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\c40db08a-80f8-4de9-96b8-b821d1182258_7774236_3736765.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\c40db08a-80f8-4de9-96b8-b821d1182258_7774236_3736765.jpg",
       "PackagePath": "staticwebassets\\uploads\\c40db08a-80f8-4de9-96b8-b821d1182258_7774236_3736765.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\c4ded9a3-ad00-4c4d-97f2-7e88a401adde_7768657_3763028 - Copy.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\c4ded9a3-ad00-4c4d-97f2-7e88a401adde_7768657_3763028 - Copy.jpg",
       "PackagePath": "staticwebassets\\uploads\\c4ded9a3-ad00-4c4d-97f2-7e88a401adde_7768657_3763028 - Copy.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\c659848f-e309-4739-938d-18665113deac_Fig23.Request Support.png",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\c659848f-e309-4739-938d-18665113deac_Fig23.Request Support.png",
       "PackagePath": "staticwebassets\\uploads\\c659848f-e309-4739-938d-18665113deac_Fig23.Request Support.png"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\c7ad445f-3f9c-472a-bed4-e78ff5dfb107_Fig3. Admin Dashboard.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\c7ad445f-3f9c-472a-bed4-e78ff5dfb107_Fig3. Admin Dashboard.jpg",
       "PackagePath": "staticwebassets\\uploads\\c7ad445f-3f9c-472a-bed4-e78ff5dfb107_Fig3. Admin Dashboard.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\c9bcce4b-e101-4d3b-9a5d-53ccb0436bc0_Fig25. Contact your Provider.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\c9bcce4b-e101-4d3b-9a5d-53ccb0436bc0_Fig25. Contact your Provider.jpg",
       "PackagePath": "staticwebassets\\uploads\\c9bcce4b-e101-4d3b-9a5d-53ccb0436bc0_Fig25. Contact your Provider.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\cca432e5-d9e4-4a7b-b1dc-6627b488c04e_7768657_3763028 - Copy.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\cca432e5-d9e4-4a7b-b1dc-6627b488c04e_7768657_3763028 - Copy.jpg",
       "PackagePath": "staticwebassets\\uploads\\cca432e5-d9e4-4a7b-b1dc-6627b488c04e_7768657_3763028 - Copy.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\d21293a8-a1af-4f4a-966f-e5c6ac01608b_Fig3. Admin Dashboard.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\d21293a8-a1af-4f4a-966f-e5c6ac01608b_Fig3. Admin Dashboard.jpg",
       "PackagePath": "staticwebassets\\uploads\\d21293a8-a1af-4f4a-966f-e5c6ac01608b_Fig3. Admin Dashboard.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\d3ec9ae7-e3ed-40fc-a514-83fd2b3ae964_SRS-23-24-Trainees-14Feb24.pdf",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\d3ec9ae7-e3ed-40fc-a514-83fd2b3ae964_SRS-23-24-Trainees-14Feb24.pdf",
       "PackagePath": "staticwebassets\\uploads\\d3ec9ae7-e3ed-40fc-a514-83fd2b3ae964_SRS-23-24-Trainees-14Feb24.pdf"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\d4360eaa-d5e8-4e10-95c6-84339258611f_11116016_415.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\d4360eaa-d5e8-4e10-95c6-84339258611f_11116016_415.jpg",
       "PackagePath": "staticwebassets\\uploads\\d4360eaa-d5e8-4e10-95c6-84339258611f_11116016_415.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\d7f3bba0-65e3-4ba6-8ff5-8eb7c3c63720_Fig2. Forgot Password.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\d7f3bba0-65e3-4ba6-8ff5-8eb7c3c63720_Fig2. Forgot Password.jpg",
       "PackagePath": "staticwebassets\\uploads\\d7f3bba0-65e3-4ba6-8ff5-8eb7c3c63720_Fig2. Forgot Password.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\d8069435-230a-480a-bbf1-93fdf99fda4f_7768657_3763028 - Copy.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\d8069435-230a-480a-bbf1-93fdf99fda4f_7768657_3763028 - Copy.jpg",
       "PackagePath": "staticwebassets\\uploads\\d8069435-230a-480a-bbf1-93fdf99fda4f_7768657_3763028 - Copy.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\d8549262-c985-4039-862d-18bbcb740453_Fig3. Admin Dashboard.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\d8549262-c985-4039-862d-18bbcb740453_Fig3. Admin Dashboard.jpg",
       "PackagePath": "staticwebassets\\uploads\\d8549262-c985-4039-862d-18bbcb740453_Fig3. Admin Dashboard.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\db08a98c-bd85-425c-93be-f6fe49e5066c_Fig25. Contact your Provider.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\db08a98c-bd85-425c-93be-f6fe49e5066c_Fig25. Contact your Provider.jpg",
       "PackagePath": "staticwebassets\\uploads\\db08a98c-bd85-425c-93be-f6fe49e5066c_Fig25. Contact your Provider.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\e0dfd220-5436-4a1f-9573-fbd1ec494b95_7768657_3763028 - Copy.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\e0dfd220-5436-4a1f-9573-fbd1ec494b95_7768657_3763028 - Copy.jpg",
       "PackagePath": "staticwebassets\\uploads\\e0dfd220-5436-4a1f-9573-fbd1ec494b95_7768657_3763028 - Copy.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\e3ea0591-1128-4077-aa32-274e534b0dab_Fig3. Admin Dashboard.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\e3ea0591-1128-4077-aa32-274e534b0dab_Fig3. Admin Dashboard.jpg",
       "PackagePath": "staticwebassets\\uploads\\e3ea0591-1128-4077-aa32-274e534b0dab_Fig3. Admin Dashboard.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\e546837b-aedf-4936-ac88-6aa43224635e_Fig26. Edit Physician Account.png",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\e546837b-aedf-4936-ac88-6aa43224635e_Fig26. Edit Physician Account.png",
       "PackagePath": "staticwebassets\\uploads\\e546837b-aedf-4936-ac88-6aa43224635e_Fig26. Edit Physician Account.png"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\e55bfcad-7f67-41e1-9f00-a67e9e7875a0_Fig3. Admin Dashboard.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\e55bfcad-7f67-41e1-9f00-a67e9e7875a0_Fig3. Admin Dashboard.jpg",
       "PackagePath": "staticwebassets\\uploads\\e55bfcad-7f67-41e1-9f00-a67e9e7875a0_Fig3. Admin Dashboard.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\ecd6a099-8d8a-4615-ba50-3e4741e7e51f_Fig4. Admin dashboard in New state.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\e5612300-0fbe-4c31-a5f1-d008a42b0eda_cp3.1a.png",
+      "PackagePath": "staticwebassets\\uploads\\e5612300-0fbe-4c31-a5f1-d008a42b0eda_cp3.1a.png"
+    },
+    {
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\ecd6a099-8d8a-4615-ba50-3e4741e7e51f_Fig4. Admin dashboard in New state.jpg",
       "PackagePath": "staticwebassets\\uploads\\ecd6a099-8d8a-4615-ba50-3e4741e7e51f_Fig4. Admin dashboard in New state.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\f0ab92bd-42f0-454b-bdff-a9e53b3fc106_Fig11. View Notes.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\ef4dab38-894d-4680-81bd-acf87f7b3403_cp3.4.png",
+      "PackagePath": "staticwebassets\\uploads\\ef4dab38-894d-4680-81bd-acf87f7b3403_cp3.4.png"
+    },
+    {
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\f0ab92bd-42f0-454b-bdff-a9e53b3fc106_Fig11. View Notes.jpg",
       "PackagePath": "staticwebassets\\uploads\\f0ab92bd-42f0-454b-bdff-a9e53b3fc106_Fig11. View Notes.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\f1c7e273-f4e5-4633-b3a0-d342d543f4b2_7768657_3763028 - Copy.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\f1c7e273-f4e5-4633-b3a0-d342d543f4b2_7768657_3763028 - Copy.jpg",
       "PackagePath": "staticwebassets\\uploads\\f1c7e273-f4e5-4633-b3a0-d342d543f4b2_7768657_3763028 - Copy.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\f83f7d10-8ee6-4482-b2b8-f9ed991f7361_Fig23.Request Support.png",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\f83f7d10-8ee6-4482-b2b8-f9ed991f7361_Fig23.Request Support.png",
       "PackagePath": "staticwebassets\\uploads\\f83f7d10-8ee6-4482-b2b8-f9ed991f7361_Fig23.Request Support.png"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\f8b70c05-544a-4ca1-87ae-df7d92f6d35f_Fig22 Regions menu.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\f8b70c05-544a-4ca1-87ae-df7d92f6d35f_Fig22 Regions menu.jpg",
       "PackagePath": "staticwebassets\\uploads\\f8b70c05-544a-4ca1-87ae-df7d92f6d35f_Fig22 Regions menu.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\fa5c60ff-7cb8-4b83-9f87-7ad6e8ab2c80_Fig2. Forgot Password.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\fa5c60ff-7cb8-4b83-9f87-7ad6e8ab2c80_Fig2. Forgot Password.jpg",
       "PackagePath": "staticwebassets\\uploads\\fa5c60ff-7cb8-4b83-9f87-7ad6e8ab2c80_Fig2. Forgot Password.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\fd55b2ee-95b1-4841-a630-088e09726d1d_Fig22 Regions menu.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\fd55b2ee-95b1-4841-a630-088e09726d1d_Fig22 Regions menu.jpg",
       "PackagePath": "staticwebassets\\uploads\\fd55b2ee-95b1-4841-a630-088e09726d1d_Fig22 Regions menu.jpg"
     },
     {
-      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\uploads\\feb611e8-c7ed-40b0-aa1f-85ceb86381bb_Fig24. Provider Menu.jpg",
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\fd65fdc1-674a-44e6-8d01-d0268ba052ac_cp3.1a.png",
+      "PackagePath": "staticwebassets\\uploads\\fd65fdc1-674a-44e6-8d01-d0268ba052ac_cp3.1a.png"
+    },
+    {
+      "Id": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\wwwroot\\uploads\\feb611e8-c7ed-40b0-aa1f-85ceb86381bb_Fig24. Provider Menu.jpg",
       "PackagePath": "staticwebassets\\uploads\\feb611e8-c7ed-40b0-aa1f-85ceb86381bb_Fig24. Provider Menu.jpg"
     },
     {

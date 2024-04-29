@@ -36,6 +36,7 @@ namespace hellodoc.Repositories.Repository
                 City  = vendors.City,
                 Createddate = DateTime.Now,
                 Zip = vendors.Zip,
+                Street = vendors.Street,
             };
 
             _context.HealthProfessionals.Add(professional); 
@@ -57,7 +58,7 @@ namespace hellodoc.Repositories.Repository
             var vendors = _context.HealthProfessionals.Where(
                 hp =>
                     ((ProfessionType !=0)? hp.Profession == ProfessionType :true)&&
-                    ((search != null)? hp.Vendorname.Contains(search):true) && 
+                    ((search != null)? hp.Vendorname.ToLower().Contains(search.ToLower()):true) && 
                     (hp.Isdeleted != new System.Collections.BitArray(1, true))
                 ).ToList();
 
@@ -89,17 +90,20 @@ namespace hellodoc.Repositories.Repository
         public void UpdateBusiness(AdminPartnersModal vendors)
         {
             var vendor = _context.HealthProfessionals.FirstOrDefault(h => h.Vendorid == vendors.Vendorid);
-            vendor.Profession = vendors.Profession;
-            vendor.Businesscontact = vendors.Businesscontact;
-            vendor.Email = vendors.BusinessEmail;
-            vendor.Phonenumber = vendors.Phonenumber;
-            vendor.Faxnumber = vendors.Faxnumber;
-            vendor.State = vendors.State.ToString();
-            vendor.City = vendors.City;
-            vendor.Vendorname = vendors.Vendorname;
-            vendor.Modifieddate = DateTime.Now;
-            vendor.Zip = vendors.Zip;
-
+            if(vendor != null)
+            {
+                vendor.Profession = vendors.Profession;
+                vendor.Businesscontact = vendors.Businesscontact;
+                vendor.Email = vendors.BusinessEmail;
+                vendor.Phonenumber = vendors.Phonenumber;
+                vendor.Faxnumber = vendors.Faxnumber;
+                vendor.State = vendors.State.ToString();
+                vendor.City = vendors.City;
+                vendor.Vendorname = vendors.Vendorname;
+                vendor.Modifieddate = DateTime.Now;
+                vendor.Zip = vendors.Zip;
+                vendor.Street = vendors.Street;
+            }
             _context.SaveChanges();
         }
 
@@ -121,6 +125,7 @@ namespace hellodoc.Repositories.Repository
                 adminPartners.Businesscontact = vendor.Businesscontact;
                 adminPartners.healthProfessionalTypes = _context.HealthProfessionalTypes.ToList();
                 adminPartners.Vendorname = vendor.Vendorname;
+                adminPartners.Street = vendor.Street;
                 adminPartners.regions = _context.Regions.ToList();
             }
             return adminPartners;

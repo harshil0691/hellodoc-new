@@ -45,7 +45,6 @@ function bussinessActions(actionType, vendorid) {
     var form = $.param(formdata);
 
     if ($('#business').valid()) {
-        console.log(2);
         $.ajax({
             url: '/AdminPartners/DBOperations',
             type: 'POST',
@@ -53,8 +52,10 @@ function bussinessActions(actionType, vendorid) {
             success: function (data) {
                 if (actionType == 'new_business' || actionType == 'delete_business') {
                     partners({ actionType: 'Partners' });
+                    toastr.success("Vendor Created Successfully");
                 } else {
-                    partners({ actionType: 'edit_business', venorid: vendorid })
+                    partners({ actionType: 'edit_business', venorid: vendorid });
+                    toastr.success("Vendor Edited Successfully");
                 }
             },
             error: function () {
@@ -62,6 +63,23 @@ function bussinessActions(actionType, vendorid) {
             }
         });
     }
+
+}
+
+function deleteBusiness(actionType,vendorid) {
+
+    $.ajax({
+        url: '/AdminPartners/DeleteBusiness',
+        type: 'POST',
+        data: { Vendorid: vendorid },
+        success: function (data) {
+            partners({ actionType: 'Partners' });
+            toastr.success("Vendor Deletes Successfully");
+        },
+        error: function () {
+            console.error('Error loading partial view.');
+        }
+    });
 
 }
 

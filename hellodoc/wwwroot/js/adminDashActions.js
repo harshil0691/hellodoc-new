@@ -73,6 +73,48 @@ function loadActionView(DataObject) {
     });
 }
 
+function loadActionView1(DataObject) {
+
+    if (DataObject.ActionType == "Encounter") {
+        DataObject.callType = calltype;
+    }
+
+    console.log(DataObject);
+
+    $.ajax({
+        url: '/DashActionView/' + DataObject.ActionType,
+        type: 'POST',
+        data: DataObject,
+        success: function (data) {
+            if (data.isfinalized) {
+                ShowModal({ ActionType: 'finalizedencounter' })
+            }
+            else if (DataObject.ActionType == "Encounter" || DataObject.ActionType == "TransferToAdmin") {
+                $('#myModal').modal('hide');
+                toastr.success(data);
+                //if (DataObject.ActionType == "TransferToAdmin"){
+                //    loadPartialView('pending', '1');
+                //}else{
+                //    loadPartialView('active', '1');
+                //}
+                window.location.reload();
+            }
+            else {
+                $('#mainDashContent').html(data);
+            }
+
+            if (DataObject.ActionType == "dashboard") {
+                loadPartialView(localStorage.getItem("StatusTab"), '1');
+            }
+
+        },
+        error: function () {
+            console.error('Error loading partial view.');
+        }
+    });
+}
+
+
 function FormSubmitAction(actionType,id,requestid,bcolor,btext) {
 
     var form = $(id).serializeArray();

@@ -215,7 +215,7 @@
                         <span asp-validation-for="BusinessName" class="text-danger"></span>
                     </div>
                     <div class="form-floating mb-3 col-md-6 col-lg-6">
-                        <input type="email" class="form-control pedit4" id="floatingInput" asp-for="BusinessWebsite" placeholder="Business Website" disabled>
+                        <input type="text" class="form-control pedit4" id="floatingInput" asp-for="BusinessWebsite" placeholder="Business Website" disabled>
                         <label for="floatingInput" class="mx-3">Business Website</label>
                     </div>
                     <div class="mb-3 col-md-6 col-lg-6">
@@ -250,7 +250,7 @@
 
                         <div class="d-flex justify-content-center mx-3 col-12 col-sm-5">
                             @{
-                                var src = "./PhysicianDoc/" + Model.SignaturePath;
+                                var src = "./physician/"+Model.physicianId+"/"+Model.SignaturePath;
 
                                 if (Model.SignaturePath == "")
                                 {
@@ -258,7 +258,7 @@
                                 }
                                 else
                                 {
-                                    <img src="" id="sig-image" height="100" width="100" alt="select Image" />
+                                    <img src="./@Model.SignaturePath" id="sig-image" height="100" width="100" alt="select Image" />
                                 }
                             }
 
@@ -385,7 +385,7 @@
 
                 <div class="d-flex m-2">
                     @{
-                        if (Model.LicensePath != "")
+                        if (Model.LicensePath != "" || Model.LicensePath != null)
                         {
                                 <input type="checkbox" class="custom-check bg-info me-3" id="docCheck5" checked />
                                 <h6 class="m-2 col-4">License Document</h6>

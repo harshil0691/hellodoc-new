@@ -20,7 +20,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Twilio.TwiML;
+using static System.Net.Mime.MediaTypeNames;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Drawing;
+
 
 namespace hellodoc.Repositories.Repository
 {
@@ -108,6 +111,7 @@ namespace hellodoc.Repositories.Repository
                     Zipcode = physician.Zip ?? 0,
                     State = physician.Regionid ??0,
                     MailingNumber = physician.Altphone,
+                    AdminNotes = physician.Adminnotes,
 
                     BusinessName = physician.Businessname,
                     BusinessWebsite = physician.Businesswebsite,
@@ -218,12 +222,27 @@ namespace hellodoc.Repositories.Repository
                         }
                         if (providerProfile.Signature != null)
                         {
-                            photo = Guid.NewGuid().ToString() + "_" + providerProfile.Signature.FileName;
-                            var filepath = Path.Combine(Path.Combine(HostingEnviroment.WebRootPath, "PhysicianDoc"), photo);
-                            providerProfile.Signature.CopyTo(new FileStream(filepath, FileMode.Create));
-                            physician.Signature = providerProfile.SignaturePath;
+                            string webRootPath = HostingEnviroment.WebRootPath;
 
+                            var folderpath = Path.Combine("physician", physician.Physicianid.ToString());
+
+                            string directoryPath = Path.Combine(webRootPath, folderpath);
+                            if (!Directory.Exists(directoryPath))
+                            {
+                                Directory.CreateDirectory(directoryPath);
+                            }
+
+                            var filepath = Path.Combine(Path.Combine(HostingEnviroment.WebRootPath, folderpath), "Signature");
+                            providerProfile.Signature.CopyTo(new FileStream(filepath, FileMode.Create));
+                            physician.Signature = filepath;
                         }
+
+                        if(providerProfile.SignaturePath != null)
+                        {
+
+                            providerProfile.SignaturePath = ConvertToImageAndSave(providerProfile.SignaturePath,physician.Physicianid);
+                        }
+
                         physician.Photo = photo;
                         physician.Signature = providerProfile.SignaturePath;
                         physician.Adminnotes = providerProfile.AdminNotes;
@@ -276,6 +295,38 @@ namespace hellodoc.Repositories.Repository
                 }
             }
             return false;
+        }
+
+        public string ConvertToImageAndSave(string dataUrl,int physicianid)
+        {
+            string[] parts = dataUrl.Split(',');
+            if (parts.Length != 2)
+            {
+                throw new ArgumentException("Invalid data URL format.");
+            }
+            string imageData = parts[1];
+            byte[] imageBytes = Convert.FromBase64String(imageData);
+
+            using (MemoryStream ms = new MemoryStream(imageBytes))
+            {
+                System.Drawing.Image image = System.Drawing.Image.FromStream(ms);
+
+                string webRootPath = HostingEnviroment.WebRootPath;
+
+                var folderpath = Path.Combine("physician", physicianid.ToString());
+
+                string directoryPath = Path.Combine(webRootPath,folderpath);
+                if (!Directory.Exists(directoryPath))
+                {
+                    Directory.CreateDirectory(directoryPath);
+                }
+
+                string filePath = Path.Combine(directoryPath, "Signature.png");
+
+                image.Save(filePath);
+
+                return Path.Combine(folderpath, "Signature.png");
+            }
         }
 
         public bool DeleteProvider(int physicianid)
@@ -371,6 +422,8 @@ namespace hellodoc.Repositories.Repository
                     Createdby = "admin",
                     Regionid = providerProfile.State,
                     Businessname = providerProfile.BusinessName,
+                    Businesswebsite = providerProfile.BusinessWebsite,
+                    Medicallicense = providerProfile.MediacalLicense,
                     Npinumber = providerProfile.NPI,
                     Photo = photo,
                     Isagreementdoc = IndependentContractorManagement,
@@ -464,7 +517,7 @@ namespace hellodoc.Repositories.Repository
                     break;
 
                 case "week":
-                    shiftdetails = _context.ShiftDetails.Where(u => u.Shiftdate >= sunday && u.Shiftdate <= saturday && u.Isdeleted != 1 &&
+                    shiftdetails = _context.ShiftDetails.Where(u => u.Shiftdate.Date >= sunday.Date && u.Shiftdate.Date <= saturday.Date && u.Isdeleted != 1 &&
                                                                     ((regionid != 0) ? u.Regionid == regionid : true)
                                                                     );
                     break;
@@ -486,7 +539,7 @@ namespace hellodoc.Repositories.Repository
                 Physicianid = s.Shift.Physicianid,
                 PhysicianName = s.Shift.Physician.Firstname,
                 Status = s.Status,
-                regionname = s.Region.Name
+                regionname = s.Region.Abbreviation,
             });
 
             return list.ToList();

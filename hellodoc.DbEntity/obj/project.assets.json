@@ -5547,19 +5547,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\pci235\\.nuget\\packages\\": {}
+    "C:\\Users\\Asus\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc.DbEntity\\hellodoc.DbEntity.csproj",
+      "projectUniqueName": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc.DbEntity\\hellodoc.DbEntity.csproj",
       "projectName": "hellodoc.DbEntity",
-      "projectPath": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc.DbEntity\\hellodoc.DbEntity.csproj",
-      "packagesPath": "C:\\Users\\pci235\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc.DbEntity\\obj\\",
+      "projectPath": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc.DbEntity\\hellodoc.DbEntity.csproj",
+      "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc.DbEntity\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\pci235\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5579,6 +5579,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -5614,7 +5619,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -21,6 +21,14 @@
 
             <div class=" d-grid gap-2 col-8  mx-auto pt-5">
 
+                @{
+                    if(ViewBag.loginType == "user")
+                    {
+                        <a asp-action="send_request" asp-controller="Patient" class="d-flex back-btn text-info p-1 fs-4 text-decoration-none">
+                            <i class="bi bi-chevron-left"></i>Back
+                        </a>
+                    }
+                }
 
                 <h3 class="mx-auto pt-2">Login to your account</h3>
                 <form method="post">
@@ -28,7 +36,6 @@
                         <input asp-for="Email" class="form-control" id="floatingInput" placeholder="Email">
                         <label>Email</label>
                         <span asp-validation-for="Email" class="text-danger"></span>
-                        @*<span asp-validation-for="Username" class="text-danger"></span>*@
 
                     </div>
                     <div class="form-floating mt-3">

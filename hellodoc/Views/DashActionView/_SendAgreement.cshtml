@@ -16,7 +16,7 @@
 
                 
                     <div class="form-floating mt-3">
-                        <input type="number" class="form-control" asp-for="phonenumber" placeholder="Phobenumber">
+                        <input type="text" class="form-control" asp-for="phonenumber" placeholder="Phonenumber">
                         <label>Patient Number</label>
                         <span asp-validation-for="phonenumber" class="text-danger"></span>
                     </div>
@@ -36,3 +36,9 @@
         </div>
     </div>
 </div>
+
+
+
+
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>

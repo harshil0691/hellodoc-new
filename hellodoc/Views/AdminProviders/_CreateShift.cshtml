@@ -10,8 +10,7 @@
                 </div>
 
                 <div class="modal-body">
-                    @ViewBag.loginType
-                    <select class="form-select mt-3" aria-label="Default select example" id="regionselect" onchange="regionchange(@ViewBag.loginType)" asp-for="@Model.Regionid">
+                    <select class="form-select mt-3" aria-label="Default select example" id="regionselect" onchange="regionchange()" asp-for="@Model.Regionid">
                         <option selected disabled>Select Region</option>
                         @{
                             foreach (var a in Model.regions)

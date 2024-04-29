@@ -88,7 +88,7 @@
                                     @{
                                         if(Model.RequestStatus == "new")
                                         {
-                                            <li><button type="button" class="dropdown-item " onclick="adminDashload({controller: 'ProviderDashboard',actionType:'AcceptRequest',requestid :'@a.Requestid',id: 'dashboard'})"><i class="bi bi-journal-check me-2"></i>Accept</button></li>
+                                            <li><button type="button" class="dropdown-item " onclick="adminDashload1({controller: 'ProviderDashboard',actionType:'AcceptRequest',requestid :'@a.Requestid',id: 'dashboard'})"><i class="bi bi-journal-check me-2"></i>Accept</button></li>
                                             <li><button class="dropdown-item" onclick="loadActionView({ActionType:'ViewCase',requestid :@a.Requestid,bcolor:'@reqcolor',btext:'@text'})"><i class="bi bi-journal-text me-2"></i>View Case</button></li>
                                             <li><button class="dropdown-item" onclick="loadActionView({ActionType:'ViewNotes',requestid :@a.Requestid})"><i class="bi bi-journals me-2"></i>View Notes</button></li>
                                         }else if (Model.RequestStatus == "pending")
@@ -97,7 +97,7 @@
                                             <li><a class="dropdown-item" onclick="loadActionView({ActionType:'ViewCase',requestid :@a.Requestid,bcolor:'@reqcolor',btext:'@text'})"><i class="bi bi-journal-text me-2"></i>View Case</a></li>
                                             <li><button class="dropdown-item" onclick="loadActionView({ActionType:'ViewUploads',requestid :'@a.Requestid'})"><i class="bi bi-file-earmark-arrow-up me-2"></i>View Uploads</button></li>
                                             <li><button class="dropdown-item" onclick="loadActionView({ActionType:'ViewNotes',requestid :@a.Requestid})"><i class="bi bi-journals me-2"></i>View Notes</button></li>
-                                            <li><button type="button" class="dropdown-item " onclick="ShowModal({ActionType:'transfertoadmin',requestid :@a.Requestid})"><i class="bi bi-card-text me-2"></i>Transfer</button></li>
+                                            <li><button type="button" class="dropdown-item " onclick="ShowModal1({ActionType:'transfertoadmin',requestid :@a.Requestid})"><i class="bi bi-card-text me-2"></i>Transfer</button></li>
                                         }else if (Model.RequestStatus == "active")
                                         {
                                             <li><button class="dropdown-item" onclick="loadActionView({ActionType:'ViewCase',requestid :@a.Requestid,bcolor:'@reqcolor',btext:'@text'})"><i class="bi bi-journal-text me-2"></i>View Case</button></li>

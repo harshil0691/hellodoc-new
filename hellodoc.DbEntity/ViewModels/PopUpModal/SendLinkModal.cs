@@ -11,10 +11,13 @@ namespace hellodoc.DbEntity.ViewModels.PopUpModal
     {
         public string Firstname { get; set; }
         public string Lastname { get; set; }
+        [Required(ErrorMessage = "Phone number is required")]
+        [StringLength(10, MinimumLength = 10, ErrorMessage = "Phone number must be 10 digits long")]
+        [RegularExpression("^[0-9]*$", ErrorMessage = "Phone number must contain only numbers")]
         public long Phone { get; set; }
-        
+        [Required]
         [EmailAddress(ErrorMessage = "Please enter a valid email")]
-        public string Email { get; set; }
+        public string MailEmail { get; set; }
         public int reqid { get; set; }
 
     }

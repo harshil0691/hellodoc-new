@@ -18,6 +18,8 @@ using System.Threading.Tasks;
 using Twilio;
 using Twilio.Rest.Api.V2010.Account;
 using Microsoft.AspNetCore.Hosting;
+using NUnit.Framework.Constraints;
+using System.Globalization;
 
 
 namespace hellodoc.Repositories.Repository;
@@ -63,7 +65,7 @@ public class RequestAll : IRequests
                 Mobile = requestForm.Phonenumber,
                 Street = requestForm.Street,
                 City = requestForm.City,
-                State = requestForm.State,
+                State = requestForm.State.ToString(),
                 Zipcode = requestForm.Zipcode,
                 Strmonth = requestForm.DOB.ToString("MMMM"),
                 Intdate = requestForm.DOB.Day,
@@ -102,8 +104,8 @@ public class RequestAll : IRequests
             Createddate = DateTime.Now,
             Requesttypeid = 1,
             Physicianid = (requestForm.RequestCreatedBy == "provider")? requestForm.PhysicianId:null,
-            Confirmationnumber = requestForm.State.Substring(0, 2) + DateTime.Now.ToString().Substring(0, 4)
-                                      + requestForm.Lastname.Substring(0, 2) + requestForm.Firstname.Substring(0, 2) + _context.Requests.Where(r => r.Createddate == DateTime.Now).Count().ToString(),
+            Confirmationnumber = _context.Regions.FirstOrDefault(r => r.Regionid== requestForm.State).Name.Substring(0, 2) + DateTime.Now.ToString().Substring(0, 4)
+                                      + requestForm.Lastname.Substring(0, 2) + requestForm.Firstname.Substring(0, 2) + _context.Requests.Where(r => r.Createddate == DateTime.Now).Count().ToString().ToUpper(),
 
             User = user1
         };
@@ -116,7 +118,7 @@ public class RequestAll : IRequests
             Phonenumber = requestForm.Phonenumber,
             Street = requestForm.Street,
             City = requestForm.City,
-            State = requestForm.State,
+            State = requestForm.State.ToString(),
             Zipcode = requestForm.Zipcode,
             Notes = (requestForm.RequestCreatedBy == "admin")?requestForm.AdminNotes :requestForm.Symptoms,
             Strmonth = requestForm.DOB.ToString("MMMM"),
@@ -159,8 +161,8 @@ public class RequestAll : IRequests
             Relationname = requestForm.F_RelationType,
             Requesttypeid =3,
             Createddate = DateTime.Now,
-            Confirmationnumber = requestForm.State.Substring(0, 2) + DateTime.Now.ToString().Substring(0, 4)
-                                      + requestForm.Lastname.Substring(0, 2) + requestForm.Firstname.Substring(0, 2) + _context.Requests.Where(r => r.Createddate == DateTime.Now).Count().ToString(),
+            Confirmationnumber = _context.Regions.FirstOrDefault(r => r.Regionid == requestForm.State).Name.Substring(0, 2) + DateTime.Now.ToString().Substring(0, 4)
+                                      + requestForm.Lastname.Substring(0, 2) + requestForm.Firstname.Substring(0, 2) + _context.Requests.Where(r => r.Createddate == DateTime.Now).Count().ToString().ToUpper(),
         };
         if (userexist != null)
         {
@@ -174,7 +176,7 @@ public class RequestAll : IRequests
             Phonenumber = requestForm.Phonenumber,
             Street = requestForm.Street,
             City = requestForm.City,
-            State = requestForm.State,
+            State = requestForm.State.ToString(),
             Zipcode = requestForm.Zipcode,
             Notes = requestForm.Symptoms,
 
@@ -219,8 +221,8 @@ public class RequestAll : IRequests
             Phonenumber = requestForm.C_Phonenumber,
             Createddate = DateTime.Now,
             Requesttypeid = 4,
-            Confirmationnumber = requestForm.State.Substring(0, 2) + DateTime.Now.ToString().Substring(0, 4)
-                                      + requestForm.Lastname.Substring(0, 2) + requestForm.Firstname.Substring(0, 2) + _context.Requests.Where(r => r.Createddate == DateTime.Now).Count().ToString(),
+            Confirmationnumber = _context.Regions.FirstOrDefault(r => r.Regionid == requestForm.State).Name.Substring(0, 2) + DateTime.Now.ToString().Substring(0, 4)
+                                      + requestForm.Lastname.Substring(0, 2) + requestForm.Firstname.Substring(0, 2) + _context.Requests.Where(r => r.Createddate == DateTime.Now).Count().ToString().ToUpper(),
             User = (userexist != null) ? userexist : new User(),
         };
 
@@ -232,7 +234,7 @@ public class RequestAll : IRequests
             Phonenumber = requestForm.Phonenumber,
             Street = requestForm.Street,
             City = requestForm.City,
-            State = requestForm.State,
+            State = requestForm.State.ToString(),
             Zipcode = requestForm.Zipcode,
             Notes = requestForm.Symptoms,
 
@@ -249,7 +251,7 @@ public class RequestAll : IRequests
         {
             Conciergename = requestForm.C_PropertyName,
             City = requestForm.C_City,
-            State = requestForm.C_State,
+            State = requestForm.State.ToString(),
             Street = requestForm.C_Street,
             Zipcode = requestForm.C_Zipcode,
             Createddate = DateTime.Now,
@@ -298,8 +300,8 @@ public class RequestAll : IRequests
             Phonenumber = requestForm.B_Phonenumber,
             Createddate = DateTime.Now,
             Requesttypeid=1,
-            Confirmationnumber = requestForm.State.Substring(0, 2) + DateTime.Now.ToString().Substring(0, 4)
-                                      + requestForm.Lastname.Substring(0, 2) + requestForm.Firstname.Substring(0, 2) + _context.Requests.Where(r => r.Createddate == DateTime.Now).Count().ToString(),
+            Confirmationnumber = _context.Regions.FirstOrDefault(r => r.Regionid == requestForm.State).Name.Substring(0, 2) + DateTime.Now.ToString().Substring(0, 4)
+                                      + requestForm.Lastname.Substring(0, 2) + requestForm.Firstname.Substring(0, 2) + _context.Requests.Where(r => r.Createddate == DateTime.Now).Count().ToString().ToUpper(),
 
         };
 
@@ -311,7 +313,7 @@ public class RequestAll : IRequests
             Phonenumber = requestForm.Phonenumber,
             Street = requestForm.Street,
             City = requestForm.City,
-            State = requestForm.State,
+            State = requestForm.State.ToString(),
             Zipcode = requestForm.Zipcode,
             Notes = requestForm.Symptoms,
         };
@@ -354,8 +356,8 @@ public class RequestAll : IRequests
             Requesttypeid = 2,
             Createddate = DateTime.Now,
             User = user,
-            Confirmationnumber = requestForm.State.Substring(0, 2) + DateTime.Now.ToString().Substring(0, 4)
-                                      + requestForm.Lastname.Substring(0, 2) + requestForm.Firstname.Substring(0, 2) + _context.Requests.Where(r => r.Createddate == DateTime.Now).Count().ToString(),
+            Confirmationnumber = _context.Regions.FirstOrDefault(r => r.Regionid == requestForm.State).Name.Substring(0, 2) + DateTime.Now.ToString().Substring(0, 4)
+                                      + requestForm.Lastname.Substring(0, 2) + requestForm.Firstname.Substring(0, 2) + _context.Requests.Where(r => r.Createddate == DateTime.Now).Count().ToString().ToUpper(),
         };
 
         RequestClient requestClient = new RequestClient()
@@ -366,7 +368,7 @@ public class RequestAll : IRequests
             Phonenumber = requestForm.Phonenumber,
             Street = requestForm.Street,
             City = requestForm.City,
-            State = requestForm.State,
+            State = requestForm.State.ToString(),
             Zipcode = requestForm.Zipcode,
             Notes = requestForm.Symptoms,
 
@@ -404,7 +406,7 @@ public class RequestAll : IRequests
             Phonenumber = userexist.Mobile,
             Relationname = requestForm.F_RelationType,
             Createddate = DateTime.Now,
-            Confirmationnumber = requestForm.State.Substring(0, 2) + DateTime.Now.ToString().Substring(0, 4)
+            Confirmationnumber = _context.Regions.FirstOrDefault(r => r.Regionid == requestForm.State).Name.Substring(0, 2) + DateTime.Now.ToString().Substring(0, 4)
                                       + requestForm.Lastname.Substring(0, 2) + requestForm.Firstname.Substring(0, 2) + _context.Requests.Where(r => r.Createddate == DateTime.Now).Count().ToString(),
         };
         if (userexist != null)
@@ -419,7 +421,7 @@ public class RequestAll : IRequests
             Phonenumber = requestForm.Phonenumber,
             Street = requestForm.Street,
             City = requestForm.City,
-            State = requestForm.State,
+            State = requestForm.State.ToString(),
             Zipcode = requestForm.Zipcode,
             Notes = requestForm.Symptoms,
 
@@ -507,7 +509,10 @@ public class RequestAll : IRequests
         string uploadfolder = Path.Combine(HostingEnviroment.WebRootPath, "uploads");
         string uniqueFilename = Guid.NewGuid().ToString() + "_" + formFile.FileName;
         string filename = Path.Combine(uploadfolder, uniqueFilename);
-        formFile.CopyTo(new FileStream(filename, FileMode.Create));
+        using (var fileStream = new FileStream(filename, FileMode.Create))
+        {
+            formFile.CopyTo(fileStream);
+        }
 
         RequestWiseFile requestWiseFile = new RequestWiseFile
         {
@@ -524,19 +529,32 @@ public class RequestAll : IRequests
     public RequestFormModal GetPatientProfile(int uid)
     {
         var user = _context.Users.FirstOrDefault(u => u.Aspnetuserid == uid);
-
-        RequestFormModal requestForm = new RequestFormModal 
+        if(user != null)
         {
-            Firstname = user.Firstname,
-            Lastname = user.Lastname,
-            PatientEmail = user.Email,
-            Phonenumber = user.Mobile ?? 0,
-            Street = user.Street,
-            State = user.State,
-            Zipcode = user.Zipcode ?? 0,
-            City = user.City,
-       };
-        return requestForm;
+            RequestFormModal requestForm = new RequestFormModal
+            {
+                Firstname = user.Firstname,
+                Lastname = user.Lastname,
+                PatientEmail = user.Email,
+                Phonenumber = user.Mobile ?? 0,
+                Street = user.Street,
+                State = int.Parse(user.State),
+                Zipcode = user.Zipcode ?? 0,
+                City = user.City,
+                DateOfBirth = new DateOnly(user.Intyear??2000, DateTime.ParseExact(user.Strmonth??"January", "MMMM", CultureInfo.InvariantCulture).Month,user.Intdate??1)
+            };
+
+            requestForm.regions = _context.Regions.ToList();
+
+            return requestForm;
+        }
+        else
+        {
+            RequestFormModal requestForm = new RequestFormModal();
+            requestForm.regions = _context.Regions.ToList() ;
+            return requestForm;
+        }
+        
     }
 
     public AspNetUser GetAspUser(string email)
@@ -562,22 +580,52 @@ public class RequestAll : IRequests
     {
 
         var user1 = _context.Users.FirstOrDefault(u => u.Aspnetuserid == userid);
+        if (user1 != null)
+        {
+            user1.Firstname = updateForm.Firstname;
+            user1.Lastname = updateForm.Lastname;
+            user1.Email = updateForm.PatientEmail;
+            user1.Mobile = updateForm.Phonenumber;
+            user1.Modifieddate = DateTime.Now;
+            user1.State = updateForm.State.ToString();
+            user1.Street = updateForm.Street;
+            user1.City = updateForm.City;
+            user1.Zipcode = updateForm.Zipcode;
+            user1.Intyear = updateForm.DateOfBirth.Value.Year;
+            user1.Intdate = updateForm.DateOfBirth.Value.Day;
+            user1.Strmonth = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(updateForm.DateOfBirth.Value.Month);
 
-        user1.Firstname = updateForm.Firstname;
-        user1.Lastname = updateForm.Lastname;
-        user1.Email = updateForm.PatientEmail;
-        user1.Mobile = updateForm.Phonenumber;
-        user1.Modifieddate = DateTime.Now;
-        user1.State = updateForm.State;
-        user1.Street = updateForm.Street;
-        user1.City = updateForm.City;
-        user1.Zipcode = updateForm.Zipcode;
 
-        var aspnetuser = _context.AspNetUsers.FirstOrDefault(u => u.Id == user1.Aspnetuserid);
+            var aspnetuser = _context.AspNetUsers.FirstOrDefault(u => u.Id == user1.Aspnetuserid);
 
-        aspnetuser.Phonenumber = updateForm.Phonenumber;
-        aspnetuser.Email = updateForm.PatientEmail;
-        aspnetuser.Username = updateForm.Firstname + " " + updateForm.Lastname;
+            aspnetuser.Phonenumber = updateForm.Phonenumber;
+            aspnetuser.Email = updateForm.PatientEmail;
+            aspnetuser.Username = updateForm.Firstname + " " + updateForm.Lastname;
+        }
+        else
+        {
+            User newuser = new User();
+            newuser.Firstname = updateForm.Firstname;
+            newuser.Lastname = updateForm.Lastname;
+            newuser.Email = updateForm.PatientEmail;
+            newuser.Mobile = updateForm.Phonenumber;
+            newuser.Modifieddate = DateTime.Now;
+            newuser.State = updateForm.State.ToString();
+            newuser.Street = updateForm.Street;
+            newuser.City = updateForm.City;
+            newuser.Zipcode = updateForm.Zipcode;
+            newuser.Aspnetuserid = userid;
+            newuser.Createddate = DateTime.Now;
+            newuser.Createdby = updateForm.Firstname +" "+ updateForm.Lastname;
+
+            var aspnetuser = _context.AspNetUsers.FirstOrDefault(u => u.Id == userid);
+
+            aspnetuser.Phonenumber = updateForm.Phonenumber;
+            aspnetuser.Email = updateForm.PatientEmail;
+            aspnetuser.Username = updateForm.Firstname + " " + updateForm.Lastname;
+
+            _context.Users.Add(newuser);
+        }
 
         _context.SaveChanges();
     }
@@ -601,6 +649,7 @@ public class RequestAll : IRequests
             Requestid = rid,
             Firstname = request.Firstname,
             Lastname = request.Lastname,
+            userid = request.Userid??0,
             Confirmationnumber = request.Confirmationnumber
         };
 
@@ -622,42 +671,79 @@ public class RequestAll : IRequests
         reqclient.Lastname = closeCase.Lastname;
         reqclient.Phonenumber = closeCase.Phone;
         reqclient.DateOfBirth = closeCase.DateOfBirth;
-        reqclient.Email = closeCase.Email;
+        reqclient.Email = closeCase.CloseCaseEmail;
         
         _context.SaveChanges();
     }
 
-    public void CreateUser(RequestFormModal requestForm)
+    public string CreateUser(RequestFormModal requestForm)
     {
-        AspNetUser aspNetUser = new AspNetUser
+        var aspnetuser = _context.AspNetUsers.FirstOrDefault(a => a.Email == requestForm.UserEmail);
+        if (aspnetuser == null)
         {
-            Email = requestForm.UserEmail,
-            Passwordhash = requestForm.Password,
-            Createddate = DateTime.Now,
-        };
-        _context.AspNetUsers.Add(aspNetUser);
-
-        var requestClient = _context.RequestClients.FirstOrDefault(r => r.Email == requestForm.UserEmail);
-        if (requestClient != null)
-        {
-            User user = new User
+            AspNetUser aspNetUser = new AspNetUser
             {
                 Email = requestForm.UserEmail,
-                Firstname = requestClient.Firstname,
-                Lastname = requestClient.Lastname,
+                Username = "new user",
+                Passwordhash = requestForm.Password,
                 Createddate = DateTime.Now,
-                City = requestClient.City,
-                State = requestClient.State,
-                Intdate = requestClient.Intdate,
-                Intyear = requestClient.Intyear,
-                Strmonth = requestClient.Strmonth,
-
-                Aspnetuser = aspNetUser,
             };
+            _context.AspNetUsers.Add(aspNetUser);
 
-            _context.Users.Add(user);
+            AspNetUserRole aspNetRole = new AspNetUserRole
+            {
+                User = aspNetUser,
+                Roleid = 2,
+            };
+            _context.AspNetUserRoles.Add(aspNetRole);
+
+            var requestClient = _context.RequestClients.FirstOrDefault(r => r.Email == requestForm.UserEmail);
+            if (requestClient != null)
+            {
+                User user = new User
+                {
+                    Email = requestForm.UserEmail,
+                    Firstname = requestClient.Firstname,
+                    Lastname = requestClient.Lastname,
+                    Createddate = DateTime.Now,
+                    City = requestClient.City,
+                    State = requestClient.State,
+                    Intdate = requestClient.Intdate,
+                    Intyear = requestClient.Intyear,
+                    Strmonth = requestClient.Strmonth,
+
+                    Aspnetuser = aspNetUser,
+                };
+
+                _context.Users.Add(user);
+            }
+
+            _context.SaveChanges();
+            return "created";
         }
-        _context.SaveChanges();
+        else
+        {
+            return "exists";
+        }
+        
+       
+    }
+
+    public string ResetPassword(RequestFormModal requestForm)
+    {
+        var aspnetuser = _context.AspNetUsers.FirstOrDefault(a => a.Email == requestForm.UserEmail);
+        if (aspnetuser != null)
+        {
+            aspnetuser.Passwordhash = requestForm.Password;
+            _context.SaveChanges();
+            return "Password Updated";
+        }
+        else
+        {
+            return "error";
+        }
+
+
     }
 }
 

@@ -49,23 +49,23 @@
         </a>
     </li>
 </ul>
-
+<form method="post" asp-action="exportToExcel" asp-route-exportType="DashboardFiltered">
 <div class="d-flex justify-content-between mt-4" id="bgcolor">
     <h3>Patients<span id="state" class="fs-4" style="color:darkslateblue"></span></h3>
     <div>
-        <button class="btn btn-info text-white" onclick="ShowModal({ActionType:'SendLink'})"><i class="bi bi-send px-1"></i><span class="d-none d-sm-none d-md-inline d-lg-inline d-xl-inline">send link</span></button>
-        <button class="btn btn-info text-white" onclick="loadActionView({ActionType:'CreateRequest'})"><i class="bi bi-pencil-square px-1 "></i><span class="d-none d-sm-none d-md-inline d-lg-inline d-xl-inline">create requests</span></button>
-        <button class="btn btn-info text-white" onclick="exportToExcel('DashboardFilterd')"><i class="bi bi-share-fill px-1"></i><span class="d-none d-sm-none d-md-inline d-lg-inline d-xl-inline">export</span></button>
+        <button type="button" class="btn btn-info text-white" onclick="ShowModal({ActionType:'SendLink'})"><i class="bi bi-send px-1"></i><span class="d-none d-sm-none d-md-inline d-lg-inline d-xl-inline">send link</span></button>
+        <button type="button" class="btn btn-info text-white" onclick="loadActionView({ActionType:'CreateRequest'})"><i class="bi bi-pencil-square px-1 "></i><span class="d-none d-sm-none d-md-inline d-lg-inline d-xl-inline">create requests</span></button>
+        <button type="submit" class="btn btn-info text-white" ><i class="bi bi-share-fill px-1"></i><span class="d-none d-sm-none d-md-inline d-lg-inline d-xl-inline">export</span></button>
         <a asp-action="export" asp-controller="AdminDash" class="btn btn-info text-white"><i class="bi bi-share-fill px-1"></i><span class="d-none d-sm-none d-md-inline d-lg-inline d-xl-inline">export all</span></a>
-        <button class="btn btn-info text-white" onclick="ShowModal({ActionType:'RequestDTYSupport'})"><i class="bi bi-file-person px-1"></i><span class="d-none d-sm-none d-md-inline d-lg-inline d-xl-inline">Request DTY support</span></button>
+        <button type="button" class="btn btn-info text-white" onclick="ShowModal({ActionType:'RequestDTYSupport'})"><i class="bi bi-file-person px-1"></i><span class="d-none d-sm-none d-md-inline d-lg-inline d-xl-inline">Request DTY support</span></button>
     </div>
 </div>
-<form>
+
 <div class="d-flex justify-content-between p-3 mx-1 mt-2  bgcolor row">
     
     <div class="d-flex  col-12 col-sm-12 col-md-4">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="customSearch">
-        <select class="form-select" aria-label="Default select example" id="region123">
+        <input class="form-control me-2" type="search" placeholder="Search" asp-for="search" aria-label="Search" id="customSearch">
+        <select class="form-select" aria-label="Default select example" id="region123" asp-for="regionid">
             <option value="0" selected>All Region</option>
             @{
                 foreach (var a in Model.regions)
@@ -81,7 +81,7 @@
         <div onclick="loadPartialView('','1',$('#customSearch').val(),$('#region123').val(),'3')" class="m-2 d-grid d-sm-grid d-sm-flex"><div class="colored-dot bg-warning m-1"></div><div>Family_friend</div></div>
         <div onclick="loadPartialView('','1',$('#customSearch').val(),$('#region123').val(),'1')" class="m-2 d-grid d-sm-grid d-sm-flex"><div class="colored-dot bg-danger m-1 "></div><div>Business</div></div>
         <div onclick="loadPartialView('','1',$('#customSearch').val(),$('#region123').val(),'4')" class="m-2 d-grid d-sm-grid d-sm-flex"><div class="colored-dot bg-primary m-1"></div><div>Concierge</div></div>
-        <div onclick="loadPartialView('','1',$('#customSearch').val(),$('#region123').val(),'5')" class="m-2 d-grid d-sm-grid d-sm-flex"><div class="colored-dot bg-success m-1"></div><div>Vip</div></div>
+        <div onclick="loadPartialView('','1',$('#customSearch').val(),$('#region123').val(),'5')" class="m-2 d-grid d-sm-grid d-sm-flex"><div class="colored-dot m-1" style="background-color:purple;"></div><div>Vip</div></div>
     </div>
    
 </div>

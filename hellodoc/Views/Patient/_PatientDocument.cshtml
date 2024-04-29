@@ -17,19 +17,19 @@
         <div class="d-grid gap-2 col-12 col-sm-12 col-md-10 col-lg-8 mx-auto d-flex content mb-5 px-4 pt-4">
 
             <p>Patient Name</p>
-            <h3 class="text-info">@HttpContextAccessor.HttpContext.Session.GetString("username") &nbsp;<span class="text-black fs-5">(MD05127897872)</span></h3>
+            <h4 class="text-info">@HttpContextAccessor.HttpContext.Session.GetString("username") &nbsp;<span class="text-black fs-5">@Model.Confirmationnumber.ToUpper()</span></h4>
             <p>check here for any files that you or the doctors of your subsequents requestors have attached for you to review</p>
 
             <form id="fileUpload" method="post" enctype="multipart/form-data">
                 <div class="input-group mb-3">
-                    <input type="file" id="file1" class="form-control" id="inputGroupFile02" placeholder="Select File" asp-for="Doc">
+                    <input type="file" id="file1" class="form-control" placeholder="Select File" asp-for="Doc">
                     <button type="button" onclick="savedoc()" class="mx-2 btn btn-outline-info bg-info text-white"><img src="/images/cloud-upload-icon.svg" class="p-1" alt="">Upload</button>
                 </div>
             </form>
-
+            <form method="post" asp-action="DownloadAll">
             <h3> Documents </h3>
             <div class="d-grid justify-content-end">
-                <button class="btn btn-outline-info mx-4 p-2 px-3">Download All</button>
+                <button type="submit" class="btn btn-outline-info mx-4 p-2 px-3">Download All</button>
             </div>
             <table class="table mt-4" id="patientdash">
                 <thead>
@@ -45,25 +45,25 @@
                     @{
                         foreach (var a in Model.patientDocuments)
                         {
-                            <tr>
-                                <td> <input type="checkbox" class="custom-check" /> </td>
-                                <td>
+                                <tr>
+                                    <td> <input type="checkbox" class="custom-check" name="fileIds" value="@a.Requestwisefileid" /> </td>
+                                    <td>
 
-                                    @a.Filename
-                                </td>
-                                <td></td>
-                                <td>@a.Createddate</td>
-                                <td>
-                                    <a asp-route-download=@a.Requestwisefileid asp-action="download" class="btn btn-outline-info">download</a>
-                                </td>
-                            </tr>
+                                        @a.Filename
+                                    </td>
+                                    <td></td>
+                                    <td>@a.Createddate</td>
+                                    <td>
+                                        <a asp-route-download=@a.Requestwisefileid asp-action="download" class="btn btn-outline-info">download</a>
+                                    </td>
+                                </tr>
                         }
                     }
                 </tbody>
             </table>
-
+            
+        </form>
         </div>
-
 
     </div>
 
@@ -78,11 +78,38 @@
         });
     });
 
-    
+    function savedoc() {
+
+        var formdata = new FormData();
+        var fileupload = document.getElementById('file1');
+        var f = fileupload.files[0];
+        formdata.append('Doc', f);
+        formdata.append('actionType', 'upload_doc');
+        console.log(1);
+        if (f != null) {
+            console.log(1);
+            $.ajax({
+                url: '/Patient/PatientUpdateData',
+                type: 'POST',
+                data: formdata,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    console.log(1);
+                    toastr.success(data);
+                    GetPatientView({ actionType: 'patient_documents' });
+                },
+                error: function () {
+                    console.error('Error loading partial view.');
+                }
+            });
+        }
+    }
+
 </script>
 
 @section Scripts{
     @{
-        <Partial name="_ValidationScriptsPartial" />
+            <Partial name="_ValidationScriptsPartial" />
     }
     }

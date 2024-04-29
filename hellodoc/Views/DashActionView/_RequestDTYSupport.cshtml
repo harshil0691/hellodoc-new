@@ -12,7 +12,7 @@
                 <div class="modal-body">
 
                     <textarea asp-for="@Model.Message" rows="5" class="col-12 form-control" placeholder="Enter message for physician" style="font-size:medium" class="p-1"></textarea>
-
+                    <span asp-validation-for="Message" class="text-danger"></span>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-info text-white">Continue</button>
@@ -22,3 +22,8 @@
         </div>
     </div>
 </div>
+
+
+
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>

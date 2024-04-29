@@ -78,12 +78,12 @@ function loadProviderView(method, physicianid) {
 
 var physiciandid = 0;
 var date = new Date();
-var diff = 7 - date.getDay();
+var diff = 0 - date.getDay();
 if (diff === 0) {
     diff = 7;
 }
 var sunday = new Date(date.getTime() + (diff * 24 * 60 * 60 * 1000));
-var saturday = new Date();
+var saturday = new Date(sunday);
 saturday.setDate(sunday.getDate() + 6);
 
 var schedulingtype;

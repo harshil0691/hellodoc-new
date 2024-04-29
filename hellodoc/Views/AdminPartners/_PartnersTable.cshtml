@@ -29,7 +29,7 @@
                             <td>@a.Businesscontact</td>
                             <td class="d-flex">
                             <button class="btn btn-outline-info mx-1" onclick="partners({ actionType: 'edit_business', venorid: '@a.Vendorid'})">Edit</button>
-                            <a class="btn btn-outline-info mx-1" asp-action="DBOperations" asp-route-Vendorid="@a.Vendorid" asp-route-actionType="delete_business">Delete</a>
+                            <button class="btn btn-outline-info mx-1" onclick="deleteBusiness(@a.Vendorid)">Delete</button>
                             </td>
                         </tr>
                     }
@@ -45,7 +45,7 @@
         @{
             foreach (var a in Model.healthProfessionals)
             {
-                <div class="accordion-item">
+                <div class="accordion-item m-1">
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed  d-grid" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_@a.Vendorid" aria-expanded="true" aria-controls="collapse_@a.Vendorid">
                             @a.Vendorname
@@ -56,14 +56,14 @@
                         <div class="accordion-body">
 
                             <div class="d-grid w-100 m-2">
-                                <div class="d-flex mt-1"> <i class="bi bi-envelope-at rounded-pill btn btn-outline-info text-black-50 px-2"></i>  Email : <div class="fs-6 px-2"> @a.BusinessEmail </div> </div>
-                                <div class="d-flex mt-1"> <i class="bi bi-telephone rounded-pill btn btn-outline-info text-black-50 px-2"></i> Fax : <div class="fs-6 px-2"> @a.Faxnumber </div> </div>
-                                <div class="d-flex mt-1"> <i class="bi bi-telephone rounded-pill btn btn-outline-info text-black-50 px-2"></i>  Phone Number : <div class="fs-6 px-2"> @a.Phonenumber </div> </div>
-                                <div class="d-flex mt-1"> <i class="bi bi-envelope-at rounded-pill btn btn-outline-info text-black-50 px-2"></i>   Business Contact : <div class="fs-6 px-2"> @a.Businesscontact </div> </div>
+                                <div class="d-flex mt-1"> <i class="bi bi-envelope-at rounded-pill btn btn-outline-info text-black-50 px-2"></i> <span class="text-black-50 mx-2"> Email :</span> <div class="fs-6  mx-2"> @a.BusinessEmail </div> </div>
+                                <div class="d-flex mt-1"> <i class="bi bi-telephone rounded-pill btn btn-outline-info text-black-50 px-2"></i> <span class="text-black-50 mx-2"> Fax : </span><div class="fs-6 mx-2"> @a.Faxnumber </div> </div>
+                                <div class="d-flex mt-1"> <i class="bi bi-telephone rounded-pill btn btn-outline-info text-black-50 px-2"></i> <span class="text-black-50 mx-2">  Phone Number : </span><div class="fs-6 mx-2"> @a.Phonenumber </div> </div>
+                                <div class="d-flex mt-1"> <i class="bi bi-envelope-at rounded-pill btn btn-outline-info text-black-50 px-2"></i>  <span class="text-black-50 mx-2"> Business Contact : </span> <div class="fs-6 mx-2"> @a.Businesscontact </div> </div>
                             </div>
                             <div class="d-flex justify-content-end w-100 m-2">
                                 <button class="btn btn-outline-info mx-1" onclick="partners({ actionType: 'edit_business', venorid: '@a.Vendorid'})">Edit</button>
-                                <button class="btn btn-outline-info mx-1" onclick="bussinessActions('delete_business','@a.Vendorid')">Delete</button>
+                                <button class="btn btn-outline-info mx-1" onclick="deleteBusiness(@a.Vendorid)">Delete</button>
                             </div>
 
                         </div>

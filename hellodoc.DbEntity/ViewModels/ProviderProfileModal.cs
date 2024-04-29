@@ -69,8 +69,6 @@ namespace hellodoc.DbEntity.ViewModels
         public string? MailingNumber { get; set; }
 
         public string BusinessName { get; set; }
-        [Required(ErrorMessage = "Email is required")]
-        [EmailAddress(ErrorMessage = "Invalid email address")]
         public string BusinessWebsite { get; set; }
         public IFormFile? photo { get; set; }
         public IFormFile? IndependentContractorManagement { get; set; }

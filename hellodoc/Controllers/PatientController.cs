@@ -1,7 +1,6 @@
 ﻿using hellodoc.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-//using hellodoc.ViewModels;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.EntityFrameworkCore;
 using System.Runtime.Intrinsics.X86;
@@ -18,8 +17,7 @@ using hellodoc.Repositories.Repository;
 using NUnit.Framework;
 using hellodoc.DbEntity.DataModels;
 using hellodoc.Repositories.Services.Interface;
-//using hellodoc.DbEntity.DataModels;
-
+using System.IO.Compression;
 namespace hellodoc.Controllers
 {
     public class PatientController : Controller
@@ -30,8 +28,9 @@ namespace hellodoc.Controllers
         private readonly IPatientDashboard _patientDashboard;
         private readonly IAuthManager _authManager;
         private readonly IJwtServices _jwtServices;
+        private readonly IAdminDashRepository _adminDashRepository;
         
-        public PatientController(ILogger<PatientController> logger,IHostingEnvironment hostingEnvironment,IRequests  requests, IPatientDashboard patientDashboard,IAuthManager authManager,IJwtServices jwtServices)
+        public PatientController(ILogger<PatientController> logger,IHostingEnvironment hostingEnvironment,IRequests  requests, IPatientDashboard patientDashboard,IAuthManager authManager,IJwtServices jwtServices,IAdminDashRepository adminDashRepository)
         {
             _logger = logger;
             HostingEnviroment = hostingEnvironment;
@@ -39,20 +38,24 @@ namespace hellodoc.Controllers
             _patientDashboard = patientDashboard;
             _authManager = authManager;
             _jwtServices = jwtServices;
+            _adminDashRepository = adminDashRepository;
         }
 
         public IActionResult GetPatientView(PartialViewModal partialView)
         {
+
+            RequestFormModal requestForm = new RequestFormModal();
+            requestForm.regions = _adminDashRepository.GetRegions("", 0);
             switch (partialView.actionType)
             {
                 case "patient_request":
-                    return PartialView("_PatientRequest");
+                    return PartialView("_PatientRequest", requestForm);
                 case "friend_request":
-                    return PartialView("_FriendRequest");
+                    return PartialView("_FriendRequest", requestForm);
                 case "concierge_request":
-                    return PartialView("_ConciergeRequest");
+                    return PartialView("_ConciergeRequest", requestForm);
                 case "business_request":
-                    return PartialView("_BusinessRequest");
+                    return PartialView("_BusinessRequest", requestForm);
                 case "patient_dashboard":
                     var u1 = HttpContext.Session.GetInt32("Aspid");
 
@@ -76,9 +79,9 @@ namespace hellodoc.Controllers
                 case "requestModal":
                     return PartialView("_CreateRequest");
                 case "request_me":
-                    return PartialView("_RequestMe");
+                    return PartialView("_RequestMe", requestForm);
                 case "request_someone":
-                    return PartialView("_RequestSomeone");
+                    return PartialView("_RequestSomeone", requestForm);
                 default:
                     return PartialView("_Default");
             }
@@ -106,7 +109,9 @@ namespace hellodoc.Controllers
                         Response.Cookies.Delete("jwt");
                         var jwttoken = _jwtServices.GenarateJwtToken(aspnetuser);
                         Response.Cookies.Append("jwt", jwttoken);
-                        return RedirectToAction("PatientLogin","Login",aspnetuser);
+                        HttpContext.Session.SetInt32("Aspid",aspnetuser.Id);
+                        HttpContext.Session.SetString("username",aspnetuser.Username);
+                        return RedirectToAction("patient_dashboard","Patient",aspnetuser);
                     }
                     else
                     {
@@ -231,12 +236,17 @@ namespace hellodoc.Controllers
 
         public IActionResult request_me()
         {
-            return View();
+            RequestFormModal requestForm = new RequestFormModal();
+            requestForm.regions = _adminDashRepository.GetRegions("",0);
+            return View(requestForm);
         }
 
         public IActionResult request_someone()
         {
-            return View();
+
+            RequestFormModal requestForm = new RequestFormModal();
+            requestForm.regions = _adminDashRepository.GetRegions("", 0);
+            return View(requestForm);
         }
 
         public IActionResult download(int download)
@@ -249,6 +259,28 @@ namespace hellodoc.Controllers
 
         }
 
+        [HttpPost]
+        public IActionResult DownloadAll(List<int> fileIds)
+        {
+            var list1 = _adminDashRepository.GetListFilename(fileIds);
+
+            MemoryStream ms = new MemoryStream();
+            using (ZipArchive zip = new ZipArchive(ms, ZipArchiveMode.Create, true))
+                list1.ForEach(file =>
+                {
+                    var filepath = Path.Combine(HostingEnviroment.WebRootPath, "uploads", file);
+                    ZipArchiveEntry zipEntry = zip.CreateEntry(file);
+                    using (FileStream fs = new FileStream(filepath, FileMode.Open, FileAccess.Read))
+                    using (Stream zipEntryStream = zipEntry.Open())
+                    {
+                        fs.CopyTo(zipEntryStream);
+                    }
+                });
+            return File(ms.ToArray(), "application/zip", "download.zip");
+
+        }
+
+
         public IActionResult CreateUser()
         {
             return View();
@@ -257,8 +289,8 @@ namespace hellodoc.Controllers
         [HttpPost]
         public IActionResult CreateUser(RequestFormModal requestForm)
         {
-            _requests.CreateUser(requestForm);
-            return RedirectToAction("patient_login","Patient");
+            TempData["success"] = _requests.CreateUser(requestForm);
+            return RedirectToAction("login", "Login", new {loginType = "user"});
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

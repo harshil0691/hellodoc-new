@@ -69,8 +69,8 @@
                                                 Actions
                                             </button>
                                             <ul class="dropdown-menu">
-                                                <li><button class="dropdown-item" onclick="loadActionView({ActionType:'ViewCase',requestid :@a.RequestId,bcolor:'@reqcolor',btext:'@text'})"><i class="bi bi-journal-text me-2"></i>View Case</button></li>
-                                                <li><button class="dropdown-item" onclick="loadActionView({ActionType:'ViewUploads',requestid :'@a.RequestId'})"><i class="bi bi-file-earmark-arrow-up me-2"></i>View Uploads</button></li>
+                                                <li><button class="dropdown-item" onclick="loadActionView({ActionType:'ViewCase',requestid :@a.RequestId,bcolor:'@reqcolor',btext:'@text',back:'patientrecords'})"><i class="bi bi-journal-text me-2"></i>View Case</button></li>
+                                                <li><button class="dropdown-item" onclick="loadActionView({ActionType:'ViewUploads',requestid :'@a.RequestId',back:'patientrecords'})"><i class="bi bi-file-earmark-arrow-up me-2"></i>View Uploads</button></li>
                                             </ul>
                                         </div>
                                     </td>
@@ -83,7 +83,7 @@
 
             </div>
 
-            <div class="d-block d-sm-block d-md-none d-lg-none d-xl-none">
+            <div class="d-block d-sm-block d-md-none d-lg-none d-xl-none mt-3">
                 <div class="accordion" id="accordionExample">
 
                     @{
@@ -114,15 +114,15 @@
                     }
 
 
-                            <div class="accordion-item">
+                            <div class="accordion-item m-1">
                                 <h2 class="accordion-header">
 
                                     <button class="accordion-button collapsed  d-grid" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_@a.RequestId" aria-expanded="true" aria-controls="collapse_@a.RequestId">
                                         <div class="d-flex justify-content-between w-100 m-2">
-                                            <div>@a.PatientName</div>
+                                            <div> <b> @a.PatientName </b></div>
                                         </div>
                                         <div class="w-100 m-2">
-                                            <div>@a.ConfirmationNumber</div>
+                                            <div> <b> @a.ConfirmationNumber </b></div>
                                         </div>
 
                                     </button>
@@ -132,13 +132,13 @@
                                 <div id="collapse_@a.RequestId" class="accordion-collapse collapse" data-bs-parent="#accordionExample" style="background-color:#d7ffffde;">
                                     <div class="accordion-body">
 
-                                        <div class="mb-2"><i class="bi rounded-pill btn btn-outline-info text-black-50 bi-calendar3  px-2"></i> Created Date :<b> @a.CreatedDate </b></div>
-                                        <div class="mb-2"><i class="bi bi-envelope-at rounded-pill btn btn-outline-info text-black-50 px-2"></i> Provider :<b> @a.ProviderName </b></div>
-                                        <div class="mb-2"><i class="bi bi-telephone rounded-pill btn btn-outline-info text-black-50 px-2"></i> Conclude Date :<b> @a.Concludeddate </b></div>
-                                        <div class="mb-2"><i class="bi bi-person-circle rounded-pill btn btn-outline-info text-black-50 px-2"></i> Status :<b> @a.Status </b></div>
+                                        <div class="mb-2"><i class="bi rounded-pill btn btn-outline-info text-black-50 bi-calendar3  px-2"></i>  <span class="text-black-50 mx-2"> Created Date :</span><b> @a.CreatedDate </b></div>
+                                        <div class="mb-2"><i class="bi bi-person-circle rounded-pill btn btn-outline-info text-black-50 px-2"></i> <span class="text-black-50 mx-2">  Provider :</span><b> @a.ProviderName </b></div>
+                                        <div class="mb-2"><i class="bi bi-calendar3 rounded-pill btn btn-outline-info text-black-50 px-2"></i>  <span class="text-black-50 mx-2"> Conclude Date :</span><b> @a.Concludeddate </b></div>
+                                        <div class="mb-2"><i class="bi bi-123 rounded-pill btn btn-outline-info text-black-50 px-2"></i> <span class="text-black-50 mx-2">  Status :</span><b> @a.Status </b></div>
                                         <div class="row">
-                                            <button class="btn btn-outline-info rounded-5 col-5 m-2 mx-3" onclick="loadActionView({ActionType:'ViewUploads',requestid :'@a.RequestId'})">View Uploads</button>
-                                            <button class="btn btn-outline-info" onclick="loadActionView({ActionType:'ViewCase',requestid :@a.RequestId,bcolor:'@reqcolor',btext:'@text'})"><i class="bi bi-journal-text me-2"></i>View Case</button>
+                                            <button class="btn btn-outline-info rounded-5 col-5 m-2 mx-3" onclick="loadActionView({ActionType:'ViewUploads',requestid :'@a.RequestId',back:'patientrecords'})">View Uploads</button>
+                                            <button class="btn btn-outline-info rounded-5 col-5 m-2 mx-3" onclick="loadActionView({ActionType:'ViewCase',requestid :@a.RequestId,bcolor:'@reqcolor',btext:'@text',back:'patientrecords'})">View Case</button>
                                         </div>
 
                                     </div>

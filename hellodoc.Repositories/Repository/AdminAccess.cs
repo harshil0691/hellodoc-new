@@ -4,12 +4,14 @@ using hellodoc.DbEntity.ViewModels;
 using hellodoc.DbEntity.ViewModels.AdminAccess;
 using hellodoc.Repositories.Repository.Interface;
 using Microsoft.EntityFrameworkCore;
+using NUnit.Framework.Constraints;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace hellodoc.Repositories.Repository
 {
@@ -148,7 +150,6 @@ namespace hellodoc.Repositories.Repository
             var role = _context.Roles.FirstOrDefault(u=> u.Roleid ==  roleid);
 
             role.Name = name;
-            role.Accounttype = accounttype;
             role.Modifiedby = aspid.ToString();
             role.Modifieddate = DateTime.Now;
 
@@ -199,7 +200,7 @@ namespace hellodoc.Repositories.Repository
                 {
                     Username = adminProfile.username,
                     Passwordhash = adminProfile.password,
-                    Email = adminProfile.Email,
+                    Email = adminProfile.AdminEmail,
                     Phonenumber = long.Parse(adminProfile.Phone),
                     Createddate = DateTime.Now,
                 };
@@ -207,7 +208,7 @@ namespace hellodoc.Repositories.Repository
                 {
                     Firstname = adminProfile.Firstname,
                     Lastname = adminProfile.Lastname,
-                    Email = adminProfile.Email,
+                    Email = adminProfile.AdminEmail,
                     Mobile =  long.Parse(adminProfile.Phone),
                     Address1 = adminProfile.Address1,
                     Address2 = adminProfile.Address2,
@@ -215,7 +216,7 @@ namespace hellodoc.Repositories.Repository
                     Zip = adminProfile.Zipcode,
                     Altphone = long.Parse(adminProfile.MailingNumber),
                     Status = 1,
-                    //Createddate = DateTime.Now.ToString("yyyy-MM-dd"),
+                    Roleid = adminProfile.selectrole,
                     Createdby = adminProfile.aspid.ToString(),
 
                     Aspnetuser = aspNetUser,

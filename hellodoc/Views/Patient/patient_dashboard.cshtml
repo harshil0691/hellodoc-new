@@ -48,28 +48,5 @@
         });
     }
 
-    function savedoc() {
-
-        var formdata = new FormData();
-        var fileupload = document.getElementById('file1');
-        var f = fileupload.files[0];
-        formdata.append('Doc', f);
-        formdata.append('actionType', 'upload_doc');
-
-        $.ajax({
-            url: '/Patient/PatientUpdateData',
-            type: 'POST',
-            data: formdata,
-            processData: false,
-            contentType: false,
-            success: function (data) {
-                toastr.success(data);
-                GetPatientView({ actionType: 'patient_documents' });
-            },
-            error: function () {
-                console.error('Error loading partial view.');
-            }
-        });
-    }
-
+    
 </script>

@@ -1743,3 +1743,4 @@ C:\Users\Asus\Desktop\hellodoc\hellodoc\bin\Debug\net7.0\BouncyCastle.Crypto.dll
 C:\Users\Asus\Desktop\hellodoc\hellodoc\bin\Debug\net7.0\itextsharp.dll
 C:\Users\pci235\source\repos\hellodoc\hellodoc\bin\Debug\net7.0\BouncyCastle.Crypto.dll
 C:\Users\pci235\source\repos\hellodoc\hellodoc\bin\Debug\net7.0\itextsharp.dll
+C:\Users\Asus\Desktop\hellodoc\hellodoc\bin\Debug\net7.0\SixLabors.ImageSharp.dll

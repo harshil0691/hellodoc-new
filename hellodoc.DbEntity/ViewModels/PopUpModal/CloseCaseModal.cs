@@ -15,7 +15,7 @@ namespace hellodoc.DbEntity.ViewModels.PopUpModal
         public string? Firstname { get; set; }
         public string? Lastname { get; set; }
         public DateOnly? DateOfBirth { get; set; }
-        public string? Email { get; set; }
+        public string? CloseCaseEmail { get; set; }
         public long? Phone { get; set; }
         public List<RequestWiseFile> PatientDocuments { get; set; }
     }

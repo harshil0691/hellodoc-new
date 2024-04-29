@@ -42,15 +42,18 @@ namespace hellodoc.Repositories.Repository
             patientReq.requestTable = requestlist.ToList();
 
             var user = _context.Users.FirstOrDefault(u=> u.Aspnetuserid == userid);
-
-            patientReq.Firstname = user.Firstname;
-            patientReq.Lastname = user.Lastname;
-            patientReq.Email = user.Email;
-            patientReq.Phonenumber = user.Mobile??0;
-            patientReq.Street = user.Street;
-            patientReq.State = user.State;
-            patientReq.Zipcode = user.Zipcode??0;
-            patientReq.City = user.City;
+            if(user != null)
+            {
+                patientReq.Firstname = user.Firstname;
+                patientReq.Lastname = user.Lastname;
+                patientReq.Email = user.Email;
+                patientReq.Phonenumber = user.Mobile ?? 0;
+                patientReq.Street = user.Street;
+                patientReq.State = user.State;
+                patientReq.Zipcode = user.Zipcode ?? 0;
+                patientReq.City = user.City;
+            }
+            
 
             return patientReq;
         }

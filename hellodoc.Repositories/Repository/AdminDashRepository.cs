@@ -87,6 +87,8 @@ namespace hellodoc.Repositories.Repository
                 }).ToList();
             }
 
+            requestlist.OrderByDescending(r => r.Requestid);
+
             AdminParent admin = new AdminParent();
             admin.requestcount = requestlist.Count();
             admin.search = partialView.search;
@@ -116,7 +118,7 @@ namespace hellodoc.Repositories.Repository
                 var requestClient = _context.RequestClients.FirstOrDefault(u => u.Requestid == rid);
                 var request = _context.Requests.FirstOrDefault(u => u.Requestid == rid);
 
-                if(requestClient != null)
+                if(requestClient != null && request != null)
                 {
                     RequestFormModal model;
                     model = new RequestFormModal
@@ -130,6 +132,7 @@ namespace hellodoc.Repositories.Repository
                         PatientEmail = requestClient.Email,
                         Phonenumber = requestClient.Phonenumber ?? 1,
                         Requestid = rid,
+                        userid = request.Userid ??0,
                         DOB = new DateTime(requestClient.Intyear ?? 1, DateTime.ParseExact(requestClient.Strmonth, "MMMM", CultureInfo.InvariantCulture).Month, requestClient.Intdate ?? 0),
                     };
                     return model;
@@ -360,6 +363,7 @@ namespace hellodoc.Repositories.Repository
                     if (assignCase.Modaltype == "Transfer")
                     {
                         requestStatusLog.Transtophysicianid = assignCase.Physicianid;
+                        request.Status = 1;
                     }
                     request.Physicianid = assignCase.Physicianid;
                     _context.RequestStatusLogs.Add(requestStatusLog);
@@ -510,7 +514,7 @@ namespace hellodoc.Repositories.Repository
                 PatientDocuments = files,
                 Firstname = requestclient.Firstname,
                 Lastname = requestclient.Lastname,
-                Email = requestclient.Email,
+                CloseCaseEmail = requestclient.Email,
                 Phone = requestclient.Phonenumber,
                 DateOfBirth = requestclient.DateOfBirth, 
             };
@@ -527,7 +531,7 @@ namespace hellodoc.Repositories.Repository
             requestStatusLog.Status = 9;
             requestStatusLog.Notes = "Request is closed";
             requestStatusLog.Requestid = reqid;
-            requestStatusLog.Adminid = 2;
+            requestStatusLog.Adminid = admin.Adminid;
             requestStatusLog.Createddate = DateTime.Now;
 
             _context.RequestStatusLogs.Add(requestStatusLog);
@@ -537,6 +541,23 @@ namespace hellodoc.Repositories.Repository
             _context.SaveChanges();
         }
 
+        public void ConcludeCase(int requestid,int aspid)
+        {
+            var req = _context.Requests.FirstOrDefault(u => u.Requestid == requestid);
+
+            RequestStatusLog requestStatusLog = new RequestStatusLog();
+            requestStatusLog.Status = 8;
+            requestStatusLog.Notes = "Request is closed by physician";
+            requestStatusLog.Requestid = requestid;
+            requestStatusLog.Physicianid = aspid;
+            requestStatusLog.Createddate = DateTime.Now;
+
+            _context.RequestStatusLogs.Add(requestStatusLog);
+
+            req.Status = 8;
+
+            _context.SaveChanges();
+        }
         public void SetSMSLogs(Smslog smslog)
         {
             _context.Smslogs.Add(smslog);
@@ -545,8 +566,8 @@ namespace hellodoc.Repositories.Repository
 
         public AdminProfileModal GetAdminProfileData(int aspnetuserid)
         {
-            try
-            {
+            //try
+            //{
                 var admin = _context.Admins.FirstOrDefault(u => u.Aspnetuserid == aspnetuserid);
                 var aspuser = _context.AspNetUsers.FirstOrDefault(u => u.Id == aspnetuserid);
 
@@ -561,7 +582,7 @@ namespace hellodoc.Repositories.Repository
 
                         Firstname = admin.Firstname,
                         Lastname = admin.Lastname,
-                        Email = admin.Email,
+                        AdminEmail = admin.Email,
                         Phone = admin.Mobile.ToString(),
 
                         Address1 = admin.Address1,
@@ -578,14 +599,12 @@ namespace hellodoc.Repositories.Repository
                     return adminProfile;
                 }
 
-                return new AdminProfileModal();
-            }
-            catch
-            {
-                return new AdminProfileModal();
-            }
-            
-
+               return new AdminProfileModal();
+            //}
+            //catch
+            //{
+            //    return new AdminProfileModal();
+            //}
            
         }
 
@@ -607,7 +626,7 @@ namespace hellodoc.Repositories.Repository
             {
                 admin.Firstname = adminProfile.Firstname;
                 admin.Lastname = adminProfile.Lastname;
-                admin.Email = adminProfile.Email;
+                admin.Email = adminProfile.AdminEmail;
                 admin.Mobile = long.Parse(adminProfile.Phone);
 
                 var adminregion = _context.AdminRegions.Where(p => p.Adminid == admin.Adminid);
@@ -685,6 +704,38 @@ namespace hellodoc.Repositories.Repository
             }
             else
             {
+                encounter.Firstname = encounter1.Firstname;
+                encounter.Lastname = encounter1.Lastname;
+                encounter.Email = encounter1.Email;
+                encounter.Phone = encounter1.Phone;
+                encounter.Location = encounter1.Location;
+                encounter.DateOfBirth = encounter1.DateOfBirth;
+                encounter.DateOfService = encounter1.DateOfService;
+                encounter.HistoryOfInjury = encounter1.HistoryOfInjury;
+                encounter.MedicalHistory = encounter1.MedicalHistory;
+                encounter.Medications = encounter1.Medications;
+                encounter.Allergies = encounter1.Allergies;
+                encounter.Temperature = encounter1.Temperature;
+                encounter.Hr = encounter1.Hr;
+                encounter.Rr = encounter1.Rr;
+                encounter.Bloodpressure1 = encounter1.Bloodpressure1;
+                encounter.Bloodpressure2 = encounter1.Bloodpressure2;
+                encounter.O2 = encounter1.O2;
+                encounter.Pain = encounter1.Pain;
+                encounter.Heent = encounter1.Heent;
+                encounter.Cv = encounter1.Cv;
+                encounter.Chest = encounter1.Chest;
+                encounter.Abd = encounter1.Abd;
+                encounter.Extr = encounter1.Extr;
+                encounter.Skin = encounter1.Skin;
+                encounter.Neuro = encounter1.Neuro;
+                encounter.Other = encounter1.Other;
+                encounter.Dignosis = encounter1.Dignosis;
+                encounter.Treatmentplan = encounter1.Treatmentplan;
+                encounter.MedicationsDispensed = encounter1.MedicationsDispensed;
+                encounter.Procedures = encounter1.Procedures;
+                encounter.Folloup = encounter1.Folloup;
+
                 encounter.Modifiedby = "admin2";
                 encounter.Modifieddate = DateTime.Now;
                 encounterreturn = encounter;
@@ -696,9 +747,8 @@ namespace hellodoc.Repositories.Repository
         public async Task FinalizeEncounter(int requestid, Encounter encounter1)
         {
             var encounter = _context.Encounters.FirstOrDefault(u => u.Requestid == requestid);
-            var encounterdata = _context.Encounters.FirstOrDefault(u => u.Requestid == requestid);
 
-            if (encounterdata == null)
+            if (encounter == null)
             {
                 Encounter encounter2 = new Encounter();
                 encounter2 = encounter1 as Encounter;
@@ -715,19 +765,43 @@ namespace hellodoc.Repositories.Repository
             }
             else
             {
-                Encounter encounter3 = new Encounter();
-                encounter3 = encounter1 as Encounter;
-                encounter3.Modifiedby = "admin2";
-                encounter3.Modifieddate = DateTime.Now;
-                encounter3.Finalizedby = "admin2";
-                encounter3.Finalizeddate = DateTime.Now;
-                encounter3.Isfinalized = 1;
-                encounter3.Createdby = encounterdata.Createdby;
-                encounter3.Createddate = encounterdata.Createddate;
-                encounter3.Encounterid = encounterdata.Encounterid;
-                encounter3.Requestid = encounterdata.Requestid;
+                encounter.Firstname = encounter1.Firstname;
+                encounter.Lastname = encounter1.Lastname;
+                encounter.Email = encounter1.Email;
+                encounter.Phone = encounter1.Phone;
+                encounter.Location = encounter1.Location;
+                encounter.DateOfBirth = encounter1.DateOfBirth;
+                encounter.DateOfService = encounter1.DateOfService;
+                encounter.HistoryOfInjury = encounter1.HistoryOfInjury;
+                encounter.MedicalHistory = encounter1.MedicalHistory;
+                encounter.Medications = encounter1.Medications;
+                encounter.Allergies = encounter1.Allergies;
+                encounter.Temperature = encounter1.Temperature;
+                encounter.Hr = encounter1.Hr;
+                encounter.Rr = encounter1.Rr;
+                encounter.Bloodpressure1 = encounter1.Bloodpressure1;
+                encounter.Bloodpressure2 = encounter1.Bloodpressure2;
+                encounter.O2 = encounter1.O2;
+                encounter.Pain = encounter1.Pain;
+                encounter.Heent = encounter1.Heent;
+                encounter.Cv = encounter1.Cv;
+                encounter.Chest = encounter1.Chest;
+                encounter.Abd = encounter1.Abd;
+                encounter.Extr = encounter1.Extr;
+                encounter.Skin = encounter1.Skin;
+                encounter.Neuro = encounter1.Neuro;
+                encounter.Other = encounter1.Other;
+                encounter.Dignosis = encounter1.Dignosis;
+                encounter.Treatmentplan = encounter1.Treatmentplan;
+                encounter.MedicationsDispensed = encounter1.MedicationsDispensed;
+                encounter.Procedures = encounter1.Procedures;
+                encounter.Folloup = encounter1.Folloup;
+                encounter.Modifiedby = "admin2";
+                encounter.Modifieddate = DateTime.Now;
+                encounter.Finalizedby = "admin2";
+                encounter.Finalizeddate = DateTime.Now;
+                encounter.Isfinalized = 1;
 
-                encounterdata.Isfinalized = 1;
 
                 _context.SaveChanges();
             }
@@ -784,11 +858,9 @@ namespace hellodoc.Repositories.Repository
         {
             var request = _context.Requests.FirstOrDefault(r => r.Requestid == requestid);
 
-            request.Status = 1;
-
             RequestStatusLog requestStatus = new RequestStatusLog
             {
-                Notes = transferNotes,
+                Notes = "Request Back From The Physician Notes :" +transferNotes,
                 Createddate = DateTime.Now,
                 Physicianid = physicianid,
                 Requestid = requestid,

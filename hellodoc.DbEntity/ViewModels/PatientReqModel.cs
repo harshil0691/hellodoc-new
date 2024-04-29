@@ -12,8 +12,10 @@ namespace hellodoc.DbEntity.ViewModels;
 
 public partial class PatientReqModel
 {
+    public List<int> fileIds { get; set; }
     [Column("requestid")]
     public int Requestid { get; set; }
+    public int userid { get; set; }
 
     [Required]
 
@@ -75,6 +77,7 @@ public partial class PatientReqModel
     public List<ShowDocModal> patientDocuments { get; set; } 
 
     public List<RequestWiseFile> RequestWiseFiles { get; set; }
+    public List<Region> regions { get; set; }
 
     public User users { get; set; }
 }

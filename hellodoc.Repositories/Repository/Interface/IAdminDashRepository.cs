@@ -63,5 +63,7 @@ namespace hellodoc.Repositories.Repository.Interface
         string TransferToAdmin(int requestid , string transferNotes,int physicianid);
         List<NotificationMessage> GetNotification();
         List<Physician> GetUnAssignedPhysician();
+
+        void ConcludeCase(int requestid,int aspid);
     }
 }

@@ -26,9 +26,13 @@ namespace hellodoc.Repositories.Repository
         public string AcceptRequest(int requestid)
         {
             var request = _context.Requests.FirstOrDefault(r => r.Requestid == requestid);
-            request.Status = 2;
-            _context.SaveChanges();
-            return "ok";
+            if (request != null)
+            {
+                request.Status = 2;
+                _context.SaveChanges();
+                return "ok";
+            }
+            return "not accept";
         }
 
         public string RequestToAdmin(PartialViewModal partialView)

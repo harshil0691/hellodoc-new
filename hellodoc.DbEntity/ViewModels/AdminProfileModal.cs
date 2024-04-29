@@ -37,10 +37,10 @@ namespace hellodoc.DbEntity.ViewModels
 
         [Required(ErrorMessage = "Email is required")]
         [EmailAddress(ErrorMessage = "Email is Invalid")]
-        public string Email { get; set; }
+        public string AdminEmail { get; set; }
 
         [Required(ErrorMessage = "Confirm Email is Required")]
-        [Compare("Email", ErrorMessage = "Confirm Email Address do not Match Email")]
+        [Compare("AdminEmail", ErrorMessage = "Confirm Email Address do not Match Email")]
         public string ConfirmEmail { get; set; }
        
         public string? Address1 { get; set; }

@@ -39,28 +39,19 @@ function GetRecordsView(dataObject) {
         type: 'POST',
         data: { actionType: dataObject.action, userid: dataObject.UserId },
         success: function (data) {
-            var element = document.querySelectorAll('[href="#' + localStorage.getItem("DashTab") + '"]');
-            element.forEach(a => {
-                a.classList.remove('active');
+            const dropdownParents = document.querySelectorAll('.nav-link');
+            dropdownParents.forEach(parent => {
+                parent.classList.remove('active');
             });
             localStorage.setItem("DashTab", 'records');
             var element = document.querySelectorAll('[href="#records"]');
             element.forEach(a => {
                 a.classList.add('active');
             });
-
+            console.log('dasd');
             $('#mainDashContent').html(data);
 
-            const dropdownParents = document.querySelectorAll('.nav-link');
-            dropdownParents.forEach(parent => {
-                parent.classList.remove('active');
-            });
-            var ele = document.getElementById(dataObject.id);
-            ele.classList.add('active');
-
-            if (dataObject.actionType == 'GetView') {
-                searchrecords(dataObject.action, '1', dataObject.Back);
-            }
+            searchrecords(dataObject.action, '1', dataObject.Back);
         },
         error: function () {
             console.error('Error loading partial view.');
@@ -77,7 +68,7 @@ function recordsoperation(dataObeject) {
         success: function (data) {
             if (dataObeject.actionType == 'DeletePermanantly' ) {
                 searchrecords('SearchRecords', '1');
-            } else if (dataObeject.actionType == 'BlockedUnBlockHistory') {
+            } else if (dataObeject.actionType == 'Unblock') {
                 searchrecords('BlockedHistory', '1');
             }
         },

@@ -39,12 +39,12 @@
                         <span asp-validation-for="Location" class="text-danger"> </span>
                     </div>
                     <div class="form-floating mb-3 col-md-6 col-lg-6">
-                        <input type="Date" class="form-control" id="floatingInput" asp-for="DateOfBirth"  placeholder="DateOfBirth">
+                        <input type="Date" class="form-control" id="floatingInput" asp-for="DateOfBirth" asp-format="{0:yyyy-MM-dd}" placeholder="DateOfBirth">
                         <label for="floatingInput" class="mx-3">Date Of Birth</label>
                         <span asp-validation-for="DateOfBirth" class="text-danger"></span>
                     </div>
                     <div class="form-floating mb-3 col-md-6 col-lg-6">
-                        <input type="Date" class="form-control" id="floatingInput" asp-for="DateOfService" placeholder="Date Of Service">
+                        <input type="Date" class="form-control" id="floatingInput" asp-for="DateOfService" asp-format="{0:yyyy-MM-dd}" placeholder="Date Of Service">
                         <label for="floatingInput" class="mx-3">Date Of Service</label>
                         <span asp-validation-for="DateOfService" class="text-danger"></span>
                     </div>
