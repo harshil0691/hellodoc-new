@@ -37,7 +37,7 @@ namespace hellodoc.Repositories.Repository
                 (partialView.status.Contains(r.Status)) &&
                 (((partialView.search != null )? r.RequestClients.FirstOrDefault().Firstname.Contains(partialView.search) :true) ||
                 ((partialView.search != null) ? r.RequestClients.FirstOrDefault().Lastname.Contains(partialView.search):true)) && 
-                ((partialView.regionid !=0 )? r.RequestClients.FirstOrDefault().Regionid == partialView.regionid : true) && 
+                ((partialView.regionid !=0 )?  r.RequestClients.FirstOrDefault().Regionid == partialView.regionid : true) && 
                 ((partialView.accoutOpen == "provider") ? r.Physicianid == partialView.physicianid : true) && 
                 ((partialView.requesttype != 0)? r.Requesttypeid == partialView.requesttype:true)
             );
@@ -87,7 +87,7 @@ namespace hellodoc.Repositories.Repository
                 }).ToList();
             }
 
-            requestlist.OrderByDescending(r => r.Requestid);
+            requestlist.OrderBy(r => r.Requestid);
 
             AdminParent admin = new AdminParent();
             admin.requestcount = requestlist.Count();
@@ -142,11 +142,6 @@ namespace hellodoc.Repositories.Repository
                     return new RequestFormModal();
                 }
                 
-
-
-           
-            
-
         }
 
         public bool ViewCaseUpdate(int requestid, RequestFormModal requestForm, int aspid)

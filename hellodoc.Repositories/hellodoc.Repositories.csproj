@@ -16,9 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\hellodoc.DbEntity\hellodoc.DbEntity.csproj">
-      <Private></Private>
-    </ProjectReference>
+    <ProjectReference Include="..\hellodoc.DbEntity\hellodoc.DbEntity.csproj" />
   </ItemGroup>
 
 </Project>

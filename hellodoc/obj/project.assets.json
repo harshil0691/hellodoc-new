@@ -2,6 +2,22 @@
   "version": 3,
   "targets": {
     "net7.0": {
+      "AutoMapper/13.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Options": "6.0.0"
+        },
+        "compile": {
+          "lib/net6.0/AutoMapper.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/AutoMapper.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "BouncyCastle/1.8.9": {
         "type": "package",
         "compile": {
@@ -3091,10 +3107,35 @@
         "runtime": {
           "bin/placeholder/hellodoc.Repositories.dll": {}
         }
+      },
+      "hellodoc_utility/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/hellodoc_utility.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/hellodoc_utility.dll": {}
+        }
       }
     }
   },
   "libraries": {
+    "AutoMapper/13.0.1": {
+      "sha512": "/Fx1SbJ16qS7dU4i604Sle+U9VLX+WSNVJggk6MupKVkYvvBm4XqYaeFuf67diHefHKHs50uQIS2YEDFhPCakQ==",
+      "type": "package",
+      "path": "automapper/13.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "automapper.13.0.1.nupkg.sha512",
+        "automapper.nuspec",
+        "icon.png",
+        "lib/net6.0/AutoMapper.dll",
+        "lib/net6.0/AutoMapper.xml"
+      ]
+    },
     "BouncyCastle/1.8.9": {
       "sha512": "axnBgvdD5n+FnEG6efk/tfKuMFru7R/EoISH9zjh319yb3HD24TEHSAbNN/lTRT2ulOGRxDgOsCjkuk08iwWPg==",
       "type": "package",
@@ -7896,10 +7937,16 @@
       "type": "project",
       "path": "../hellodoc.Repositories/hellodoc.Repositories.csproj",
       "msbuildProject": "../hellodoc.Repositories/hellodoc.Repositories.csproj"
+    },
+    "hellodoc_utility/1.0.0": {
+      "type": "project",
+      "path": "../../Assignment/MagicVilla/hellodoc_utility/hellodoc_utility.csproj",
+      "msbuildProject": "../../Assignment/MagicVilla/hellodoc_utility/hellodoc_utility.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net7.0": [
+      "AutoMapper >= 13.0.1",
       "EPPlus >= 7.0.10",
       "Google.Apis >= 1.67.0",
       "Google.Apis.Auth >= 1.67.0",
@@ -7917,23 +7964,24 @@
       "Twilio >= 7.0.0",
       "hellodoc.DbEntity >= 1.0.0",
       "hellodoc.Repositories >= 1.0.0",
+      "hellodoc_utility >= 1.0.0",
       "iTextSharp >= 5.5.13.3"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Asus\\.nuget\\packages\\": {}
+    "C:\\Users\\pci235\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\hellodoc.csproj",
+      "projectUniqueName": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\hellodoc.csproj",
       "projectName": "hellodoc",
-      "projectPath": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\hellodoc.csproj",
-      "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc\\obj\\",
+      "projectPath": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\hellodoc.csproj",
+      "packagesPath": "C:\\Users\\pci235\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\pci235\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7941,17 +7989,21 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\sdk\\7.0.302\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc.DbEntity\\hellodoc.DbEntity.csproj": {
-              "projectPath": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc.DbEntity\\hellodoc.DbEntity.csproj"
+            "C:\\Users\\pci235\\source\\repos\\Assignment\\MagicVilla\\hellodoc_utility\\hellodoc_utility.csproj": {
+              "projectPath": "C:\\Users\\pci235\\source\\repos\\Assignment\\MagicVilla\\hellodoc_utility\\hellodoc_utility.csproj"
             },
-            "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc.Repositories\\hellodoc.Repositories.csproj": {
-              "projectPath": "C:\\Users\\Asus\\Desktop\\hellodoc\\hellodoc.Repositories\\hellodoc.Repositories.csproj"
+            "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc.DbEntity\\hellodoc.DbEntity.csproj": {
+              "projectPath": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc.DbEntity\\hellodoc.DbEntity.csproj"
+            },
+            "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc.Repositories\\hellodoc.Repositories.csproj": {
+              "projectPath": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc.Repositories\\hellodoc.Repositories.csproj"
             }
           }
         }
@@ -7960,17 +8012,16 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
       "net7.0": {
         "targetAlias": "net7.0",
         "dependencies": {
+          "AutoMapper": {
+            "target": "Package",
+            "version": "[13.0.1, )"
+          },
           "EPPlus": {
             "target": "Package",
             "version": "[7.0.10, )"
@@ -8059,7 +8110,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   },

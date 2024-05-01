@@ -1,2 +1,184 @@
-﻿ Invoicing
+﻿@model hellodoc.DbEntity.ViewModels.DashboardLists.DashboardListsModal
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 
+<Partial name="_Notification" />
+<div class="login" id="main" style="margin-bottom:100px">
+
+    <div class="row bgcolor1">
+
+        <div class=" col-12 col-sm-12 col-md-10 col-lg-8 mx-auto d-flex justify-content-between mt-4 mb-2">
+            <h2> Invoicing </h2>
+            <button onclick="loadPartialDashView('dashboard')" class="d-flex btn btn-outline-info bg-transparent  text-end text-info fs-5 text-decoration-none">
+                <i class="bi bi-chevron-left"></i>Back
+            </button>
+        </div>
+       
+        <div class="d-grid gap-2 col-12 col-sm-12 col-md-10 col-lg-8 mx-auto d-flex flex-column rounded-3 bgcolor px-4 mt-3 shadow-lg">
+
+            <div class="d-sm-flex justify-content-between mt-3">
+                <div class="col-12 col-sm-6 col-md-3">
+                    <select class="form-select" aria-label="Default select example" asp-for="regionselect" id="region">
+                        <option selected>TimeSheet</option>
+                    </select>
+                </div>
+                <div class="d-flex justify-content-center justify-content-md-end mx-2">
+                    <button class="btn btn-info text-white mx-2 mt-2" style="display:none" id="ProvidersSave" onclick="saveStopNotification()">Save</button>
+                </div>
+            </div>
+
+            <div style="margin-bottom:50px;" class="table-responsive d-none d-sm-none d-md-block d-lg-block d-xl-block mt-4" id="searchrecordstable">
+                <table class="w-100">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>On Call Hours</th>
+                            <th>Total Hours</th>
+                            <th>Weekend/Holiday</th>
+                            <th>Number Of HouseCalls</th>
+                            <th>Number Of Phone Consults</th>
+                        </tr>
+                    </thead>
+                    <tbody style="font-size:larger;font-weight:400;">
+                       @* @{
+                            foreach (var a in Model.providersTableModal)
+                            {
+
+                                <tr class="m-2">
+                                    <td class="text-black"><input type="checkbox" class="custom-check d-check providerscheck bg-info" value="@a.physicianid" checked="@a.stopnotification" data-physicianid="@a.physicianid" /> </td>
+                                    <td class="text-black">@a.name</td>
+                                    <td class="text-black">@a.role</td>
+                                    <td class="text-black">@a.status</td>
+                                    <td class="text-black">@a.status</td>
+                                    <td>
+                                        <button class="btn btn-outline-info m-1" onclick="ShowModal({ActionType:'ContactProvider',physicianid:@a.physicianid})">Contact</button>
+                                        <button class="btn btn-outline-info m-1" onclick="loadProviderView('edit_physician','@a.physicianid')">Edit</button>
+                                    </td>
+                                </tr>
+                            }
+                        }*@
+
+                    </tbody>
+                </table>
+
+            </div>
+
+            <div class="d-block d-md-none mt-3">
+                <div class="accordion" id="accordionExample">
+
+                    @{
+                    //    foreach (var a in Model.providersTableModal)
+                    //    {
+                    //        <div class="accordion-item mt-1">
+                    //            <h2 class="accordion-header">
+                    //                <button class="accordion-button collapsed  d-grid" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_@a.physicianid" aria-expanded="true" aria-controls="collapse_@a.physicianid">
+                    //                    <div class="d-grid w-100 m-2">
+                    //                        <div class="m-2">
+                    //                            <input type="checkbox" class="custom-check m-check providerscheck mx-2 bg-info" value="@a.physicianid" checked="@a.stopnotification" data-physicianid="@a.physicianid" />
+                    //                            <div class="m-1 fs-5 text-black">@a.name</div>
+                    //                        </div>
+                    //                        <div class="d-flex m-1 text-black-50">On Call Status : <div class="fs-6 px-2 text-black"> @a.status </div> </div>
+                    //                    </div>
+                    //                </button>
+
+                    //            </h2>
+
+                    //            <div id="collapse_@a.physicianid" class="accordion-collapse collapse" data-bs-parent="#accordionExample" style="background-color:#d7ffffde;">
+                    //                <div class="accordion-body">
+
+                    //                    <div class="d-grid w-100 m-2">
+                    //                        <div class="d-flex"> <i class="bi bi-person-circle text-info"></i>  Role : <div class="fs-6 px-2"> @a.role </div> </div>
+                    //                        <div class="d-flex"> <i class="bi bi-check2-circle text-info pe-2 mt-1"></i> Status : <div class="fs-6 px-2"> @a.status </div> </div>
+                    //                    </div>
+                    //                    <div class="d-flex justify-content-end w-100 m-2">
+                    //                        <button class="btn btn-outline-info mx-2" onclick="ShowModal({ActionType:'ContactProvider',physicianid:@a.physicianid})">Contact</button>
+                    //                        <button class="btn btn-outline-info mx-2" onclick="loadProviderView('edit_physician','@a.physicianid')">Edit</button>
+                    //                    </div>
+
+                    //                </div>
+                    //            </div>
+                    //        </div>
+
+                    //    }
+                    }
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+
+<script>
+
+    $("#region").change(function () {
+        regionid = this.value;
+        GetProvidersView({ actionType: 'provider', pageNumber: '1', regionid: regionid });
+    });
+
+
+    var selectedCheck = [];
+    var checkboxes1 = document.querySelectorAll(".providerscheck");
+
+    checkboxes1.forEach(function (checkbox) {
+        if (checkbox.checked) {
+            selectedCheck.push(checkbox.value);
+        }
+    });
+
+    function handleCheckboxChange(event) {
+        var checkboxes = document.querySelectorAll('.' + event.target.className);
+        checkboxes.forEach(function (checkbox) {
+            if (checkbox !== event.target && checkbox.value === event.target.value) {
+                checkbox.checked = event.target.checked;
+            }
+        });
+
+    }
+
+    $(".providerscheck").change(function () {
+
+        var physicianId = $(this).data("physicianid");
+
+        // Update all checkboxes with the same physician ID value
+        $(".providerscheck[data-physicianid='" + physicianId + "']").prop("checked", $(this).prop("checked"));
+
+        var selectedCheck1 = [];
+        var checkboxes11 = document.querySelectorAll(".providerscheck");
+
+        checkboxes11.forEach(function (checkbox) {
+            if (checkbox.checked) {
+                selectedCheck1.push(checkbox.value);
+            }
+        });
+
+        if (selectedCheck1.toString() != selectedCheck.toString()) {
+            document.getElementById("ProvidersSave").style.display = "block";
+        } else {
+            document.getElementById("ProvidersSave").style.display = "none";
+        }
+    });
+
+    $(".providerscheck").change(function () {
+        var selectedCheck1 = [];
+        var checkboxes11 = document.querySelectorAll(".providerscheck");
+
+        checkboxes11.forEach(function (checkbox) {
+            if (checkbox.checked) {
+                selectedCheck1.push(checkbox.value);
+            }
+        });
+
+        if (selectedCheck1.toString() != selectedCheck.toString()) {
+            document.getElementById("ProvidersSave").style.display = "block";
+        } else {
+            document.getElementById("ProvidersSave").style.display = "none";
+        }
+    });
+</script>
+
+@section Scripts{
+    @{
+        <Partial name="_ValidationScriptsPartial" />
+    }
+    }

@@ -44,12 +44,12 @@ namespace hellodoc.Repositories.Services
                 new Claim("username",aspNetUser.Username)
             };
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes( _configuration ["Jwt:Key"]));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes( _configuration["Jwt:Key"]));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
             var expires = DateTime.Now.AddMinutes(60);
 
             var token = new JwtSecurityToken(
-                Convert.ToString(_configuration ["Jwt:Issuer"]),
+                Convert.ToString(_configuration["Jwt:Issuer"]),
                 Convert.ToString(_configuration["Jwt:Audience"]),
                 claims,
                 expires: expires,
@@ -81,7 +81,6 @@ namespace hellodoc.Repositories.Services
 
                 }, out SecurityToken validatedToken);
 
-                // Corrected access to the validatedToken
                 var jwtToken = (JwtSecurityToken)validatedToken;
                 
                 if(jwtToken != null) return true;

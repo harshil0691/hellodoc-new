@@ -635,8 +635,8 @@ namespace hellodoc.Controllers
         [HttpPost]
         public IActionResult send_link(SendLinkModal sendLink)
         {
-            var subject = "Agreement for patiet request";
-            var message = "hii" + sendLink.Firstname + " " + sendLink.Lastname + " \n please submit your request";
+            var subject = "Create Your Request";
+            var message = "hii" + sendLink.Firstname + " " + sendLink.Lastname + " \n please submit your request link given below \n https://localhost:7036/Patient/request";
 
             SendMail(subject, message,sendLink.MailEmail);
 

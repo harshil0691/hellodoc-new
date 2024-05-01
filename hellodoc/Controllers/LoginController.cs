@@ -205,17 +205,16 @@ namespace hellodoc.Controllers
 
         public Task sendEmail(string email, string subject, string message)
         {
-            var mail = "pdhaduk300@gmail.com";
-            var password = "oqkl bgzk vloe ejrt";
+            var mail = "tatva.dotnet.harshildhaduk@outlook.com";
+            var password = "harshil@9184";
 
-            var client = new SmtpClient("smtp.gmail.com", 587)
+            var client = new SmtpClient("smtp.office365.com", 587)
             {
                 EnableSsl = true,
                 Credentials = new NetworkCredential(mail, password)
             };
 
             return client.SendMailAsync(new MailMessage(from: mail, to: email, subject, message));
-
         }
     }
 }

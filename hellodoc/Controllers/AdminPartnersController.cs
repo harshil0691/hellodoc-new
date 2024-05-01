@@ -7,6 +7,7 @@ using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 using NUnit.Framework.Internal.Execution;
 using hellodoc.Repositories.Repository;
 using hellodoc.DbEntity.ViewModels.DashboardLists;
+using Newtonsoft.Json;
 
 namespace hellodoc.Controllers
 {
@@ -24,12 +25,12 @@ namespace hellodoc.Controllers
             _adminDashRepository = adminDashRepository;
         }
 
-        public IActionResult GetView(PartialViewModal partialView)
+        public async Task<IActionResult> GetView(PartialViewModal partialView)
         {
             switch (partialView.actionType)
             {
                 case "partnerstable":
-                    return PartialView("_PartnersTable", _adminPartners.ProviderList(partialView.professionalType, partialView.search, partialView.pageNumber));
+                    return PartialView("_PartnersTable", _adminPartners.ProviderList(partialView.professionalType,partialView.search,partialView.pageNumber));
 
                 case "create_business":
                     AdminPartnersModal adminPartners = new AdminPartnersModal();

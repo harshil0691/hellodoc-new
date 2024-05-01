@@ -9,439 +9,421 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = hellodoc
 build_property.RootNamespace = hellodoc
-build_property.ProjectDir = C:\Users\Asus\Desktop\hellodoc\hellodoc\
-build_property.EnableComHosting = 
-build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.ProjectDir = C:\Users\pci235\source\repos\hellodoc\hellodoc\
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\Asus\Desktop\hellodoc\hellodoc
+build_property.MSBuildProjectDirectory = C:\Users\pci235\source\repos\hellodoc\hellodoc
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/AdminAccess/_Access.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/AdminAccess/_Access.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5BY2Nlc3NcX0FjY2Vzcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/AdminAccess/_CreateAdmin.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/AdminAccess/_CreateAdmin.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5BY2Nlc3NcX0NyZWF0ZUFkbWluLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/AdminAccess/_CreateRole.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/AdminAccess/_CreateRole.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5BY2Nlc3NcX0NyZWF0ZVJvbGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/AdminAccess/_EditRole.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/AdminAccess/_EditRole.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5BY2Nlc3NcX0VkaXRSb2xlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/AdminAccess/_UserAccess.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/AdminAccess/_UserAccess.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5BY2Nlc3NcX1VzZXJBY2Nlc3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/AdminDash/admin_dash.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/AdminDash/admin_dash.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5EYXNoXGFkbWluX2Rhc2guY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/AdminDash/_dashboard.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/AdminDash/_dashboard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5EYXNoXF9kYXNoYm9hcmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/AdminDash/_MyProfile.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/AdminDash/_MyProfile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5EYXNoXF9NeVByb2ZpbGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/AdminDash/_ProviderLocation.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/AdminDash/_ProviderLocation.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5EYXNoXF9Qcm92aWRlckxvY2F0aW9uLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/AdminDash/_ProviderProfile.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5EYXNoXF9Qcm92aWRlclByb2ZpbGUuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/AdminPartners/_CreateBusiness.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/AdminPartners/_CreateBusiness.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5QYXJ0bmVyc1xfQ3JlYXRlQnVzaW5lc3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/AdminPartners/_EditBusiness.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/AdminPartners/_EditBusiness.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5QYXJ0bmVyc1xfRWRpdEJ1c2luZXNzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/AdminPartners/_Partners.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/AdminPartners/_Partners.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5QYXJ0bmVyc1xfUGFydG5lcnMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/AdminPartners/_PartnersTable.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/AdminPartners/_PartnersTable.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5QYXJ0bmVyc1xfUGFydG5lcnNUYWJsZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/AdminProviders/_CreateProvider.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/AdminProviders/_CreateProvider.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Qcm92aWRlcnNcX0NyZWF0ZVByb3ZpZGVyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/AdminProviders/_CreateShift.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/AdminProviders/_CreateShift.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Qcm92aWRlcnNcX0NyZWF0ZVNoaWZ0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/AdminProviders/_DayWiseShift.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/AdminProviders/_DayWiseShift.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Qcm92aWRlcnNcX0RheVdpc2VTaGlmdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/AdminProviders/_Invoicing.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/AdminProviders/_Invoicing.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Qcm92aWRlcnNcX0ludm9pY2luZy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/AdminProviders/_MonthWiseShift.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/AdminProviders/_MonthWiseShift.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Qcm92aWRlcnNcX01vbnRoV2lzZVNoaWZ0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/AdminProviders/_MoreShifts.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/AdminProviders/_MoreShifts.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Qcm92aWRlcnNcX01vcmVTaGlmdHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/AdminProviders/_ProviderProfile.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/AdminProviders/_ProviderProfile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Qcm92aWRlcnNcX1Byb3ZpZGVyUHJvZmlsZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/AdminProviders/_Providers.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/AdminProviders/_Providers.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Qcm92aWRlcnNcX1Byb3ZpZGVycy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/AdminProviders/_ProvidersOnCall.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/AdminProviders/_ProvidersOnCall.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Qcm92aWRlcnNcX1Byb3ZpZGVyc09uQ2FsbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/AdminProviders/_Scheduling.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/AdminProviders/_Scheduling.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Qcm92aWRlcnNcX1NjaGVkdWxpbmcuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/AdminProviders/_ShiftsForReview.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/AdminProviders/_ShiftsForReview.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Qcm92aWRlcnNcX1NoaWZ0c0ZvclJldmlldy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/AdminProviders/_SignatureModal.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/AdminProviders/_SignatureModal.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Qcm92aWRlcnNcX1NpZ25hdHVyZU1vZGFsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/AdminProviders/_ViewShift.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/AdminProviders/_ViewShift.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Qcm92aWRlcnNcX1ZpZXdTaGlmdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/AdminProviders/_WeekWiseShift.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/AdminProviders/_WeekWiseShift.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Qcm92aWRlcnNcX1dlZWtXaXNlU2hpZnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/AdminRecords/_BlockedHistory.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/AdminRecords/_BlockedHistory.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5SZWNvcmRzXF9CbG9ja2VkSGlzdG9yeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/AdminRecords/_BlockedHistoryTable.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/AdminRecords/_BlockedHistoryTable.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5SZWNvcmRzXF9CbG9ja2VkSGlzdG9yeVRhYmxlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/AdminRecords/_EmailLogs.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/AdminRecords/_EmailLogs.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5SZWNvcmRzXF9FbWFpbExvZ3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/AdminRecords/_EmailLogsTable.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/AdminRecords/_EmailLogsTable.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5SZWNvcmRzXF9FbWFpbExvZ3NUYWJsZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/AdminRecords/_PatientHistory.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/AdminRecords/_PatientHistory.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5SZWNvcmRzXF9QYXRpZW50SGlzdG9yeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/AdminRecords/_PatientHistoryTable.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/AdminRecords/_PatientHistoryTable.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5SZWNvcmRzXF9QYXRpZW50SGlzdG9yeVRhYmxlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/AdminRecords/_PatientRecords.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/AdminRecords/_PatientRecords.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5SZWNvcmRzXF9QYXRpZW50UmVjb3Jkcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/AdminRecords/_SearchRecords.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/AdminRecords/_SearchRecords.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5SZWNvcmRzXF9TZWFyY2hSZWNvcmRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/AdminRecords/_SearchRecordsTable.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/AdminRecords/_SearchRecordsTable.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5SZWNvcmRzXF9TZWFyY2hSZWNvcmRzVGFibGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/AdminRecords/_SMSLogs.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/AdminRecords/_SMSLogs.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5SZWNvcmRzXF9TTVNMb2dzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/AdminRecords/_SMSLogsTable.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/AdminRecords/_SMSLogsTable.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5SZWNvcmRzXF9TTVNMb2dzVGFibGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/Admin_agreement/agreement.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/Admin_agreement/agreement.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5fYWdyZWVtZW50XGFncmVlbWVudC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/DashActionView/_AssignCase.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/DashActionView/_AssignCase.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaEFjdGlvblZpZXdcX0Fzc2lnbkNhc2UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/DashActionView/_BlockCase.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/DashActionView/_BlockCase.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaEFjdGlvblZpZXdcX0Jsb2NrQ2FzZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/DashActionView/_CancelCase.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/DashActionView/_CancelCase.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaEFjdGlvblZpZXdcX0NhbmNlbENhc2UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/DashActionView/_CloseCase.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/DashActionView/_CloseCase.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaEFjdGlvblZpZXdcX0Nsb3NlQ2FzZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/DashActionView/_ConcludeCare.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/DashActionView/_ConcludeCare.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaEFjdGlvblZpZXdcX0NvbmNsdWRlQ2FyZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/DashActionView/_ContactProvider.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/DashActionView/_ContactProvider.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaEFjdGlvblZpZXdcX0NvbnRhY3RQcm92aWRlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/DashActionView/_CreateRequest.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/DashActionView/_CreateRequest.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaEFjdGlvblZpZXdcX0NyZWF0ZVJlcXVlc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/DashActionView/_Encounter.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/DashActionView/_Encounter.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaEFjdGlvblZpZXdcX0VuY291bnRlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/DashActionView/_EncounterForm.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/DashActionView/_EncounterForm.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaEFjdGlvblZpZXdcX0VuY291bnRlckZvcm0uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/DashActionView/_FinalizedEncounter.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/DashActionView/_FinalizedEncounter.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaEFjdGlvblZpZXdcX0ZpbmFsaXplZEVuY291bnRlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/DashActionView/_MapModal.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/DashActionView/_MapModal.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaEFjdGlvblZpZXdcX01hcE1vZGFsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/DashActionView/_Orders.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/DashActionView/_Orders.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaEFjdGlvblZpZXdcX09yZGVycy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/DashActionView/_RequestDTYSupport.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/DashActionView/_RequestDTYSupport.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaEFjdGlvblZpZXdcX1JlcXVlc3REVFlTdXBwb3J0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/DashActionView/_RequestToAdmin.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/DashActionView/_RequestToAdmin.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaEFjdGlvblZpZXdcX1JlcXVlc3RUb0FkbWluLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/DashActionView/_SendAgreement.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/DashActionView/_SendAgreement.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaEFjdGlvblZpZXdcX1NlbmRBZ3JlZW1lbnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/DashActionView/_SendLink.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/DashActionView/_SendLink.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaEFjdGlvblZpZXdcX1NlbmRMaW5rLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/DashActionView/_TransferRequest.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/DashActionView/_TransferRequest.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaEFjdGlvblZpZXdcX1RyYW5zZmVyUmVxdWVzdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/DashActionView/_ViewCase.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/DashActionView/_ViewCase.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaEFjdGlvblZpZXdcX1ZpZXdDYXNlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/DashActionView/_ViewNotes.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/DashActionView/_ViewNotes.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaEFjdGlvblZpZXdcX1ZpZXdOb3Rlcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/DashActionView/_ViewUploads.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/DashActionView/_ViewUploads.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaEFjdGlvblZpZXdcX1ZpZXdVcGxvYWRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/Home/forgot_password.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/Home/forgot_password.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxmb3Jnb3RfcGFzc3dvcmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/Home/Index.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/Home/Privacy.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/LoadDashState/_ActiveAdmin.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/LoadDashState/_ActiveAdmin.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9hZERhc2hTdGF0ZVxfQWN0aXZlQWRtaW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/LoadDashState/_ConcludeAdmin.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/LoadDashState/_ConcludeAdmin.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9hZERhc2hTdGF0ZVxfQ29uY2x1ZGVBZG1pbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/LoadDashState/_NewAdmin.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/LoadDashState/_NewAdmin.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9hZERhc2hTdGF0ZVxfTmV3QWRtaW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/LoadDashState/_PendingAdmin.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/LoadDashState/_PendingAdmin.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9hZERhc2hTdGF0ZVxfUGVuZGluZ0FkbWluLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/LoadDashState/_ProviderTable.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/LoadDashState/_ProviderTable.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9hZERhc2hTdGF0ZVxfUHJvdmlkZXJUYWJsZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/LoadDashState/_ToCloseAdmin.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/LoadDashState/_ToCloseAdmin.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9hZERhc2hTdGF0ZVxfVG9DbG9zZUFkbWluLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/LoadDashState/_UnpaidAdmin.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/LoadDashState/_UnpaidAdmin.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9hZERhc2hTdGF0ZVxfVW5wYWlkQWRtaW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/Login/AccessDenied.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/Login/AccessDenied.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cQWNjZXNzRGVuaWVkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/Login/forgot_password.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/Login/forgot_password.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cZm9yZ290X3Bhc3N3b3JkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/Login/Index.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/Login/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/Login/login.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/Login/login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cbG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/Login/ResetPassword.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/Login/ResetPassword.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cUmVzZXRQYXNzd29yZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/Patient/CreateUser.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/Patient/CreateUser.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF0aWVudFxDcmVhdGVVc2VyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/Patient/patient_dashboard.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/Patient/patient_dashboard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF0aWVudFxwYXRpZW50X2Rhc2hib2FyZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/Patient/patient_documents.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/Patient/patient_documents.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF0aWVudFxwYXRpZW50X2RvY3VtZW50cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/Patient/patient_login.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF0aWVudFxwYXRpZW50X2xvZ2luLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/Patient/request.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/Patient/request.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF0aWVudFxyZXF1ZXN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/Patient/request_me.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF0aWVudFxyZXF1ZXN0X21lLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/Patient/request_someone.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF0aWVudFxyZXF1ZXN0X3NvbWVvbmUuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/Patient/ResetPassword.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/Patient/ResetPassword.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF0aWVudFxSZXNldFBhc3N3b3JkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/Patient/send_request.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/Patient/send_request.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF0aWVudFxzZW5kX3JlcXVlc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/Patient/_BusinessRequest.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/Patient/_BusinessRequest.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF0aWVudFxfQnVzaW5lc3NSZXF1ZXN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/Patient/_ConciergeRequest.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/Patient/_ConciergeRequest.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF0aWVudFxfQ29uY2llcmdlUmVxdWVzdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/Patient/_CreateRequest.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/Patient/_CreateRequest.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF0aWVudFxfQ3JlYXRlUmVxdWVzdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/Patient/_FriendRequest.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/Patient/_FriendRequest.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF0aWVudFxfRnJpZW5kUmVxdWVzdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/Patient/_Patientdashboard.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/Patient/_Patientdashboard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF0aWVudFxfUGF0aWVudGRhc2hib2FyZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/Patient/_PatientDocument.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/Patient/_PatientDocument.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF0aWVudFxfUGF0aWVudERvY3VtZW50LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/Patient/_PatientProfile.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/Patient/_PatientProfile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF0aWVudFxfUGF0aWVudFByb2ZpbGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/Patient/_PatientRequest.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/Patient/_PatientRequest.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF0aWVudFxfUGF0aWVudFJlcXVlc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/Patient/_RequestMe.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/Patient/_RequestMe.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF0aWVudFxfUmVxdWVzdE1lLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/Patient/_RequestSomeone.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/Patient/_RequestSomeone.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF0aWVudFxfUmVxdWVzdFNvbWVvbmUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/ProviderDashboard/dashboard.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/ProviderDashboard/dashboard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvdmlkZXJEYXNoYm9hcmRcZGFzaGJvYXJkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/ProviderDashboard/_Dashboard.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/ProviderDashboard/_Dashboard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvdmlkZXJEYXNoYm9hcmRcX0Rhc2hib2FyZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/Shared/Error.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/Shared/_AdminHeader.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/Shared/_AdminHeader.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9BZG1pbkhlYWRlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/Shared/_form.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/Shared/_form.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9mb3JtLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/Shared/_header.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/Shared/_header.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9oZWFkZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/Shared/_Notification.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/Shared/_Notification.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Ob3RpZmljYXRpb24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/Shared/_PatientLayout.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/Shared/_PatientLayout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9QYXRpZW50TGF5b3V0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/Shared/_RHeader.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/Shared/_RHeader.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9SSGVhZGVyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/_ViewImports.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/_ViewStart.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Asus/Desktop/hellodoc/hellodoc/Views/Shared/_Layout.cshtml]
+[C:/Users/pci235/source/repos/hellodoc/hellodoc/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-zncgr0nphp

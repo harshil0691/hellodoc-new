@@ -102,7 +102,7 @@ public class RequestAll : IRequests
             Email = requestForm.PatientEmail,
             Phonenumber = requestForm.Phonenumber,
             Createddate = DateTime.Now,
-            Requesttypeid = 1,
+            Requesttypeid = 2,
             Physicianid = (requestForm.RequestCreatedBy == "provider")? requestForm.PhysicianId:null,
             Confirmationnumber = _context.Regions.FirstOrDefault(r => r.Regionid== requestForm.State).Name.Substring(0, 2) + DateTime.Now.ToString().Substring(0, 4)
                                       + requestForm.Lastname.Substring(0, 2) + requestForm.Firstname.Substring(0, 2) + _context.Requests.Where(r => r.Createddate == DateTime.Now).Count().ToString().ToUpper(),
@@ -125,6 +125,7 @@ public class RequestAll : IRequests
             Intdate = requestForm.DOB.Day,
             Intyear = requestForm.DOB.Year,
             Request = request,
+            Regionid = requestForm.State,
         };
 
         _context.Requests.Add(request);
@@ -179,6 +180,7 @@ public class RequestAll : IRequests
             State = requestForm.State.ToString(),
             Zipcode = requestForm.Zipcode,
             Notes = requestForm.Symptoms,
+            Regionid = requestForm.State,
 
             Request = request,
         };
@@ -405,6 +407,7 @@ public class RequestAll : IRequests
             Email = userexist.Email,
             Phonenumber = userexist.Mobile,
             Relationname = requestForm.F_RelationType,
+            Requesttypeid = 3,
             Createddate = DateTime.Now,
             Confirmationnumber = _context.Regions.FirstOrDefault(r => r.Regionid == requestForm.State).Name.Substring(0, 2) + DateTime.Now.ToString().Substring(0, 4)
                                       + requestForm.Lastname.Substring(0, 2) + requestForm.Firstname.Substring(0, 2) + _context.Requests.Where(r => r.Createddate == DateTime.Now).Count().ToString(),

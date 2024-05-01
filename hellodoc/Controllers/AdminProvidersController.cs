@@ -52,6 +52,7 @@ namespace hellodoc.Controllers
                 case "provider":
                     return PartialView("_Providers", _adminProviders.ProvidersTable(partialView.pageNumber,partialView.regionid));
                 case "scheduling":
+                    _authManger.authaction(HttpContext, "scheduling");
                     DashboardListsModal listsModal = new DashboardListsModal();
                     listsModal.regions = _adminDashRepository.GetRegions("",0);
                     listsModal.role = HttpContext.Session.GetString("loginType") ?? "admin";

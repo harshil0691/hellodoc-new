@@ -40,7 +40,7 @@ namespace hellodoc.Controllers
             else
             {
                 TempData["AggrementApproved"] = "Your aggrement already approved";
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("login", "Login",new {loginType  = "user"});
             }
             
         }
@@ -49,7 +49,7 @@ namespace hellodoc.Controllers
             string ip = HttpContext.Connection.RemoteIpAddress.ToString();
 
             patientDashboard.AgreeAgreement(reqid,ip);
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("login", "Login", new { loginType = "user" });
         }
 
         [HttpPost]
@@ -58,7 +58,7 @@ namespace hellodoc.Controllers
             string ip = HttpContext.Connection.RemoteIpAddress.ToString();
             sendAgreement.reqid = reqid;
             patientDashboard.CancelAgreement(sendAgreement,ip);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("login", "Login", new { loginType = "user" });
         }
     }
 }
