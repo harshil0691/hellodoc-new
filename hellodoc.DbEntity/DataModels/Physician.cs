@@ -135,6 +135,9 @@ public partial class Physician
     public virtual ICollection<EmailLog> EmailLogs { get; } = new List<EmailLog>();
 
     [InverseProperty("Physician")]
+    public virtual ICollection<Invoicing> Invoicings { get; } = new List<Invoicing>();
+
+    [InverseProperty("Physician")]
     public virtual ICollection<NotificationMessage> NotificationMessages { get; } = new List<NotificationMessage>();
 
     [InverseProperty("Physician")]

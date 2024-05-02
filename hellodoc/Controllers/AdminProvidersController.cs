@@ -14,6 +14,8 @@ using hellodoc.DbEntity.ViewModels.DashboardLists;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
+using hellodoc.DbEntity.DataModels;
+using Org.BouncyCastle.Tsp;
 
 namespace hellodoc.Controllers
 {
@@ -59,7 +61,32 @@ namespace hellodoc.Controllers
                     listsModal.physicianId = physicianid??0;
                     return PartialView("_Scheduling",listsModal);
                 case "invoicing":
-                    return PartialView("_Invoicing");
+
+                    InvoicingModal invoicing = new InvoicingModal();
+                    invoicing.currentMonth = partialView.currentMonth;
+                    invoicing.currentYear = partialView.currentYear;
+                    invoicing.timeSlot = partialView.timeSlot;
+                    invoicing.numberOfDays = partialView.numberOfDays;
+                    invoicing.physicians = _adminDashRepository.GetPhysicianList();
+
+                    return PartialView("_Invoicing",invoicing);
+
+                case "finalizetimesheet":
+
+                    partialView.accoutOpen = HttpContext.Session.GetString("loginType")??"user";
+                    if (partialView.accoutOpen == "provider")
+                    {
+                        partialView.physicianid = HttpContext.Session.GetInt32("physiciandahid")??0;
+                    }
+                    var timelist =  _adminProviders.GetTimesheets(partialView);
+
+                    ViewBag.month = partialView.currentMonth;
+                    ViewBag.year = partialView.currentYear;
+                    ViewBag.timeslot = partialView.timeSlot;
+                    ViewBag.physicianid = partialView.physicianid;
+
+                    return PartialView("_FinalizeTimesheet",timelist);
+
                 case "provideroncall":
                     var modal = _adminProviders.ProvidersOnCallList(partialView.regionid, date);
                     return PartialView("_ProvidersOnCall", modal);
@@ -75,6 +102,17 @@ namespace hellodoc.Controllers
                     return PartialView("_default");
             }
         }
+
+        [HttpPost]
+        public IActionResult SaveTimesheet(List<Timesheet> timesheets,int physicianid, int month, int year, int slot)
+        {
+            var aspid = HttpContext.Session.GetInt32("Aspid");
+            _adminProviders.SaveTimesheet(timesheets,aspid??1,physicianid,month,year,slot);
+
+            return RedirectToAction("admin_dash","AdminDash");
+        }
+
+
         [HttpPost]
         public IActionResult CreateProvider(ProviderProfileModal providerProfile)
         {

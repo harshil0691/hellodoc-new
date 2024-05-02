@@ -23,6 +23,7 @@ using Twilio.TwiML;
 using static System.Net.Mime.MediaTypeNames;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Drawing;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 
 namespace hellodoc.Repositories.Repository
@@ -834,6 +835,112 @@ namespace hellodoc.Repositories.Repository
             }
 
             _context.SaveChanges();
+        }
+
+        public List<Timesheet> GetTimesheets(PartialViewModal partialView)
+        {
+            var date = new DateOnly(partialView.currentYear, partialView.currentMonth, 1);
+            var fromdate = date;
+            var todate = date;
+            
+            if (partialView.timeSlot == 1)
+            {
+                fromdate = date;
+                todate = date.AddDays(14);
+            }
+            else if (partialView.timeSlot == 2)
+            {
+                fromdate = date.AddDays(15);
+                todate = date.AddMonths(1).AddDays(-1);
+            }
+
+
+            var invoice = _context.Invoicings.FirstOrDefault(
+                i => i.Physicianid == partialView.physicianid &&
+                i.Monthhalf == partialView.timeSlot && 
+                i.Monthnumber == partialView.currentMonth &&
+                i.Year == partialView.currentYear
+                );
+            
+            if (invoice == null)
+            {
+                List<Timesheet> timesheets = new List<Timesheet>();
+
+
+                for (DateOnly i = fromdate; i <= todate; i = i.AddDays(1))
+                {
+                    Timesheet timesheet = new Timesheet();
+                    timesheet.Date = i;
+                    timesheet.Oncallhours = 0;
+                    timesheets.Add(timesheet);
+
+                }
+
+                return timesheets.ToList();
+            }
+
+            return _context.Timesheets.ToList();
+        }
+
+        public void SaveTimesheet(List<Timesheet> timesheets, int aspid, int physicianid, int month, int year, int timeSlot)
+        {
+            var date = new DateOnly(year,month, 1);
+            var fromdate = date;
+            var todate = date;
+
+            if (timeSlot == 1)
+            {
+                fromdate = date;
+                todate = date.AddDays(14);
+            }
+            else if (timeSlot == 2)
+            {
+                fromdate = date.AddDays(15);
+                todate = date.AddMonths(1).AddDays(-1);
+            }
+
+            var invoice = _context.Invoicings.FirstOrDefault(
+                i => i.Physicianid == physicianid &&
+                i.Monthhalf == timeSlot &&
+                i.Monthnumber == month &&
+                i.Year == year
+                );
+
+            if (invoice == null)
+            {
+                Invoicing invoicing = new Invoicing();
+                invoicing.Physicianid = physicianid;
+                invoicing.Createddate = new DateOnly(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+                invoicing.Createdby = aspid;
+                invoicing.Fromdate = fromdate;
+                invoicing.Todate = todate;
+                invoicing.Monthnumber = month;
+                invoicing.Year = year;
+
+                _context.Invoicings.Add(invoicing);
+                _context.SaveChanges();
+
+                foreach(var sheet in timesheets)
+                {
+                    sheet.Invoicing = invoicing;
+                    _context.Timesheets.Add(sheet);
+                    _context.SaveChanges();
+                }
+
+            }
+            else
+            {
+                foreach (var sheet in timesheets)
+                {
+                    var timesheet = _context.Timesheets.FirstOrDefault(t => t.Date == sheet.Date && sheet.Invoicingid == invoice.Invoicingid);
+                    timesheet.Totalhours = sheet.Totalhours;
+                    timesheet.Housecalls = sheet.Housecalls;
+                    timesheet.Phoneconsults = sheet.Phoneconsults;
+                    timesheet.Isweekendorholiday = sheet.Isweekendorholiday;
+
+                    _context.SaveChanges();
+                }
+            }
         }
     }
 }

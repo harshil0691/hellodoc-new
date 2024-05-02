@@ -31,5 +31,8 @@ namespace hellodoc.Repositories.Repository.Interface
         void SelectedShiftOperation(List<int> shiftdetailid, string actionType);
         ProviderProfileModal GetForCreateProvider();
         void CreateProvider(ProviderProfileModal providerProfile);
+        List<Timesheet> GetTimesheets(PartialViewModal partialView);
+
+        void SaveTimesheet(List<Timesheet> timesheets,int aspid, int physicianid, int month , int year , int slot);
     }
 }

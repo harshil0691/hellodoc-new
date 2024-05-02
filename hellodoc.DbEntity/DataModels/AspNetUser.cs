@@ -14,7 +14,7 @@ public partial class AspNetUser
 
     [Column("username")]
     [StringLength(256)]
-    public string Username { get; set; } = null!;
+    public string? Username { get; set; }
 
     [Column("passwordhash", TypeName = "character varying")]
     public string? Passwordhash { get; set; }

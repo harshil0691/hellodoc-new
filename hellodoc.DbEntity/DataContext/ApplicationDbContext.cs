@@ -42,6 +42,8 @@ public partial class ApplicationDbContext : DbContext
 
     public virtual DbSet<HealthProfessionalType> HealthProfessionalTypes { get; set; }
 
+    public virtual DbSet<Invoicing> Invoicings { get; set; }
+
     public virtual DbSet<Login> Logins { get; set; }
 
     public virtual DbSet<MedicalHistory> MedicalHistories { get; set; }
@@ -94,6 +96,8 @@ public partial class ApplicationDbContext : DbContext
 
     public virtual DbSet<Smslog> Smslogs { get; set; }
 
+    public virtual DbSet<Timesheet> Timesheets { get; set; }
+
     public virtual DbSet<User> Users { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -105,8 +109,6 @@ public partial class ApplicationDbContext : DbContext
         modelBuilder.Entity<Admin>(entity =>
         {
             entity.HasKey(e => e.Adminid).HasName("Admin_pkey");
-
-            entity.Property(e => e.Adminid).UseIdentityAlwaysColumn();
 
             entity.HasOne(d => d.Aspnetuser).WithMany(p => p.Admins)
                 .OnDelete(DeleteBehavior.ClientSetNull)
@@ -142,15 +144,13 @@ public partial class ApplicationDbContext : DbContext
         modelBuilder.Entity<AspNetUser>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("AspNetUsers_pkey");
-
-            entity.Property(e => e.Id).UseIdentityAlwaysColumn();
         });
 
         modelBuilder.Entity<AspNetUserRole>(entity =>
         {
             entity.HasKey(e => e.Userid).HasName("AspNetUserRoles_pkey");
 
-            entity.Property(e => e.Userid).ValueGeneratedNever();
+            entity.Property(e => e.Userid).ValueGeneratedOnAdd();
 
             entity.HasOne(d => d.Role).WithMany(p => p.AspNetUserRoles)
                 .OnDelete(DeleteBehavior.ClientSetNull)
@@ -231,6 +231,15 @@ public partial class ApplicationDbContext : DbContext
             entity.HasKey(e => e.Healthprofessionalid).HasName("HealthProfessionalType_pkey");
 
             entity.Property(e => e.Healthprofessionalid).ValueGeneratedNever();
+        });
+
+        modelBuilder.Entity<Invoicing>(entity =>
+        {
+            entity.HasKey(e => e.Invoicingid).HasName("Invoicingtable_pkey");
+
+            entity.Property(e => e.Invoicingid).ValueGeneratedNever();
+
+            entity.HasOne(d => d.Physician).WithMany(p => p.Invoicings).HasConstraintName("fk_invoicing_physician");
         });
 
         modelBuilder.Entity<Login>(entity =>
@@ -436,8 +445,6 @@ public partial class ApplicationDbContext : DbContext
         {
             entity.HasKey(e => e.Roleid).HasName("Role_pkey");
 
-            entity.Property(e => e.Roleid).UseIdentityAlwaysColumn();
-
             entity.HasOne(d => d.AccounttypeNavigation).WithMany(p => p.Roles)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fk_role_aspnetrole");
@@ -446,8 +453,6 @@ public partial class ApplicationDbContext : DbContext
         modelBuilder.Entity<RoleMenu>(entity =>
         {
             entity.HasKey(e => e.Rolemenuid).HasName("RoleMenu_pkey");
-
-            entity.Property(e => e.Rolemenuid).UseIdentityAlwaysColumn();
 
             entity.HasOne(d => d.Menu).WithMany(p => p.RoleMenus)
                 .OnDelete(DeleteBehavior.ClientSetNull)
@@ -507,6 +512,15 @@ public partial class ApplicationDbContext : DbContext
             entity.HasOne(d => d.Request).WithMany(p => p.Smslogs).HasConstraintName("fk_smslog_request");
 
             entity.HasOne(d => d.Role).WithMany(p => p.Smslogs).HasConstraintName("fk_smslog_role");
+        });
+
+        modelBuilder.Entity<Timesheet>(entity =>
+        {
+            entity.HasKey(e => e.Timesheetid).HasName("invoicing_pkey");
+
+            entity.Property(e => e.Timesheetid).ValueGeneratedNever();
+
+            entity.HasOne(d => d.Invoicing).WithMany(p => p.Timesheets).HasConstraintName("fk_timesheet_invoicing");
         });
 
         modelBuilder.Entity<User>(entity =>

@@ -38,6 +38,14 @@ namespace hellodoc.DbEntity.ViewModels
         public string? transferNotes { get; set; }
         public string? physicianNotes { get; set; }
         public string? back { get; set; }
+        public int Aspid { get; set; }
+
+        public int currentMonth { get; set; }
+        public int currentYear { get; set; }
+        public int timeSlot { get; set; }
+        public int numberOfDays { get; set; }
+
+
         AdminRecordsListModal AdminRecords;
     }
 }

@@ -1,0 +1,74 @@
+﻿@model List<hellodoc.DbEntity.DataModels.Timesheet>
+
+<div class="login" id="main" style="margin-bottom:100px">
+
+    <div class="row bgcolor1">
+
+        <div class=" col-12 col-sm-12 col-md-10 col-lg-8 mx-auto mt-4 mb-2">
+
+            <div class="d-flex justify-content-between">
+                <h4> Finalize TimeSheet </h4>
+                <button class="btn btn-outline-info bg-transparent text-info" onclick="GetProvidersView({actionType : 'invoicing' })"><i class="bi bi-chevron-left"></i>Back</button>
+            </div>
+        </div>
+        <div class="d-grid gap-2 col-12 col-sm-12 col-md-10 col-lg-8 mx-auto d-flex flex-column rounded-3 bgcolor px-4 mt-4">
+            <form asp-action="SaveTimesheet" asp-route-physicianid="@ViewBag.physicianid" asp-route-month="@ViewBag.month" asp-route-year="@ViewBag.year" asp-route-slot="@ViewBag.timeslot">
+                <div style="margin-bottom:50px;" class="table-responsive d-none d-sm-none d-md-block d-lg-block d-xl-block mt-4" id="searchrecordstable">
+                    <table class="w-100">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>On Call Hours</th>
+                                <th>Total Hours</th>
+                                <th>Weekend/ Holiday</th>
+                                <th>Number Of HouseCalls</th>
+                                <th>Number Of Phone Consults</th>
+                            </tr>
+                        </thead>
+                        <tbody style="font-size:larger;font-weight:400;">
+                            @{
+                                var i = 0;
+                                foreach (var a in Model)
+                                {
+
+                                    <tr class="m-2">
+                                        <td class="text-black">@Model[i].Date </td>
+                                        <td class="text-black">@Model[i].Oncallhours</td>
+                                        <td class="text-black"><input type="text" class="form-control h-100" asp-for="@Model[i].Totalhours" /></td>
+                                        <td class="text-black"><input type="checkbox" class="custom-check d-check providerscheck bg-info" value="@Model[i].Isweekendorholiday" /></td>
+                                        <td class="text-black"><input type="text" class="form-control h-100" asp-for="@Model[i].Totalhours" /></td>
+                                        <td class="text-black"><input type="text" class="form-control h-100" asp-for="@Model[i].Totalhours" /></td>
+                                    </tr>
+                                    i++;
+                                }
+                              
+                            }
+
+                        </tbody>
+                    </table>
+
+                </div>
+
+                <div class="d-flex justify-content-end">
+                    <button type="submit" class="btn btn-info p-1">submit</button>
+                </div>
+
+            </form>
+        </div>
+
+
+    </div>
+</div>
+
+
+<script>
+
+</script>
+
+
+
+@section Scripts{
+    @{
+        <Partial name="_ValidationScriptsPartial" />
+    }
+ }
