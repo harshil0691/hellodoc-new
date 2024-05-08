@@ -569,6 +569,26 @@
       "PackagePath": "staticwebassets\\images\\frontpage image.png"
     },
     {
+      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\invoicing\\2\\Fig22 Regions menu.jpg",
+      "PackagePath": "staticwebassets\\invoicing\\2\\Fig22 Regions menu.jpg"
+    },
+    {
+      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\invoicing\\2\\Fig24. Provider Menu.jpg",
+      "PackagePath": "staticwebassets\\invoicing\\2\\Fig24. Provider Menu.jpg"
+    },
+    {
+      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\invoicing\\2\\Fig25. Contact your Provider.jpg",
+      "PackagePath": "staticwebassets\\invoicing\\2\\Fig25. Contact your Provider.jpg"
+    },
+    {
+      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\invoicing\\2\\Fig26. Edit Physician Account.png",
+      "PackagePath": "staticwebassets\\invoicing\\2\\Fig26. Edit Physician Account.png"
+    },
+    {
+      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\invoicing\\3\\Fig24. Provider Menu.jpg",
+      "PackagePath": "staticwebassets\\invoicing\\3\\Fig24. Provider Menu.jpg"
+    },
+    {
       "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\js\\AdminAccess.js",
       "PackagePath": "staticwebassets\\js\\AdminAccess.js"
     },

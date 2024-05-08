@@ -5,8 +5,18 @@ $(document).ready(function () {
         loadPartialDashView(targetTab);
     });
     if (localStorage.getItem("DashTab") != null) {
-        loadPartialDashView(localStorage.getItem("DashTab"), true);
-    } else {
+        var tab = localStorage.getItem("DashTab");
+        if (tab == "invoicing" || tab =="finalizetimesheet") {
+            GetProvidersView({ actionType: 'invoicing' })
+        }
+        else if (tab == "scheduling") {
+            GetProvidersView({ actionType: 'scheduling' })
+        }
+        else {
+            loadPartialDashView(localStorage.getItem("DashTab"), true);
+        }
+    }
+    else {
         loadPartialDashView("dashboard");
     }
     localStorage.setItem("loginAccount", "admin");

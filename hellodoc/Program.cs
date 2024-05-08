@@ -65,3 +65,6 @@ app.MapControllerRoute(
     pattern: "{controller=AdminDash}/{action=admin_dash}/{id?}");
 
 app.Run();
+
+
+//Scaffold - DbContext "User ID = postgres;Password=123;Server=localhost;Port=5432;Database=hellodoc;Integrated Security=true;Pooling=true;" Npgsql.EntityFrameworkCore.PostgreSQL - OutputDir "DataModels" –context "ApplicationDbContext" –contextDir "DataContext" -f -DataAnnotations;

@@ -876,10 +876,22 @@ namespace hellodoc.Repositories.Repository
 
                 }
 
-                return timesheets.ToList();
+                return timesheets.OrderBy(t => t.Date).ToList();
             }
 
-            return _context.Timesheets.ToList();
+            return _context.Timesheets.Where(t => t.Invoicingid == invoice.Invoicingid).OrderBy(t => t.Date).ToList();
+        }
+
+        public List<Invoicing> GetInvoicings(PartialViewModal partialView)
+        {
+            var invoice = _context.Invoicings.Where(
+                i => (partialView.physicianid != 0 ? i.Physicianid == partialView.physicianid : true)  &&
+                (partialView.timeSlot != 0 ? i.Monthhalf == partialView.timeSlot : true) &&
+                (partialView.currentMonth != 0 ? i.Monthnumber == partialView.currentMonth : true) &&
+                (partialView.currentYear != 0 ? i.Year == partialView.currentYear : true)
+                );
+
+            return invoice.ToList();
         }
 
         public void SaveTimesheet(List<Timesheet> timesheets, int aspid, int physicianid, int month, int year, int timeSlot)
@@ -915,6 +927,7 @@ namespace hellodoc.Repositories.Repository
                 invoicing.Fromdate = fromdate;
                 invoicing.Todate = todate;
                 invoicing.Monthnumber = month;
+                invoicing.Monthhalf = timeSlot;
                 invoicing.Year = year;
 
                 _context.Invoicings.Add(invoicing);
@@ -936,11 +949,75 @@ namespace hellodoc.Repositories.Repository
                     timesheet.Totalhours = sheet.Totalhours;
                     timesheet.Housecalls = sheet.Housecalls;
                     timesheet.Phoneconsults = sheet.Phoneconsults;
-                    timesheet.Isweekendorholiday = sheet.Isweekendorholiday;
+                    timesheet.Weekend = sheet.Weekend;
 
                     _context.SaveChanges();
                 }
             }
+        }
+
+        public void SaveReciept(RecieptModal reciept, string saveType)
+        {
+            string webRootPath = HostingEnviroment.WebRootPath;
+            var folderpath = Path.Combine("invoicing", reciept.Invoicingid.ToString());
+            string directoryPath = Path.Combine(webRootPath, folderpath);
+            if (!Directory.Exists(directoryPath))
+            {
+                Directory.CreateDirectory(directoryPath);
+            }
+            if(reciept.Billdoc != null)
+            {
+                var filepath = Path.Combine(Path.Combine(directoryPath, reciept.Billdoc.FileName));
+                reciept.Billdoc.CopyTo(new FileStream(filepath, FileMode.Create));
+            }
+            
+
+            var timesheet = _context.Timesheets.FirstOrDefault(t => t.Timesheetid == reciept.Timesheetid);
+            timesheet.Item = reciept.Item;
+            timesheet.Amount = reciept.Amount;
+            if(reciept.Billdoc != null) {
+                timesheet.Billdoc = reciept.Billdoc.FileName;
+            }
+            
+            _context.SaveChanges();
+        }
+
+        public void DeleteReciept(int timesheetid,int aspid)
+        {
+            var timesheet = _context.Timesheets.FirstOrDefault(t => t.Timesheetid == timesheetid);
+            if (timesheet != null)
+            {
+                var invoicing = _context.Invoicings.FirstOrDefault(i => i.Invoicingid == timesheet.Invoicingid);
+                invoicing.Modifieddate = new DateOnly(DateTime.Now.Year,DateTime.Now.Month,DateTime.Now.Day);
+                invoicing.Modifiedby = aspid;
+
+                timesheet.Amount = 0;
+                timesheet.Billdoc = null;
+                timesheet.Item = null;
+            }
+            _context.SaveChanges();
+        }
+
+        public void finalizeTimeSheet(int invoicingid, int aspid)
+        {
+            var invoice = _context.Invoicings.FirstOrDefault(i => i.Invoicingid == invoicingid);
+            if (invoice != null)
+            {
+                invoice.Finalizeddate = new DateOnly(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+                invoice.Finalizedby = aspid;
+            }
+            _context.SaveChanges();
+        }
+
+        public void approveTimesheet(int invoicingid, int aspid)
+        {
+            var invoice = _context.Invoicings.FirstOrDefault(i => i.Invoicingid == invoicingid);
+            if (invoice != null)
+            {
+                invoice.Aproveddate = new DateOnly(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+                invoice.Approvedby = aspid;
+            }
+            _context.SaveChanges();
         }
     }
 }

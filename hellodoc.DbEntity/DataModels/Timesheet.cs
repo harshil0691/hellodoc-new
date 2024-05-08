@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -23,8 +22,8 @@ public partial class Timesheet
     [Column("totalhours")]
     public int? Totalhours { get; set; }
 
-    [Column(TypeName = "bit(1)")]
-    public BitArray? Isweekendorholiday { get; set; }
+    [Column("weekend")]
+    public bool Weekend { get; set; }
 
     [Column("housecalls")]
     public int? Housecalls { get; set; }

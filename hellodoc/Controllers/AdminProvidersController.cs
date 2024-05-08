@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using hellodoc.DbEntity.DataModels;
 using Org.BouncyCastle.Tsp;
+using Microsoft.IdentityModel.Tokens;
 
 namespace hellodoc.Controllers
 {
@@ -67,7 +68,14 @@ namespace hellodoc.Controllers
                     invoicing.currentYear = partialView.currentYear;
                     invoicing.timeSlot = partialView.timeSlot;
                     invoicing.numberOfDays = partialView.numberOfDays;
+                    invoicing.loginType = HttpContext.Session.GetString("loginType")??"admin";
                     invoicing.physicians = _adminDashRepository.GetPhysicianList();
+                    invoicing.selectedPhysician = partialView.physicianid;
+
+                    if(invoicing.loginType == "admin")
+                    {
+                        invoicing.invoicings = _adminProviders.GetInvoicings(partialView);
+                    }
 
                     return PartialView("_Invoicing",invoicing);
 
@@ -112,6 +120,29 @@ namespace hellodoc.Controllers
             return RedirectToAction("admin_dash","AdminDash");
         }
 
+        [HttpPost]
+        public void SaveReciept(RecieptModal reciept)
+        {
+            _adminProviders.SaveReciept(reciept,"save");
+        }
+
+        [HttpPost]
+        public void DeleteReciept(int timesheetid)
+        {
+            _adminProviders.DeleteReciept(timesheetid,HttpContext.Session.GetInt32("Aspid")??1);
+        }
+
+        public IActionResult finalizeTimeSheet(int invoicingId)
+        {
+            _adminProviders.finalizeTimeSheet(invoicingId, HttpContext.Session.GetInt32("Aspid") ?? 1);
+            return RedirectToAction("admin_dash","AdminDash");
+        }
+
+        public IActionResult approveTimeSheet(int invoicingId)
+        {
+            _adminProviders.approveTimesheet(invoicingId, HttpContext.Session.GetInt32("Aspid") ?? 1);
+            return RedirectToAction("admin_dash", "AdminDash");
+        }
 
         [HttpPost]
         public IActionResult CreateProvider(ProviderProfileModal providerProfile)

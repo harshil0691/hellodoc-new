@@ -237,8 +237,6 @@ public partial class ApplicationDbContext : DbContext
         {
             entity.HasKey(e => e.Invoicingid).HasName("Invoicingtable_pkey");
 
-            entity.Property(e => e.Invoicingid).ValueGeneratedNever();
-
             entity.HasOne(d => d.Physician).WithMany(p => p.Invoicings).HasConstraintName("fk_invoicing_physician");
         });
 
@@ -517,8 +515,6 @@ public partial class ApplicationDbContext : DbContext
         modelBuilder.Entity<Timesheet>(entity =>
         {
             entity.HasKey(e => e.Timesheetid).HasName("invoicing_pkey");
-
-            entity.Property(e => e.Timesheetid).ValueGeneratedNever();
 
             entity.HasOne(d => d.Invoicing).WithMany(p => p.Timesheets).HasConstraintName("fk_timesheet_invoicing");
         });

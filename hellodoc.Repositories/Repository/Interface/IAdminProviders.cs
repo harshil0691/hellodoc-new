@@ -2,6 +2,7 @@
 using hellodoc.DbEntity.ViewModels;
 using hellodoc.DbEntity.ViewModels.DashboardLists;
 using hellodoc.DbEntity.ViewModels.Shifts;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +33,12 @@ namespace hellodoc.Repositories.Repository.Interface
         ProviderProfileModal GetForCreateProvider();
         void CreateProvider(ProviderProfileModal providerProfile);
         List<Timesheet> GetTimesheets(PartialViewModal partialView);
+        List<Invoicing> GetInvoicings(PartialViewModal partialView);
 
         void SaveTimesheet(List<Timesheet> timesheets,int aspid, int physicianid, int month , int year , int slot);
+        void SaveReciept(RecieptModal reciept,string saveType);
+        void DeleteReciept(int timesheetid,int aspid);
+        void finalizeTimeSheet(int invoicingid,int aspid);
+        void approveTimesheet(int invoicingid, int aspid);
     }
 }

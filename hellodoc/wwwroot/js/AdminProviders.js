@@ -45,7 +45,7 @@ function GetProvidersView(dataObject) {
             element.forEach(a => {
                 a.classList.remove('active');
             });
-            localStorage.setItem("DashTab", 'provider');
+            localStorage.setItem("DashTab", dataObject.actionType);
             var element = document.querySelectorAll('[href="#provider"]');
             element.forEach(a => {
                 a.classList.add('active');
@@ -276,37 +276,6 @@ function rdShift(actionType) {
             console.error('Error loading partial view.');
         }
     });
-
-}
-
-function checkShiftAvailability1() {
-
-    var physician = $('#Physicianselect').val();
-    var starttime = $('#stime').val();
-    var endtime = $('#etime').val();
-    var shiftdate = $('#dateInput').val();
-    var submit = document.getElementById('shiftsave');
-
-
-
-    $.ajax({
-        url: '/AdminProviders/checkShiftAvailability',
-        type: 'POST',
-        data: { physicianid: physiciandid, starttime: starttime, endtime: endtime, shiftdate: shiftdate },
-        success: function (data) {
-            return data;
-            //if (data == true) {
-            //    submit.disabled = true;
-            //    $('#shiftresult').text('you already have a shift in this interval');
-            //} else {
-            //    submit.disabled = false;
-            //    $('#shiftresult').text('');
-            //}
-        },
-        error: function (e) {
-            console.log(e);
-        }
-    })
 
 }
 
