@@ -150,6 +150,7 @@
 
 
                 <div class="d-flex justify-content-end">
+                    <button type="button" class="btn btn-info text-white px-2 mx-2" onclick="loadProviderView('Payrate','@Model.physicianId')">Enter Payrate</button>
                     <button type="button" class="btn btn-info text-white px-2" onclick="pedit('pedit2','pb1','pb2','pee2')" id="pee2">Edit</button>
                     <button type="button" class="btn btn-info mx-3 p-2 px-3 mb-2" id="pb1" onclick="UpdateProvider('physician','#physician','@Model.physicianId','pedit2','pb1','pb2','pee2')" style="display:none;">Save</button>
                     <button type="reset" class="btn btn-outline-info mx-3 p-2 px-3 mb-2" id="pb2" style="display:none;" onclick="pcancel('pedit2','pb1','pb2','pee2')">Cancel</button>

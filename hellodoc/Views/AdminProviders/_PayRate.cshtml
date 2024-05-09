@@ -1,0 +1,189 @@
+﻿@model hellodoc.DbEntity.DataModels.Payrate
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+<div class="login" id="main" style="margin-bottom:100px">
+
+    <div class="row bgcolor1">
+
+        <div class=" col-12 col-sm-12 col-md-10 col-lg-8 mx-auto mt-4 mb-2">
+
+            <div class="d-flex justify-content-between">
+                <h5> Payrate</h5>
+                <button class="btn btn-outline-info bg-transparent text-info" onclick="loadProviderView('edit_physician','@Model.Physicianid')"><i class="bi bi-chevron-left"></i>Back</button>
+            </div>
+        </div>
+        <div class="d-grid gap-2 col-12 col-sm-12 col-md-10 col-lg-8 mx-auto d-flex flex-column rounded-3 bgcolor px-4 mt-4">
+
+            <div style="margin-bottom:50px;" class="table-responsive d-none d-sm-none d-md-block d-lg-block d-xl-block mt-4" id="searchrecordstable">
+                <table class="w-100">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Payrate</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody style="font-size:larger;font-weight:400;">
+                        <form method="post">
+                        <tr class="m-2">
+                            <td class="text-black">NightShift_Weekend</td>
+                            <td class="text-black">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="rate_1" asp-for="Nightshiftweekend" placeholder="Payrate" disabled>
+                                    <label for="floatingInput" class="mx-3">Payrate</label>
+                                </div>
+                            </td>
+                            <td>
+                                <button class="btn btn-info text-white m-1" id="edit_1" onclick="editRate(1)">Edit</button>
+                                <button type="submit" class="d-none btn btn-outline-info m-1" id="save_1" onclick="saveRate('@Model.Physicianid','1')">Save</button>
+                                <button type="reset" class="d-none btn btn-outline-info m-1" id="cancel_1">Cancel</button>
+                            </td>
+                        </tr>
+                        </form>
+                        <form method="post">
+                        <tr class="m-2">
+                            <td class="text-black">Shift</td>
+                            <td class="text-black">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="rate_2" asp-for="Shift" placeholder="Payrate" disabled>
+                                    <label for="floatingInput" class="mx-3">Payrate</label>
+                                </div>
+                            </td>
+                            <td>
+                                <button class="btn btn-info text-white m-1" id="edit_2" onclick="editRate(2)">Edit</button>
+                                <button type="submit" class="d-none btn btn-outline-info m-1" id="save_2" onclick="saveRate('@Model.Physicianid','2')">Save</button>
+                                <button type="reset" class="d-none btn btn-outline-info m-1" id="cancel_2">Cancel</button>
+                            </td>
+                        </tr>
+                        </form>
+
+                        <form method="post">
+                        <tr class="m-2">
+                            <td class="text-black">HouseCalls_Night_Weekend</td>
+                            <td class="text-black">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="rate_3" asp-for="Housecallnightweekend" placeholder="Payrate" disabled>
+                                    <label for="floatingInput" class="mx-3">Payrate</label>
+                                </div>
+                            </td>
+                            <td>
+                                <button class="btn btn-info text-white m-1" id="edit_3" onclick="editRate(3)">Edit</button>
+                                <button type="submit" class="d-none btn btn-outline-info m-1" id="save_3" onclick="saveRate('@Model.Physicianid','3')">Save</button>
+                                <button type="reset" class="d-none btn btn-outline-info m-1" id="cancel_3">Cancel</button>
+                            </td>
+                        </tr>
+                        </form>
+
+                         <form method="post">
+                        <tr class="m-2">
+                            <td class="text-black">PhoneConsults</td>
+                            <td class="text-black">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="rate_4" asp-for="Phonecounsults" placeholder="Payrate" disabled>
+                                    <label for="floatingInput" class="mx-3">Payrate</label>
+                                </div>
+                            </td>
+                            <td>
+                                <button class="btn btn-info text-white m-1" id="edit_4" onclick="editRate(4)">Edit</button>
+                                <button type="submit" class="d-none btn btn-outline-info m-1" id="save_4" onclick="saveRate('@Model.Physicianid','4')">Save</button>
+                                <button type="reset" class="d-none btn btn-outline-info m-1" id="cancel_4">Cancel</button>
+                            </td>
+                        </tr>
+                        </form>
+
+                         <form method="post">
+                        <tr class="m-2">
+                            <td class="text-black">PhoneConsults_Nights_Weekend</td>
+                            <td class="text-black">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="rate_5" asp-for="Phonecounsultsnightweekend" placeholder="Payrate" disabled>
+                                    <label for="floatingInput" class="mx-3">Payrate</label>
+                                </div>
+                            </td>
+                            <td>
+                                <button class="btn btn-info text-white m-1" id="edit_5" onclick="editRate(5)">Edit</button>
+                                <button type="submit" class="d-none btn btn-outline-info m-1" id="save_5" onclick="saveRate('@Model.Physicianid','5')">Save</button>
+                                <button type="reset" class="d-none btn btn-outline-info m-1" id="cancel_5">Cancel</button>
+                            </td>
+                        </tr>
+                        </form>
+
+                        <form method="post">
+                        <tr class="m-2">
+                            <td class="text-black">BatchTesting</td>
+                            <td class="text-black">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="rate_6" asp-for="Batchtesting" placeholder="Payrate" disabled>
+                                    <label for="floatingInput" class="mx-3">Payrate</label>
+                                </div>
+                            </td>
+                            <td>
+                                <button class="btn btn-info text-white m-1" id="edit_6" onclick="editRate(6)">Edit</button>
+                                <button type="submit" class="d-none btn btn-outline-info m-1" id="save_6" onclick="saveRate('@Model.Physicianid','6')">Save</button>
+                                <button type="reset" class="d-none btn btn-outline-info m-1" id="cancel_6">Cancel</button>
+                            </td>
+                        </tr>
+                        </form>
+
+                        <form method="post">
+                        <tr class="m-2">
+                            <td class="text-black">HouseCall</td>
+                            <td class="text-black">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="rate_7" asp-for="Housecall" placeholder="Payrate" disabled>
+                                    <label for="floatingInput" class="mx-3">Payrate</label>
+                                </div>
+                            </td>
+                            <td>
+                                <button class="btn btn-info text-white m-1" id="edit_7" onclick="editRate(7)">Edit</button>
+                                <button type="submit" class="d-none btn btn-outline-info m-1" id="save_7" onclick="saveRate('@Model.Physicianid','7')">Save</button>
+                                <button type="reset" class="d-none btn btn-outline-info m-1" id="cancel_7">Cancel</button>
+                            </td>
+                        </tr>
+                        </form>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+
+<script>
+
+    function editRate(field){
+        document.getElementById('rate_'+field).disabled = false;
+        document.getElementById('edit_'+field).classList.add("d-none");
+        document.getElementById('save_'+field).classList.remove("d-none");
+        document.getElementById('cancel_'+field).classList.remove("d-none");
+    }
+
+    function saveRate(physicianid,field){
+        $.ajax({
+            url: '/AdminProviders/SavePayrate',
+            type: 'POST',
+            data: {physicianid:physicianid,amount : $('#rate_'+field).val(), payratetype : field},
+            success: function (data) {
+                document.getElementById('rate_' + field).disabled = true;
+                document.getElementById('edit_' + field).classList.remove("d-none");
+                document.getElementById('save_' + field).classList.add("d-none");
+                document.getElementById('cancel_' + field).classList.add("d-none");
+                toastr.success("saveChanges Successfully");
+            },
+            error: function () {
+                console.error('Error loading partial view.');
+            }
+        });
+
+    }
+
+</script>
+
+@section Scripts{
+    @{
+        <Partial name="_ValidationScriptsPartial" />
+    }
+ }

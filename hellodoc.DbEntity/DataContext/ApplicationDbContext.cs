@@ -56,6 +56,8 @@ public partial class ApplicationDbContext : DbContext
 
     public virtual DbSet<PatientDocument> PatientDocuments { get; set; }
 
+    public virtual DbSet<Payrate> Payrates { get; set; }
+
     public virtual DbSet<Physician> Physicians { get; set; }
 
     public virtual DbSet<PhysicianLocation> PhysicianLocations { get; set; }
@@ -279,6 +281,13 @@ public partial class ApplicationDbContext : DbContext
         modelBuilder.Entity<PatientDocument>(entity =>
         {
             entity.ToView("patient_documents");
+        });
+
+        modelBuilder.Entity<Payrate>(entity =>
+        {
+            entity.HasKey(e => e.Payrateid).HasName("Payrate_pkey");
+
+            entity.HasOne(d => d.Physician).WithMany(p => p.Payrates).HasConstraintName("fk_payrate_physician");
         });
 
         modelBuilder.Entity<Physician>(entity =>

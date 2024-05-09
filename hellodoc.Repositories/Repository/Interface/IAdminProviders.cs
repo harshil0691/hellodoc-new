@@ -15,7 +15,7 @@ namespace hellodoc.Repositories.Repository.Interface
     {
         Physician GetPhysicianAsync(int physicianid);
         DashboardListsModal ProvidersTable(int pageNumber,int regionid);
-        Task StopNotification(List<int> idlist,List<int> totallist);
+        void StopNotification(List<int> idlist,List<int> totallist);
         Task<ProviderProfileModal> ProviderProfileData(int physicianid);
         List<ShiftDetailsmodal> ShiftDetailsmodal(DateTime date,DateTime sunday, DateTime saturday,string type,int physicianid,int regionid, string schedulingFor);
         ShiftDetailsmodal GetShift(int shiftdetailsid);
@@ -34,6 +34,8 @@ namespace hellodoc.Repositories.Repository.Interface
         void CreateProvider(ProviderProfileModal providerProfile);
         List<Timesheet> GetTimesheets(PartialViewModal partialView);
         List<Invoicing> GetInvoicings(PartialViewModal partialView);
+        Payrate GetPayrate(int physicianid);
+        void SavePayrate(int physicianid,int payratetype, int amount,int aspid);
 
         void SaveTimesheet(List<Timesheet> timesheets,int aspid, int physicianid, int month , int year , int slot);
         void SaveReciept(RecieptModal reciept,string saveType);

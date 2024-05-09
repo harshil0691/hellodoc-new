@@ -77,6 +77,12 @@ namespace hellodoc.Controllers
                         invoicing.invoicings = _adminProviders.GetInvoicings(partialView);
                     }
 
+                    if(invoicing.loginType == "provider")
+                    {
+                        invoicing.timesheets = _adminProviders.GetTimesheets(partialView);
+                    }
+
+
                     return PartialView("_Invoicing",invoicing);
 
                 case "finalizetimesheet":
@@ -84,7 +90,7 @@ namespace hellodoc.Controllers
                     partialView.accoutOpen = HttpContext.Session.GetString("loginType")??"user";
                     if (partialView.accoutOpen == "provider")
                     {
-                        partialView.physicianid = HttpContext.Session.GetInt32("physiciandahid")??0;
+                        partialView.physicianid = HttpContext.Session.GetInt32("physiciandashid")??0;
                     }
                     var timelist =  _adminProviders.GetTimesheets(partialView);
 
@@ -173,6 +179,20 @@ namespace hellodoc.Controllers
             ProviderProfileModal providerProfile = _adminProviders.ProviderProfileData(physicianid).Result;
             return PartialView("_ProviderProfile", providerProfile);
         }
+
+        public IActionResult Payrate(int physicianid)
+        {
+            ViewBag.loginType = HttpContext.Session.GetString("loginType");
+            var payrate  = _adminProviders.GetPayrate(physicianid);
+            return PartialView("_PayRate",payrate);
+        }
+
+        [HttpPost]
+        public void SavePayrate(int physicianid,int payratetype,int amount)
+        {
+            _adminProviders.SavePayrate(physicianid,payratetype,amount,HttpContext.Session.GetInt32("Aspid")??1);
+        }
+
 
         public IActionResult delete_physician(int physicianid)
         {

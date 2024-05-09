@@ -17,27 +17,35 @@
 
             <div class="d-sm-flex justify-content-between mt-3">
                 <div class="d-grid m-1">
-                    <div class="col-5">
-                        <select class="form-select h-100" aria-label="Default select example" id="physician" asp-for="selectedPhysician">
-                            <option selected disabled>Select Physician</option>
-                            @{
-                                foreach (var phy in Model.physicians)
-                                {
-                                    <option value="@phy.Physicianid">Dr. @phy.Firstname @phy.Lastname</option>
-                                }
-                            }
-                        </select>
-                    </div>
-                    
+                    @{
+                        if (Model.loginType == "admin")
+                        {
+                            <div class="col-5">
+
+                                <select class="form-select h-100" aria-label="Default select example" id="physician" asp-for="selectedPhysician">
+                                    <option selected disabled>Select Physician</option>
+
+                                    @{
+                                        foreach (var phy in Model.physicians)
+                                        {
+                                            <option value="@phy.Physicianid">Dr. @phy.Firstname @phy.Lastname</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        }
+                    }
+
                     <div class="d-flex m-1">
                         <div class="m-1">
                             <input type="month" class="h-100" id="month-input" onchange="monthchangeinvoicing()" />
                         </div>
-                        <div class="m-1">
+                        <div class="m-1 form-floating">
                             <select class="form-select h-100" aria-label="Default select example" asp-for="timeSlot" id="timeslot">
                                 <option selected value="1" id="firsthalf">1'st Half</option>
                                 <option value="2" id="secondhalf">2'nd Half</option>
                             </select>
+                            <label for="timeslot">Search By TimePeriod</label>
                         </div>
                     </div>
                     

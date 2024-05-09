@@ -24,7 +24,8 @@ using static System.Net.Mime.MediaTypeNames;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Drawing;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
-
+using NUnit.Framework.Constraints;
+using Twilio.TwiML.Voice;
 
 namespace hellodoc.Repositories.Repository
 {
@@ -466,7 +467,7 @@ namespace hellodoc.Repositories.Repository
             }
         }
 
-        public async Task StopNotification(List<int> idlist, List<int> totallist)
+        public void StopNotification(List<int> idlist, List<int> totallist)
         {
             var list = _context.PhysicianNotifications.Where(u => totallist.Contains(u.Physicianid)).Select(u => u.Physicianid).ToList();
 
@@ -839,11 +840,11 @@ namespace hellodoc.Repositories.Repository
 
         public List<Timesheet> GetTimesheets(PartialViewModal partialView)
         {
-            var date = new DateOnly(partialView.currentYear, partialView.currentMonth, 1);
+            var date = new DateOnly((partialView.currentYear!=0?partialView.currentYear:DateTime.Now.Year), (partialView.currentMonth != 0 ? partialView.currentMonth : DateTime.Now.Month), 1);
             var fromdate = date;
             var todate = date;
             
-            if (partialView.timeSlot == 1)
+            if (partialView.timeSlot == 1 || partialView.timeSlot == 0)
             {
                 fromdate = date;
                 todate = date.AddDays(14);
@@ -873,10 +874,10 @@ namespace hellodoc.Repositories.Repository
                     timesheet.Date = i;
                     timesheet.Oncallhours = 0;
                     timesheets.Add(timesheet);
-
                 }
 
                 return timesheets.OrderBy(t => t.Date).ToList();
+
             }
 
             return _context.Timesheets.Where(t => t.Invoicingid == invoice.Invoicingid).OrderBy(t => t.Date).ToList();
@@ -1017,6 +1018,65 @@ namespace hellodoc.Repositories.Repository
                 invoice.Aproveddate = new DateOnly(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
                 invoice.Approvedby = aspid;
             }
+            _context.SaveChanges();
+        }
+
+        public Payrate GetPayrate(int physicianid)
+        {
+            var payrate = _context.Payrates.FirstOrDefault(p => p.Physicianid == physicianid);
+            if(payrate != null)
+            {
+                return payrate;
+            }
+            
+            return new Payrate { Physicianid = physicianid };
+        }
+
+        public void SavePayrate(int physicianid, int payratetype, int amount,int aspid)
+        {
+            var payrate = _context.Payrates.FirstOrDefault(p => p.Physicianid == physicianid);
+            if (payrate == null)
+            {
+                payrate = new Payrate
+                {
+                    Physicianid = physicianid
+                };
+                _context.Payrates.Add(payrate);
+                _context.SaveChanges();
+            }
+
+            switch (payratetype)
+            {
+                case 1:
+                    payrate.Nightshiftweekend = amount;
+                    break;
+
+                case 2:
+                    payrate.Shift = amount;
+                    break;
+
+                case 3:
+                    payrate.Housecallnightweekend = amount;
+                    break;
+
+                case 4:
+                    payrate.Phonecounsults = amount;
+                    break;
+
+                case 5:
+                    payrate.Phonecounsultsnightweekend = amount;
+                    break;
+
+                case 6:
+                    payrate.Batchtesting = amount;
+                    break;
+
+                case 7:
+                    payrate.Housecall = amount;
+                    break;
+            }
+            payrate.Modifiedby = aspid.ToString();
+            payrate.Modifieddate = new DateOnly(DateTime.Now.Year,DateTime.Now.Month,DateTime.Now.Day);
             _context.SaveChanges();
         }
     }

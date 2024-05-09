@@ -141,6 +141,9 @@ public partial class Physician
     public virtual ICollection<NotificationMessage> NotificationMessages { get; } = new List<NotificationMessage>();
 
     [InverseProperty("Physician")]
+    public virtual ICollection<Payrate> Payrates { get; } = new List<Payrate>();
+
+    [InverseProperty("Physician")]
     public virtual ICollection<PhysicianLocation> PhysicianLocations { get; } = new List<PhysicianLocation>();
 
     [InverseProperty("Physician")]

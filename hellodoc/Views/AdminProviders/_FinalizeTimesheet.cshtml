@@ -29,6 +29,7 @@
                             @{
                                 var i = 0;
                                 foreach (var a in Model)
+                                //asp-for="@Model[i].Weekend"
                                 {
                                     <input type="date" asp-for="@Model[i].Date" asp-format="{0:yyyy-MM-dd}" hidden/>
                                     <input type="text" asp-for="@Model[i].Invoicingid" hidden/>
@@ -36,7 +37,7 @@
                                         <td class="text-black">@Model[i].Date </td>
                                         <td class="text-black">@Model[i].Oncallhours</td>
                                         <td class="text-black"><input type="text" class="form-control h-100" asp-for="@Model[i].Totalhours" /></td>
-                                        <td class="text-black"><input type="checkbox" class="custom-check d-check providerscheck bg-info" asp-for="@Model[i].Weekend" /></td>
+                                        <td class="text-black"><input type="checkbox" class="custom-check d-check bg-info" /></td>
                                         <td class="text-black"><input type="text" class="form-control h-100" asp-for="@Model[i].Housecalls" /></td>
                                         <td class="text-black"><input type="text" class="form-control h-100" asp-for="@Model[i].Phoneconsults" /></td>
                                     </tr>
@@ -46,7 +47,7 @@
                             }
 
                         </tbody>
-                    </table>
+                   </table>
 
                 </div>
 
@@ -56,7 +57,7 @@
 
             </form>
         </div>
-
+        
         <div class=" col-12 col-sm-12 col-md-10 col-lg-8 mx-auto mt-4 mb-2">
             <button type="button" class="btn btn-info text-white m-2 p-2 px-4" onclick="toggleReceipts()">Add Receipts</button>
         </div>
@@ -106,7 +107,7 @@
                                                         <button type="button" class="btn btn-info text-white rounded-0"><i class="bi bi-cloud-arrow-up p-1"></i>Upload</button>
                                                     </div>
                                                 </div>
-                                                <div class="d-none" id="inputGroupFileAddon1_@Model[j].Date.Value.Day">
+                                                <div class="d-none" id="inputGroupFileAddon1_@Model[j].Date.Value.Day"> 
                                                 </div>
                                                 }
                                              }
@@ -117,12 +118,12 @@
                                             @{
                                                 if (a.Billdoc != null)
                                                 {
-                                                    <div class="" id="action_@Model[j].Date.Value.Day">
+                                                <div class="" id="action_@Model[j].Date.Value.Day">
                                                 <button type="button" id="save_@Model[j].Date.Value.Day" onclick="SaveReciepts('@Model[j].Timesheetid','@Model[j].Invoicingid','@Model[j].Date','@Model[j].Date.Value.Day','edit')" class="d-none btn btn-outline-info text-info bg-transparent m-1">save</button>
                                                 <button type="button" id="edit_@Model[j].Date.Value.Day" class="btn btn-outline-info text-info bg-transparent m-1" onclick="editReciept(@Model[j].Date.Value.Day)">Edit</button>
                                                 <button type="reset" id="cancel_@Model[j].Date.Value.Day" class="d-none btn btn-outline-info text-info bg-transparent m-1">Cancel</button>
                                                 <button type="button" id="delete_@Model[j].Date.Value.Day" class="btn btn-outline-info text-info bg-transparent m-1" onclick="deleteReciept('@Model[j].Timesheetid','@Model[j].Date.Value.Day')">Delete</button>
-                                                    <a class="btn btn-outline-info text-info bg-transparent m-1" id="view_@Model[j].Date.Value.Day" href="/invoicing/@Model[j].Invoicingid/@Model[j].Billdoc" target="_blank">View</a>
+                                                <a class="btn btn-outline-info text-info bg-transparent m-1" id="view_@Model[j].Date.Value.Day" href="/invoicing/@Model[j].Invoicingid/@Model[j].Billdoc" target="_blank">View</a>
                                                 </div>
                                             }
                                                 else

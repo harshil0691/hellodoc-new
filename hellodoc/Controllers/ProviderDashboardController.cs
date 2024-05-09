@@ -80,7 +80,7 @@ namespace hellodoc.Controllers
                     return PartialView("_dashboard", request);
 
                 case "invoicing":
-                    return RedirectToAction("GetProvidersView", "AdminProviders", new { actionType = "invoicing" });
+                    return RedirectToAction("GetProvidersView", "AdminProviders", new { actionType = "invoicing"});
 
                 case "myprofile":
                     return RedirectToAction("edit_physician", "AdminProviders", new { physicianid = HttpContext.Session.GetInt32("physiciandashid") ?? 1 });
