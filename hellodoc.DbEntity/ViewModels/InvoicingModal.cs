@@ -21,5 +21,6 @@ namespace hellodoc.DbEntity.ViewModels
 
         public List<Timesheet> timesheets { get; set; }
         public List<Physician> physicians { get; set; }
+        public List<PayrateCountModal> payrateCounts { get; set; }
     }
 }

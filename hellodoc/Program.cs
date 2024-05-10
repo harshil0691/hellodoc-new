@@ -5,6 +5,7 @@ using hellodoc.Repositories.Repository.Interface;
 using hellodoc.Repositories.Services.Interface;
 using hellodoc.Repositories.Services;
 using Microsoft.AspNetCore.Mvc.Filters;
+using hellodoc.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -42,6 +43,8 @@ builder.Services.AddScoped<IAdminRecords, AdminRecords>();
 builder.Services.AddScoped<IAdminPartners, AdminPartners>();
 builder.Services.AddScoped<IProviderRepo, ProviderRepo>();
 builder.Services.AddScoped<IAdminProviderLocation, AdminProviderLocation>();
+
+builder.Services.AddSignalR();
 var app = builder.Build();
 
 
@@ -64,6 +67,7 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=AdminDash}/{action=admin_dash}/{id?}");
 
+app.MapHub<ChatHub>("/chatHub");
 app.Run();
 
 

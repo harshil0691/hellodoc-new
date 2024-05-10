@@ -79,13 +79,15 @@ namespace hellodoc.Controllers
 
                     if(invoicing.loginType == "provider")
                     {
-                        invoicing.timesheets = _adminProviders.GetTimesheets(partialView);
+                        partialView.physicianid = HttpContext.Session.GetInt32("physiciandashid")??0;
+                        invoicing.payrateCounts = _adminProviders.GetDashTimeSheet(partialView);
                     }
 
 
                     return PartialView("_Invoicing",invoicing);
 
                 case "finalizetimesheet":
+
 
                     partialView.accoutOpen = HttpContext.Session.GetString("loginType")??"user";
                     if (partialView.accoutOpen == "provider")
@@ -121,8 +123,12 @@ namespace hellodoc.Controllers
         public IActionResult SaveTimesheet(List<Timesheet> timesheets,int physicianid, int month, int year, int slot)
         {
             var aspid = HttpContext.Session.GetInt32("Aspid");
-            _adminProviders.SaveTimesheet(timesheets,aspid??1,physicianid,month,year,slot);
+            //_adminProviders.SaveTimesheet(timesheets,aspid??1,physicianid,month,year,slot);
 
+            if(HttpContext.Session.GetString("loginType") == "provider")
+            {
+                return RedirectToAction("dashboard","ProviderDashboard");
+            }
             return RedirectToAction("admin_dash","AdminDash");
         }
 

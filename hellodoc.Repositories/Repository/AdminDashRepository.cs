@@ -62,6 +62,7 @@ namespace hellodoc.Repositories.Repository
                     region = _context.Regions.FirstOrDefault(rg => rg.Regionid == r.RequestClients.FirstOrDefault().Regionid).Name,
                     Notes = _context.RequestStatusLogs.Where(rs => rs.Requestid == r.Requestid).Select(rc => rc.Notes).ToString(),
                     CallType = r.Calltype ?? 0,
+                    Physicianid = r.Physicianid??0,
                 }).ToList();
             }
             else
@@ -74,13 +75,14 @@ namespace hellodoc.Repositories.Repository
                     Phonenumber_P = r.RequestClients.Select(rc => rc.Phonenumber).FirstOrDefault(),
                     Phonenumber_R = r.Phonenumber,
                     Status = r.Status,
-                    Createddate = r.Createddate.ToString("MMM")+r.Createddate.ToString("dd")+", "+r.Createddate.ToString("yyyy"),
+                    Createddate = r.Createddate.ToString("MMM") + r.Createddate.ToString("dd") + ", " + r.Createddate.ToString("yyyy"),
                     Address = r.RequestClients.Select(rc => rc.City + " " + rc.State + " " + rc.Zipcode).FirstOrDefault(),
                     RequestorName = r.Firstname + " " + r.Lastname,
                     Requesttypeid = r.Requesttypeid,
                     Requestclientid = r.RequestClients.Select(rc => rc.Requestclientid).FirstOrDefault(),
                     Email = r.Email,
                     Physicianname = r.Physician.Firstname,
+                    Physicianid = r.Physicianid ?? 0,
                     regionid = r.RequestClients.Select(rc => rc.Regionid).FirstOrDefault() ?? 0,
                     region = _context.Regions.FirstOrDefault(rg => rg.Regionid == r.RequestClients.FirstOrDefault().Regionid).Name,
                     Notes = r.RequestStatusLogs.OrderBy(n => n.Requeststatuslogid).Select(r => r.Notes).LastOrDefault(),

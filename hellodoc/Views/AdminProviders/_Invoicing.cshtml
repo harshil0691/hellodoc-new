@@ -7,7 +7,7 @@
     <div class="row bgcolor1">
 
         <div class=" col-12 col-sm-12 col-md-10 col-lg-8 mx-auto d-flex justify-content-between mt-4 mb-2">
-            <h2> Invoicing </h2>
+            <h3> Timesheets </h3>
             <button onclick="loadPartialDashView('dashboard')" class="d-flex btn btn-outline-info bg-transparent  text-end text-info fs-5 text-decoration-none">
                 <i class="bi bi-chevron-left"></i>Back
             </button>
@@ -93,13 +93,83 @@
 
                     </div>
                 }
-                else if(Model.loginType == "provider" && Model.timesheets.Count()>0)
+                else if(Model.loginType == "provider" && Model.payrateCounts.Count()>0)
                 {
+                    <input type="text" hidden value="@ViewBag.physicianid">
+                    <div style="margin-bottom:50px;" class="table-responsive d-none d-sm-none d-md-block d-lg-block d-xl-block mt-4" id="searchrecordstable">
+                        <table class="w-100">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Shift</th>
+                                    <th>NightShift Weekend</th>
+                                    <th>HouseCall</th>
+                                    <th>Housecall Nights Weekend</th>
+                                    <th>Phone Counsults</th>
+                                    <th>Phone Counsults Nights Weekend</th>
+                                    <th>Batch Testing</th>
+                                </tr>
+                            </thead>
+                            <tbody style="font-size:larger;font-weight:400;">
+                                @{
+                                    foreach (var a in Model.payrateCounts)
+                                    {
 
+                                        <tr class="m-2">
+                                            <td class="text-black">@a.Date</td>
+                                            <td class="text-black">@a.Shift</td>
+                                            <td class="text-black">@a.Nightshiftweekend</td>
+                                            <td class="text-black">@a.Housecall</td>
+                                            <td class="text-black">@a.Housecallnightweekend</td>
+                                            <td class="text-black">@a.Phonecounsults</td>
+                                            <td class="text-black">@a.Phonecounsultsnightweekend</td>
+                                            <td class="text-black">@a.Batchtesting</td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                    <h4>TimeSheet Reimbursement</h4>
+
+                    <div style="margin-bottom:50px;" class="table-responsive d-none d-sm-none d-md-block d-lg-block d-xl-block mt-4" id="searchrecordstable">
+                        <table class="w-100">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Item</th>
+                                    <th>Amount</th>
+                                    <th>Bill</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody style="font-size:larger;font-weight:400;">
+                                @{
+                                    //foreach (var a in Model.payrateCounts)
+                                    //{
+
+                                    //    <tr class="m-2">
+                                    //        <td class="text-black">@a.Date</td>
+                                    //        <td class="text-black">@a.Shift</td>
+                                    //        <td class="text-black">@a.Nightshiftweekend</td>
+                                    //        <td class="text-black">@a.Housecall</td>
+                                    //        <td class="text-black">@a.Housecallnightweekend</td>
+                                    //        <td class="text-black">@a.Phonecounsults</td>
+                                    //        <td class="text-black">@a.Phonecounsultsnightweekend</td>
+                                    //        <td class="text-black">@a.Batchtesting</td>
+                                    //    </tr>
+                                    //}
+                                }
+                            </tbody>
+                        </table>
+
+                    </div>
                 }
                 else
                 {
-                    <div>No Records Found</div>
+                    <div class="m-5 fs-6">No Record(s) Found</div>
                 }
             }
 
@@ -154,7 +224,11 @@
     });
 
     $('#timeslot').on('keyup change', function () {
-        var physician = document.getElementById('physician').value;
+        var physician = 0;
+        if (localStorage.getItem("loginAccount") != "Provider"){
+            physician = document.getElementById('physician').value;
+        }
+        
         var timeslot = document.getElementById('timeslot').value;
         GetProvidersView({ actionType: 'invoicing', physicianid: physician,timeSlot : timeslot,currentMonth : currentMonth,currentYear : currentYear });
     });

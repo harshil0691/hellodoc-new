@@ -1748,3 +1748,4 @@ C:\Users\pci235\source\repos\hellodoc\hellodoc\bin\Debug\net7.0\SixLabors.ImageS
 C:\Users\pci235\source\repos\hellodoc\hellodoc\bin\Debug\net7.0\AutoMapper.dll
 C:\Users\pci235\source\repos\hellodoc\hellodoc\bin\Debug\net7.0\hellodoc_utility.dll
 C:\Users\pci235\source\repos\hellodoc\hellodoc\bin\Debug\net7.0\hellodoc_utility.pdb
+C:\Users\pci235\source\repos\hellodoc\hellodoc\bin\Debug\net7.0\libman.json

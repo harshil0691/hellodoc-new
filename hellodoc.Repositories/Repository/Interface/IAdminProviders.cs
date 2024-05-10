@@ -33,6 +33,7 @@ namespace hellodoc.Repositories.Repository.Interface
         ProviderProfileModal GetForCreateProvider();
         void CreateProvider(ProviderProfileModal providerProfile);
         List<Timesheet> GetTimesheets(PartialViewModal partialView);
+        List<PayrateCountModal> GetDashTimeSheet(PartialViewModal partialView);
         List<Invoicing> GetInvoicings(PartialViewModal partialView);
         Payrate GetPayrate(int physicianid);
         void SavePayrate(int physicianid,int payratetype, int amount,int aspid);

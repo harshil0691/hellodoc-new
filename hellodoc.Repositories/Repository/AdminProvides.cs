@@ -873,7 +873,8 @@ namespace hellodoc.Repositories.Repository
                     Timesheet timesheet = new Timesheet();
                     timesheet.Date = i;
                     timesheet.Oncallhours = 0;
-                    timesheets.Add(timesheet);
+                    timesheet.Weekend = false; 
+                    timesheets.Add(timesheet); 
                 }
 
                 return timesheets.OrderBy(t => t.Date).ToList();
@@ -881,6 +882,66 @@ namespace hellodoc.Repositories.Repository
             }
 
             return _context.Timesheets.Where(t => t.Invoicingid == invoice.Invoicingid).OrderBy(t => t.Date).ToList();
+        }
+
+        public List<PayrateCountModal> GetDashTimeSheet(PartialViewModal partialView)
+        {
+            var date = new DateOnly((partialView.currentYear != 0 ? partialView.currentYear : DateTime.Now.Year), (partialView.currentMonth != 0 ? partialView.currentMonth : DateTime.Now.Month), 1);
+            var fromdate = date;
+            var todate = date;
+
+            if (partialView.timeSlot == 1 || partialView.timeSlot == 0)
+            {
+                fromdate = date;
+                todate = date.AddDays(14);
+            }
+            else if (partialView.timeSlot == 2)
+            {
+                fromdate = date.AddDays(15);
+                todate = date.AddMonths(1).AddDays(-1);
+            }
+
+
+            var invoice = _context.Invoicings.FirstOrDefault(
+                i => i.Physicianid == partialView.physicianid &&
+                (partialView.timeSlot == 0 ? i.Monthhalf == 1 :i.Monthhalf == partialView.timeSlot )&&
+                i.Monthnumber == date.Month &&
+                i.Year == date.Year
+                );
+
+            if(invoice != null)
+            {
+                var list = _context.Timesheets.Where(t => t.Invoicingid == invoice.Invoicingid && t.Weekend == true).Select(s => s.Date);
+
+                List<PayrateCountModal> payrateCount = new List<PayrateCountModal>();
+                for (DateOnly i = fromdate; i <= todate; i = i.AddDays(1))
+                {
+                    var timesheet = _context.Timesheets.FirstOrDefault(t => t.Invoicingid == invoice.Invoicingid && t.Date == i);
+
+                    PayrateCountModal countModal = new PayrateCountModal();
+                    countModal.Date = i;
+                    countModal.Shift = _context.ShiftDetails.Where(s => s.Shift.Physicianid == partialView.physicianid && DateOnly.FromDateTime(s.Shiftdate) == i).Count();
+                    countModal.Nightshiftweekend = _context.ShiftDetails.Where(s => s.Shift.Physicianid == partialView.physicianid && DateOnly.FromDateTime(s.Shiftdate) == i && list.Contains(i)).Count();
+                    countModal.Housecall = timesheet.Housecalls??0;
+                    countModal.Phonecounsults = timesheet.Phoneconsults??0;
+                    if(timesheet.Weekend == true)
+                    {
+                        countModal.Housecallnightweekend = timesheet.Housecalls ?? 0;
+                        countModal.Phonecounsultsnightweekend = timesheet.Phoneconsults ?? 0;
+                    }
+                    else
+                    {
+                        countModal.Housecallnightweekend = 0;
+                        countModal.Phonecounsultsnightweekend = 0;
+                    }
+                    countModal.Batchtesting = 0;
+                    
+                    payrateCount.Add(countModal);
+                }
+
+                return payrateCount;
+            }
+            return new List<PayrateCountModal>();
         }
 
         public List<Invoicing> GetInvoicings(PartialViewModal partialView)
