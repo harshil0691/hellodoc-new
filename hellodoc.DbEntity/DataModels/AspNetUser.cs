@@ -39,6 +39,12 @@ public partial class AspNetUser
     [InverseProperty("User")]
     public virtual AspNetUserRole? AspNetUserRole { get; set; }
 
+    [InverseProperty("Recieverasp")]
+    public virtual ICollection<Message> MessageRecieverasps { get; } = new List<Message>();
+
+    [InverseProperty("Senderasp")]
+    public virtual ICollection<Message> MessageSenderasps { get; } = new List<Message>();
+
     [InverseProperty("Aspetuser")]
     public virtual ICollection<NotificationMessage> NotificationMessages { get; } = new List<NotificationMessage>();
 

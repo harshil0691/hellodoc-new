@@ -48,8 +48,9 @@ namespace hellodoc.Controllers
         private readonly IAdminProviderLocation _providerLocation;
         private readonly IAdminRecords _adminRecords;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IChatRepo _chatRepo;
 
-        public AdminDashController(ILogger<AdminDashController> logger, IAdminDashRepository adminDashRepository, IPatientLogin patientLogin, IRequests requests, IHostingEnvironment hostingEnvironment, IAuthManager authManager, IAdminProviders adminProviders, IAdminAccess adminAccess, IAdminProviderLocation providerLocation, IAdminRecords adminRecords, IHttpContextAccessor httpContextAccessor)
+        public AdminDashController(ILogger<AdminDashController> logger, IAdminDashRepository adminDashRepository, IPatientLogin patientLogin, IRequests requests, IHostingEnvironment hostingEnvironment, IAuthManager authManager, IAdminProviders adminProviders, IAdminAccess adminAccess, IAdminProviderLocation providerLocation, IAdminRecords adminRecords, IHttpContextAccessor httpContextAccessor,IChatRepo chatRepo)
         {
             _logger = logger;
             _adminDashRepository = adminDashRepository;
@@ -62,6 +63,7 @@ namespace hellodoc.Controllers
             _providerLocation = providerLocation;
             _adminRecords = adminRecords;
             _httpContextAccessor = httpContextAccessor;
+            _chatRepo = chatRepo;
         }
 
         public IActionResult admin_dash()
@@ -151,6 +153,21 @@ namespace hellodoc.Controllers
 
             }
 
+        }
+
+        public IActionResult GetChatView(int requestid,int physicianid, string recivertype)
+        {
+            PartialViewModal partialView = new PartialViewModal();
+            partialView.ChatSenderAspid = HttpContext.Session.GetInt32("Aspid")??0;
+            partialView.ReciverType = recivertype;
+            partialView.physicianid = physicianid;
+            partialView.requestid = requestid;
+
+            var chat = _chatRepo.GetChats(partialView);
+            chat.sentFrom = HttpContext.Session.GetString("loginType")??"admin";
+            chat.requestid = requestid;
+            
+            return PartialView("_ChatCanvas",chat);
         }
 
         [HttpPost]

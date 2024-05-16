@@ -52,6 +52,7 @@ namespace hellodoc.Controllers
             {
                 HttpContext.Session.SetString("username", aspnetuser.Username);
                 HttpContext.Session.SetInt32("PhysicianAspid", aspnetuser.Id);
+                HttpContext.Session.SetInt32("Aspid", aspnetuser.Id);
                 try
                 {
                     var physicianid = _authManger.GetPhysician(aspnetuser.Id);

@@ -69,6 +69,7 @@
 </form>
 
 <div id="tabledata"></div>
+<div id="chatcanvas"></div>
 
 <script>
     var tab = "new";
@@ -100,4 +101,31 @@
 
     });
 
+
+    function OpenMessageCanvas(requestid, recivertype) {
+        console.log(requestid);
+
+        $.ajax({
+            url: '/ProviderDashboard/GetChatView',
+            type: 'GET',
+            data: { requestid: requestid, recivertype: recivertype },
+            success: function (data) {
+                $('#chatcanvas').html(data);
+
+                var myOffcanvas = document.getElementById('canvas');
+                var bsOffcanvas = new bootstrap.Offcanvas(myOffcanvas);
+                bsOffcanvas.show();
+
+                var messagesList = document.getElementById("messagesList");
+                // Scroll to the bottom of the message list
+                messagesList.scrollTop = messagesList.scrollHeight;
+
+
+            },
+            error: function () {
+                console.error('Error loading partial view.');
+            }
+        });
+
+    }
 </script>

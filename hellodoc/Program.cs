@@ -43,6 +43,7 @@ builder.Services.AddScoped<IAdminRecords, AdminRecords>();
 builder.Services.AddScoped<IAdminPartners, AdminPartners>();
 builder.Services.AddScoped<IProviderRepo, ProviderRepo>();
 builder.Services.AddScoped<IAdminProviderLocation, AdminProviderLocation>();
+builder.Services.AddScoped<IChatRepo, ChatRepo>();
 
 builder.Services.AddSignalR();
 var app = builder.Build();

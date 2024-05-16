@@ -11,7 +11,6 @@ namespace hellodoc.Controllers
     [ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
     public class ProviderDashboardController : Controller
     {
-        private readonly ILogger<AdminDashController> _logger;
         private readonly IAdminDashRepository _adminDashRepository;
         private readonly IPatientLogin _patientLogin;
         private readonly IRequests _requests;
@@ -23,11 +22,11 @@ namespace hellodoc.Controllers
         private readonly IAdminRecords _adminRecords;
         private readonly IProviderRepo _providerRepo;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IChatRepo _chatRepo;
 
 
-        public ProviderDashboardController(ILogger<AdminDashController> logger, IAdminDashRepository adminDashRepository, IPatientLogin patientLogin, IRequests requests, IHostingEnvironment hostingEnvironment, IAuthManager authManager, IAdminProviders adminProviders, IAdminAccess adminAccess, IAdminProviderLocation providerLocation, IAdminRecords adminRecords,IProviderRepo providerRepo, IHttpContextAccessor httpContextAccessor)
+        public ProviderDashboardController( IAdminDashRepository adminDashRepository, IPatientLogin patientLogin, IRequests requests, IHostingEnvironment hostingEnvironment, IAuthManager authManager, IAdminProviders adminProviders, IAdminAccess adminAccess, IAdminProviderLocation providerLocation, IAdminRecords adminRecords,IProviderRepo providerRepo, IHttpContextAccessor httpContextAccessor,IChatRepo chatRepo)
         {
-            _logger = logger;
             _adminDashRepository = adminDashRepository;
             _patientLogin = patientLogin;
             _requests = requests;
@@ -39,6 +38,7 @@ namespace hellodoc.Controllers
             _adminRecords = adminRecords;
             _providerRepo = providerRepo;
             _httpContextAccessor = httpContextAccessor;
+            _chatRepo = chatRepo;
         }
 
         public IActionResult dashboard()
@@ -95,6 +95,22 @@ namespace hellodoc.Controllers
             }
 
         }
+
+
+        public IActionResult GetChatView(int requestid, string recivertype)
+        {
+            PartialViewModal partialView = new PartialViewModal();
+            partialView.ChatSenderAspid = HttpContext.Session.GetInt32("Aspid") ?? 0;
+            partialView.ReciverType = recivertype;
+            partialView.requestid = requestid;
+
+            var chat = _chatRepo.GetChats(partialView);
+            chat.sentFrom = HttpContext.Session.GetString("loginType") ?? "admin";
+            chat.requestid = requestid;
+
+            return PartialView("_ProviderChatCanvas", chat);
+        }
+
 
         [HttpPost]
         public string AcceptRequest(PartialViewModal partialView)

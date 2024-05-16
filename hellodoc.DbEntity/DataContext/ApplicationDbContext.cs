@@ -32,6 +32,8 @@ public partial class ApplicationDbContext : DbContext
 
     public virtual DbSet<CaseTag> CaseTags { get; set; }
 
+    public virtual DbSet<ChatType> ChatTypes { get; set; }
+
     public virtual DbSet<Concierge> Concierges { get; set; }
 
     public virtual DbSet<EmailLog> EmailLogs { get; set; }
@@ -49,6 +51,8 @@ public partial class ApplicationDbContext : DbContext
     public virtual DbSet<MedicalHistory> MedicalHistories { get; set; }
 
     public virtual DbSet<Menu> Menus { get; set; }
+
+    public virtual DbSet<Message> Messages { get; set; }
 
     public virtual DbSet<NotificationMessage> NotificationMessages { get; set; }
 
@@ -188,6 +192,13 @@ public partial class ApplicationDbContext : DbContext
             entity.Property(e => e.Casetagid).ValueGeneratedNever();
         });
 
+        modelBuilder.Entity<ChatType>(entity =>
+        {
+            entity.HasKey(e => e.Chattypeid).HasName("ChatType_pkey");
+
+            entity.Property(e => e.Chattypeid).ValueGeneratedNever();
+        });
+
         modelBuilder.Entity<Concierge>(entity =>
         {
             entity.HasKey(e => e.Conciergeid).HasName("Concierge_pkey");
@@ -252,6 +263,19 @@ public partial class ApplicationDbContext : DbContext
             entity.HasKey(e => e.Menuid).HasName("Menu_pkey");
 
             entity.Property(e => e.Menuid).ValueGeneratedNever();
+        });
+
+        modelBuilder.Entity<Message>(entity =>
+        {
+            entity.HasKey(e => e.Messageid).HasName("Message_pkey");
+
+            entity.HasOne(d => d.ChattypeNavigation).WithMany(p => p.Messages).HasConstraintName("fk_message_chattype");
+
+            entity.HasOne(d => d.Recieverasp).WithMany(p => p.MessageRecieverasps).HasConstraintName("fk_message_raspnetuser");
+
+            entity.HasOne(d => d.Request).WithMany(p => p.Messages).HasConstraintName("fk_message_request");
+
+            entity.HasOne(d => d.Senderasp).WithMany(p => p.MessageSenderasps).HasConstraintName("fk_message_aspnetuser");
         });
 
         modelBuilder.Entity<NotificationMessage>(entity =>

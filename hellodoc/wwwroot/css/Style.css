@@ -525,3 +525,15 @@ input[type="checkbox"]:checked {
         right: 10px;
         cursor: pointer;
     }
+
+#messagesList {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow-y: auto; /* Enable vertical scrollbar */
+    max-height: 300px; /* Limit chat height */
+}
+
+.message {
+    margin-bottom: 10px; /* Space between messages */
+}

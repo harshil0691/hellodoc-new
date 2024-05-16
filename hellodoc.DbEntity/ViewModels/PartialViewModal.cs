@@ -45,6 +45,12 @@ namespace hellodoc.DbEntity.ViewModels
         public int timeSlot { get; set; }
         public int numberOfDays { get; set; }
 
+        public int ChatSenderAspid { get; set; }
+        public int ReciverAdminid { get; set; }
+        public int ReciverPhysicianid { get; set; }
+        public int ReciverRequestid { get; set; }
+        public string ReciverType { get; set; }
+
 
         AdminRecordsListModal AdminRecords;
     }

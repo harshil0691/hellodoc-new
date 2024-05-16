@@ -20,11 +20,17 @@ connection.start().then(function () {
     return console.error(err.toString());
 });
 
-document.getElementById("sendButton").addEventListener("click", function (event) {
+function sendMessage(requestid) {
     var user = document.getElementById("userInput").value;
     var message = document.getElementById("messageInput").value;
-    connection.invoke("SendMessage", user, message).catch(function (err) {
+    var SenderAspid = document.getElementById("SenderAspid").value;
+    var ReciverAspid = document.getElementById("ReciverAspid").value;
+    var sentFrom = document.getElementById("sentFrom").value;
+
+    document.getElementById("messageInput").value = "";
+    connection.invoke("SendMessage", user, message, SenderAspid, ReciverAspid, sentFrom, requestid).catch(function (err) {
         return console.error(err.toString());
     });
+
     event.preventDefault();
-});
+}
