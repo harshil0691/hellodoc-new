@@ -4,45 +4,77 @@ using hellodoc.Repositories.Repository.Interface;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Concurrent;
+using hellodoc.DbEntity.DataModels;
+using System;
+using Org.BouncyCastle.Ocsp;
+
 
 namespace hellodoc.Hubs
 {
+    public class ConnectionManager
+    {
+        private readonly ConcurrentDictionary<int?, string> _userConnections = new ConcurrentDictionary<int?, string>();
+        private readonly ConcurrentDictionary<int?, string> _requestConnections = new ConcurrentDictionary<int?, string>();
+
+        public void AddConnection(int? userId,int? requestid, string connectionId)
+        {
+            if (_userConnections.GetValueOrDefault(userId) == null)
+            {
+                _userConnections.TryAdd(userId, connectionId);
+            }
+            else
+            {
+                _userConnections.TryRemove(userId, out _);
+                _userConnections.TryAdd(userId, connectionId);
+            }
+
+            if (_requestConnections.GetValueOrDefault(requestid) == null)
+            {
+                _userConnections.TryAdd(requestid, connectionId);
+            }
+            else
+            {
+                _userConnections.TryRemove(requestid, out _);
+                _userConnections.TryAdd(requestid, connectionId);
+            }
+        }
+
+        public void RemoveConnection(int? userId)
+        {
+            _userConnections.TryRemove(userId, out _);
+        }
+
+        public string GetConnectionId(int? userId)
+        {
+            _userConnections.TryGetValue(userId, out var connectionId);
+            return connectionId;
+        }
+    }
+
+
     public class ChatHub : Hub
     {
         private readonly IChatRepo _chatRepo;
+        private readonly IHttpContextAccessor _contextAccessor;
+        private readonly ConnectionManager _connectionManager;
 
-        public ChatHub(IChatRepo chatRepo)
+        public ChatHub(IChatRepo chatRepo, IHttpContextAccessor httpContextAccessor,ConnectionManager connectionManager)
         {
             _chatRepo = chatRepo;
+            _contextAccessor = httpContextAccessor;
+            _connectionManager = connectionManager;
         }
-
-        //private readonly static ConcurrentDictionary<string, string> _userConnectionMap = new ConcurrentDictionary<string, string>();
-
-        //public override async Task OnConnectedAsync()
-        //{
-        //    // Get the user ID from your authentication system
-        //    var userId = Context.UserIdentifier;
-
-        //    if (!string.IsNullOrEmpty(userId))
-        //    {
-        //        _userConnectionMap.TryAdd(userId, Context.ConnectionId);
-        //    }
-
-        //    await base.OnConnectedAsync();
-        //}
-
-        //public override async Task OnDisconnectedAsync(Exception exception)
-        //{
-        //    // Get the user ID from your authentication system
-        //    var userId = Context.UserIdentifier;
-
-        //    if (!string.IsNullOrEmpty(userId))
-        //    {
-        //        _userConnectionMap.TryRemove(userId, out _);
-        //    }
-
-        //    await base.OnDisconnectedAsync(exception);
-        //}
+        public override Task OnConnectedAsync()
+        {
+            var AspId = _contextAccessor.HttpContext?.Session.GetInt32("Aspid");
+            var RequestId = _contextAccessor.HttpContext?.Session.GetInt32("RequestId");
+            _connectionManager.AddConnection(AspId , RequestId, Context.ConnectionId);
+            return base.OnConnectedAsync();
+        }
+        public override Task OnDisconnectedAsync(Exception? exception)
+        {
+            return base.OnDisconnectedAsync(exception);
+        }
 
 
         public async Task SendMessage(string user, string message,string SenderAspid,string ReciverAspid,string sentfrom,string requestid)
@@ -56,12 +88,14 @@ namespace hellodoc.Hubs
 
             _chatRepo.SaveChats(chat);
 
-            //if (_userConnectionMap.TryGetValue(SenderAspid, out string connectionId))
-            //{
-            //    await Clients.Client(connectionId).SendAsync("ReceiveMessage", message);
-            //}
+            string reciverConnectionId = _connectionManager.GetConnectionId(int.Parse(ReciverAspid));
 
-            await Clients.All.SendAsync("ReceiveMessage", user, message);
+            if (reciverConnectionId != null)
+            {
+                await Clients.Client(reciverConnectionId).SendAsync("ReceiveMessage", message, "reciver");
+            }
+            
         }
     }
 }
+

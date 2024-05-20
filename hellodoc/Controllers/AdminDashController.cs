@@ -72,6 +72,7 @@ namespace hellodoc.Controllers
 
             if (claims != null)
             {
+                HttpContext.Session.SetString("loginType","admin");
                 if (claims.ContainsKey("username"))
                 {
                     string userName = claims["username"];
@@ -157,6 +158,7 @@ namespace hellodoc.Controllers
 
         public IActionResult GetChatView(int requestid,int physicianid, string recivertype)
         {
+            HttpContext.Session.SetInt32("RequestId",requestid);
             PartialViewModal partialView = new PartialViewModal();
             partialView.ChatSenderAspid = HttpContext.Session.GetInt32("Aspid")??0;
             partialView.ReciverType = recivertype;
@@ -166,7 +168,7 @@ namespace hellodoc.Controllers
             var chat = _chatRepo.GetChats(partialView);
             chat.sentFrom = HttpContext.Session.GetString("loginType")??"admin";
             chat.requestid = requestid;
-            
+
             return PartialView("_ChatCanvas",chat);
         }
 

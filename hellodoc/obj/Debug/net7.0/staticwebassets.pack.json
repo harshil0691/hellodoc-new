@@ -229,6 +229,10 @@
       "PackagePath": "staticwebassets\\PhysicianDoc\\fb3daf80-8737-4786-ba3e-402d2966cd52_Fig25. Contact your Provider.jpg"
     },
     {
+      "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\css\\Chat.css",
+      "PackagePath": "staticwebassets\\css\\Chat.css"
+    },
+    {
       "Id": "C:\\Users\\pci235\\source\\repos\\hellodoc\\hellodoc\\wwwroot\\css\\Style.css",
       "PackagePath": "staticwebassets\\css\\Style.css"
     },

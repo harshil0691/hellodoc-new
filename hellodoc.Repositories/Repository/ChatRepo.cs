@@ -32,7 +32,7 @@ namespace hellodoc.Repositories.Repository
 
                     if (physician != null)
                     {
-                        var chatlist = _context.Messages.Where(p => p.Senderaspid == partialView.ChatSenderAspid && p.Recieveraspid == physician.Aspnetuserid && p.Requestid == partialView.requestid);
+                        var chatlist = _context.Messages.Where(p => p.Requestid == partialView.requestid);
 
                         chatModal.photoPath = physician.Photo ?? "./images/avatar.png";
                         chatModal.Name = physician.Firstname + " " + physician.Lastname;
@@ -43,7 +43,7 @@ namespace hellodoc.Repositories.Repository
                     break;
 
                 case "admin":
-                    var chatlist1 = _context.Messages.Where(p => p.Senderaspid == partialView.ChatSenderAspid && p.Requestid == partialView.requestid);
+                    var chatlist1 = _context.Messages.Where(p => p.Requestid == partialView.requestid);
 
                     chatModal.Name = "Admin";
                     chatModal.messages = chatlist1.ToList();

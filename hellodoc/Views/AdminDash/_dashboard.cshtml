@@ -122,18 +122,18 @@
 
 
     function OpenMessageCanvas(requestid, physicianid, recivertype) {
-        console.log(requestid);
+       
+        if (physicianid == null || physicianid == 0) {
+            toastr.info("First Assign A Physician")
+        } 
+        else {
+            $.ajax({
+                url: '/AdminDash/GetChatView',
+                type: 'GET',
+                data: { requestid: requestid, physicianid: physicianid, recivertype: recivertype },
+                success: function (data) {
+                    $('#chatcanvas').html(data);
 
-        $.ajax({
-            url: '/AdminDash/GetChatView',
-            type: 'GET',
-            data: { requestid: requestid, physicianid: physicianid, recivertype: recivertype },
-            success: function (data) {
-                $('#chatcanvas').html(data);
-
-                if (physicianid == null || physicianid == 0) {
-                    toastr.info("First Assign A Physician")
-                } else {
                     var myOffcanvas = document.getElementById('canvas');
                     var bsOffcanvas = new bootstrap.Offcanvas(myOffcanvas);
                     bsOffcanvas.show();
@@ -141,14 +141,14 @@
                     var messagesList = document.getElementById("messagesList");
                     // Scroll to the bottom of the message list
                     messagesList.scrollTop = messagesList.scrollHeight;
-                }
 
-               
-            },
-            error: function () {
-                console.error('Error loading partial view.');
-            }
-        });
+                },
+                error: function () {
+                    console.error('Error loading partial view.');
+                }
+            });
+        }
+        
         
     }
 

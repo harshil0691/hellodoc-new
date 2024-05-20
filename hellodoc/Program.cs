@@ -44,6 +44,7 @@ builder.Services.AddScoped<IAdminPartners, AdminPartners>();
 builder.Services.AddScoped<IProviderRepo, ProviderRepo>();
 builder.Services.AddScoped<IAdminProviderLocation, AdminProviderLocation>();
 builder.Services.AddScoped<IChatRepo, ChatRepo>();
+builder.Services.AddSingleton<ConnectionManager>();
 
 builder.Services.AddSignalR();
 var app = builder.Build();

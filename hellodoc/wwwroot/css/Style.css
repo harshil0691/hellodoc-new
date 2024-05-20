@@ -531,7 +531,7 @@ input[type="checkbox"]:checked {
     margin: 0;
     padding: 0;
     overflow-y: auto; /* Enable vertical scrollbar */
-    max-height: 300px; /* Limit chat height */
+    max-height: 1000px; /* Limit chat height */
 }
 
 .message {

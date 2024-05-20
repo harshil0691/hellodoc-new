@@ -99,13 +99,14 @@ namespace hellodoc.Controllers
 
         public IActionResult GetChatView(int requestid, string recivertype)
         {
+            HttpContext.Session.SetInt32("RequestId", requestid);
             PartialViewModal partialView = new PartialViewModal();
             partialView.ChatSenderAspid = HttpContext.Session.GetInt32("Aspid") ?? 0;
             partialView.ReciverType = recivertype;
             partialView.requestid = requestid;
 
             var chat = _chatRepo.GetChats(partialView);
-            chat.sentFrom = HttpContext.Session.GetString("loginType") ?? "admin";
+            chat.sentFrom = HttpContext.Session.GetString("loginType") ?? "provider";
             chat.requestid = requestid;
 
             return PartialView("_ProviderChatCanvas", chat);
