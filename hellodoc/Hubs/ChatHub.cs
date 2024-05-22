@@ -13,8 +13,8 @@ namespace hellodoc.Hubs
 {
     public class ConnectionManager
     {
-        private readonly ConcurrentDictionary<int?, string> _userConnections = new ConcurrentDictionary<int?, string>();
-        private readonly ConcurrentDictionary<int?, string> _requestConnections = new ConcurrentDictionary<int?, string>();
+        private readonly ConcurrentDictionary<int?, string> _userConnections = new ConcurrentDictionary<int?, string>();    
+        private readonly ConcurrentDictionary<int?, List<string>> _requestConnections = new ConcurrentDictionary<int?, List<string>>();
 
         public void AddConnection(int? userId,int? requestid, string connectionId)
         {
@@ -30,24 +30,48 @@ namespace hellodoc.Hubs
 
             if (_requestConnections.GetValueOrDefault(requestid) == null)
             {
-                _userConnections.TryAdd(requestid, connectionId);
+                List<string> list = new List<string>();
+                list.Add(connectionId);
+                _requestConnections.TryAdd(requestid, list);
             }
             else
             {
-                _userConnections.TryRemove(requestid, out _);
-                _userConnections.TryAdd(requestid, connectionId);
+                List<string> list = new List<string>();
+                list = _requestConnections.GetValueOrDefault(requestid);
+                list.Add(connectionId);
+                _requestConnections.TryRemove(requestid,out _);
+                _requestConnections.TryAdd(requestid, list);
             }
         }
 
-        public void RemoveConnection(int? userId)
+        public void RemoveConnection(int? userId,int? requestId)
         {
             _userConnections.TryRemove(userId, out _);
+            _requestConnections.TryRemove(requestId, out _);
         }
 
-        public string GetConnectionId(int? userId)
+        public string GetConnectionId(int? userId,int? requestId)
         {
             _userConnections.TryGetValue(userId, out var connectionId);
+            _requestConnections.TryGetValue(requestId, out var connReqList);
+            if (connReqList.Contains(connectionId))
+            {
+                return connectionId;
+            }
             return connectionId;
+        }
+
+        public List<string> GetConnectionIdsForGroupChat(int? senderId, int? requestId)
+        {
+            _userConnections.TryGetValue(senderId, out var connectionId);
+            _requestConnections.TryGetValue(requestId, out var connReqList);
+            var list = new List<string>();
+            if (connReqList.Contains(connectionId))
+            {
+                connReqList.Remove(connectionId);
+                return connReqList;
+            }
+            return connReqList;
         }
     }
 
@@ -73,11 +97,14 @@ namespace hellodoc.Hubs
         }
         public override Task OnDisconnectedAsync(Exception? exception)
         {
+            var AspId = _contextAccessor.HttpContext?.Session.GetInt32("Aspid");
+            var RequestId = _contextAccessor.HttpContext?.Session.GetInt32("RequestId");
+            _connectionManager.RemoveConnection(AspId,RequestId);
             return base.OnDisconnectedAsync(exception);
         }
 
 
-        public async Task SendMessage(string user, string message,string SenderAspid,string ReciverAspid,string sentfrom,string requestid)
+        public async Task SendMessage(string chattype,string message,string SenderAspid,string ReciverAspid,string sentfrom,string requestid)
         {
             ChatModal chat = new ChatModal();
             chat.SenderAspId = int.Parse(SenderAspid);
@@ -85,16 +112,30 @@ namespace hellodoc.Hubs
             chat.message = message;
             chat.sentFrom = sentfrom;
             chat.requestid = int.Parse(requestid);
+            chat.chatType = chattype;
 
             _chatRepo.SaveChats(chat);
 
-            string reciverConnectionId = _connectionManager.GetConnectionId(int.Parse(ReciverAspid));
-
-            if (reciverConnectionId != null)
+            if(chattype == "groupchat")
             {
-                await Clients.Client(reciverConnectionId).SendAsync("ReceiveMessage", message, "reciver");
+                List<string> reciverConnectionId = _connectionManager.GetConnectionIdsForGroupChat(int.Parse(SenderAspid), int.Parse(requestid));
+
+                if (reciverConnectionId != null)
+                {
+                    foreach(var connectionId in reciverConnectionId)
+                    {
+                        await Clients.Client(connectionId).SendAsync("ReceiveMessage", message, "reciver");
+                    }                }
             }
-            
+            else
+            {
+                string reciverConnectionId = _connectionManager.GetConnectionId(int.Parse(ReciverAspid), int.Parse(requestid));
+
+                if (reciverConnectionId != null)
+                {
+                    await Clients.Client(reciverConnectionId).SendAsync("ReceiveMessage", message, "reciver");
+                }
+            }
         }
     }
 }

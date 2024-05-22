@@ -17,6 +17,7 @@ namespace hellodoc.DbEntity.ViewModels
         public string message { get; set; }
         public string sentFrom { get; set; }
         public int requestid { get; set; }
+        public string chatType { get; set; }
         public List<Message> messages { get; set; }
     }
 }

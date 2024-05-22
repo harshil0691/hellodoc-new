@@ -41,14 +41,13 @@ connection.start().then(function () {
 });
 
 function sendMessage(requestid) {
-    var user = document.getElementById("userInput").value;
     var message = document.getElementById("messageInput").value;
     var SenderAspid = document.getElementById("SenderAspid").value;
     var ReciverAspid = document.getElementById("ReciverAspid").value;
     var sentFrom = document.getElementById("sentFrom").value;
 
     document.getElementById("messageInput").value = "";
-    connection.invoke("SendMessage", user, message, SenderAspid, ReciverAspid, sentFrom, requestid).then(function () {
+    connection.invoke("SendMessage","user", message, SenderAspid, ReciverAspid, sentFrom, requestid).then(function () {
 
         var chatdiv = document.createElement("div");
         var chat = document.createElement("div");
